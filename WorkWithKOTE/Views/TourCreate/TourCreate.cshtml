@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "TourCreate";
+}
+@model WorkWithKOTE.Models.Tour
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+
+<h2>TourCreate</h2>
+<form action="@Url.Action("TourCreate")" method="post" enctype="multipart/form-data">
+    <div>
+        Название  @Html.TextBoxFor(m => m.NameTour)
+        Заголовок  @Html.TextBoxFor(m => m.TitleTour) <br />
+        Выберите тип тура:   @Html.DropDownListFor(m => m.TypeOfTour, new List<SelectListItem>() { new SelectListItem { Text = "Вверх" }, new SelectListItem { Text = "Середина" }, new SelectListItem { Text = "Низ" }})
+        Cтатус тура : @Html.DropDownListFor(m => m.TourStatus, new List<SelectListItem>() { new SelectListItem { Text = "Активный" }, new SelectListItem { Text = "Неактивный" }, new SelectListItem { Text = "Превью главной" },
+                 new SelectListItem { Text = "Превью блока" },new SelectListItem { Text = "Рекомендуемый" }})
+        Описание:
+        @Html.TextAreaFor(m => m.DiscriptionTour)<br />
+        стоимость @Html.TextBoxFor(m => m.Cost)<br />
+        <input type="radio" name="Valuta" value="гривна" checked style="height:15px; width:15px" />Гривна<br />
+        <input type="radio" name="Valuta" value="доллар" style="height:15px; width:15px " />Dollar<br />
+        <input type="radio" name="Valuta" value="евро" style="height:15px; width:15px " />Euro<br />
+        Предоплата :<input type="checkbox" id="Predop" onclick="valid()" />
+        @Html.TextBoxFor(m => m.PrePay, new { style = "visibility:hidden", id = "PrePay" })<br />
+        <br />
+        Бронь:<input type="checkbox" id="Reserv" onclick="reserv()"/>
+        @Html.TextBoxFor(m => m.Reservation, new {style = "visibility:hidden", id = "Reservation" })<br/>
+    @*    @Html.EditorFor(m => m.DateTour, "DateTour")*@
+        @Html.Partial("DateTourPartial")
+        <br />
+            Виды Транспорта :<br />
+            Автобус @Html.CheckBoxFor(m => m.IsBus)<br />
+            Самолет @Html.CheckBoxFor(m => m.IsAriplane)<br />
+            Лайнер  @Html.CheckBoxFor(m => m.IsShip)<br />
+            Подпись к цене
+            @Html.TextBoxFor(m => m.PodpicePrice)
+            <p>Аукционная цена : @Html.TextBoxFor(m => m.AukcionPrice)</p>
+            <p>
+                Сумма Агента:  <input type="checkbox" id="Summa" onclick="valid2()" />
+                @Html.TextBoxFor(m => m.KommisiaAgent, new { style = "visibility:hidden", id = "SummaAgent" })<br />
+            </p>
+           <p>
+               @Html.Partial("DopUsluga")
+           </p>
+            <p>
+                Имя Сопровождающего :@Html.TextBoxFor(m => m.SuppName)<br />
+            <p>@ViewBag.Message</p>
+            <p>
+                Фото сопровождающего:<input type="file" name="AvatarSupp" />
+                Ссылка на соц. сеть: @Html.TextBoxFor(m => m.SuppVkontakte)<br />
+                Описание сопровождающего :@Html.TextAreaFor(m=>m.SuppDiscription)<br />
+            </p>
+            <select name="KindOfPay">
+                <option selected="selected">Способ оплаты</option>
+                <option>Наличный</option>
+                <option>Безналичный</option>
+                <option>Оба</option>
+            </select>
+            <br />
+            Количество участyков :@Html.TextBoxFor(m => m.AllPeople)<br />
+            Уже едут :@Html.TextBoxFor(m => m.People)<br />
+            Обложка тура - <input type="file" name="TourImg" /><br />
+            Галлерея : @Html.DropDownList("GalleryID", String.Empty)<br />
+            Загрузить файл :<input type="file" name="Document" /><br />
+            Бонус за тур :
+            <input type="checkbox" id="Bonus" onclick="valid3()" />
+            @Html.TextBoxFor(m => m.Bonus, new { style = "visibility:hidden", id = "BonusText" })<br />
+            @Html.Partial("TegPartialView")<br/>
+          <div id="map_canvas" style="width:300px; height:300px"></div>
+            <input type="submit" value="Создать Тур" />
+            </div>
+    @Html.Partial("MapPartial")
+            </form>
+            @section scripts {
+                <script>
+                    CKEDITOR.replace("DiscriptionTour", {
+                        filebrowserBrowseUrl: '/Scripts/Filemanager-master/index.html'
+                    });
+                </script>
+                <script type="text/javascript">
+                    function valid() {
+                        if (document.getElementById('Predop').checked) {
+                            document.getElementById('PrePay').style.visibility = 'visible';
+                        }
+                    }
+                    function reserv() {
+                        if (document.getElementById('Reserv').checked) {
+                            document.getElementById('Reservation').style.visibility = 'visible';
+                        }
+                    }
+                    function valid2() {
+                        if (document.getElementById('Summa').checked) {
+                            document.getElementById('SummaAgent').style.visibility = 'visible';
+                        }
+                    }
+                    function valid3() {
+                        if (document.getElementById('Bonus').checked) {
+      document.getElementById('BonusText').style.visibility = 'visible';
+    }
+                    }
+                    </script>
+ 
+ }

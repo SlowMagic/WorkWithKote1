@@ -1,0 +1,77 @@
+﻿@model WorkWithKOTE.Models.UserProfile
+@{
+    ViewBag.Title = "Личный кабинет";
+}
+
+<h2>Личный Кабинет @User.Identity.Name</h2>
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <p>
+            <img src="@Html.DisplayFor(m=>m.Avatar)" height="150" width="250" />
+            <br />
+            @Html.ActionLink("Изменить фото", "Upload", "Profile")
+        </p>
+        @if (User.IsInRole("Admin")) { 
+        <input type="button" value="Назначить Модератора" onclick="location.href='@Url.Action("RolesForUser","Account")'" />
+        }
+        @if (User.IsInRole("Admin")||User.IsInRole("Moderator"))
+        {
+           <input type="button" value="Создать тур" onclick="location.href='@Url.Action("TourCreate","TourCreate")'" />
+        }
+            <p>
+            Ваше Имя:
+            @Html.DisplayFor(m => m.RuFirstName)
+        </p>
+        <p>
+            Ваша Фамилия:
+            @Html.DisplayFor(m => m.RuSecondName)
+        </p>
+        <p>
+            Ваше Отчество:
+            @Html.DisplayFor(m => m.RuThirdName)
+        </p>
+        <p>
+            Your Name:
+            @Html.DisplayFor(m => m.EngFirstName)
+        </p>
+        <p>
+            Your Surname:
+            @Html.DisplayFor(m => m.EngSecondName)
+        </p>
+        <p>
+            Your Patronymic:
+            @Html.DisplayFor(m => m.EngThirdName)
+        </p>
+        <p>
+            Дата рождения :
+            @Html.DisplayFor(m => m.Birthday)
+        </p>
+        <p>
+            Гражданство:
+            @Html.DisplayFor(m => m.Nationality)
+        </p>
+        <p>
+            Мобильный телефон:
+            @Html.DisplayFor(m => m.Mobile)
+        </p>
+        <p>
+            Ваши Бонусы:
+            @Html.DisplayFor(m => m.Bonus)
+        </p>
+        <p>
+            Серия и номер паспорта
+            @Html.DisplayFor(m => m.PasportData)
+        </p>
+        <p>
+            Дата выдачи паспорта
+            @Html.DisplayFor(m => m.DatePasport)
+        </p>
+        <p>
+            Дата до какого числа действителен Загран паспорт:
+            @Html.DisplayFor(m => m.DateZagran)
+        </p>
+        @Html.ActionLink("EditProfile", "EditProfile", "Profile")
+        <input type="button" value="Изменить пароль" onclick="location.href='@Url.Action("Manage","Account")'" />
+    </fieldset>
+}

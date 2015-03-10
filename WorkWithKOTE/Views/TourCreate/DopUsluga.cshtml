@@ -1,0 +1,24 @@
+﻿<div id="dopusluga-pannel">
+    <div class="dopusluga">
+      Дополнительные услуга тура №1 :
+        <input type="text" name="DopUslug[0].Name"/><br/>
+        Цена Дополнительной услуги №1:
+        <input type="text" name="DopUslug[0].Price"/><br/>
+    </div>
+</div>
+<p><input type="button" class="addUslug" value=" + " ></p>
+<script>
+    $(function () {
+        var i = 0;
+        $('.addUslug').click(function () {
+            i++;
+            var html2Adds = "<div class='dopusluga'>" +
+         "<h4>Дополнительная услуга тура №" + (i + 1) + "</h4>" +
+                 "<input type='text' name='DopUslug[" + i + "].Name' /><br/>" +
+                 "<h4>Цена Дополнительной услуги №" + (i + 1) + "</h4>" +
+                 "<input type='text' name='DopUslug[" + i + "].Price' />" +
+             "</div>";
+            $('#dopusluga-pannel').append(html2Adds);
+        })
+    })
+</script>

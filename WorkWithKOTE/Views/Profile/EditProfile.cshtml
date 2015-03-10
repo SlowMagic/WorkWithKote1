@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "EditProfile";
+}
+@model WorkWithKOTE.Models.UserProfile
+<h2>Редактирование Личного Кабинета</h2>
+@using (Html.BeginForm("EditProfile", "Profile"))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Avatar);
+    <p>
+        @Html.Label("Введите ваше имя")
+        @Html.TextBoxFor(m => m.RuFirstName)
+    </p>
+    <p>
+        Введите Вашу Фамилию:
+        @Html.EditorFor(m => m.RuSecondName)
+    </p>
+    <p>
+        Отчество:
+        @Html.EditorFor(m => m.RuThirdName)
+    </p>
+    <p>
+        Enter your Name
+        @Html.EditorFor(m => m.EngFirstName)
+    </p>
+    <p>
+        Enter your Surname
+        @Html.EditorFor(m => m.EngSecondName)
+    </p>
+    <p>
+        Enter your Patronymic:
+        @Html.EditorFor(m => m.EngThirdName)
+    </p>
+    <p>
+        Дата рождения
+        @Html.EditorFor(m => m.Birthday)
+    </p>
+    <p>
+        Введите ваше гражданство:
+        @Html.EditorFor(m => m.Nationality)
+    </p>
+    <p>
+        Введите серию и номер паспорта :
+        @Html.EditorFor(m => m.PasportData)
+    </p>
+    <p>
+        Введите дату выдачи паспорта:
+        @Html.EditorFor(m => m.DatePasport)
+    </p>
+    <p>
+        Введите дату, до которой действителен ваш загран паспорт <br />
+        @Html.EditorFor(m => m.DateZagran)
+    </p>
+    <p>
+        Ваш мобильный телефон
+        @Html.EditorFor(m => m.Mobile)
+    </p>
+    <input type="submit" value="Подтвердить" />
+}

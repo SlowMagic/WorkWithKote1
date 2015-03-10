@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model WorkWithKOTE.Models.TourForHomePage
+@section featured {
+        <div id="big-preview-img" class="clearfix">
+            <div class="wish">
+                <img id="big-logo" src="~/Content/img/big-logo.png" class="image" />
+
+                <p id="wishletter">
+                    <span id="textspan">Я хочу...<br /></span><span id="textspan1">Тур в Карпаты из Днепропетровска</span>
+                </p>
+
+                <div class="buttons clearfix">
+                    <a href="#" class="yes-btn">
+                        <span id="textspan2">Да,</span><span id="textspan3"> </span><span id="textspan4">Я хочу&#x21;</span>
+                    </a>
+                    <a href="#" class="no-btn">
+                        <span id="textspan5">Нет,</span><span id="textspan6"> </span><span id="textspan7">что-то другое</span>
+                    </a>
+                </div>
+            </div>
+            <div class="scroll clearfix">
+                <p class="scroll-text"> Скроль<br />вниз </p>
+            </div>
+        </div>
+        <div class="news clearfix">
+            <div class="news-title">
+                <p>
+                    <span id="textspan8">Новости<br /></span><span id="textspan9">будь в курсе всех событий</span>
+                </p>
+            </div>
+            <div class="news-block clearfix">
+                <div class="new">
+                    <p>
+                        <a href="#" class="new-title">Туроператор &quot;OpenGeorgia&quot;<br /></a>
+                        <span class="new-date">11.02.2015<br /></span>
+                        <span class="new-content">Мы являемся первым профильным туристическим оператором по Грузии в Украине.</span>
+                    </p>
+                </div>
+                <div class="new">
+                    <p>
+                        <a href="#" class="new-title">Туроператор &quot;OpenGeorgia&quot;<br /></a>
+                        <span class="new-date">11.02.2015<br /></span>
+                        <span class="new-content">Мы являемся первым профильным туристическим оператором по Грузии в Украине.</span>
+                    </p>
+                </div>
+                <div class="new">
+                    <p>
+                        <a href="#" class="new-title">Туроператор &quot;OpenGeorgia&quot;<br /></a>
+                        <span class="new-date">11.02.2015<br /></span>
+                        <span class="new-content">Мы являемся первым профильным туристическим оператором по Грузии в Украине.</span>
+                    </p>
+                </div>
+                <div class="new">
+                    <p>
+                        <a href="#" class="new-title">Туроператор &quot;OpenGeorgia&quot;<br /></a>
+                        <span class="new-date">11.02.2015<br /></span>
+                        <span class="new-content">Мы являемся первым профильным туристическим оператором по Грузии в Украине.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="groups-bg clearfix">
+            <div class="groups clearfix">
+                <div class="groupLinks">
+                    <span id="textspan30">Туры&#x3a;</span>
+                    <a href="#" class="groupLink">гастрономические</a>
+                    <a href="#" class="groupLink">развлечения</a>
+                    <a href="#" class="groupLink">шопинг</a>
+                </div>
+                <div class="middleHelper"></div>
+            </div>
+            <div class="centerbox clearfix">
+                <p class="consultLinks">
+                    Вы можете обратиться к нашему консультанту для
+                    <a href="#" class="link-btn"> подбора&nbsp;тура </a> или воспользоваться
+                    <a href="#" class="link-btn"> поиском </a>
+                </p>
+            </div>
+        </div>
+}
+<div>
+  
+    @foreach (var item in Model.TourHight)
+    {
+        @Html.DisplayFor(m => item.NameTour)<br />
+        <img src="@Html.DisplayFor(m=>item.TourImg)" width="50px" height="75px" />
+        Html.RenderAction("DateForCurrentTour", new { id = item.TourId });<br />
+        @Html.ActionLink("Посмотреть детали тура", "Index", "TourDisplay", new { id = item.TourId }, null)<br />
+        <input type="button" value="Оплатить тур" onclick="location.href='@Url.Action("Index", "Buy", new {id=item.TourId })'" />
+    }
+    <hr>
+    @foreach (var item in Model.TourCenter)
+    {
+        @Html.DisplayFor(m => item.NameTour)<br />
+        <img src="@Html.DisplayFor(m=>item.TourImg)" width="50px" height="75px" />
+        Html.RenderAction("DateForCurrentTour", new { id = item.TourId });<br />
+        @Html.ActionLink("Посмотреть детали тура", "Index", "TourDisplay", new { id = item.TourId }, null)<br />
+        <input type="button" value="Оплатить тур" onclick="location.href='@Url.Action("Index", "Buy", new {id=item.TourId })'" />
+    }
+    <hr >
+    @foreach (var item in Model.TourDown)
+    {
+        @Html.DisplayFor(m => item.NameTour)<br />
+        <img src="@Html.DisplayFor(m=>item.TourImg)" width="50px" height="75px" />
+        Html.RenderAction("DateForCurrentTour", new { id = item.TourId });<br />
+        @Html.ActionLink("Посмотреть детали тура", "Index", "TourDisplay", new { id = item.TourId }, null)<br />
+        <input type="button" value="Оплатить тур" onclick="location.href='@Url.Action("Index", "Buy", new {id=item.TourId })'" />
+    }
+    <hr>
+</div>

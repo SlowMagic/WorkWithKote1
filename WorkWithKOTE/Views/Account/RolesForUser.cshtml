@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "RolesForUser";
+}
+
+<h2>RolesForUser</h2>
+<form action="@Url.Action("RolesForUser","Account")" method="post">
+  Введите почтовый ящик для модератора @Html.TextBox("moder") <br/>
+    <p style="color:red">@ViewBag.Message</p>
+    <input type="submit" value="OK" />
+</form>

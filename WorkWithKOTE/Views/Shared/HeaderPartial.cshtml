@@ -1,0 +1,32 @@
+﻿
+    <div id="navigate" class="navigate clearfix">
+        <div id="bar">
+            <img id="small-logo" src="~/Content/img/small-logo.png" class="image" />
+
+            <div class="navLinks">
+                @*<a href="#" class="navLink">Главная</a>*@
+                @Html.ActionLink("Главная", "Index", "Home",null, new { @class="navLink"})
+                <a href="#" class="navLink">Туры</a>
+                <a href="#" class="navLink">Галерея</a>
+                <a href="#" class="navLink">Контакты</a>
+            </div>
+            <img src="~/Content/img/separator.png" class="separator" />
+
+            <div class="profile">
+                <div class="user">
+                    <img id="user" src="~/Content/img/user.png" class="image" />
+                    @if (Request.IsAuthenticated)
+                    { 
+                        @Html.ActionLink(User.Identity.Name, "Profile", "Profile", null, new {@class="username" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Войти", "Login", "Account", null, new { @class = "username" })
+                    }
+                </div>
+            </div>
+            <img src="~/Content/img/separator.png" class="separator" />
+            <a href="#"><img id="Searching" src="~/Content/img/Searching.png" class="image" /></a>
+        </div>
+        <img id="top-shadow" src="~/Content/img/top-shadow.png" class="image" />
+    </div>

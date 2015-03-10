@@ -1,0 +1,8 @@
+﻿@model IEnumerable<WorkWithKOTE.Models.Teg>
+
+@foreach (var item in Model)
+{
+    <p>
+       Теги тура: @Html.DisplayFor(m => item.TegName)<br />
+       </p>
+} 

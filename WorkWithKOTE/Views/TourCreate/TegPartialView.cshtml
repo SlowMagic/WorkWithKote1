@@ -1,0 +1,20 @@
+﻿<div id="teg-pannel">
+    <div class="teg">
+         Тег тура №1 :
+        <input type="text" name="Teg[0].TegName" /><br />
+    </div>
+</div>
+<p><a class="addTeg">Добавить новый элемент</a></p>
+<script>
+    $(function () {
+        var i = 0;
+        $('.addTeg').click(function () {
+            i++;
+            var html2Addss = "<div class='teg'>" +
+          "<h4>Тег тура №"+ (i + 1) + "</h4>" +
+                 "<input type='text' name='Teg[" + i + "].TegName' /><br/>" +
+             "</div>";
+            $('#teg-pannel').append(html2Addss);
+        })
+    })
+</script>

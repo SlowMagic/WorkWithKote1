@@ -1,0 +1,9 @@
+﻿@model IEnumerable<WorkWithKOTE.Models.DopUslug>
+
+@foreach (var item in Model)
+{
+    <p>
+       Дополнительная услуга: @Html.DisplayFor(m => item.Name)<br/>
+       Цена Дополнительной услуги: @Html.DisplayFor(m => item.Price)<br/>
+    </p>
+} 

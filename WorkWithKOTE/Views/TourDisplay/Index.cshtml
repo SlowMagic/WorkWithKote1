@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@model  WorkWithKOTE.Models.Tour
+<h2>Index</h2>
+ Название Тура: @Html.DisplayFor(m=>m.NameTour)<br/>
+ Заголовок Тура: @Html.DisplayFor(m=>m.TitleTour)<br/>
+ Описание Тура: @Html.Raw(Model.DiscriptionTour)<br/>
+<input type="button" value="Загрузить файл тура" onclick="location.href='@Url.Action("FileDownload", "TourDisplay", new {id = Model.TourId })'"/><br/>
+       стоимость тура:@Html.DisplayFor(m=>m.Cost)  @Html.DisplayFor(m=>m.Valuta) <br/>
+ @{ Html.RenderAction("DatePartial", new { id = Model.TourId });};<br/>
+ Предоплата:  @Html.DisplayFor(m=>m.PrePay)<br/>
+ Цена: @Html.DisplayFor(m=>m.PodpicePrice)<br/>
+ Ауцкионная цена: @Html.DisplayFor(m=>m.AukcionPrice)<br/>
+ Комиссия Агента: @Html.DisplayFor(m=>m.KommisiaAgent)<br/>
+ Имя Спопровождающего:@Html.DisplayFor(m=>m.SuppName)<br/>
+ <a href="@Html.DisplayFor(m=>m.SuppVkontakte)">Ссылка на соц сеть</a><br/>
+ <img src="@Html.DisplayFor(m=>m.SuppFoto)" width="50px" height="100px"/>@Html.DisplayFor(m=>m.SuppDiscription)<br/>
+@{ Html.RenderAction("DopUsluga", new { id = Model.TourId });}<br />
+ Способы оплаты тура :@Html.DisplayFor(m=>m.KindOfPay)<br/>
+ Количество мест (@Html.DisplayFor(m=>m.AllPeople)) и уже едут(@Html.DisplayFor(m=>m.People))<br/>
+ Обложка тура - <img src="@Html.DisplayFor(m=>m.TourImg)" width="50px" height="100px" /><br/>
+ @{ Html.RenderAction("Teg", new { id = Model.TourId });}<br />
+<p>Транспортировка : @ViewBag.Message @ViewBag.Message1 @ViewBag.Message2</p>
+Бронь:@Html.DisplayFor(m => m.Reservation)<br/>
+Бонус за тур :@Html.DisplayFor(m => m.Bonus)<br/>
+<div id="map_canvas" style="width:300px; height:300px"></div>
+@section scripts{
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+ var map;
+  $(function () {
+    var mapOptions = {
+                 center: new google.maps.LatLng(-34.397, 150.644),
+                 zoom: 8,
+                 mapTypeId: google.maps.MapTypeId.ROADMAP
+                        };
+                 map = new google.maps.Map(document.getElementById("map_canvas"),
+                 mapOptions);
+                    });
+</script>
+}

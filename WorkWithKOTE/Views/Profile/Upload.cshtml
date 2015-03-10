@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "UpLoad";
+}
+
+<h2>UpLoad</h2>
+<form action="@Url.Action("UpLoad")" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    Аватар - <input type="file" name="file" />
+    <input type="submit" value="Загрузить файл" />
+    <p>@ViewBag.Message</p>
+</form> 

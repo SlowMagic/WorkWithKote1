@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@model WorkWithKOTE.Models.Trip
+<h2>Index</h2>
+<form action="@Url.Action("Index")" method="post">
+    Стоимость Тура : @ViewBag.TourPrices<br/>
+    Сумма заказа с учетом изменений :@Html.TextBoxFor(m => m.TourPrice, new {id="Prices",@readonly = "readonly"})
+    К Оплате :@Html.TextBoxFor(m => m.TourPrice, new { id = "Prices", @readonly = "readonly" }) <br />
+    @{Html.RenderAction("DopPricePartial", new { id = Model.TourId });}
+    Количество человек: @Html.TextBoxFor(m=>m.AmtPeople)<br/>
+    Дата :@Html.DropDownList("DateTourId")<br/>
+    <h2>Введите свои данные </h2>
+    Ваш пол 
+    <select name="Sex">
+        <option>Муж.</option>
+        <option>Жен.</option>
+    </select><br />
+    Фамилия: @Html.TextBoxFor(m=>m.Surname)<br/>
+    Имя :@Html.TextBoxFor(m=>m.Name)<br/>
+    Отчество: @Html.TextBoxFor(m=>m.Surname)<br/>
+    Дата Рождение @Html.TextBoxFor(m=>m.BirthDay)<br/>
+    Гражданство:@Html.TextBoxFor(m=>m.Citizenship)<br/>
+    Номер и Серия Паспорта: @Html.TextBoxFor(m=>m.Pasport)<br/>
+    <h2>Контакты</h2>
+    Номер телефона :@Html.TextBoxFor(m=>m.mobile)<br/>
+    Почтовый ящик : @Html.TextBoxFor(m => m.email, new { type = "Email" })
+</form>
