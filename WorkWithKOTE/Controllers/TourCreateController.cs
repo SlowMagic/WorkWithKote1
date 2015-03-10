@@ -54,7 +54,7 @@ namespace WorkWithKOTE.Controllers
             model.DiscriptionTour = Regex.Replace(model.DiscriptionTour, "<script.*?</script>", "", RegexOptions.IgnoreCase);
             db.Entry(model).State = EntityState.Added;
             db.SaveChanges();
-            return View();
+            return RedirectToAction("Search","TourSearch");
         }
         public ViewResult EmptyDateTour()
         {

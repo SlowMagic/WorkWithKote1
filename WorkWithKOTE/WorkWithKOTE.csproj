@@ -188,6 +188,7 @@
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\TourCreateController.cs" />
     <Compile Include="Controllers\TourDisplayController.cs" />
+    <Compile Include="Controllers\TourSearchController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1118,6 +1119,7 @@
     <Content Include="Views\Account\RolesForUser.cshtml" />
     <Content Include="Views\TourCreate\MapPartial.cshtml" />
     <Content Include="Views\Shared\HeaderPartial.cshtml" />
+    <Content Include="Views\TourSearch\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

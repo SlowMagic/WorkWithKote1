@@ -140,5 +140,10 @@ namespace WorkWithKOTE.Models
     public  List  <Tour> TourCenter{get;set;}
     public   List< Tour >TourDown{get;set;}
     }
+    public class TourForSearck
+    {
+        public List<Tour> Tour1 { get; set; }
+        public List<DateTour> DateTour1 { get; set; }
+    }
  
 }

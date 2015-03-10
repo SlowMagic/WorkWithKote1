@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Search";
+}
+@model IEnumerable<WorkWithKOTE.Models.Tour>
+<h2>Search</h2>
+<form action="@Url.Action("Search","TourSearch")" method="post" enctype="multipart/form-data">
+    Дата отправки: @Html.DropDownList("DateForTours1", string.Empty) &mdash;
+    Дата приезда:  @Html.DropDownList("DateForTours2", string.Empty)<br />
+    Вид Транспорта: <select name="Transport">
+        <option>Автобус</option>
+        <option>Авиалинии</option>
+        <option>Лайнер</option>
+    </select><br />
+    Тип Тура: @Html.DropDownList("TypeOfTour1", string.Empty)<br />
+    <input type="submit" value="Поиск" />
+</form>
+@foreach(var c in Model)
+{
+    Html.DisplayFor(i =>c.NameTour);<br/>
+    Html.DisplayFor(i => c.TitleTour);<br/>
+    Html.DisplayFor(i => c.DiscriptionTour);
+}
