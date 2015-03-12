@@ -1,7 +1,7 @@
-﻿<div id="teg-pannel">
+﻿<div id="tag-pannel">
     <div class="teg">
          Тег тура №1 :
-        <input type="text" name="Teg[0].TegName" /><br />
+        <input type="text" name="Tag[0].TagName" /><br />
     </div>
 </div>
 <p><a class="addTeg">Добавить новый элемент</a></p>
@@ -10,9 +10,9 @@
         var i = 0;
         $('.addTeg').click(function () {
             i++;
-            var html2Addss = "<div class='teg'>" +
+            var html2Addss = "<div class='tag'>" +
           "<h4>Тег тура №"+ (i + 1) + "</h4>" +
-                 "<input type='text' name='Teg[" + i + "].TegName' /><br/>" +
+                 "<input type='text' name='Tag[" + i + "].TagName' /><br/>" +
              "</div>";
             $('#teg-pannel').append(html2Addss);
         })

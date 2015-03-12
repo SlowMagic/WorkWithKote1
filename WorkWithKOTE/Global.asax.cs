@@ -6,7 +6,9 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-
+using WorkWithKOTE.Models;
+using WorkWithKOTE.Filters;
+using System.Data.Entity;
 namespace WorkWithKOTE
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -23,6 +25,8 @@ namespace WorkWithKOTE
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+            Database.SetInitializer<TourContext>(new TourInitialization());
+            Database.SetInitializer<UsersContext>(null);
         }
     }
 }

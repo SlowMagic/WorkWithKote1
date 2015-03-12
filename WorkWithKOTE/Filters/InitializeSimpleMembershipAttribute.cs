@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Threading;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebMatrix.WebData;
 using WorkWithKOTE.Models;
 
@@ -26,7 +27,6 @@ namespace WorkWithKOTE.Filters
             public SimpleMembershipInitializer()
             {
                 Database.SetInitializer<UsersContext>(null);
-
                 try
                 {
                     using (var context = new UsersContext())
@@ -44,8 +44,27 @@ namespace WorkWithKOTE.Filters
                 {
                     throw new InvalidOperationException("The ASP.NET Simple Membership database could not be initialized. For more information, please see http://go.microsoft.com/fwlink/?LinkId=256588", ex);
                 }
+                var roles = (SimpleRoleProvider)Roles.Provider;
+
+                //Получаем провайдер членства
+                var membership = (SimpleMembershipProvider)Membership.Provider;
+
+                // Если нет в системе роли admin, создаём её
+                if (!roles.RoleExists("Admin"))
+                    roles.CreateRole("Admin");
+
+                // Если нет в системе пользователя admin, создаём его(в этом месте ошибка)
+                if (membership.GetUser("LevitskiyOrange@gmail.com", false) == null)
+                {
+                    membership.CreateUserAndAccount("LevitskiyOrange@gmail.com", "123654789");
+                }
+
+                // Если у пользователя admin нет роли admin, присваиваем ему эту роль
+                if (!roles.IsUserInRole("LevitskiyOrange@gmail.com", "Admin"))
+                    roles.AddUsersToRoles(new[] { "LevitskiyOrange@gmail.com" }, new[] { "Admin" });
                
             }
+
         }
     }
 }

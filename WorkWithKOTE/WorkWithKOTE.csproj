@@ -190,6 +190,8 @@
     <Compile Include="Controllers\TourDisplayController.cs" />
     <Compile Include="Controllers\TourSearchController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Filters\roles.cs" />
+    <Compile Include="Filters\TourInitialization.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -51,7 +51,7 @@ namespace WorkWithKOTE.Controllers
             Document.SaveAs(Server.MapPath("/UpLoad/TourDocument/"+Document.FileName));
             model.Document = "/UpLoad/TourDocument/"+Document.FileName;
             }
-            model.DiscriptionTour = Regex.Replace(model.DiscriptionTour, "<script.*?</script>", "", RegexOptions.IgnoreCase);
+            model.DescriptionTour = Regex.Replace(model.DescriptionTour, "<script.*?</script>", "", RegexOptions.IgnoreCase);
             db.Entry(model).State = EntityState.Added;
             db.SaveChanges();
             return RedirectToAction("Search","TourSearch");

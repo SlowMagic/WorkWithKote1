@@ -43,7 +43,7 @@ namespace WorkWithKOTE.Models
         public string Mobile { get; set; }
         public int? Bonus { get; set; }
         public string Avatar { get; set; }
-       // public List<Trip> TripID { get; set; } 
+        public List<Trip> Trips { get; set; } 
     }
 
     public class RegisterExternalLoginModel

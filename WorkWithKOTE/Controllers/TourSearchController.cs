@@ -19,7 +19,7 @@ namespace WorkWithKOTE.Controllers
             return View(db.Tour.ToList());
         }
         [HttpPost]
-        public ActionResult Search(string DateForTours1 = null, string  DateForTours2 = null, string? Transport, string? TypeOfTour1)
+        public ActionResult Search(string DateForTours1 = null, string  DateForTours2 = null)
         {
 
             var data = new Tour();

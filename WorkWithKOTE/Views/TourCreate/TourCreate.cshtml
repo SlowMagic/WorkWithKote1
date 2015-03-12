@@ -13,7 +13,7 @@
         Cтатус тура : @Html.DropDownListFor(m => m.TourStatus, new List<SelectListItem>() { new SelectListItem { Text = "Активный" }, new SelectListItem { Text = "Неактивный" }, new SelectListItem { Text = "Превью главной" },
                  new SelectListItem { Text = "Превью блока" },new SelectListItem { Text = "Рекомендуемый" }})
         Описание:
-        @Html.TextAreaFor(m => m.DiscriptionTour)<br />
+        @Html.TextAreaFor(m => m.DescriptionTour)<br />
         стоимость @Html.TextBoxFor(m => m.Cost)<br />
         <input type="radio" name="Valuta" value="гривна" checked style="height:15px; width:15px" />Гривна<br />
         <input type="radio" name="Valuta" value="доллар" style="height:15px; width:15px " />Dollar<br />
@@ -71,7 +71,7 @@
             </form>
             @section scripts {
                 <script>
-                    CKEDITOR.replace("DiscriptionTour", {
+                    CKEDITOR.replace("DescriptionTour", {
                         filebrowserBrowseUrl: '/Scripts/Filemanager-master/index.html'
                     });
                 </script>

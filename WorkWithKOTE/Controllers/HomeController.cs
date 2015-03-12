@@ -11,13 +11,12 @@ using WorkWithKOTE.Models;
 
 namespace WorkWithKOTE.Controllers
 {
-    [InitializeSimpleMembership]
     public class HomeController : Controller
     {
         TourContext db = new TourContext();
         public ActionResult Index()
         {
-            var roles = (SimpleRoleProvider)Roles.Provider;
+         /*   var roles = (SimpleRoleProvider)Roles.Provider;
 
             //Получаем провайдер членства
             var membership = (SimpleMembershipProvider)Membership.Provider;
@@ -34,7 +33,7 @@ namespace WorkWithKOTE.Controllers
 
             // Если у пользователя admin нет роли admin, присваиваем ему эту роль
             if (!roles.IsUserInRole("LevitskiyOrange@gmail.com","Admin"))
-                roles.AddUsersToRoles(new[] { "LevitskiyOrange@gmail.com" }, new[] { "Admin" });
+                roles.AddUsersToRoles(new[] { "LevitskiyOrange@gmail.com" }, new[] { "Admin" });*/
             var data = new TourForHomePage();
             string k = "Вверх";
             data.TourHight = db.Tour.Where(m=>m.TypeOfTour == k).ToList();
@@ -42,7 +41,8 @@ namespace WorkWithKOTE.Controllers
             data.TourDown = db.Tour.Where(m => m.TypeOfTour =="Низ").ToList();
             return View(data);
         }
-  
+
+        [InitializeSimpleMembership]
         public ActionResult DateForCurrentTour(int id)
         {
             
