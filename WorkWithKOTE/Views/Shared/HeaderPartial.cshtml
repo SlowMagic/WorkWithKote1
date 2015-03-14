@@ -6,7 +6,7 @@
             <div class="navLinks">
                 @*<a href="#" class="navLink">Главная</a>*@
                 @Html.ActionLink("Главная", "Index", "Home",null, new { @class="navLink"})
-                <a href="#" class="navLink">Туры</a>
+                @Html.ActionLink("Туры", "Search", "TourSearch", null, new {@class="navLink"})
                 <a href="#" class="navLink">Галерея</a>
                 <a href="#" class="navLink">Контакты</a>
             </div>
