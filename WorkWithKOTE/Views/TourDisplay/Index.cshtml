@@ -5,7 +5,7 @@
 <h2>Index</h2>
  Название Тура: @Html.DisplayFor(m=>m.NameTour)<br/>
  Заголовок Тура: @Html.DisplayFor(m=>m.TitleTour)<br/>
- Описание Тура: @Html.Raw(Model.DiscriptionTour)<br/>
+ Описание Тура: @Html.Raw(Model.DescriptionTour)<br/>
 <input type="button" value="Загрузить файл тура" onclick="location.href='@Url.Action("FileDownload", "TourDisplay", new {id = Model.TourId })'"/><br/>
        стоимость тура:@Html.DisplayFor(m=>m.Cost)  @Html.DisplayFor(m=>m.Valuta) <br/>
  @{ Html.RenderAction("DatePartial", new { id = Model.TourId });};<br/>

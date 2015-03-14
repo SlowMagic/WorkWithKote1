@@ -36,7 +36,10 @@ namespace WorkWithKOTE.Models
         public string Surname { get; set; }
         public string FatherName { get; set; }
         public string Sex { get; set; }
-        public string BirthDay { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "День Рождения")]
+        public DateTime? BirthDay { get; set; }
         public string Citizenship { get; set; }
         public string Pasport { get; set; }
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Номер введён неверно.")]
@@ -64,6 +67,9 @@ namespace WorkWithKOTE.Models
        public bool IsBus { get; set; }
        public bool IsAriplane { get; set; }
        public bool IsShip { get; set; }
+       public bool IsTrain { get; set; }
+       public string PlaceOfDeparture { get; set; }
+       public string PlaceOfArrival { get; set; }
        public string TourStatus { get; set; }
        public string TypeOfTour { get; set; }
        public string PodpicePrice { get; set; }
@@ -110,7 +116,13 @@ namespace WorkWithKOTE.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int DateTourId { get; set; }
         public int TourId { get; set; }
+        [DataType (DataType.Date)]
+        [DisplayFormat(DataFormatString="{0:dd'/'MM'/'yyyy}",ApplyFormatInEditMode=true)]
+        [Display(Name="Дата отправки")]
         public DateTime FirstDate { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Дата приезда")]
         public DateTime SecondDate { get; set; }
     }
     [Table ("Gallery")]
@@ -140,10 +152,10 @@ namespace WorkWithKOTE.Models
     public   List  <Tour> TourCenter{get;set;}
     public   List< Tour >TourDown{get;set;}
     }
-    public class TourForSearck
+    public class DateForMonth
     {
-        public List<Tour> Tour1 { get; set; }
-        public List<DateTour> DateTour1 { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
  
 }

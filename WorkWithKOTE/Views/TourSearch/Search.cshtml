@@ -4,19 +4,15 @@
 @model IEnumerable<WorkWithKOTE.Models.Tour>
 <h2>Search</h2>
 <form action="@Url.Action("Search","TourSearch")" method="post" enctype="multipart/form-data">
-    Дата отправки: @Html.DropDownList("DateForTours1", string.Empty) &mdash;
-    Дата приезда:  @Html.DropDownList("DateForTours2", string.Empty)<br />
-    Вид Транспорта: <select name="Transport">
-        <option>Автобус</option>
-        <option>Авиалинии</option>
-        <option>Лайнер</option>
-    </select><br />
-    Тип Тура: @Html.DropDownList("TypeOfTour1", string.Empty)<br />
+    Дата отправки: @Html.DropDownList("Date", new List<SelectListItem> { new SelectListItem{Value="1", Text="Январь"},  new SelectListItem{Value="2",Text="Февраль"}, new SelectListItem{Value="3",Text="Март"},
+                 new SelectListItem{Value="4",Text="Апрель"}, new SelectListItem{Value="5",Text="Май"}, new SelectListItem{Value = "6",Text="Июнь"}, new SelectListItem{Value="7",Text="Июль"},
+                 new SelectListItem{Value="8",Text="Август"}, new SelectListItem{Value="9",Text="Сентябрь"}, new SelectListItem{Value="10",Text="Октябрь"}, new SelectListItem{Value="11",Text="Ноябрь"}, new SelectListItem{Value="12",Text="Декабрь"}},"Все даты") &mdash;
+     Типы тура : @Html.DropDownList("TypeOfTour","Все туры")
     <input type="submit" value="Поиск" />
+    @foreach (var c in Model)
+    {
+        @Html.DisplayFor(m => c.NameTour);<br />
+        @Html.DisplayFor(m => c.TitleTour);<br />
+        @Html.DisplayFor(m => c.DescriptionTour);<br/>
+    }
 </form>
-@foreach(var c in Model)
-{
-    Html.DisplayFor(i =>c.NameTour);<br/>
-    Html.DisplayFor(i => c.TitleTour);<br/>
-    Html.DisplayFor(i => c.DiscriptionTour);
-}

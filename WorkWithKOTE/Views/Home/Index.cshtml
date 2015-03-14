@@ -95,7 +95,7 @@
     {
         @Html.DisplayFor(m => item.NameTour)<br />
         <img src="@Html.DisplayFor(m=>item.TourImg)" width="50px" height="75px" />
-        Html.RenderAction("DateForCurrentTour", new { id = item.TourId });<br />
+         Html.RenderAction("DateForCurrentTour", new { id = item.TourId });<br />
         @Html.ActionLink("Посмотреть детали тура", "Index", "TourDisplay", new { id = item.TourId }, null)<br />
         <input type="button" value="Оплатить тур" onclick="location.href='@Url.Action("Index", "Buy", new {id=item.TourId })'" />
     }

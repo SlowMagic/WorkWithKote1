@@ -14,6 +14,8 @@
                  new SelectListItem { Text = "Превью блока" },new SelectListItem { Text = "Рекомендуемый" }})
         Описание:
         @Html.TextAreaFor(m => m.DescriptionTour)<br />
+        Выезд из @Html.TextBoxFor(m=>m.PlaceOfDeparture)<br/>
+        Прибываем в @Html.TextBoxFor(m=>m.PlaceOfArrival)<br/>
         стоимость @Html.TextBoxFor(m => m.Cost)<br />
         <input type="radio" name="Valuta" value="гривна" checked style="height:15px; width:15px" />Гривна<br />
         <input type="radio" name="Valuta" value="доллар" style="height:15px; width:15px " />Dollar<br />
@@ -30,6 +32,7 @@
             Автобус @Html.CheckBoxFor(m => m.IsBus)<br />
             Самолет @Html.CheckBoxFor(m => m.IsAriplane)<br />
             Лайнер  @Html.CheckBoxFor(m => m.IsShip)<br />
+            Поезд @Html.CheckBoxFor(m=>m.IsTrain)<br/>
             Подпись к цене
             @Html.TextBoxFor(m => m.PodpicePrice)
             <p>Аукционная цена : @Html.TextBoxFor(m => m.AukcionPrice)</p>

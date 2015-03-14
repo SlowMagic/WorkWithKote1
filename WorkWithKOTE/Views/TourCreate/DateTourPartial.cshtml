@@ -1,10 +1,10 @@
 ﻿<div id="datetour-pannel">
     <div class="datetour">
     Введите дату отправки(дд/мм/год):<br />
-    <input type="text" name="DateTour[0].FirstDate" />
+    <input type='date' name="DateTour[0].FirstDate" />
     <br />
     Введите дату приезда (дд/мм/год):<br />
-    <input type="text" name="DateTour[0].SecondDate" />
+    <input type='date' name="DateTour[0].SecondDate" />
 </div>
 </div>
 <p><a class="addLink">Добавить новый элемент</a></p>
@@ -14,12 +14,23 @@
         $('.addLink').click(function () {
             i++;
             var html2Add = "<div class='dateTour'>" +
-         "<h4>Введите Дату" + (i + 1) + "</h4>" +
-                 "<input type='text' name='DateTour[" + i + "].FirstDate' /><br/>" +
-                 "<h4>Введите Дату" + (i + 1) + "</h4>" +
-                 "<input type='text' name='DateTour[" + i + "].SecondDate' />" +
+                 " Введите дату отправки" + (i + 1) + "(дд/мм/год)"
+                 "<input type='date' name='DateTour[" + i + "].FirstDate' /><br/>" +
+                 " Введите дату приезда" + (i + 1) + "(дд/мм/год)"
+                 "<input type='date' name='DateTour[" + i + "].SecondDate' />" +
              "</div></div>";
             $('#datetour-pannel').append(html2Add);
         })
     })
+</script>
+<script type="text/javascript">
+    $(function () {
+        if (!Modernizr.inputtypes.date) {
+            $(function () {
+                $("input[type='date']")
+                            .datepicker({ dateFormat: 'dd/mm/yy' })
+                            .get(0);
+            })
+        }
+    });
 </script>
