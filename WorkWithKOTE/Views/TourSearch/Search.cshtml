@@ -2,7 +2,7 @@
     ViewBag.Title = "Search";
 }
 @model IEnumerable<WorkWithKOTE.Models.Tour>
-<h2>Search</h2>
+<h2>Поиск</h2>
 <form action="@Url.Action("Search","TourSearch")" method="post" enctype="multipart/form-data">
     Дата отправки: @Html.DropDownList("Date", new List<SelectListItem> { new SelectListItem{Value="1", Text="Январь"},  new SelectListItem{Value="2",Text="Февраль"}, new SelectListItem{Value="3",Text="Март"},
                  new SelectListItem{Value="4",Text="Апрель"}, new SelectListItem{Value="5",Text="Май"}, new SelectListItem{Value = "6",Text="Июнь"}, new SelectListItem{Value="7",Text="Июль"},

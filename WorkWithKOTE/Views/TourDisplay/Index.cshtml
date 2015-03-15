@@ -1,8 +1,8 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Тур";
 }
 @model  WorkWithKOTE.Models.Tour
-<h2>Index</h2>
+<h2>@Html.DisplayFor(m=>m.NameTour)</h2>
  Название Тура: @Html.DisplayFor(m=>m.NameTour)<br/>
  Заголовок Тура: @Html.DisplayFor(m=>m.TitleTour)<br/>
  Описание Тура: @Html.Raw(Model.DescriptionTour)<br/>
@@ -24,7 +24,7 @@
 <p>Транспортировка : @ViewBag.Message @ViewBag.Message1 @ViewBag.Message2</p>
 Бронь:@Html.DisplayFor(m => m.Reservation)<br/>
 Бонус за тур :@Html.DisplayFor(m => m.Bonus)<br/>
-<div id="map_canvas" style="width:300px; height:300px"></div>
+<input type="button" value="Оплатить тур" onclick="location.href='@Url.Action("Index", "Buy", new {id=Model.TourId })'"><div id="map_canvas" style="width:300px; height:300px"></div>
 @section scripts{
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">

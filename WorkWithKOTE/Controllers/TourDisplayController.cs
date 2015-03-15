@@ -15,12 +15,14 @@ namespace WorkWithKOTE.Controllers
         public ActionResult Index(int id=0)
         {
             var data = db.Tour.Find(id);
+           if(id != 0){
             if(data.IsBus)
              ViewBag.Message = "Автобус"; 
             if(data.IsAriplane)
              ViewBag.Message1 = "Авиалинии"; 
             if (data.IsShip)
-             ViewBag.Message2 = "Лайнером"; 
+             ViewBag.Message2 = "Лайнером";
+               }
             return View(data);
         }
         public ActionResult DatePartial(int id)

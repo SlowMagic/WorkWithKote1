@@ -36,6 +36,7 @@ namespace WorkWithKOTE.Controllers
                 trip.mobile = userprofile.Mobile;
                 trip.Pasport = userprofile.PasportData;
             }
+            ViewBag.TitleOf = data.NameTour;
             return View(trip);
         }
         [HttpPost]
