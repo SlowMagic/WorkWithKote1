@@ -17,9 +17,9 @@ namespace WorkWithKOTE.Controllers
         public ActionResult Index()
         {
             var data = new TourForHomePage();
-            data.TourHight = db.Tour.Where(m=>m.TypeOfTour == "Вверх").ToList();
-            data.TourCenter = db.Tour.Where(m => m.TypeOfTour == "Середина").ToList();
-            data.TourDown = db.Tour.Where(m => m.TypeOfTour =="Низ").ToList();
+            data.TourHight = db.Tour.Where(m => m.TypeOfTour == "Гастрономический").ToList();
+            data.TourCenter = db.Tour.Where(m => m.TypeOfTour == "Развлекательный").ToList();
+            data.TourDown = db.Tour.Where(m => m.TypeOfTour =="Шопинг").ToList();
             return View(data);
         }
 

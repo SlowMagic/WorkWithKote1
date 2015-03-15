@@ -18,7 +18,7 @@ namespace WorkWithKOTE.Controllers
             for (int i = 0; i < tour.Length; i++)
             {
                 var tour1 = tour.Last();
-                if (tour[i].TypeOfTour != tour1.TypeOfTour)
+                if (tour[i].TourId != tour1.TourId)
                 {
                     string k;
                     if (tour[i].TypeOfTour != tour[i + 1].TypeOfTour)
@@ -26,11 +26,6 @@ namespace WorkWithKOTE.Controllers
                         k = tour[i].TypeOfTour;
                         list.Add(new SelectListItem { Text = k });
                     }
-                }
-                else
-                {
-                  string  k = tour[i].TypeOfTour;
-                    list.Add(new SelectListItem { Text = k });
                 }
             }
                 ViewBag.TypeOfTour = list;
@@ -44,7 +39,7 @@ namespace WorkWithKOTE.Controllers
             for (int i = 0; i < tour.Length; i++)
             {
                 var tour1 = tour.Last();
-                if (tour[i].TypeOfTour != tour1.TypeOfTour)
+                if (tour[i].TourId != tour1.TourId)
                 {
                     string k;
                     if (tour[i].TypeOfTour != tour[i + 1].TypeOfTour)
@@ -53,15 +48,8 @@ namespace WorkWithKOTE.Controllers
                         list.Add(new SelectListItem { Text = k });
                     }
                 }
-                else
-                {
-                    string k = tour[i].TypeOfTour;
-                    list.Add(new SelectListItem { Text = k });
-                }
             }
             ViewBag.TypeOfTour = list;
-          
-            
             if (Date !="" && TypeOfTour =="")
             {
                 int Date1 = Int32.Parse(Date);

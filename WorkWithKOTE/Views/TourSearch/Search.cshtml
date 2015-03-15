@@ -13,6 +13,7 @@
     {
         @Html.DisplayFor(m => c.NameTour);<br />
         @Html.DisplayFor(m => c.TitleTour);<br />
-        @Html.DisplayFor(m => c.DescriptionTour);<br/>
+        @Html.Raw(c.DescriptionTour);<br/>
+        <input type="button" value="Просмотреть тур" onclick="location.href='@Url.Action("Index", "TourDisplay", new {id=c.TourId })'" />
     }
 </form>

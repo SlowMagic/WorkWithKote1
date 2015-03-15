@@ -50,7 +50,10 @@ namespace WorkWithKOTE.Controllers
             string file_path = data.Document;
             string file_name = Path.GetFileName(file_path);
             string extension = "application/octet-stream";
-            return File(file_path,extension,file_name );
+            if (file_name != null)
+                return File(file_path, extension, file_name);
+            else
+                return RedirectToAction("Index",id);
         }
       
     }
