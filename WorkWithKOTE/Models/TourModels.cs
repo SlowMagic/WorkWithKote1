@@ -46,9 +46,10 @@ namespace WorkWithKOTE.Models
         public string mobile { get; set; }
         public string email { get; set; }
         public int DateTourId { get; set; }
-        public int TourId { get; set; }
         public string Valuta { get; set; }
-        public List<UserProfile> Users { get; set; }
+        public int UserId { get; set; }
+        public int TourId { get; set; }
+       // public List<UserProfile> Users { get; set; }
     }
     [Table ("Tour")]
    public class Tour
@@ -91,6 +92,7 @@ namespace WorkWithKOTE.Models
        public IList<DateTour> DateTour { get; set; }
        public IList<DopUslug> DopUslug { get; set; }
        public int? GalleryID { get; set; }
+       public List<Trip> Trips { get; set; }
 
     }
     public class Tag
@@ -157,5 +159,4 @@ namespace WorkWithKOTE.Models
         public int Id { get; set; }
         public string Name { get; set; }
     }
- 
 }

@@ -5,10 +5,12 @@
 <div id="options">
     @foreach (var iteam in Model)
     {
-        <div>
+      if(iteam.Price != 0) 
+      { <div>
             @iteam.Name
             @Html.CheckBox(iteam.Name, new { price = iteam.Price })
         </div>
+      }
     }
 </div>
     <script type="text/javascript">

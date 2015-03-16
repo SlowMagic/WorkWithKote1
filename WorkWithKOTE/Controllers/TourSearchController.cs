@@ -11,11 +11,10 @@ namespace WorkWithKOTE.Controllers
         //
         // GET: /TourSearch/
         TourContext db = new TourContext();
-        protected List<SelectListItem> list = new List<SelectListItem>();
-        public ActionResult Search()
-        {
+        public List<SelectListItem> Selectlist() {
+            List<SelectListItem> list = new List<SelectListItem>();
             var tour = db.Tour.ToArray();
-            for (int i = 0; i < tour.Length; i++)
+            for (int i = 0; i < tour.Length; i++)//Здесь мы находим все типы тура и повторяющиеся значения мы не добавляем  в коллекцию выпадающего списка
             {
                 string k;
                 var tour1 = tour.Last();
@@ -27,39 +26,26 @@ namespace WorkWithKOTE.Controllers
                         list.Add(new SelectListItem { Text = k });
                     }
                 }
-                else if(tour[i].TypeOfTour != tour[i-1].TypeOfTour)
+                else if (tour[i].TypeOfTour != tour[0].TypeOfTour)
                 {
                     k = tour1.TypeOfTour;
                     list.Add(new SelectListItem { Text = k });
                 }
             }
-                ViewBag.TypeOfTour = list;
+            ViewBag.TypeOfTour = list;
+            return list ;
+        }//Здесь мы находим все типы тура и повторяющиеся значения мы не добавляем  в коллекцию выпадающего списка
+        public ActionResult Search()
+        {
+                ViewBag.TypeOfTour = Selectlist();
                 return View(db.Tour.ToList());
         }
        
         [HttpPost]
-        public ActionResult Search(string Date= null,string TypeOfTour = null)
+        public ActionResult Search(String Date= null,String TypeOfTour = null)
         {
-            var tour = db.Tour.ToArray();
-            for (int i = 0; i < tour.Length; i++)
-            {
-                string k;
-                var tour1 = tour.Last();
-                if (tour[i].TourId != tour1.TourId)
-                {
-                    if (tour[i].TypeOfTour != tour[i + 1].TypeOfTour)
-                    {
-                        k = tour[i].TypeOfTour;
-                        list.Add(new SelectListItem { Text = k });
-                    }
-                }
-                else if (tour[i].TypeOfTour != tour[i - 1].TypeOfTour)
-                {
-                    k = tour[i].TypeOfTour;
-                    list.Add(new SelectListItem { Text = k });
-                }
-            }
-            ViewBag.TypeOfTour = list;
+            ViewBag.TypeOfTour = Selectlist();
+
             if (Date !="" && TypeOfTour =="")
             {
                 int Date1 = Int32.Parse(Date);

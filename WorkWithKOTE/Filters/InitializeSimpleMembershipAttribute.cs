@@ -26,6 +26,7 @@ namespace WorkWithKOTE.Filters
         {
             public SimpleMembershipInitializer()
             {
+                Database.SetInitializer<TourContext>(new TourInitialization());
                 Database.SetInitializer<UsersContext>(null);
                 try
                 {

@@ -20,7 +20,7 @@ namespace WorkWithKOTE.Controllers
             Tour data = db.Tour.Find(id);
             ViewBag.TourPrices = data.Cost;
             Trip trip = new Trip();
-            trip.TourId = data.TourId;
+            //  trip.TourId = data.TourId;
             trip.TourPrice = data.Cost;
             ViewBag.DateTourId = new SelectList(db.DateTours.Where(m => m.TourId == id), "DateTourId", "FirstDate");
             if (Request.IsAuthenticated)
@@ -40,14 +40,16 @@ namespace WorkWithKOTE.Controllers
             return View(trip);
         }
         [HttpPost]
-        public ActionResult Index(Trip model)
+        public ActionResult Index(int id,Trip model)
         {
-           /* if (Request.IsAuthenticated)
+           // model.TourId = id;
+            if (Request.IsAuthenticated)
             {
                 int userID = WebSecurity.GetUserId(User.Identity.Name);
                 UserProfile userprofile = db1.UserProfiles.Find(userID);
-                model.Users.Add(userprofile);
-            }*/
+                userprofile.Trips.Add(model);
+                db1.Entry(userprofile).State = EntityState.Modified;
+            }
             db.Entry(model).State = EntityState.Added;
             db.SaveChanges();
             return RedirectToAction("Index","Home");

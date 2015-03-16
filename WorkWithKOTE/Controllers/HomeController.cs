@@ -22,8 +22,6 @@ namespace WorkWithKOTE.Controllers
             data.TourDown = db.Tour.Where(m => m.TypeOfTour =="Шопинг").ToList();
             return View(data);
         }
-
-        [InitializeSimpleMembership]
         public ActionResult DateForCurrentTour(int id)
         {
             

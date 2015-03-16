@@ -14,16 +14,18 @@ namespace WorkWithKOTE.Controllers
         TourContext db = new TourContext();
         public ActionResult Index(int id=0)
         {
-            var data = db.Tour.Find(id);
            if(id != 0){
+            var data = db.Tour.Find(id);
             if(data.IsBus)
              ViewBag.Message = "Автобус"; 
             if(data.IsAriplane)
              ViewBag.Message1 = "Авиалинии"; 
             if (data.IsShip)
              ViewBag.Message2 = "Лайнером";
-               }
+
             return View(data);
+           }
+            return View();//Добавить страницу ошибки
         }
         public ActionResult DatePartial(int id)
         {

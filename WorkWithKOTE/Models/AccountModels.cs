@@ -48,7 +48,7 @@ namespace WorkWithKOTE.Models
         public DateTime? DateZagran { get; set; }
         public string Mobile { get; set; }
         public int? Bonus { get; set; }
-        public string Avatar { get; set; }
+        public string Avatar { get; set; } 
         public List<Trip> Trips { get; set; } 
     }
 

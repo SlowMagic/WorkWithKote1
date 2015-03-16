@@ -14,6 +14,7 @@ using System.Data;
 using System.IO;
 namespace WorkWithKOTE.Controllers
 {
+
     [Authorize]
     [InitializeSimpleMembership]
     public class AccountController : Controller
