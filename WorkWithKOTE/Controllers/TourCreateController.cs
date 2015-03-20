@@ -13,7 +13,8 @@ namespace WorkWithKOTE.Controllers
     {
         //
         // GET: /TourCreate/
-        TourContext db = new TourContext();
+        //TourContext db = new TourContext();
+        UsersContext db = new UsersContext();
         public ActionResult TourCreate()
         {
              ViewBag.GalleryID = new SelectList(db.Gallery, "GalleryId", "GalleryName");

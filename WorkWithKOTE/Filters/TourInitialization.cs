@@ -10,13 +10,14 @@ using System.Web.Mvc;
 using System.Threading;
 namespace WorkWithKOTE.Filters
 {
-    public class TourInitialization:DropCreateDatabaseIfModelChanges<TourContext>
+    public class TourInitialization
     {
-        protected override void Seed(TourContext context)
+        public void Seed()
         {
+            UsersContext context = new UsersContext();
             var tour = new List<Tour>
             {
-                new Tour{NameTour ="Paris", TitleTour="Paris is the capital of Francе",DescriptionTour ="Главный политический, экономический и культурный центр Франции. Относится к глобальным городам, мировым финансовым центрам. Штаб-квартира ЮНЕСКО и других международных организаций"+
+                new Tour{ NameTour ="Paris", TitleTour="Paris is the capital of Francе",DescriptionTour ="Главный политический, экономический и культурный центр Франции. Относится к глобальным городам, мировым финансовым центрам. Штаб-квартира ЮНЕСКО и других международных организаций"+
 "Исторический центр, образованный островом Сите и обоими берегами Сены, складывался на протяжении веков. Во второй половине XIX века претерпел коренную реконструкцию. В пригороде расположен дворцово-парковый ансамбль Версаль",Cost = 1500,Valuta = "Доллар",PrePay = 500,Reservation="Есть",IsBus = true,TourStatus ="Неактивный",TypeOfTour="Гастрономический",PodpicePrice = "Аукцонная",AukcionPrice=1200,SuppName="Илья Давиденко",SuppFoto="/UpLoad/SuppFoto/1eae1900-0241-4bec-bdf0-ac3bb00cbc10.jpg",SuppDiscription="Веселый, интересный, не умеет играть в доту",SuppVkontakte="http://vk.com/david_enko",KindOfPay="Наличный",People=15,AllPeople=50,TourImg="/UpLoad/TourImg/ca196c77-a905-4a9b-abe2-f1459784f342.png"},
                new Tour{NameTour ="Paris", TitleTour="Paris is the capital of Francе",DescriptionTour ="Главный политический, экономический и культурный центр Франции. Относится к глобальным городам, мировым финансовым центрам. Штаб-квартира ЮНЕСКО и других международных организаций"+
 "Исторический центр, образованный островом Сите и обоими берегами Сены, складывался на протяжении веков. Во второй половине XIX века претерпел коренную реконструкцию. В пригороде расположен дворцово-парковый ансамбль Версаль",Cost = 1500,Valuta = "Доллар",PrePay = 500,Reservation="Есть",IsBus = true,TourStatus ="Неактивный",TypeOfTour="Гастрономический",PodpicePrice = "Аукцонная",AukcionPrice=1200,SuppName="Илья Давиденко",SuppFoto="/UpLoad/SuppFoto/1eae1900-0241-4bec-bdf0-ac3bb00cbc10.jpg",SuppDiscription="Веселый, интересный, не умеет играть в доту",SuppVkontakte="http://vk.com/david_enko",KindOfPay="Наличный",People=15,AllPeople=50,TourImg="/UpLoad/TourImg/ca196c77-a905-4a9b-abe2-f1459784f342.png"},

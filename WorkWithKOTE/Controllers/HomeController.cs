@@ -13,7 +13,8 @@ namespace WorkWithKOTE.Controllers
 {
     public class HomeController : Controller
     {
-        TourContext db = new TourContext();
+        //TourContext db = new TourContext();
+        UsersContext db = new UsersContext();
         public ActionResult Index()
         {
             var data = new TourForHomePage();

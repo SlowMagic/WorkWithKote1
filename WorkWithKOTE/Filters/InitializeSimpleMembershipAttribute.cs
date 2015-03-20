@@ -26,19 +26,21 @@ namespace WorkWithKOTE.Filters
         {
             public SimpleMembershipInitializer()
             {
-                Database.SetInitializer<TourContext>(new TourInitialization());
                 Database.SetInitializer<UsersContext>(null);
                 try
                 {
                     using (var context = new UsersContext())
                     {
+                        
                         if (!context.Database.Exists())
                         {
                             // Create the SimpleMembership database without Entity Framework migration schema
-                            ((IObjectContextAdapter)context).ObjectContext.CreateDatabase();
+                           
+                          ((IObjectContextAdapter)context).ObjectContext.CreateDatabase();
+                           // Database.SetInitializer<UsersContext>(new TourInitialization());
+                            
                         }
                     }
-
                     WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfiles", "UserId", "Email", autoCreateTables: true);
                 }
                 catch (Exception ex)
@@ -63,7 +65,8 @@ namespace WorkWithKOTE.Filters
                 // Если у пользователя admin нет роли admin, присваиваем ему эту роль
                 if (!roles.IsUserInRole("LevitskiyOrange@gmail.com", "Admin"))
                     roles.AddUsersToRoles(new[] { "LevitskiyOrange@gmail.com" }, new[] { "Admin" });
-               
+                var TourDefault = new TourInitialization();
+               // TourDefault.Seed();
             }
 
         }

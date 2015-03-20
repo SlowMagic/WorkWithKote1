@@ -11,7 +11,8 @@ namespace WorkWithKOTE.Controllers
     {
         //
         // GET: /TourDisplay/
-        TourContext db = new TourContext();
+       // TourContext db = new TourContext();
+        UsersContext db = new UsersContext();
         public ActionResult Index(int id=0)
         {
            if(id != 0){

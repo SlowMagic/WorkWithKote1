@@ -1121,6 +1121,7 @@
     <Content Include="Views\TourCreate\MapPartial.cshtml" />
     <Content Include="Views\Shared\HeaderPartial.cshtml" />
     <Content Include="Views\TourSearch\Search.cshtml" />
+    <Content Include="Views\Profile\UsersTour.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

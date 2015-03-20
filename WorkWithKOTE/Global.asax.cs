@@ -19,14 +19,12 @@ namespace WorkWithKOTE
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
-            Database.SetInitializer<TourContext>(new TourInitialization());
-            Database.SetInitializer<UsersContext>(null);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+          //  Database.SetInitializer<UserContext>(new TourInitialization());
         }
     }
 }

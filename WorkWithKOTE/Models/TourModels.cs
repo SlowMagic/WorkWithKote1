@@ -9,7 +9,7 @@ using System.Web.Security;
 
 namespace WorkWithKOTE.Models
 {
-    public class TourContext:DbContext
+   /* public class TourContext:DbContext
     {
         public TourContext ()
             :base("DefaultConnection")
@@ -23,7 +23,7 @@ namespace WorkWithKOTE.Models
         public DbSet<DopUslug> DopUslugs { get; set; }
         public DbSet<Gallery> Gallery { get; set; }
         public DbSet<RoutePoint> RoutePoint { get; set; }
-    }
+    }*/
     [Table("Trip")]
     public class Trip
     {

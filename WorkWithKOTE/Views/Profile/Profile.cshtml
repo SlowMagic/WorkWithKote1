@@ -8,16 +8,17 @@
 {
     <fieldset>
         <p>
-            <img src="@Html.DisplayFor(m=>m.Avatar)" height="150" width="250" />
+            <img src="@Html.DisplayFor(m => m.Avatar)" height="150" width="250" />
             <br />
             @Html.ActionLink("Изменить фото", "Upload", "Profile")
         </p>
-        @if (User.IsInRole("Admin")) { 
-        <input type="button" value="Назначить Модератора" onclick="location.href='@Url.Action("RolesForUser","Account")'" />
+        @if (User.IsInRole("Admin"))
+        { 
+        <input type="button" value="Назначить Модератора" onclick="location.href='@Url.Action("RolesForUser", "Account")'" />
         }
-        @if (User.IsInRole("Admin")||User.IsInRole("Moderator"))
+        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
         {
-           <input type="button" value="Создать тур" onclick="location.href='@Url.Action("TourCreate","TourCreate")'" />
+           <input type="button" value="Создать тур" onclick="location.href='@Url.Action("TourCreate", "TourCreate")'" />
         }
             <p>
             Ваше Имя:
@@ -72,6 +73,14 @@
             @Html.DisplayFor(m => m.DateZagran)
         </p>
         @Html.ActionLink("EditProfile", "EditProfile", "Profile")
-        <input type="button" value="Изменить пароль" onclick="location.href='@Url.Action("Manage","Account")'" />
+        <input type="button" value="Изменить пароль" onclick="location.href='@Url.Action("Manage", "Account")'" />
+  @*  @if(Model.Trips != null){
+        foreach(var Item in Model.Trips)
+    {
+        Html.RenderPartial("UsersTour", new { id = Item.TourId });
+    }
+       }
+*@     
+       @{Html.RenderAction("UsersTour", new { id = Model.UserId });}     
     </fieldset>
 }

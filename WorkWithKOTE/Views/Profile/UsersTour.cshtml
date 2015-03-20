@@ -1,0 +1,6 @@
+﻿@model IEnumerable<WorkWithKOTE.Models.Tour>
+@foreach(var Item in Model){
+ @Html.DisplayFor(m => Item.NameTour)
+@Html.DisplayFor(m=>Item.TitleTour)   
+    <br/>
+}

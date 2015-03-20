@@ -188,6 +188,19 @@ namespace WorkWithKOTE.Controllers
 
             client.Send(msg);
         }
-
+        [ChildActionOnly]
+        public ActionResult UsersTour(int id = 0)
+        {
+            var trip = db.Trip.Where(m=> m.UserId  == id);
+            List<Tour> tours = new List<Tour>();
+            if(trip != null)
+            foreach ( var Item in trip)
+            {
+                int TourId = Item.TourId;
+                var tour = db.Tour.Find(TourId);
+                tours.Add(tour);
+            }
+           return PartialView(tours);
+        }
     }
 }

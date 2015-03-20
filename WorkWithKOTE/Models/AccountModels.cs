@@ -16,6 +16,13 @@ namespace WorkWithKOTE.Models
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<Trip> Trip { get; set; }
+        public DbSet<Tour> Tour { get; set; }
+        public DbSet<DateTour> DateTours { get; set; }
+        public DbSet<Tag> Teg { get; set; }
+        public DbSet<DopUslug> DopUslugs { get; set; }
+        public DbSet<Gallery> Gallery { get; set; }
+        public DbSet<RoutePoint> RoutePoint { get; set; }
     }
 
     [Table("UserProfiles")]
