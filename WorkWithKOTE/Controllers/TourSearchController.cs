@@ -46,20 +46,21 @@ namespace WorkWithKOTE.Controllers
         public ActionResult Search(String Date= null,String TypeOfTour = null)
         {
             ViewBag.TypeOfTour = Selectlist();
-            var data = db.Tour.AsQueryable();
-            if(!String.IsNullOrEmpty(Date))
-            {
-                int Date1 = Int32.Parse(Date);
-                var  data1 = db.Tour.Where(m => m.DateTour.Any(k => k.FirstDate.Month == Date1));
-               data = data1;
-            }
-            
-            if(!String.IsNullOrEmpty(TypeOfTour))
-            {
-               var  data1 = db.Tour.Where(m => m.TypeOfTour == TypeOfTour);
-               data = data1;
-            }
-           /* if (Date !="" && TypeOfTour =="")
+//            var data = db.Tour.AsQueryable();
+//            if(!String.IsNullOrEmpty(Date))
+//            {
+//                int Date1 = Int32.Parse(Date);
+//                var  data1 = db.Tour.Where(m => m.DateTour.Any(k => k.FirstDate.Month == Date1));
+//               data = data1;
+//            }
+//            
+//            if(!String.IsNullOrEmpty(TypeOfTour))
+//            {
+//               var  data1 = db.Tour.Where(m => m.TypeOfTour == TypeOfTour);
+//               data = data1;
+//            }
+
+            if (Date !="" && TypeOfTour =="")
             {
                 int Date1 = Int32.Parse(Date);
               var  data = db.Tour.Where(m=>m.DateTour.Any(k=>k.FirstDate.Month == Date1));
@@ -75,8 +76,8 @@ namespace WorkWithKOTE.Controllers
                 int Date1 = Int32.Parse(Date);
                 var data = db.Tour.Where(m => m.DateTour.Any(k => k.FirstDate.Month == Date1)).Where(m=>m.TypeOfTour == TypeOfTour);
                 return View(data);
-            }*/
-            return View(data);
+            }
+            return View(db.Tour.ToList());
         }
     }
 }

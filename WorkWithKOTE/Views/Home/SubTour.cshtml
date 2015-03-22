@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WorkWithKOTE.Models.Tour>
+           @{int counter = 0;}
+   @foreach (var item in Model)
+   {
+       if (counter > 2)
+       {
+           break;
+       }
+       counter++;
+    <div class="tour clearfix">
+        <div class="tourName">
+            <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})"><img src="@Html.DisplayFor(m => item.TourImg)" class="groupSubPreview image"></a>
+
+            <h2 class="tourTitle">@Html.DisplayFor(m=> item.TitleTour)</h2>
+        </div>
+        <div class="tourInfo">
+            <p class="tourDescription">
+                Тур&#x3a; &nbsp;Автобусный<br />
+@*                Дни&#x3a; &nbsp;4<br />*@
+                @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }<br /><br />
+                @Html.DisplayFor(m => item.PlaceOfDeparture)<span class="arr"></span>&nbsp;@Html.DisplayFor(m => item.PlaceOfArrival)
+            </p>
+        </div>
+        <div class="tourPrice">
+            <p class="tourDescription">
+                От&nbsp;<span class="boldPrice">@Html.DisplayFor(m => item.Cost)</span>&nbsp;@Html.DisplayFor(m => item.Valuta).<br />
+            </p>
+        </div>
+    </div>
+   }

@@ -1,272 +1,230 @@
-.primaryContainer {
-    /*height: auto;*/
-    /*margin-left: auto;*/
-    /*margin-right: auto;*/
-    min-height: 100%;
-    position:relative;
-    width: 100%;
+nav, footer, header, section, article, iframe, img {
+    display: block
 }
 
-#©_2015_kote_dp_ua_Все_права_защищены {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
+header {
+    position: fixed;
     text-align: center;
-    font-weight: normal;
+    left: 0;
+    right: 0;
+    margin: auto;
+    clear: none;
+    width: 100%;
+    z-index: 200;
+}
+
+nav {
+    display: inline-block;
+    font-size: 1em;
+    text-align: center;
+    font-weight: 300;
     line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 3;
-    margin-top: 8px;
-    margin-left: 46.979167%;
+    color: rgb(255, 255, 255);
+    font-style: normal;
+    text-decoration: none;
+    font-family: HelveticaNeueCyr;
+    z-index: 324;
+    margin-top: 40px;
     clear: none;
 }
 
-#textspan103 {
+nav a {
+    margin-left: 25px;
+    padding-bottom: 44px;
+}
+
+nav a:hover {
+    padding-bottom: 41px;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+.primaryContainer {
+    min-height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.buttons {
+    width: 510px;
+    margin: 50px auto 0 auto;
+    font-family: georgia;
+    font-style: italic;
+    color: rgb(255, 255, 255);
+    font-weight: normal;
+    text-decoration: none;
+    font-size: 1.125em;
+}
+
+.yes-btn {
+    width: 220px;
+    float: left;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.74902) 1px 1px 2px;
+    padding: 15px;
+    background-color: #ff6f40;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(239, 98, 52, 1);
+    -moz-box-shadow: 0 2px 2px 0 rgba(239, 98, 52, 1);
+    box-shadow: 0 2px 2px 0 rgba(239, 98, 52, 1);
+    clear: none;
+}
+
+.yes-btn:hover, .no-btn:hover {
+    margin-top: 2px;
+    margin-bottom: -2px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.no-btn {
+    float: right;
+    width: 220px;
+    height: auto;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.74902) 1px 1px 2px;
+    padding: 15px;
+    background-color: #121212;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 1);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 1);
+    clear: none;
+}
+
+.groupLinks {
+    display: inline-block;
+    vertical-align: middle;
+    color: rgb(255, 254, 254);
+}
+
+.groupLinks a {
+    float: none;
+    font-size: 1em;
+    line-height: 1em;
+    color: rgb(255, 254, 254);
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+    margin-left: 20px;
+    font-family: HelveticaNeueCyr;
+}
+
+.groupLinks a:hover {
+    color: rgb(124, 161, 179);
+}
+
+.gallery-preview {
+    float: left;
+    width: 47%;
+    max-width: 100%;
+    height: auto;
+    color: rgb(0, 0, 0);
+    top: 0;
+    left: 0;
+    margin: 0 1.45% 1.45% 1.45%;
+    clear: none;
+}
+
+#box22 {
+    height: auto;
+    margin-left: 40%;
+    width: 59%;
+}
+
+#box21 {
+    float: left;
+    width: 40%;
+    height: auto;
+}
+
+.cont {
+    margin: 0 auto;
+    padding-top: 40px;
+    width: 80%;
+    min-width: 930px;
+}
+
+#copyrighter {
+    font-size: 1em;
+    text-align: center;
+    font-weight: normal;
+    line-height: 1em;
+    top: 0;
+    left: 0;
+    margin: 8px auto;
+    clear: none;
+}
+
+#copyright {
     float: none;
     font-size: 0.75em;
     line-height: 14px;
     color: rgb(153, 153, 153);
     font-style: normal;
     font-weight: 300;
-    letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
 }
 
-#textspan104 {
-    float: none;
-    font-size: 0.75em;
-    line-height: 14px;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan105 {
-    float: none;
+#copyright-site {
     font-size: 0.75em;
     line-height: 14px;
     color: rgb(255, 111, 64);
-    font-style: normal;
     font-weight: normal;
     letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
 }
 
-#textspan106 {
-    float: none;
+#rights {
     font-size: 0.75em;
     line-height: 14px;
     color: rgb(153, 153, 153);
-    font-style: normal;
     font-weight: 300;
-    letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
 }
 
 #copy-bg {
     float: left;
-    height: 40px;
-    width: 99.947944%;
     background-color: rgb(12, 12, 12);
     position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
-#photo2 {
-    float: left;
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 53;
-    margin-top: 10px;
-    margin-left: 1.482197%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#photo1 {
-    float: left;
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 58;
-    margin-top: 10px;
-    margin-left: 0%;
-    clear: both;
-    margin-right: 0%;
-}
-
-#Галерея_фото_видео_Cамые_красивые_места_в_мире {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 74;
-    margin-top: 59px;
-    margin-left: 42.604167%;
-    clear: none;
-}
-
-#textspan80 {
-    float: none;
-    font-size: 1.5em;
-    line-height: 18px;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan81 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 18px;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#Наша_почта_kote_turclub_gmail_com_kote_turclub_gmail_com {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 9;
-    margin-top: 10px;
-    margin-left: 0.01062925%;
-    clear: both;
-    margin-right: 0%;
-}
-
-#textspan100 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 18px;
-    color: rgb(254, 254, 254);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan101 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 24px;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan102 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 18px;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#Туристический_оператор_«КОТЭ»_предлагает_Вам_воспользоваться_са {
+#about {
     float: left;
     font-size: 0.75em;
-    width: auto;
-    height: auto;
     text-align: left;
     font-weight: 300;
     line-height: 16px;
     color: rgb(153, 153, 153);
-    font-style: normal;
-    letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 28;
-    margin-top: 0px;
-    margin-left: 0%;
+    top: 0;
+    left: 0;
     clear: none;
-    margin-right: 0%;
-}
-
-#photo4 {
-    float: left;
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 43;
-    margin-top: 0px;
-    margin-left: 1.453802%;
-    clear: none;
-    margin-right: 0%;
+    margin-right: 0;
 }
 
 #media-bg {
-    float: left;
-    width: 99.947944%;
     height: 605px;
-    color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 37;
     background-image: url("img/media-bg.jpg");
     -webkit-background-size: 100%;
     background-size: 100%;
-    margin-top: 974px;
-    margin-left: 0%;
+    margin-top: 20px;
     clear: both;
+    *zoom: 1;
 }
 
-#Консультант_38_097-815-68-38_38_050-774-99-18_38_063-796-25 {
+#contacts {
     float: left;
     font-size: 1em;
     width: auto;
@@ -274,193 +232,46 @@
     text-align: left;
     font-weight: normal;
     line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 12;
-    margin-top: 0px;
-    margin-left: 0.05314626%;
+    top: 0;
+    left: 0;
+    margin-top: 0;
+    margin-left: 0.06%;
     clear: none;
-    margin-right: 0%;
+    margin-right: 0;
 }
 
-#textspan89 {
-    float: none;
+#contacts h5 {
+    margin-top: 0;
+    font-weight: lighter;
     font-size: 1.125em;
-    line-height: 18px;
+    margin-bottom: 0.7em;
     color: rgb(254, 254, 254);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
     font-family: HelveticaNeueCyr;
 }
 
-#textspan90 {
-    float: none;
+.mail {
     font-size: 0.875em;
-    line-height: 24px;
     color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
     font-family: HelveticaNeueCyr;
 }
 
-#textspan91 {
-    float: none;
+.phone {
     font-size: 0.875em;
-    line-height: 24px;
+    color: rgb(255, 255, 255);
+    font-family: HelveticaNeueCyr;
+}
+
+.phone-code {
     color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
 }
 
-#textspan92 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 24px;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan93 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 14px;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan94 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 14px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan95 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 14px;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan96 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 14px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan97 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 14px;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan98 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 14px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan99 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 14px;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#footer-bg {
-    float: left;
-    width: 99.947944%;
+footer {
     height: 244px;
     color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 6;
+    top: 0;
+    left: 0;
     background-image: url("img/footer-bg.jpg");
     -webkit-background-size: 100%;
-    background-size: 100%;
-}
-
-#photo3 {
-    float: left;
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 48;
-    margin-top: 0px;
-    margin-left: 0.05111023%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#Следите_за_нами_14_579_ {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 66;
-    margin-top: 18px;
-    margin-left: -73.186873%;
-    clear: none;
 }
 
 #textspan84 {
@@ -468,11 +279,11 @@
     font-size: 0.875em;
     line-height: 1em;
     color: rgb(255, 255, 255);
-    font-style: normal;
     font-weight: 300;
     letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
+    display:inline-block;
 }
 
 #textspan85 {
@@ -480,11 +291,11 @@
     font-size: 0.875em;
     line-height: 1em;
     color: rgb(255, 255, 255);
-    font-style: italic;
     font-weight: normal;
     letter-spacing: normal;
     text-decoration: none;
     font-family: georgia;
+    display:inline-block;
 }
 
 #textspan86 {
@@ -492,95 +303,11 @@
     font-size: 0.875em;
     line-height: 1em;
     color: rgb(255, 255, 255);
-    font-style: normal;
     font-weight: normal;
     letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
-}
-
-#_27_04_2015_Видеоотчет_германия_-_италия {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 71;
-    margin-top: 25px;
-    margin-left: 15.973228%;
-    clear: both;
-    margin-right: 0%;
-}
-
-#textspan82 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 18px;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan83 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 18px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#Вегетарианское_кафе_во_Львове_Украина_Львов8 {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 83;
-    margin-top: 37px;
-    margin-left: 7.850337%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#textspan76 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 18px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan77 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 24px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
+    display:inline-block;
 }
 
 #placeholder1 {
@@ -592,226 +319,68 @@
     font-weight: 300;
     line-height: 1em;
     color: rgb(245, 247, 250);
-    font-style: normal;
     letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
     position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 141;
+    top: 0;
+    left: 0;
     margin-top: 24px;
     margin-left: 7.096447%;
     clear: none;
 }
 
-#Подпишитесь_на_нашу_рассылку_будьте_в_курсе_интересных_предложе1 {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 144;
-    margin-top: 51px;
-    margin-left: 40.052083%;
-    clear: none;
-}
-
-#textspan64 {
-    float: none;
-    font-size: 1.5em;
-    line-height: 14px;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan65 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 18px;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-.consultLinks{
+.consultLinks {
+    margin-top: 50px;
     font-size: 1.125em;
-    width: auto;
-    height: auto;
     text-align: center;
     font-weight: 300;
     line-height: 1em;
     color: rgb(255, 255, 255);
-    font-style: normal;
-    letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
-    z-index: 281;
-    margin-top: 6px;
     clear: none;
-    margin-right: 0%;
+    margin-right: 0;
+}
+
+.subscribe-title {
+    font-size: 1.7em;
+    line-height: 14px;
+    font-weight: bold;
 }
 
 .groups-bg {
     width: 100%;
     height: 245px;
     background: url("img/groups-bg.png") no-repeat;
-    /*-webkit-background-size: 100%;*/
-    /*background-size: 100%;*/
-    margin-top: 80px;
+    margin-top: 40px;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    /*clear: both;*/
+    clear: both;
 }
 
-#Следи_за_нами_ {
+#follow-us {
     float: left;
+    width: 100%;
     font-size: 0.875em;
-    width: auto;
-    height: auto;
     text-align: left;
     font-weight: 300;
     line-height: 1em;
     color: rgb(255, 255, 255);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
     font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 20;
     margin-top: 29px;
-    margin-left: -69.098573%;
     clear: none;
-    margin-right: 0%;
+    margin-right: 0;
 }
 
-#Будем_рады_видеть_вас_по_адресу_Украина_г_Днепропетровск_ул_ {
+#follow-us p {
     float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 22;
-    margin-top: 41px;
-    margin-left: 0.02316102%;
-    clear: both;
-    margin-right: 0%;
 }
 
-#textspan87 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 18px;
-    color: rgb(254, 254, 254);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan88 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 24px;
-    color: rgb(254, 254, 254);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#instagram-ico {
-    float: left;
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 64;
-    margin-top: 7px;
-    margin-left: 17.293233%;
-    clear: none;
-}
-
-#play-btn {
-    float: left;
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 70;
-    margin-top: 94px;
-    margin-left: 34.085213%;
-    clear: none;
-}
-
-#Вегетарианское_кафе_во_Львове_Украина_Львов7 {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 82;
-    margin-top: 37px;
-    margin-left: 8.975144%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#textspan74 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 18px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan75 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 24px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
+#follow-us img {
+    margin-top: -8px;
 }
 
 #arrow5 {
@@ -821,13 +390,12 @@
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 106;
+    top: 0;
+    left: 0;
     margin-top: 86px;
-    margin-left: -63.637654%;
+    margin-left: -63%;
     clear: none;
-    margin-right: 0%;
+    margin-right: 0;
 }
 
 #plane1 {
@@ -837,9 +405,8 @@
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 142;
+    top: 0;
+    left: 0;
     margin-top: 16px;
     margin-left: 74.042027%;
     clear: none;
@@ -851,9 +418,8 @@
     height: 245px;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 138;
+    top: 0;
+    left: 0;
     background-image: url("img/mailme-bg.jpg");
     -webkit-background-size: 100%;
     background-size: 100%;
@@ -866,27 +432,12 @@
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 280;
-    margin-top: 0px;
+    top: 0;
+    left: 0;
+    margin-top: 0;
     margin-left: 22.843102%;
     clear: none;
-    margin-right: 0%;
-}
-
-.news {
-    /*float: left;*/
-    /*height: 260px;*/
-    /*width: 99.947944%;*/
-    /*background-color: rgb(255, 255, 255);*/
-    /*position: relative;*/
-    /*top: 0px;*/
-    /*left: 0px;*/
-    /*z-index: 285;*/
-    /*margin-top: 26px;*/
-    /*margin-left: 0%;*/
-    /*clear: both;*/
+    margin-right: 0;
 }
 
 #big-logo {
@@ -894,126 +445,51 @@
     max-width: 100%;
     height: auto;
     position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 321;
-    margin-top: 15%;
-    margin-left: 45%;
+    top: 0;
+    left: 0;
+    margin: 12% auto;
     clear: both;
-}
-
-#facebook {
-    float: left;
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 17;
-    margin-top: 18px;
-    margin-left: 3.270335%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#youtube-ico {
-    float: left;
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 65;
-    margin-top: 7px;
-    margin-left: 44.862155%;
-    clear: none;
 }
 
 #video-preview {
     float: left;
-    width: 100.000361%;
-    height: 275px;
-    color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 69;
-    background-image: url("img/video-preview.jpg");
+    width: 100%;
+    height: auto;
+    top: 0;
+    left: 0;
     -webkit-background-size: 100%;
     background-size: 100%;
-    margin-top: 0px;
-    margin-left: 0%;
+    margin: 0;
     clear: none;
-    margin-right: 0%;
 }
 
-#Вегетарианское_кафе_во_Львове_Украина_Львов6 {
+#video-title {
     float: left;
-    font-size: 1em;
-    width: auto;
+    width: 100%;
     height: auto;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    margin: 15px 0 10px 0;
+    clear: none;
     text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 81;
-    margin-top: 37px;
-    margin-left: 2.051461%;
-    clear: both;
-    margin-right: 0%;
 }
 
-#textspan72 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 18px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan73 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 24px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#Тур_Автобусный_Дни_4_Дата_тура_29_12_2014_Днепропетровс8 {
-    float: left;
-    font-size: 0.875em;
+#video-title span {
     width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
+    margin: 0 auto;
     font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 107;
-    margin-top: 23px;
-    margin-left: -100%;
-    clear: none;
-    margin-right: 0%;
+}
+
+#video-title-date {
+    font-size: 0.875em;
+    color: rgb(255, 255, 255);
+    font-weight: 300;
+}
+
+#video-title-name {
+    font-size: 1.125em;
+    color: rgb(255, 111, 64);
+    font-weight: bold;
 }
 
 #arrow4 {
@@ -1022,138 +498,13 @@
     max-width: 100%;
     height: auto;
     color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 94;
     margin-top: 86px;
-    margin-left: -63.416028%;
+    margin-left: -63.416%;
     clear: none;
-    margin-right: 0%;
-}
-
-#input-border1 {
-    float: left;
-    height: 60px;
-    width: 100.00056%;
-    background-color: rgb(29, 38, 54);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 140;
-    margin-top: 0px;
-    margin-left: 0%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#Вегетарианское_кафе_во_Львове_Украина_Львов5 {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 152;
-    margin-top: 37px;
-    margin-left: 7.850337%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#textspan60 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 18px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan61 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 24px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#placeholder {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: center;
-    font-weight: 300;
-    line-height: 1em;
-    color: rgb(245, 247, 250);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 210;
-    margin-top: 24px;
-    margin-left: 7.096447%;
-    clear: none;
-}
-
-#Подпишитесь_на_нашу_рассылку_будьте_в_курсе_интересных_предложе {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 213;
-    margin-top: 51px;
-    margin-left: 40.052083%;
-    clear: none;
-}
-
-#textspan48 {
-    float: none;
-    font-size: 1.5em;
-    line-height: 14px;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan49 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 18px;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
+    margin-right: 0;
 }
 
 #small-btn2 {
@@ -1162,199 +513,140 @@
     max-width: 100%;
     height: auto;
     color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 279;
-    margin-top: 0px;
-    margin-left: 50.014561%;
+    top: 0;
+    left: 0;
+    margin-top: 0;
+    margin-left: 50%;
     clear: none;
     margin-right: 0%;
-}
-
-#Туроператор_OpenGeorgia_11_02_2015_Мы_являемся_первым_профиль_копия_3 {
-    float: left;
-    font-size: 1em;
-    width: 21.655132%;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 292;
-    margin-top: 0px;
-    margin-left: 4.461023%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#textspan25 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 18px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: 900;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan26 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 20px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: 900;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan27 {
-    float: none;
-    font-size: 0.625em;
-    line-height: 18px;
-    color: rgb(153, 153, 153);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan28 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 24px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan29 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 18px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
 }
 
 .news-title {
-    /*float: left;*/
     font-size: 1em;
-    /*width: auto;*/
-    /*height: auto;*/
     text-align: center;
     font-weight: normal;
     line-height: 1em;
-    /*z-index: 287;*/
     margin-top: 31px;
-    /*margin-left: 45.625%;*/
-    /*clear: none;*/
 }
 
-#textspan8 {
+.news-title h3 {
     float: none;
     font-size: 1.5em;
-    line-height: 24px;
     color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
+    margin-bottom: 5px;
 }
 
-#textspan9 {
+.news-title h4 {
+    margin: 0 auto;
     float: none;
     font-size: 0.875em;
-    line-height: 18px;
     color: rgb(18, 18, 18);
-    font-style: normal;
     font-weight: 300;
-    letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
 }
 
 #top-shadow {
-    /*float: left;*/
-    width: auto;
     max-width: 100%;
-    height: auto;
-    /*color: rgb(0, 0, 0);*/
     /*position: absolute;*/
     margin: auto;
-    right: 0px;
-    left: 0px;
-    /*z-index: 316;*/
-    /*margin-top: 8px;*/
-    /*margin-left: 21.238456%;*/
+    right: 0;
+    left: 0;
     clear: both;
 }
 
-#google {
-    float: left;
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 18;
-    margin-top: 18px;
-    margin-left: 3.270335%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#Главная_Туры_Галерея_Контакты1 {
+#address {
     float: left;
     font-size: 0.875em;
+    color: rgb(254, 254, 254);
     width: auto;
     height: auto;
     text-align: left;
-    font-weight: bold;
-    line-height: 1em;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
+    font-weight: normal;
+    line-height: 1.5em;
+    top: 0;
+    left: 0;
+    z-index: 22;
+    margin-top: 41px;
+    clear: both;
+    margin-right: 0;
     font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 24;
-    margin-top: 0px;
-    margin-left: 0.68556606%;
-    clear: none;
-    margin-right: 0%;
 }
 
-#wath-bg {
+#footer-nav {
     float: left;
+    width: 100%;
+    height: auto;
+    text-align: left;
+    line-height: 1em;
+    font-family: HelveticaNeueCyr;
+    top: 0;
+    left: 0;
+    z-index: 24;
+    margin: 0;
+    clear: none;
+}
+#footer-nav a {
+    float: left;
+    text-decoration: none;
+    width: 25%;
+    color: rgb(255, 111, 64);
+    font-size: 0.875em;
+    font-weight: bold;
+}
+
+#subscribe {
+    float: left;
+    display: block;
     height: 46px;
-    width: 20.78125%;
-    background-color: rgba(0, 0, 0, 0.439216);
     position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 62;
-    margin-top: 5px;
-    margin-left: 25.035992%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.439216);
+}
+
+#subscribe:after
+{
+    content: '';
+    display: block;
     clear: both;
+}
+.align_center_to_left
+{
+    position: relative;
+    right: 50%;
+    float: right;
+}
+.align_center_to_right
+{
+    position: relative;
+    z-index: 1;
+    right: -50%;
+}
+#sub-nav {
+    float: left;
+    margin: 6px auto;
+    color: rgb(255, 255, 255);
+    clear: both;
+    display:inline-block;
+}
+
+#sub-nav dd {
+    float: left;
+    display: inline;
+    margin-right: 5px;
+}
+
+#sub-nav dt {
+    float: left;
+    display: inline;
+    font-size: 0.875em;
+    line-height: 1em;
+    font-weight: 300;
+    padding-top: 10px;
+    text-decoration: none;
+    font-family: HelveticaNeueCyr;
 }
 
 #Мы_рекомендуем_2 {
@@ -1367,146 +659,14 @@
     line-height: 1em;
     color: rgb(18, 18, 18);
     font-style: normal;
-    letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 84;
-    margin-top: 0px;
-    margin-left: 0%;
+    top: 0;
+    left: 0;
+    margin-top: 0;
+    margin-left: 0;
     clear: none;
-    margin-right: 0%;
-}
-
-#От_13_000_грн_5 {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 108;
-    margin-top: 21px;
-    margin-left: 63.348952%;
-    clear: both;
-    margin-right: 0%;
-}
-
-#textspan78 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan79 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 16px;
-    color: rgb(124, 161, 179);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#Тур_Автобусный_Дни_4_Дата_тура_29_12_2014_Днепропетровс7 {
-    float: left;
-    font-size: 0.875em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 95;
-    margin-top: 23px;
-    margin-left: -100%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#Шопинг {
-    float: left;
-    font-size: 3em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 129;
-    margin-top: 58px;
-    margin-left: 25%;
-    clear: none;
-}
-
-#Вегетарианское_кафе_во_Львове_Украина_Львов4 {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 151;
-    margin-top: 37px;
-    margin-left: 8.975144%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#textspan58 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 18px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan59 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 24px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
+    margin-right: 0;
 }
 
 #arrow3 {
@@ -1515,14 +675,12 @@
     max-width: 100%;
     height: auto;
     color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 175;
+    top: 0;
+    left: 0;
     margin-top: 86px;
     margin-left: -63.637654%;
     clear: none;
-    margin-right: 0%;
+    margin-right: 0;
 }
 
 #plane {
@@ -1532,9 +690,8 @@
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 211;
+    top: 0;
+    left: 0;
     margin-top: 16px;
     margin-left: 74.042027%;
     clear: none;
@@ -1546,23 +703,11 @@
     height: 245px;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 207;
+    top: 0;
+    left: 0;
     background-image: url("img/mailme-bg.jpg");
     -webkit-background-size: 100%;
     background-size: 100%;
-}
-
-#Туры_гастрономические_развлечения_шопинг {
-    font-size: 1em;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    top:0;
-    bottom: 0;
-    /*width: 400px;*/
-    clear: none;
 }
 
 #textspan30 {
@@ -1572,151 +717,24 @@
     color: rgb(245, 247, 250);
     font-style: normal;
     font-weight: normal;
-    letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
 }
 
-#textspan31 {
-    float: none;
-    font-size: 1em;
-    line-height: 1em;
-    color: rgb(124, 161, 179);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-.groupLink {
-    float: none;
-    font-size: 1em;
-    line-height: 1em;
-    color: rgb(255, 254, 254);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    margin-left: 20px;
-    font-family: HelveticaNeueCyr;
-}
-.groupLink:hover {
-    color: rgb(124, 161, 179);
-}
-
-#textspan33 {
-    float: none;
-    font-size: 1em;
-    line-height: 1em;
-    color: rgb(255, 254, 254);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#Туроператор_OpenGeorgia_11_02_2015_Мы_являемся_первым_профиль_копия_2 {
-    float: left;
-    font-size: 1em;
-    width: 21.655132%;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 291;
-    margin-top: 0px;
-    margin-left: 4.462723%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#textspan20 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 18px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: 900;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan21 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 20px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: 900;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan22 {
-    float: none;
-    font-size: 0.625em;
-    line-height: 18px;
-    color: rgb(153, 153, 153);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan23 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 24px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan24 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 18px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-.username { 
+#username {
     /*float: left;*/
     font-size: 0.875em;
-    /*width: auto;*/
-    /*height: auto;*/
     text-align: center;
     font-weight: 300;
     line-height: 1em;
-    color: rgb(255, 255, 255) !important;
+    color: rgb(255, 255, 255);
     font-style: normal;
-    letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
-    /*position: relative;*/
-    /*top: 0px;*/
-    /*left: 0px;*/
-    z-index: 326;
-    /*margin-top: 32px;*/
-    /*margin-left: 1.266596%;*/
     clear: none;
     /*margin-right: 0%;*/
 }
+
 .scroll-text {
     background: url("img/scroll.png") no-repeat left center;
     display: table-cell;
@@ -1728,178 +746,17 @@
     font-weight: 300;
     line-height: 14px;
     color: rgb(255, 255, 255);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
     font-family: HelveticaNeueCyr;
-    text-shadow: rgba(0, 0, 0, 0.74902) 0px 1px 1px;
-    /*position: relative;*/
-    /*top: 0px;*/
-    /*left: 0px;*/
-    z-index: 310;
-    /*margin-top: -39px;*/
-    /*margin-left: 37.669982%;*/
+    text-shadow: rgba(0, 0, 0, 0.74902) 0 1px 1px;
     clear: both;
 }
 
-#twitter {
+.image-icons {
     float: left;
-    width: auto;
     max-width: 100%;
-    height: auto;
-    color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 19;
-    margin-top: 18px;
-    margin-left: 34.111543%;
-    clear: both;
-    margin-right: 0%;
-}
-
-#Новый_год_во_Львове8 {
-    float: left;
-    font-size: 1.5em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 105;
-    margin-top: 0px;
-    margin-left: 0.01419849%;
+    margin-left: 3%;
     clear: none;
-    margin-right: 0%;
-}
-
-#От_13_000_грн_4 {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 96;
-    margin-top: 21px;
-    margin-left: 63.125565%;
-    clear: both;
-    margin-right: 0%;
-}
-
-#textspan70 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan71 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 16px;
-    color: rgb(124, 161, 179);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#bg3 {
-    float: left;
-    height: 974px;
-    width: 100%;
-    background-color: rgb(255, 255, 255);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 79;
-    margin-top: 46px;
-    margin-left: 0%;
-    clear: both;
-}
-
-#Вегетарианское_кафе_во_Львове_Украина_Львов3 {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 150;
-    margin-top: 37px;
-    margin-left: 2.051461%;
-    clear: both;
-    margin-right: 0%;
-}
-
-#textspan56 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 18px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan57 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 24px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#Тур_Автобусный_Дни_4_Дата_тура_29_12_2014_Днепропетровс5 {
-    float: left;
-    font-size: 0.875em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 176;
-    margin-top: 23px;
-    margin-left: -100%;
-    clear: none;
-    margin-right: 0%;
+    margin-right: 0;
 }
 
 #arrow2 {
@@ -1909,9 +766,8 @@
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 163;
+    top: 0;
+    left: 0;
     margin-top: 86px;
     margin-left: -63.416028%;
     clear: none;
@@ -1928,55 +784,10 @@
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 209;
-    margin-top: 0px;
-    margin-left: 0%;
+    top: 0;
+    left: 0;
+    margin: 0;
     clear: none;
-    margin-right: 0%;
-}
-
-#Вегетарианское_кафе_во_Львове_Украина_Львов2 {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 221;
-    margin-top: 37px;
-    margin-left: 7.850337%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#textspan44 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 18px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan45 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 24px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
 }
 
 .groups {
@@ -1985,131 +796,21 @@
     clear: both;
     width: 50%;
     height: 60px;
-    border: 3px solid rgba(255,255,255 ,0.1);
+    border: 3px solid rgba(255, 255, 255, 0.1);
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
     margin-left: 25%;
     margin-right: 25%;
-    /*top: 50px;*/
-    /*bottom: 50px;*/
-    /*margin: auto;*/
-    /*text-align: center;*/
-    /*vertical-align: middle;*/
 }
-.groupLinks{
-    display: inline-block;
-    vertical-align: middle;
-    color: rgb(255, 254, 254);
-}
-.new {
-    float: left;
-    font-size: 1em;
-    width: 250px;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    /*position: relative;*/
-    /*top: 0px;*/
-    /*left: 0px;*/
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 5%;
-    clear: none;
-}
-
-#textspan15 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 18px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: 900;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan16 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 20px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: 900;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan17 {
-    float: none;
-    font-size: 0.625em;
-    line-height: 18px;
-    color: rgb(153, 153, 153);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan18 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 24px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan19 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 18px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-/*#scroll {*/
-    /*float: left;*/
-    /*width: auto;*/
-    /*max-width: 100%;*/
-    /*height: auto;*/
-    /*color: rgb(0, 0, 0);*/
-    /*position: relative;*/
-    /*top: 0px;*/
-    /*left: 0px;*/
-    /*z-index: 309;*/
-    /*margin-top: 0px;*/
-    /*margin-left: 0%;*/
-    /*clear: none;*/
-    /*margin-right: 0%;*/
-/*}*/
 
 #wishletter {
-    /*float: left;*/
     font-size: 1em;
-    /*width: auto;*/
-    /*height: auto;*/
     text-align: center;
     font-weight: normal;
     line-height: 1em;
     text-shadow: rgba(0, 0, 0, 0.74902) 1px 1px 2px;
-    /*position: relative;*/
-    /*top: 0px;*/
-    /*left: 0px;*/
-    /*z-index: 312;*/
     margin-top: 97px;
-    /*margin-left: 27.849408%;*/
     clear: both;
 }
 
@@ -2120,7 +821,6 @@
     color: rgb(255, 255, 255);
     font-style: italic;
     font-weight: normal;
-    letter-spacing: normal;
     text-decoration: none;
     font-family: georgia;
 }
@@ -2132,198 +832,22 @@
     color: rgb(255, 255, 255);
     font-style: normal;
     font-weight: bold;
-    letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
 }
 
 #block-border5 {
     float: left;
-    height: 361.71875px;
-    width: 18.924154%;
+    height: 360px;
+    width: 18.92%;
     background-color: rgb(242, 242, 242);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 99;
     margin-top: -200.71875px;
     margin-left: 3.059141%;
     clear: none;
-}
-
-#Новый_год_во_Львове7 {
-    float: left;
-    font-size: 1.5em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 93;
-    margin-top: 0px;
-    margin-left: 0.01428503%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#Мы_рекомендуем_1 {
-    float: left;
-    font-size: 1.5em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: 300;
-    line-height: 1em;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 153;
-    margin-top: 0px;
-    margin-left: 0%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#От_13_000_грн_3 {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 177;
-    margin-top: 21px;
-    margin-left: 63.348952%;
-    clear: both;
-    margin-right: 0%;
-}
-
-#textspan62 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan63 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 16px;
-    color: rgb(124, 161, 179);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#Тур_Автобусный_Дни_4_Дата_тура_29_12_2014_Днепропетровс4 {
-    float: left;
-    font-size: 0.875em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 164;
-    margin-top: 23px;
-    margin-left: -100%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#Развлечения {
-    float: left;
-    font-size: 3em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 198;
-    margin-top: 58px;
-    margin-left: 25%;
-    clear: none;
-}
-
-#Вегетарианское_кафе_во_Львове_Украина_Львов1 {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 220;
-    margin-top: 37px;
-    margin-left: 8.975144%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#textspan42 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 18px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: bold;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan43 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 24px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
 }
 
 #arrow1 {
@@ -2333,58 +857,27 @@
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 244;
+    top: 0;
+    left: 0;
     margin-top: 86px;
     margin-left: -63.637654%;
     clear: none;
-    margin-right: 0%;
-}
-
-#Туроператор_OpenGeorgia_11_02_2015_Мы_являемся_первым_профиль {
-    /*float: left;*/
-    /*font-size: 1em;*/
-    /*width: 21.655132%;*/
-    /*height: auto;*/
-    /*text-align: center;*/
-    /*font-weight: normal;*/
-    /*line-height: 1em;*/
-    /*position: relative;*/
-    /*top: 0px;*/
-    /*left: 0px;*/
-    /*z-index: 289;*/
-    /*margin-top: 0px;*/
-    /*margin-left: 0%;*/
-    /*clear: none;*/
-    /*margin-right: 0%;*/
+    margin-right: 0;
 }
 
 .new-title {
     float: none;
     font-size: 1.125em;
     line-height: 18px;
-    color: rgb(255, 111, 64)!important;
+    color: rgb(255, 111, 64) !important;
     font-style: normal;
     font-weight: 900;
-    letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
-}
-.new-title:hover {
-    color: rgb(124, 161, 179)!important;
 }
 
-#textspan11 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 20px;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    font-weight: 900;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
+.new-title:hover {
+    color: rgb(124, 161, 179) !important;
 }
 
 .new-date {
@@ -2392,9 +885,7 @@
     font-size: 0.625em;
     line-height: 18px;
     color: rgb(153, 153, 153);
-    font-style: normal;
     font-weight: normal;
-    letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
 }
@@ -2404,21 +895,7 @@
     font-size: 0.875em;
     line-height: 24px;
     color: rgb(18, 18, 18);
-    font-style: normal;
     font-weight: 300;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan14 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 18px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
 }
@@ -2426,36 +903,6 @@
 #user {
     float: left;
     margin-right: 10px;
-    /*width: auto;*/
-    /*max-width: 100%;*/
-    /*height: auto;*/
-    /*color: rgb(0, 0, 0);*/
-    /*position: relative;*/
-    /*top: 0px;*/
-    /*left: 0px;*/
-    /*z-index: 327;*/
-    /*margin-top: 28px;*/
-    /*margin-left: 2.960896%;*/
-    /*clear: none;*/
-    /*margin-right: 0%;*/
-}
-
-#Нет_что-то_другое {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    text-shadow: rgba(0, 0, 0, 0.74902) 1px 1px 2px;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 305;
-    margin-top: 17px;
-    margin-left: 9.098011%;
-    clear: none;
 }
 
 #textspan5 {
@@ -2470,48 +917,17 @@
     font-family: HelveticaNeueCyr;
 }
 
-#textspan6 {
-    float: none;
-    font-size: 1.5em;
-    line-height: 1em;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan7 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 1em;
-    color: rgb(255, 255, 255);
-    font-style: italic;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: georgia;
-}
-
 #big-preview-img {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    /*float: left;*/
     width: 100%;
     height: 100%;
     min-height: 850px;
     display: block;
-    /*color: rgb(0, 0, 0);*/
-    /*position: absolute;*/
-    /*top: 0px;*/
-    /*left: 0px;*/
-    z-index: 297;
-    background: url("img/big-preview-img.jpg") no-repeat;
-    /*-webkit-background-size: 100%;*/
-    /*background-size: 100%;*/
+    z-index: 97;
+    background: url("img/big-preview-img.jpg") no-repeat center;
 }
 
 #small-preview-img5 {
@@ -2521,8 +937,8 @@
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 104;
     margin-top: 442px;
     margin-left: -18.957566%;
@@ -2531,119 +947,16 @@
 
 #block-border4 {
     float: left;
-    height: 361.71875px;
+    height: 360px;
     width: 18.924154%;
     background-color: rgb(242, 242, 242);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 87;
-    margin-top: 48.28125px;
+    margin-top: 48px;
     margin-left: -18.870533%;
     clear: none;
-}
-
-#Новый_год_во_Львове5 {
-    float: left;
-    font-size: 1.5em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 174;
-    margin-top: 0px;
-    margin-left: 0.01419849%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#От_13_000_грн_2 {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 165;
-    margin-top: 21px;
-    margin-left: 63.125565%;
-    clear: both;
-    margin-right: 0%;
-}
-
-#textspan54 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan55 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 16px;
-    color: rgb(124, 161, 179);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#Подробнее1 {
-    float: left;
-    font-size: 1.125em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 195;
-    margin-top: 11px;
-    margin-left: 30.82883%;
-    clear: none;
-}
-
-#arr1 {
-    float: left;
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    color: rgb(0, 0, 0);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 180;
-    margin-top: 86px;
-    margin-left: -27.985165%;
-    clear: none;
-    margin-right: 0%;
 }
 
 #bg2 {
@@ -2652,16 +965,18 @@
     width: 99.947944%;
     background-color: rgb(255, 255, 255);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 148;
 }
-.recommendedTour{
-    float: left;
 
+.recommendedTour {
+    float: left;
+    min-width: 160px;
     width: 30%;
 }
-.recomendedLink {
+
+.recommendedLink {
     float: left;
     font-size: 1em;
     width: auto;
@@ -2669,14 +984,13 @@
     text-align: center;
     font-weight: normal;
     line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 219;
+    top: 0;
+    left: 0;
+    z-index: 119;
     margin-top: 37px;
     margin-left: 2.051461%;
     clear: both;
-    margin-right: 0%;
+    margin-right: 0;
 }
 
 a.recLink {
@@ -2690,6 +1004,7 @@ a.recLink {
     text-decoration: none;
     font-family: HelveticaNeueCyr;
 }
+
 a.recLink:hover {
     float: none;
     font-size: 1.125em;
@@ -2714,29 +1029,6 @@ a.recLink:hover {
     font-family: HelveticaNeueCyr;
 }
 
-#Тур_Автобусный_Дни_4_Дата_тура_29_12_2014_Днепропетровс2 {
-    float: left;
-    font-size: 0.875em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 245;
-    margin-top: 23px;
-    margin-left: -100%;
-    clear: none;
-    margin-right: 0%;
-}
-
 #arrow {
     float: left;
     width: auto;
@@ -2744,9 +1036,9 @@ a.recLink:hover {
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 232;
+    top: 0;
+    left: 0;
+    z-index: 22;
     margin-top: 86px;
     margin-left: -63.416028%;
     clear: none;
@@ -2754,95 +1046,9 @@ a.recLink:hover {
 }
 
 #Searching {
-    /*float: left;*/
     display: inline-block;
-    /*width: auto;*/
-    /*max-width: 100%;*/
-    /*height: auto;*/
-    /*color: rgb(0, 0, 0);*/
-    /*position: relative;*/
-    /*top: 0px;*/
-    /*left: 0px;*/
-    z-index: 322;
-    /*margin-top: -49px;*/
-    /*margin-left: 97.042407%;*/
+    z-index: 32;
     clear: both;
-    /*margin-right: 0%;*/
-}
-
-#yes-btn {
-    float: left;
-    width: 11.452369%;
-    /*height: 57px;*/
-    /*color: rgb(0, 0, 0);*/
-    /*position: relative;*/
-    /*top: 0px;*/
-    /*left: 0px;*/
-    /*z-index: 304;*/
-    /*background-image: url("img/yes-btn.png");*/
-    /*-webkit-background-size: 100%;*/
-    /*background-size: 100%;*/
-    /*margin-top: 76px;*/
-    /*margin-left: 3.800104%;*/
-    /*clear: none;*/
-}
-
-.yes-btn {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    text-shadow: rgba(0, 0, 0, 0.74902) 1px 1px 2px;
-    z-index: 101;
-    margin-top: 17px;
-    margin-left: 35px;
-    padding: 10px;
-    background-color: #ff6f40;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-    -webkit-box-shadow: 0px 2px 2px 0px rgba(239, 98, 52, 1);
-    -moz-box-shadow:    0px 2px 2px 0px rgba(239, 98, 52, 1);
-    box-shadow:         0px 2px 2px 0px rgba(239, 98, 52, 1);
-    clear: none;
-}
-.yes-btn:hover {
-    margin-top: 19px;
-    margin-bottom: -2px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow:    none;
-    box-shadow:         none;
-}
-.no-btn {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    text-shadow: rgba(0, 0, 0, 0.74902) 1px 1px 2px;
-    margin-top: 17px;
-    margin-left: 35px;
-    padding: 10px;
-    background-color: #121212;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-    -webkit-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 1);
-    -moz-box-shadow:    0px 2px 2px 0px rgba(0, 0, 0, 1);
-    box-shadow:         0px 2px 2px 0px rgba(0, 0, 0, 1);
-    clear: none;
-}
-.no-btn:hover {
-    margin-top: 19px;
-    margin-bottom: -2px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow:    none;
-    box-shadow:         none;
 }
 
 #textspan2 {
@@ -2857,30 +1063,6 @@ a.recLink:hover {
     font-family: HelveticaNeueCyr;
 }
 
-#textspan3 {
-    float: none;
-    font-size: 1.5em;
-    line-height: 1em;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan4 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 1em;
-    color: rgb(255, 255, 255);
-    font-style: italic;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: georgia;
-}
-
 #small-preview-img4 {
     float: left;
     width: auto;
@@ -2888,8 +1070,8 @@ a.recLink:hover {
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 92;
     margin-top: 48px;
     margin-left: 2.552083%;
@@ -2898,62 +1080,16 @@ a.recLink:hover {
 
 #block-border3 {
     float: left;
-    height: 361.71875px;
+    height: 360px;
     width: 18.924154%;
     background-color: rgb(242, 242, 242);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 168;
-    margin-top: -200.71875px;
+    margin-top: -200px;
     margin-left: 3.058328%;
     clear: none;
-}
-
-#Новый_год_во_Львове4 {
-    float: left;
-    font-size: 1.5em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 162;
-    margin-top: 0px;
-    margin-left: 0.01428503%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#Тур_Автобусный_Дни_4_Дата_тура_29_12_2014_Днепропетровс3 {
-    float: left;
-    font-size: 0.875em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 188;
-    margin-top: 23px;
-    margin-left: 0.34046693%;
-    clear: both;
-    margin-right: 0%;
 }
 
 .recommendedTitle {
@@ -2970,76 +1106,8 @@ a.recLink:hover {
     font-family: HelveticaNeueCyr;
 }
 
-#От_13_000_грн_1 {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 246;
-    margin-top: 21px;
-    margin-left: 63.348952%;
-    clear: both;
-    margin-right: 0%;
-}
-
-#textspan46 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan47 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 16px;
-    color: rgb(124, 161, 179);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#Тур_Автобусный_Дни_4_Дата_тура_29_12_2014_Днепропетровс1 {
-    float: left;
-    font-size: 0.875em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 233;
-    margin-top: 23px;
-    margin-left: -100%;
-    clear: none;
-    margin-right: 0%;
-}
-
 h1.groupTitle {
-    /*float: left;*/
     font-size: 3em;
-    width: auto;
-    height: auto;
     text-align: left;
     font-weight: normal;
     line-height: 1em;
@@ -3048,12 +1116,7 @@ h1.groupTitle {
     letter-spacing: normal;
     text-decoration: none;
     font-family: HelveticaNeueCyr;
-    /*position: relative;*/
-    /*top: 0px;*/
-    /*left: 0px;*/
-    /*z-index: 267;*/
     margin-top: 58px;
-    /*margin-left: 25%;*/
     clear: none;
 }
 
@@ -3064,30 +1127,13 @@ h1.groupTitle {
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 329;
     margin-top: 13px;
-    margin-left: 3.175573%;
+    margin-left: 3.17%;
     clear: none;
-    margin-right: 0%;
-}
-
-#no-btn {
-    float: left;
-    /*width: 11.452369%;*/
-    /*height: 57px;*/
-    /*color: rgb(0, 0, 0);*/
-    /*position: relative;*/
-    /*top: 0px;*/
-    /*left: 0px;*/
-    /*z-index: 300;*/
-    /*background-image: url("img/no-btn.png");*/
-    /*-webkit-background-size: 100%;*/
-    /*background-size: 100%;*/
-    /*margin-top: 76px;*/
-    /*margin-left: 36.64721%;*/
-    /*clear: both;*/
+    margin-right: 0;
 }
 
 #small-preview-img3 {
@@ -3097,24 +1143,24 @@ h1.groupTitle {
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 173;
     margin-top: 442px;
-    margin-left: -18.957566%;
+    margin-left: -18.95%;
     clear: none;
 }
 
 #block-border2 {
     float: left;
-    height: 361.71875px;
+    height: 360px;
     width: 18.924154%;
     background-color: rgb(242, 242, 242);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 156;
-    margin-top: 48.28125px;
+    margin-top: 48px;
     margin-left: -18.870533%;
     clear: none;
 }
@@ -3129,144 +1175,13 @@ h1.groupTitle {
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 192;
     margin-top: 25px;
     margin-left: -96.805696%;
     clear: none;
     margin-right: 0%;
-}
-
-#От_13_000_грн_Актуальная_стоимость_тура_формируется_в_корзи1 {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 189;
-    margin-top: 0px;
-    margin-left: 0%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#textspan50 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan51 {
-    float: none;
-    font-size: 1.5em;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan52 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan53 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#Новый_год_во_Львове2 {
-    float: left;
-    font-size: 1.5em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 243;
-    margin-top: 0px;
-    margin-left: 0.01419849%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#От_13_000_грн_ {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 234;
-    margin-top: 21px;
-    margin-left: 63.125565%;
-    clear: both;
-    margin-right: 0%;
-}
-
-#textspan38 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan39 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 16px;
-    color: rgb(124, 161, 179);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
 }
 
 #Подробнее {
@@ -3283,17 +1198,8 @@ h1.groupTitle {
 
 span.arr {
     background: url("img/arr.png") no-repeat center center;
-    /*float: left;*/
     width: 15px;
-    /*max-width: 100%;*/
     height: 15px;
-    /*color: rgb(0, 0, 0);*/
-    /*position: relative;*/
-    /*top: 0px;*/
-    /*left: 0px;*/
-    /*z-index: 249;*/
-    /*margin-top: 86px;*/
-    /*margin-left: -27.979086%;*/
     clear: none;
     margin: 5px;
 }
@@ -3301,29 +1207,14 @@ span.arr {
 .tourGroup {
     margin-left: 10%;
     margin-right: 10%;
-    /*height: 974px;*/
-    /*width: 100%;*/
-    /*background-color: rgb(255, 255, 255);*/
+    min-width: 800px;
+    width: 80%;
 }
 
 .separator {
     display: inline;
     margin-left: 10px;
     margin-right: 10px;
-    /*float: left;*/
-    /*width: auto;*/
-    /*width: 1px !important;*/
-    /*max-width: 100%;*/
-    /*height: auto;*/
-    /*color: rgb(0, 0, 0);*/
-    /*position: relative;*/
-    /*top: 0px;*/
-    /*left: 0px;*/
-    /*z-index: 328;*/
-    /*margin-top: 13px;*/
-    /*margin-left: 4.759231%;*/
-    /*clear: none;*/
-    /*margin-right: 0%;*/
 }
 
 #main-preview-image2 {
@@ -3333,8 +1224,8 @@ span.arr {
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 117;
     margin-top: 48px;
     margin-left: 24.99939%;
@@ -3348,8 +1239,8 @@ span.arr {
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 161;
     margin-top: 48px;
     margin-left: 2.552083%;
@@ -3366,93 +1257,32 @@ span.arr {
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 193;
     margin-top: 22px;
     margin-left: 0.0063004%;
     clear: both;
-    margin-right: 0%;
-}
-
-#Новый_год_во_Львове3 {
-    float: left;
-    font-size: 1.5em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: bold;
-    line-height: 1em;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 187;
-    margin-top: 0px;
-    margin-left: 0%;
-    clear: none;
-    margin-right: 0%;
+    margin-right: 0;
 }
 
 #block-border1 {
     float: left;
-    height: 361.71875px;
+    height: 361px;
     width: 18.924154%;
     background-color: rgb(242, 242, 242);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 237;
     margin-top: -200.71875px;
     margin-left: 3.058328%;
     clear: none;
 }
 
-#Новый_год_во_Львове1 {
-    float: left;
-    font-size: 1.5em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 231;
-    margin-top: 0px;
-    margin-left: 0.01428503%;
-    clear: none;
-    margin-right: 0%;
-}
-
-.tourDescription {
-    /*float: left;*/
-    display: block;
-    font-size: 0.875em;
-    /*text-align: left;*/
-    font-weight: normal;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    clear: both;
-}
-
 #small-logo {
     opacity: 0;
-    filter:alpha(opacity=0);
+    filter: alpha(opacity=0);
     float: left;
     margin: 15px;
     margin-left: 15%;
@@ -3464,8 +1294,8 @@ span.arr {
     width: 28.33252%;
     background-color: rgb(242, 242, 242);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 181;
     margin-top: 48px;
     margin-left: -28.332642%;
@@ -3479,8 +1309,8 @@ span.arr {
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 242;
     margin-top: 442px;
     margin-left: -18.957566%;
@@ -3489,14 +1319,14 @@ span.arr {
 
 #block-border {
     float: left;
-    height: 361.71875px;
+    height: 360px;
     width: 18.924154%;
     background-color: rgb(242, 242, 242);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 225;
-    margin-top: 48.28125px;
+    margin-top: 48px;
     margin-left: -18.870533%;
     clear: none;
 }
@@ -3513,26 +1343,6 @@ span.arr {
     margin-right: 0%;
 }
 
-#От_13_000_грн_Актуальная_стоимость_тура_формируется_в_корзи {
-    font-size: 1em;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    clear: none;
-}
-
-#textspan34 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
 .boldPrice {
     float: none;
     font-size: 1.5em;
@@ -3545,16 +1355,14 @@ span.arr {
     font-family: HelveticaNeueCyr;
 }
 
-#textspan36 {
-    float: none;
-    font-size: 1.125em;
+.tourDescription {
+    display: block;
+    font-size: 0.875em;
+    font-weight: normal;
     line-height: 16px;
     color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
     font-family: HelveticaNeueCyr;
+    clear: both;
 }
 
 .smallDescription {
@@ -3562,10 +1370,8 @@ span.arr {
     font-size: 0.875em;
     line-height: 16px;
     color: rgb(18, 18, 18);
-    font-style: normal;
     font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
+    margin-top: 15px;
     font-family: HelveticaNeueCyr;
 }
 
@@ -3576,8 +1382,8 @@ span.arr {
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 186;
     margin-top: 48px;
     margin-left: 24.99939%;
@@ -3591,8 +1397,8 @@ span.arr {
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 230;
     margin-top: 48px;
     margin-left: 2.552083%;
@@ -3609,8 +1415,8 @@ span.arr {
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 262;
     margin-top: 22px;
     margin-left: 0%;
@@ -3634,16 +1440,23 @@ div.tourName {
     clear: none;
     display: block;
 }
-img.groupMainPreview{
-    width: 645px;
+
+img.groupMainPreview {
+    width: 100%;
+    margin: 0 auto;
+
 }
-img.groupSubPreview{
-    width: 418px;
+
+img.groupSubPreview {
+    width: 100%;
+    margin: 0 auto;
 }
-span.tourTitle{
+
+h2.tourTitle {
     display: block;
     padding-top: 10px;
-    margin-left: 15px;
+    margin: 0 0 0 15px;
+    font-size: 1em;
 }
 
 #main-block-border {
@@ -3652,8 +1465,8 @@ span.tourTitle{
     width: 28.33252%;
     background-color: rgb(242, 242, 242);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 250;
     margin-top: 48px;
     margin-left: -28.332642%;
@@ -3667,64 +1480,39 @@ span.tourTitle{
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 255;
     margin-top: 48px;
     margin-left: 24.99939%;
     clear: both;
 }
 
-#box23 {
+#column1 {
     float: left;
     height: auto;
-    margin-left: 24.991256%;
-    margin-top: 45px;
-    clear: none;
-    width: 14.732031%;
+    width: 33%;
 }
 
-#box24 {
+#column2 {
     float: left;
     height: auto;
-    margin-left: 5.051935%;
-    margin-top: 44px;
-    clear: none;
-    width: 17.559357%;
+    margin-left: 5%;
+    width: 36%;
 }
 
-#box25 {
+#column3 {
     float: left;
     height: auto;
-    margin-left: 4.371131%;
-    margin-top: 45px;
-    clear: none;
-    width: 7.652327%;
-}
-
-#box22 {
-    float: left;
-    height: auto;
-    margin-left: 0.41726654%;
-    margin-top: -336px;
-    clear: none;
-    width: 28.645795%;
-}
-
-#box21 {
-    float: left;
-    height: auto;
-    margin-left: 25.050633%;
-    margin-top: 37px;
-    clear: both;
-    width: 20.781175%;
+    margin-left: 10%;
+    width: 15%;
 }
 
 #box18 {
     float: left;
     height: auto;
     margin-left: 4.483129%;
-    margin-top: 217.71875px;
+    margin-top: 217px;
     clear: none;
     width: 90.268642%;
 }
@@ -3733,7 +1521,7 @@ span.tourTitle{
     float: left;
     height: auto;
     margin-left: 4.483129%;
-    margin-top: 217.71875px;
+    margin-top: 217px;
     clear: none;
     width: 90.818829%;
 }
@@ -3743,8 +1531,8 @@ span.tourTitle{
     height: 543px;
     width: 28.33252%;
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 112;
     margin-top: 48px;
     margin-left: -28.332642%;
@@ -3761,52 +1549,6 @@ span.tourTitle{
     width: 47.220946%;
 }
 
-#Новый_год_во_Львове6 {
-    float: left;
-    font-size: 1.5em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: bold;
-    line-height: 1em;
-    color: rgb(255, 111, 64);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 118;
-    margin-top: 0px;
-    margin-left: 0%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#Тур_Автобусный_Дни_4_Дата_тура_29_12_2014_Днепропетровс6 {
-    float: left;
-    font-size: 0.875em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 119;
-    margin-top: 23px;
-    margin-left: 0.33438716%;
-    clear: both;
-    margin-right: 0%;
-}
-
 #arr2 {
     float: left;
     width: auto;
@@ -3814,11 +1556,11 @@ span.tourTitle{
     height: auto;
     color: rgb(0, 0, 0);
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 111;
     margin-top: 86px;
-    margin-left: -27.979086%;
+    margin-left: -27.979%;
     clear: none;
     margin-right: 0%;
 }
@@ -3832,72 +1574,6 @@ span.tourTitle{
     width: 45.567295%;
 }
 
-#От_13_000_грн_Актуальная_стоимость_тура_формируется_в_корзи2 {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 120;
-    margin-top: 0px;
-    margin-left: 0%;
-    clear: none;
-    margin-right: 0%;
-}
-
-#textspan66 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan67 {
-    float: none;
-    font-size: 1.5em;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan68 {
-    float: none;
-    font-size: 1.125em;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#textspan69 {
-    float: none;
-    font-size: 0.875em;
-    line-height: 16px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
 #maincolor2 {
     float: left;
     height: 42px;
@@ -3907,8 +1583,8 @@ span.tourTitle{
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 124;
     margin-top: 22px;
     margin-left: 0%;
@@ -3926,176 +1602,42 @@ span.tourTitle{
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 123;
     margin-top: 25px;
-    margin-left: -96.811996%;
+    margin-left: -96.811%;
     clear: none;
-    margin-right: 0%;
+    margin-right: 0;
     background-color: rgb(239, 98, 52);
-}
-
-#Подробнее2 {
-    float: left;
-    font-size: 1.125em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 126;
-    margin-top: 11px;
-    margin-left: 30.82883%;
-    clear: none;
-}
-
-#box19 {
-    float: left;
-    height: auto;
-    margin-left: 24.975802%;
-    margin-top: 0px;
-    clear: both;
-    width: 27.912935%;
-}
-
-#box15 {
-    float: left;
-    height: auto;
-    margin-left: 37.187152%;
-    margin-top: 49px;
-    clear: both;
-    width: 25.676127%;
-}
-
-#box13 {
-    float: left;
-    height: auto;
-    margin-left: 24.975802%;
-    margin-top: 0px;
-    clear: both;
-    width: 27.912935%;
-}
-
-#box10 {
-    float: left;
-    height: auto;
-    margin-left: 3.304433%;
-    margin-top: 326px;
-    clear: none;
-    width: 47.220946%;
-}
-
-#box11 {
-    float: left;
-    height: auto;
-    margin-left: 2.224966%;
-    margin-top: 367px;
-    clear: none;
-    width: 45.567295%;
-}
-
-#box14 {
-    float: left;
-    height: auto;
-    margin-left: 4.483129%;
-    margin-top: 217.71875px;
-    clear: none;
-    width: 90.818829%;
-}
-
-#box12 {
-    float: left;
-    height: auto;
-    margin-left: 4.483129%;
-    margin-top: 217.71875px;
-    clear: none;
-    width: 90.268642%;
-}
-
-#box9 {
-    float: left;
-    height: auto;
-    margin-left: 37.187152%;
-    margin-top: 49px;
-    clear: both;
-    width: 25.676127%;
-}
-
-#box8 {
-    float: left;
-    height: auto;
-    margin-left: 4.483129%;
-    margin-top: 217.71875px;
-    clear: none;
-    width: 90.818829%;
-}
-
-#box7 {
-    /*float: left;*/
-    /*height: auto;*/
-    /*margin-left: 24.975802%;*/
-    /*margin-top: 0px;*/
-    /*clear: both;*/
-    /*width: 27.912935%;*/
-}
-
-#box6 {
-    float: left;
-    height: auto;
-    margin-left: 4.483129%;
-    margin-top: 217.71875px;
-    clear: none;
-    width: 90.268642%;
-}
-
-#box5 {
-    float: left;
-    height: auto;
-    margin-left: 2.227836%;
-    margin-top: 367px;
-    clear: none;
-    width: 45.567295%;
 }
 
 div.tour {
     width: 100%;
     margin-bottom: 30px;
     padding-bottom: 20px;
-    border: 1px solid #cccccc;
-    /*float: left;*/
-    /*height: auto;*/
-    /*clear: none;*/
-    /*width: 45%;*/
-}
-
-.centerbox {
-    height: auto;
-    text-align: center;
-    margin-top: 50px;
-    clear: both;
+    background-color: #ecf0f0;
 }
 
 .news-block {
-    /*float: left;*/
-    /*height: auto;*/
-    /*margin-left: 26.041336%;*/
-    /*margin-top: 23px;*/
-    /*clear: both;*/
-    width: 100%;
+    min-width: 800px;
+    max-width: 1000px;
+}
+
+.news-block article {
+    float: left;
+    font-size: 1em;
+    width: 21%;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0 2%;
+    clear: none;
 }
 
 .scroll {
     display: table;
-    left:0;
+    left: 0;
     right: 0;
     /*position: absolute;*/
     width: 150px;
@@ -4103,19 +1645,6 @@ div.tour {
     margin-top: 180px;
     /*clear: both;*/
     /*width: 4.006243%;*/
-}
-
-.navigate {
-    display: block;
-    /*position: fixed;*/
-    text-align: center;
-    left: 0px;
-    right: 0px;
-    top: 0;
-    margin: auto;
-    clear: none;
-    width: 100%;
-
 }
 
 .user {
@@ -4132,142 +1661,125 @@ div.tour {
 }
 
 /*.profile:before {*/
-    /*content: url("img/separator.png");*/
-    /*width: 1px;*/
-    /*height: 44px;*/
-    /*position: inherit;*/
+/*content: url("img/separator.png");*/
+/*width: 1px;*/
+/*height: 44px;*/
+/*position: inherit;*/
 /*}*/
 
 /*.profile:after {*/
-     /*content: url("img/separator.png");*/
-     /*width: 1px;*/
-     /*height: 44px;*/
-     /*position: inherit;*/
- /*}*/
-#bar{
-    border-bottom: 1px solid rgba(0,0,0, 0.1);
+/*content: url("img/separator.png");*/
+/*width: 1px;*/
+/*height: 44px;*/
+/*position: inherit;*/
+/*}*/
+#bar {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding-bottom: 28px;
 }
-.navLinks{
-    display: inline-block;
-    font-size: 1em;
-    text-align: center;
-    font-weight: 300;
-    line-height: 1em;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    z-index: 324;
-    margin-top: 40px;
-    clear: none;
-}
-.navLink{
-    margin-left: 25px;
-    padding-bottom: 44px;
-}
-.navLink:hover{
-    padding-bottom: 41px;
-    border-bottom: 3px solid rgba(255,255,255, 0.5);
-}
-.wish{
+
+.wish {
     left: 0;
     right: 0;
     margin: auto;
     text-align: center;
 }
-.buttons{
-    z-index: 100;
-    left:0;
-    right: 0;
-    width: 410px;
-    margin: auto;
-}
-.middleHelper{
-    display:inline-block;
-    vertical-align:middle;
-    height:100%;
-    width:0px;
-}
-div.more{
-    display: block;
-    margin-top: 15px;
-    color: #ffffff;
+
+.middleHelper {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    width: 0;
 }
 
-a.link-btn{
+div.more {
+    display: block;
+    margin-top: 25px;
+    padding-top: 10px;
+    height: 40px;
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+    background-color: #ff6f40;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(239, 98, 52, 1);
+    -moz-box-shadow: 0 2px 2px 0 rgba(239, 98, 52, 1);
+    box-shadow: 0 2px 2px 0 rgba(239, 98, 52, 1);
+}
+
+a.link-btn {
     margin: 10px;
     padding: 7px;
     background-color: #ff6f40;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
-    -webkit-box-shadow: 0px 2px 2px 0px rgba(239, 98, 52, 1);
-    -moz-box-shadow:    0px 2px 2px 0px rgba(239, 98, 52, 1);
-    box-shadow:         0px 2px 2px 0px rgba(239, 98, 52, 1);
+    -webkit-box-shadow: 0 2px 2px 0 rgba(239, 98, 52, 1);
+    -moz-box-shadow: 0 2px 2px 0 rgba(239, 98, 52, 1);
+    box-shadow: 0 2px 2px 0 rgba(239, 98, 52, 1);
 }
-a.biglink-btn{
-    padding: 12px 75px 12px 75px;
-    background-color: #ff6f40;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-    -webkit-box-shadow: 0px 2px 2px 0px rgba(239, 98, 52, 1);
-    -moz-box-shadow:    0px 2px 2px 0px rgba(239, 98, 52, 1);
-    box-shadow:         0px 2px 2px 0px rgba(239, 98, 52, 1);
-}
-.biglink-btn:hover{
-      -webkit-box-shadow: none;
-      -moz-box-shadow:    none;
-      box-shadow:         none;
-}
-a.link-btn:hover{
+
+.biglink-btn:hover {
     -webkit-box-shadow: none;
-    -moz-box-shadow:    none;
-    box-shadow:         none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
-div.mainTours{
+
+a.link-btn:hover {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+div.mainTours {
     float: left;
     height: auto;
     clear: none;
     width: 60%;
 }
-div.subTours{
+
+div.subTours {
     float: right;
     height: auto;
     clear: none;
     width: 39%;
 }
-div.tourInfo{
+
+div.tourInfo {
     margin-top: 15px;
     margin-left: 15px;
     display: block;
     float: left;
-    width: 45%;
+    width: 50%;
 }
-div.tourPrice{
+
+div.tourPrice {
     margin-top: 15px;
     margin-right: 15px;
     display: block;
     float: right;
-    text-align: right;
-    width: 45%;
+    text-align: left;
+    width: 40%;
 }
-div.recommendedTours{
+
+div.recommendedTours {
     display: block;
-    margin-top: 150px;
+    margin-top: 100px;
 }
-div.mailsender{
+
+div.mailsender {
     width: 400px;
     height: 50px;
     /*min-height: 20px;*/
-    border: 3px solid rgba(255,255,255 ,0.1);
+    border: 3px solid rgba(255, 255, 255, 0.1);
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
-input.mail-input{
+
+input.mail-input {
     color: #ffffff;
     float: left;
     border: none;
@@ -4275,11 +1787,12 @@ input.mail-input{
     outline: none;
     -webkit-appearance: none;
     width: 255px;
-    margin: 5px 0px 5px 15px;
+    margin: 5px 0 5px 15px;
     height: 40px;
     vertical-align: middle;
 }
-input.mail-submit{
+
+input.mail-submit {
     margin: 7px 15px 7px 3px;
     float: right;
     width: 30px;
@@ -4287,6 +1800,46 @@ input.mail-submit{
     border: none;
     background: url('img/plane.png') no-repeat center center;
 }
-form.mailform{
+
+form.mailform {
     margin: 30px 35% 0 35%;
 }
+
+/*
+@media only screen and (min-width: 480px) {
+*/
+/*
+    Здесь стили более разумных, но все еще мобильных устройств. Android, iPhone  и так далее.
+*//*
+
+
+}
+
+@media only screen and (min-width: 768px) {
+
+*/
+/*
+    Планшеты в режиме portrait.
+*//*
+
+
+}
+
+@media only screen and (min-width: 992px) {
+
+*/
+/*
+    Планшеты в режиме landscape, нетбуки, ноутбуки, десктоп.
+*//*
+
+
+}
+
+@media only screen and (min-width: 1382px) {
+*/
+/*
+    Десктоп с большими разрешениями, телевизоры.
+*//*
+
+
+}*/

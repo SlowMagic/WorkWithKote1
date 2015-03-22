@@ -1,5 +1,5 @@
 ﻿
-    <header>
+<header>
     <div id="bar">
         <img id="small-logo" src="~/Content/img/small-logo.png" />
 
@@ -16,23 +16,16 @@
                 <img id="user" src="~/Content/img/user.png" />
                 @if (Request.IsAuthenticated)
                 {
-                    @Html.ActionLink(User.Identity.Name, "Profile", "Profile", null, new { @class = "username" })
+                    @Html.ActionLink(User.Identity.Name, "Profile", "Profile", null, new { id = "username" })
                 }
                 else
                 {
-                    @Html.ActionLink("Войти", "Login", "Account", null, new { @class = "username" })
+                    @Html.ActionLink("Войти", "Login", "Account", null, new { id = "username" })
                 }
             </div>
         </div>
         <img src="~/Content/img/separator.png" class="separator" />
-        <a href="#"><img id="Searching" src="~/Content/img/Searching.png" /></a>
+        <a href="@Url.Action("Search", "TourSearch")"><img id="Searching" src="~/Content/img/Searching.png" /></a>
     </div>
-        <img id="top-shadow" src="~/Content/img/top-shadow.png" />
+    <img id="top-shadow" src="~/Content/img/top-shadow.png" />
 </header>
-<style>
-    header {
-        color: black;
-        background-color: white;
-    }
-     
-</style>

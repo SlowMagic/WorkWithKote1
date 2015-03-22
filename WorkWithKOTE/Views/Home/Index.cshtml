@@ -1,112 +1,146 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@using WorkWithKOTE.Controllers
 @model WorkWithKOTE.Models.TourForHomePage
-@section featured {
-        <div id="big-preview-img" class="clearfix">
-            <div class="wish">
-                <img id="big-logo" src="~/Content/img/big-logo.png" class="image" />
+<div id="big-preview-img" class="clearfix">
+    @{ Html.RenderPartial("HeaderPartial_main");}
+    <div class="wish">
+        <img id="big-logo" src="~/Content/img/big-logo.png" />
 
-                <p id="wishletter">
-                    <span id="textspan">Я хочу...<br /></span><span id="textspan1">Тур в Карпаты из Днепропетровска</span>
-                </p>
+        <p id="wishletter">
+            <span id="textspan">Я хочу...<br /></span><span id="textspan1">Тур в Карпаты из Днепропетровска</span>
+        </p>
 
-                <div class="buttons clearfix">
-                    <a href="#" class="yes-btn">
-                        <span id="textspan2">Да,</span><span id="textspan3"> </span><span id="textspan4">Я хочу&#x21;</span>
-                    </a>
-                    <a href="#" class="no-btn">
-                        <span id="textspan5">Нет,</span><span id="textspan6"> </span><span id="textspan7">что-то другое</span>
-                    </a>
-                </div>
-            </div>
-            <div class="scroll clearfix">
-                <p class="scroll-text"> Скроль<br />вниз </p>
-            </div>
+        <div class="buttons clearfix">
+            <a href="#" class="yes-btn">
+                <span id="textspan2">Да,</span> <span> Я хочу&#x21;</span>
+            </a>
+            <a href="#" class="no-btn">
+                <span id="textspan5">Нет,</span> <span> что-то другое</span>
+            </a>
         </div>
-        <div class="news clearfix">
-            <div class="news-title">
-                <p>
-                    <span id="textspan8">Новости<br /></span><span id="textspan9">будь в курсе всех событий</span>
-                </p>
-            </div>
-            <div class="news-block clearfix">
-                <div class="new">
-                    <p>
-                        <a href="#" class="new-title">Туроператор &quot;OpenGeorgia&quot;<br /></a>
-                        <span class="new-date">11.02.2015<br /></span>
-                        <span class="new-content">Мы являемся первым профильным туристическим оператором по Грузии в Украине.</span>
-                    </p>
-                </div>
-                <div class="new">
-                    <p>
-                        <a href="#" class="new-title">Туроператор &quot;OpenGeorgia&quot;<br /></a>
-                        <span class="new-date">11.02.2015<br /></span>
-                        <span class="new-content">Мы являемся первым профильным туристическим оператором по Грузии в Украине.</span>
-                    </p>
-                </div>
-                <div class="new">
-                    <p>
-                        <a href="#" class="new-title">Туроператор &quot;OpenGeorgia&quot;<br /></a>
-                        <span class="new-date">11.02.2015<br /></span>
-                        <span class="new-content">Мы являемся первым профильным туристическим оператором по Грузии в Украине.</span>
-                    </p>
-                </div>
-                <div class="new">
-                    <p>
-                        <a href="#" class="new-title">Туроператор &quot;OpenGeorgia&quot;<br /></a>
-                        <span class="new-date">11.02.2015<br /></span>
-                        <span class="new-content">Мы являемся первым профильным туристическим оператором по Грузии в Украине.</span>
-                    </p>
-                </div>
-            </div>
+    </div>
+    <div class="scroll clearfix">
+        <p class="scroll-text">
+            Скроль<br />вниз
+        </p>
+    </div>
+</div>
+@{Html.RenderAction("NewsBlock");}
+<div class="groups-bg clearfix">
+    <div class="groups clearfix">
+        <div class="groupLinks">
+            <span id="textspan30">Туры&#x3a;</span>
+            <a href="#">туры по Украине</a>
+            <a href="#">Грузия</a>
+            <a href="#">Приключенческие</a>
         </div>
-        <div class="groups-bg clearfix">
-            <div class="groups clearfix">
-                <div class="groupLinks">
-                    <span id="textspan30">Туры&#x3a;</span>
-                    <a href="#" class="groupLink">гастрономические</a>
-                    <a href="#" class="groupLink">развлечения</a>
-                    <a href="#" class="groupLink">шопинг</a>
-                </div>
-                <div class="middleHelper"></div>
-            </div>
-            <div class="centerbox clearfix">
-                <p class="consultLinks">
-                    Вы можете обратиться к нашему консультанту для
-                    <a href="#" class="link-btn"> подбора&nbsp;тура </a> или воспользоваться
-                    <a href="#" class="link-btn"> поиском </a>
-                </p>
-            </div>
+        <div class="middleHelper"></div>
+    </div>
+    <div class="centerbox clearfix">
+        <p class="consultLinks">
+            Вы можете обратиться к нашему консультанту для
+            <a href="#" class="link-btn"> подбора&nbsp;тура </a> или воспользоваться
+            @Html.ActionLink("поиском", "Search", "TourSearch", null, new { @class = "link-btn" })
+        </p>
+    </div>
+</div>
+
+<div class="tourGroup clearfix">
+    <h1 class="groupTitle">
+        Туры по Украине
+    </h1>
+
+    @{ Html.RenderAction("MainTour", new { id = 1 });}
+    <div class="subTours">
+        @{ Html.RenderAction("SubTour", new { id = 1 });}
+    </div>
+
+</div>
+<div class="groups-bg clearfix">
+    <p class="consultLinks">
+        <span class="subscribe-title">Подпишитесь на нашу рассылку<br /></span>будьте в курсе интересных предложений
+        и горящих туров
+    </p>
+
+    <form class="mailform">
+        <div class="mailsender">
+            <input class="mail-input" type="text" name="mail-input" placeholder="Почта" />
+            <input class="mail-submit" type="submit" value="" />
         </div>
-}
-<div>
+    </form>
+</div>
+<div class="tourGroup clearfix">
+    <h1 class="groupTitle">
+        Туры в Грузию
+    </h1>
+
+    @{ Html.RenderAction("MainTour", new {id = 2});}
+    <div class="subTours">
+        @{ Html.RenderAction("SubTour", new {id = 2});}
+    </div>
+</div>
+<div class="groups-bg clearfix">
+    <p class="consultLinks">
+        <span class="subscribe-title">Подпишитесь на нашу рассылку<br /></span>будьте в курсе интересных предложений
+        и горящих туров
+    </p>
+
+    <form class="mailform">
+        <div class="mailsender">
+            <input class="mail-input" type="text" name="mail-input" placeholder="Почта"/>
+            <input class="mail-submit" type="submit" value=""/>
+        </div>
+    </form>
+</div>
+<div class="tourGroup clearfix">
+    <h1 class="groupTitle">
+        Приключенческие туры
+    </h1>
+
+    @{ Html.RenderAction("MainTour", new { id = 3 });}
+    <div class="subTours">
+        @{ Html.RenderAction("SubTour", new {id = 3});}
+    </div>
   
-    @foreach (var item in Model.TourHight)
-    {
-        @Html.DisplayFor(m => item.NameTour)<br />
-        <img src="@Html.DisplayFor(m=>item.TourImg)" width="50px" height="75px" />
-        Html.RenderAction("DateForCurrentTour", new { id = item.TourId });<br />
-       <input type="button" value="Просмотреть тур" onclick="location.href='@Url.Action("Index", "TourDisplay", new {id=item.TourId })'" /> 
-        
-    }
-    <hr>
-    @foreach (var item in Model.TourCenter)
-    {
-        @Html.DisplayFor(m => item.NameTour)<br />
-        <img src="@Html.DisplayFor(m=>item.TourImg)" width="50px" height="75px" />
-         Html.RenderAction("DateForCurrentTour", new { id = item.TourId });<br />
-        <input type="button" value="Просмотреть тур" onclick="location.href='@Url.Action("Index", "TourDisplay", new {id=item.TourId })'" />
-    }
-    <hr >
-    @foreach (var item in Model.TourDown)
-    {
-        @Html.DisplayFor(m => item.NameTour)<br />
-        <img src="@Html.DisplayFor(m=>item.TourImg)" width="50px" height="75px" />
-        Html.RenderAction("DateForCurrentTour", new { id = item.TourId });<br />
-         <input type="button" value="Просмотреть тур" onclick="location.href='@Url.Action("Index", "TourDisplay", new {id=item.TourId })'" /> 
-    }
-    <hr>
-    @ViewBag.Error <br/>
-    @ViewBag.Error1 <br />
+</div>
+<div id="media-bg" class="clearfix">
+    <p class="consultLinks">
+        <span class="subscribe-title">Галерея<br /></span>фото, видео. Cамые красивые места в мире
+    </p>
+
+    <div class="cont">
+        <div id="box21">
+            <div id="video-preview">
+                <iframe width="100%" height="250px" src="https://www.youtube.com/embed/NmugSMBh_iI" frameborder="0"
+                        allowfullscreen></iframe>
+            </div>
+            <div id="video-title" class="clearfix">
+                <p id="video-title-date">27.04.2015</p>
+
+                <p id="video-title-name">Видеоотчет германия - италия</p>
+            </div>
+
+            <div id="subscribe">
+                <div class="align_center_to_left">
+                    <div class="align_center_to_right">
+                        <dl id="sub-nav">
+                            <dt>Следите за нами&#x3a;</dt>
+                            <dd><img id="youtube-ico" src="~/Content/img/youtube-ico.png" /></dd>
+                            <dt>14&nbsp;579</dt>
+                            <dd><img id="instagram-ico" src="~/Content/img/instagram-ico.png" /></dd>
+                            <dt>6&nbsp;945</dt>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="box22">
+            <img src="~/Content/img/photo3.jpg" class="gallery-preview" />
+            <img src="~/Content/img/photo4.jpg" class="gallery-preview" />
+            <img src="~/Content/img/photo1.jpg" class="gallery-preview" />
+            <img src="~/Content/img/photo2.jpg" class="gallery-preview" />
+        </div>
+    </div>
 </div>

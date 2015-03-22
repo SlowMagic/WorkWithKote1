@@ -11,40 +11,68 @@
     @Scripts.Render("~/bundles/common")
 </head>
 <body>
-    <header>
-        <div class="content-wrapper">
-            @Html.Partial("HeaderPartial")
-            @*<div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Профиль","Profile","Profile")</li>
-                        </ul>
-                    </nav>
-                </div>*@
-        </div>
-    </header>
-    <div id="body">
-        @RenderSection("featured", required: false)
-        <section class="content-wrapper main-content clear-fix">
-            @RenderBody()   
-        </section>
+    <div class="primaryContainer clearfix">
+@*        @RenderSection("featured", required: false)*@
+@*        <section class="content-wrapper main-content clear-fix">*@
+            @RenderBody()
+@*        </section>*@
     </div>
-    <footer>
-        <div class="content-wrapper">
-            <div class="float-left">
-                <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+<footer>
+    <div class="cont">
+        <div id="column1" class="clearfix">
+            <p id="about">
+                Туристический оператор &laquo;КОТЭ&raquo; предлагает Вам воспользоваться самым безопасным
+                видом пассажирских перевозок. Спектр услуг, которые выполняет ТО&nbsp;&laquo;КОТЭ&raquo;
+                значительный &mdash;
+                международные автобусные перевозки в&nbsp;Европу и&nbsp;пассажирские перевозки по&nbsp;всей Украине,
+                прокат
+                автобуса или микроавтобуса, многодневные автобусные поездки, туристические экскурсионные поездки
+                за&nbsp;границу и&nbsp;другие услуги по&nbsp;перевозке пассажиров.
+            </p>
+        </div>
+        <div id="column2">
+            <div id="footer-nav">
+                @Html.ActionLink("Главная", "Index", "Home", null, null)
+                @Html.ActionLink("Туры", "Search", "TourSearch", null, null)
+                <a>Галерея</a>
+                <a>Контакты</a>
+            </div>
+
+            <div id="address">
+                <p>Будем рады видеть вас по адресу&#x3a;</p>
+
+                <p>Украина, г. Днепропетровск ул. Красная, 17</p>
+            </div>
+
+            <div id="follow-us">
+                <p>Следи за нами&#x3a;</p>
+                <img src="~/Content/img/twitter.png" class="image-icons" />
+                <img src="~/Content/img/google.png" class="image-icons" />
+                <img src="~/Content/img/facebook.png" class="image-icons" />
+            </div>
+
+        </div>
+        <div id="column3" class="clearfix">
+            <div id="contacts">
+                <h5>Консультант&#x3a;</h5>
+
+                <p class="phone">&#x2b;38 <span class="phone-code">097</span>-815-68-38</p>
+
+                <p class="phone">&#x2b;38 <span class="phone-code">050</span>-774-99-18</p>
+
+                <p class="phone">&#x2b;38 <span class="phone-code">063</span>-796-25-00</p>
+
+                <p class="phone">&#x2b;38 <span class="phone-code">056</span>-796-25-00</p>
+                <br>
+                <h5>Наша почта&#x3a;<br /></h5>
+
+                <p class="mail">kote.turclub&#x40;gmail.com</p>
+
+                <p class="mail">kote.turclub&#x40;gmail.com</p>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
     @RenderSection("scripts", required: false)
 </body>
 </html>

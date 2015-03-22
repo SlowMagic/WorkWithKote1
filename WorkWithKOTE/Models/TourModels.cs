@@ -37,7 +37,7 @@ namespace WorkWithKOTE.Models
         public string FatherName { get; set; }
         public string Sex { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "День Рождения")]
         public DateTime? BirthDay { get; set; }
         public string Citizenship { get; set; }
@@ -119,11 +119,11 @@ namespace WorkWithKOTE.Models
         public int DateTourId { get; set; }
         public int TourId { get; set; }
         [DataType (DataType.Date)]
-        [DisplayFormat(DataFormatString="{0:dd'/'MM'/'yyyy}",ApplyFormatInEditMode=true)]
+        [DisplayFormat(DataFormatString="{0:dd'.'MM'.'yyyy}",ApplyFormatInEditMode=true)]
         [Display(Name="Дата отправки")]
         public DateTime FirstDate { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Дата приезда")]
         public DateTime SecondDate { get; set; }
     }
