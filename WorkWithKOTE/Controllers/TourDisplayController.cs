@@ -60,6 +60,10 @@ namespace WorkWithKOTE.Controllers
             else
                 return RedirectToAction("Index",id);
         }
-      
+       public ActionResult MapForDisplay(int id)
+        {
+            var data = db.RoutePoint.Where(m=>m.TourId == id);
+            return PartialView(data);
+        }
     }
 }

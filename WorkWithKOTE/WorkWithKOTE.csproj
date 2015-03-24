@@ -1124,8 +1124,7 @@
     <Content Include="Views\Profile\UsersTour.cshtml" />
     <Content Include="Views\Home\HeaderPartial_main.cshtml" />
     <Content Include="Views\Home\NewsBlock.cshtml" />
-    <Content Include="Views\Home\SubTour.cshtml" />
-    <Content Include="Views\Home\MainTour.cshtml" />
+    <Content Include="Views\TourDisplay\MapForDisplay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

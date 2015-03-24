@@ -109,7 +109,6 @@ namespace WorkWithKOTE.Models
         public int TourId { get; set; }
         public double Lat { get; set; }
         public double Lng { get; set; }
-        public int Order { get; set; }
     }
     [Table ("DateTour")]
     public class DateTour
@@ -150,9 +149,12 @@ namespace WorkWithKOTE.Models
     }
     public class TourForHomePage
     {
-    public   List <Tour> TourHight{get;set;}
-    public   List  <Tour> TourCenter{get;set;}
-    public   List< Tour >TourDown{get;set;}
+        public Tour TourHightPrev { get; set; }
+        public List<Tour> TourHight { get; set; }
+        public Tour TourCenterPrev { get; set; }
+        public List<Tour> TourCenter { get; set; }
+        public Tour TourDownPrev { get; set; }
+        public List<Tour> TourDown { get; set; }
     }
     public class DateForMonth
     {
