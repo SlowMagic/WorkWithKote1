@@ -19,9 +19,12 @@ namespace WorkWithKOTE.Controllers
         public ActionResult Index()
         {
             var data = new TourForHomePage();
-            data.TourHight = db.Tour.Where(m => m.TypeOfTour == "Гастрономический").ToList();
-            data.TourCenter = db.Tour.Where(m => m.TypeOfTour == "Развлекательный").ToList();
-            data.TourDown = db.Tour.Where(m => m.TypeOfTour =="Шопинг").ToList();
+            data.TourHightPrev = db.Tour.Where(m => m.TypeOfTour == "Туры по Украине" && m.TourStatus == "Превью блока").FirstOrDefault();
+            data.TourCenterPrev = db.Tour.Where(m => m.TypeOfTour == "Туры в Грузию").FirstOrDefault(m => m.TourStatus == "Превью блока");
+            data.TourDownPrev = db.Tour.Where(m => m.TypeOfTour == "Приключенческие туры").FirstOrDefault(m => m.TourStatus == "Превью блока");
+            data.TourHight = db.Tour.Where(m => m.TourStatus == "Активный" && m.TypeOfTour == "Туры по Украине").ToList();
+            data.TourCenter = db.Tour.Where(m => m.TourStatus == "Активный" && m.TypeOfTour == "Туры в Грузию").ToList();
+            data.TourDown = db.Tour.Where(m => m.TourStatus == "Активный" && m.TypeOfTour == "Приключенческие туры").ToList();
             return View(data);
         }
         public ActionResult DateForCurrentTour(int id)
@@ -31,7 +34,10 @@ namespace WorkWithKOTE.Controllers
           
             return PartialView(date);
         }
-        
+        public ActionResult NewsBlock()
+        {
+            return PartialView(db.News.ToList());
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";
@@ -44,33 +50,6 @@ namespace WorkWithKOTE.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
-
-        public ActionResult NewsBlock()
-        {
-            return PartialView();
-        }
-        public ActionResult MainTour(int id)
-        {
-            Tour data = new Tour();
-            if (id == 1)
-                data = db.Tour.Where(m => m.TypeOfTour == "Гастрономический").First(m => m.TourStatus == "Превью блока");
-            if (id == 2)
-                data = db.Tour.Where(m => m.TypeOfTour == "Развлекательный").First(m => m.TourStatus == "Превью блока");
-            if (id == 3)
-                data = db.Tour.Where(m => m.TypeOfTour == "Шопинг").First(m => m.TourStatus == "Превью блока");
-            return PartialView(data);
-        }
-        public ActionResult SubTour(int id)
-        {
-            var data = db.Tour.AsQueryable();
-            if (id == 1)
-                data = db.Tour.Where(m => m.TourStatus == "Активный").Where(m => m.TypeOfTour == "Гастрономический");
-            if (id == 2)
-                data = db.Tour.Where(m => m.TourStatus == "Активный").Where(m => m.TypeOfTour == "Развлекательный");
-            if (id == 3)
-                data = db.Tour.Where(m => m.TourStatus == "Активный").Where(m => m.TypeOfTour == "Шопинг");
-            return PartialView(data);
         }
     }
 }

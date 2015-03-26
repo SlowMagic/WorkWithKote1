@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "CreateNews";
+}
+@model WorkWithKOTE.Models.News
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<form action="@Url.Action("CreateNews","News")" method="post" enctype="multipart/form-data">
+    <h2>Создать новость</h2>
+    Заголовок новости: @Html.TextBoxFor(m => m.NewsTitle)<br />
+    Контент новости: @Html.TextAreaFor(m => m.NewsBody)<br/>
+    @Html.TextBoxFor(m=>m.NewsDate)
+    <br />
+    <input type="submit" value="Создать Новость" />
+</form>
+@section scripts{
+  @Scripts.Render("~/bundles/jqueryval")
+<script>
+    CKEDITOR.replace("NewsBody", {
+        filebrowserBrowseUrl: '/Scripts/Filemanager-master/index.html'
+    });
+</script>
+      }

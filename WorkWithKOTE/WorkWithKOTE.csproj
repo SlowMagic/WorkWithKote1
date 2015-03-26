@@ -185,6 +185,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BuyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\TourCreateController.cs" />
     <Compile Include="Controllers\TourDisplayController.cs" />
@@ -311,10 +312,13 @@
     <Content Include="Scripts\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="Scripts\ckeditor\samples\sample_posteddata.php" />
     <Content Include="Scripts\ckeditor\skins\Moono_blue\readme.md" />
+    <Content Include="Scripts\Filemanager-master\.gitignore" />
     <Content Include="Scripts\Filemanager-master\bower.json" />
     <Content Include="Scripts\Filemanager-master\changelog" />
     <Content Include="Scripts\Filemanager-master\connectors\ashx\filemanager.ashx" />
     <Content Include="Scripts\Filemanager-master\ReadMe.md" />
+    <Content Include="Scripts\Filemanager-master\scripts\CodeMirror\.gitattributes" />
+    <Content Include="Scripts\Filemanager-master\scripts\CodeMirror\.gitignore" />
     <Content Include="Scripts\Filemanager-master\scripts\CodeMirror\.travis.yml" />
     <Content Include="Scripts\Filemanager-master\scripts\CodeMirror\AUTHORS" />
     <Content Include="Scripts\Filemanager-master\scripts\CodeMirror\bin\authors.sh" />
@@ -526,7 +530,6 @@
     <Content Include="Scripts\ckeditor\skins\Moono_blue\images\lock.png" />
     <Content Include="Scripts\ckeditor\skins\Moono_blue\images\refresh.png" />
     <Content Include="Scripts\ckeditor\styles.js" />
-    <Content Include="Scripts\Filemanager-master\.gitignore" />
     <Content Include="Scripts\Filemanager-master\connectors\asp\filemanager.asp" />
     <Content Include="Scripts\Filemanager-master\connectors\asp\filemanager.class.asp" />
     <Content Include="Scripts\Filemanager-master\connectors\asp\filemanager.config.asp" />
@@ -628,8 +631,6 @@
     <Content Include="Scripts\Filemanager-master\images\wait30trans.gif" />
     <None Include="Scripts\Filemanager-master\images\_references.js" />
     <Content Include="Scripts\Filemanager-master\index.html" />
-    <Content Include="Scripts\Filemanager-master\scripts\CodeMirror\.gitattributes" />
-    <Content Include="Scripts\Filemanager-master\scripts\CodeMirror\.gitignore" />
     <Content Include="Scripts\Filemanager-master\scripts\CodeMirror\addon\comment\comment.js" />
     <Content Include="Scripts\Filemanager-master\scripts\CodeMirror\addon\comment\continuecomment.js" />
     <Content Include="Scripts\Filemanager-master\scripts\CodeMirror\addon\dialog\dialog.css" />
@@ -1124,11 +1125,15 @@
     <Content Include="Views\Profile\UsersTour.cshtml" />
     <Content Include="Views\Home\HeaderPartial_main.cshtml" />
     <Content Include="Views\Home\NewsBlock.cshtml" />
-    <Content Include="Views\Home\SubTour.cshtml" />
-    <Content Include="Views\Home\MainTour.cshtml" />
+    <Content Include="Views\TourDisplay\MapForDisplay.cshtml" />
+    <Content Include="Views\News\CreateNews.cshtml" />
+    <Content Include="Views\TourCreate\TourEdit.cshtml" />
+    <Content Include="Views\TourCreate\DateTourForEditAdd.cshtml" />
+    <Content Include="Views\News\NewsBlock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UpLoad\ContentImg\" />
     <Folder Include="UpLoad\SuppFoto\" />
     <Folder Include="UpLoad\TourDescription\" />
     <Folder Include="UpLoad\TourDocument\" />

@@ -19,6 +19,7 @@
         @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
         {
            <input type="button" value="Создать тур" onclick="location.href='@Url.Action("TourCreate", "TourCreate")'" />
+           <input type="button" value="Создать новость" onclick="location.href='@Url.Action("CreateNews", "News")'" />
         }
             <p>
             Ваше Имя:
