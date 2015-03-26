@@ -24,6 +24,10 @@
 <p>Транспортировка : @ViewBag.Message @ViewBag.Message1 @ViewBag.Message2</p>
 Бронь:@Html.DisplayFor(m => m.Reservation)<br/>
 Бонус за тур :@Html.DisplayFor(m => m.Bonus)<br/>
+ @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+ {
+     <input type="button" value="Редактировать" onclick="location.href='@Url.Action("TourEdit", "TourCreate", new {id = Model.TourId})'" />
+ }
 <input type="button" value="Оплатить тур" onclick="location.href='@Url.Action("Index", "Buy", new {id=Model.TourId })'"><div id="map_canvas" style="width:300px; height:300px"></div>
 @{Html.RenderAction("MapForDisplay", new { id = Model.TourId });}
 @section scripts{

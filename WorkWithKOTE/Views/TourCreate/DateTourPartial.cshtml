@@ -1,9 +1,10 @@
-﻿<div id="datetour-pannel">
+﻿
+<div id="datetour-pannel">
     <div class="datetour">
-    Введите дату отправки(дд/мм/год):<br />
+    Введите дату отправки:<br />
     <input type='date' name="DateTour[0].FirstDate" />
     <br />
-    Введите дату приезда (дд/мм/год):<br />
+    Введите дату приезда:<br />
     <input type='date' name="DateTour[0].SecondDate" />
 </div>
 </div>
@@ -14,23 +15,12 @@
         $('.addLink').click(function () {
             i++;
             var html2Add = "<div class='dateTour'>" +
-                 " Введите дату отправки" + (i + 1) + "(дд/мм/год)"
+                 " Введите дату отправки" + (i + 1) + "(дд/мм/год)"+
                  "<input type='date' name='DateTour[" + i + "].FirstDate' /><br/>" +
-                 " Введите дату приезда" + (i + 1) + "(дд/мм/год)"
+                 " Введите дату приезда" + (i + 1) + "(дд/мм/год)"+
                  "<input type='date' name='DateTour[" + i + "].SecondDate' />" +
              "</div></div>";
             $('#datetour-pannel').append(html2Add);
         })
     })
-</script>
-<script type="text/javascript">
-    $(function () {
-        if (!Modernizr.inputtypes.date) {
-            $(function () {
-                $("input[type='date']")
-                            .datepicker({ dateFormat: 'dd/mm/yy' })
-                            .get(0);
-            })
-        }
-    });
 </script>

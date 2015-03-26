@@ -1,0 +1,18 @@
+﻿@model WorkWithKOTE.Models.DateTour
+<p><a class="addLink">Добавить новую Дату</a></p>
+<script>
+    $(function () {
+        var i = 0;
+        $('.addLink').click(function () {
+            i++;
+            var html2Add = "<div class='dateTour'>" +
+                 " Введите дату отправки" + (i + 1) + "(дд/мм/год)"
+            "<input type='date' name='DateTour[" + i + "].FirstDate' /><br/>" +
+            " Введите дату приезда" + (i + 1) + "(дд/мм/год)"
+            "<input type='date' name='DateTour[" + i + "].SecondDate' />" +
+            "<input type='hidden' name='DateTour["+i+"].Tourid' value ="@Model.">"
+        "</div></div>";
+            $('#datetour-pannel').append(html2Add);
+        })
+    })
+</script>

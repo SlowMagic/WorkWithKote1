@@ -15,6 +15,7 @@ namespace WorkWithKOTE.Controllers
         // GET: /TourCreate/
         //TourContext db = new TourContext();
         UsersContext db = new UsersContext();
+        [Authorize(Roles="Admin, Moderator")]
         public ActionResult TourCreate()
         {
              ViewBag.GalleryID = new SelectList(db.Gallery, "GalleryId", "GalleryName");
@@ -22,32 +23,16 @@ namespace WorkWithKOTE.Controllers
 
         }
         [HttpPost]
+       
         public ActionResult TourCreate(Tour model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp)
         {
-            if (TourImg != null)
-            {
-                string file1 = Guid.NewGuid().ToString();
-                string extension = Path.GetExtension(TourImg.FileName);
-                file1 += extension;
-                List<string> extensions = new List<string>() { ".png", ".jpg", ".gif" };
-                if (extensions.Contains(extension))
-                {
-                    TourImg.SaveAs(Server.MapPath("/UpLoad/TourImg/" + file1));
-                    model.TourImg = "/UpLoad/TourImg/" + file1;
-                }
-            }
-            if (AvatarSupp != null)
-            {
-                string file2 = Guid.NewGuid().ToString();
-                string extension1 = Path.GetExtension(AvatarSupp.FileName);
-                file2 += extension1;
-                List<string> extensions = new List<string>() { ".png", ".jpg", ".gif" };
-                if (extensions.Contains(extension1))
-                {
-                    AvatarSupp.SaveAs(Server.MapPath("/UpLoad/SuppFoto/" + file2));
-                    model.SuppFoto = "/UpLoad/SuppFoto/" + file2;
-                }
-            }
+            string check = UploadImg(TourImg, "/UpLoad/TourImg/");
+
+            if (check != null)
+                model.TourImg = check;
+            check = UploadImg(AvatarSupp, "/UpLoad/SuppFoto/");
+            if (check != null)
+                model.SuppFoto = check;
              if(Document !=null){
             Document.SaveAs(Server.MapPath("/UpLoad/TourDocument/"+Document.FileName));
             model.Document = "/UpLoad/TourDocument/"+Document.FileName;
@@ -57,9 +42,45 @@ namespace WorkWithKOTE.Controllers
             db.SaveChanges();
             return RedirectToAction("Search","TourSearch");
         }
-        public ViewResult EmptyDateTour()
+        public ActionResult TourEdit(int id = 0)
         {
-            return View("PartialDateTour", new DateTour());
+            var data = new TourForEdit();
+              data.MyTour = db.Tour.Find(id);
+              data.TourDate = db.DateTours.Where(m=>m.TourId == id).ToList();
+              data.TourDopUsluga = db.DopUslugs.Where(m => m.TourId == id).ToList();
+              data.TourTag = db.Teg.Where(m => m.TourId == id).ToList();
+            ViewBag.GalleryID = new SelectList(db.Gallery, "GalleryId", "GalleryName");
+            return View(data);
+        }
+        [HttpPost]
+        public ActionResult TourEdit(TourForEdit model)
+        { 
+
+            foreach(var item in model.Date){
+            db.Entry(item).State = EntityState.Added;
+                }
+            db.Entry(model).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
+       
+        protected string UploadImg (HttpPostedFileBase file , string path)
+        {
+            if (file != null)
+            {
+                string fullPath = null;
+                string file1 = Guid.NewGuid().ToString();
+                string extension = Path.GetExtension(file.FileName);
+                file1 += extension;
+                List<string> extensions = new List<string>() { ".png", ".jpg", ".gif" };
+                if (extensions.Contains(extension))
+                {
+                    file.SaveAs(Server.MapPath(path + file1));
+                    fullPath = path + file1;
+                }
+                return fullPath;
+            }
+            return null;
         }
 
     }

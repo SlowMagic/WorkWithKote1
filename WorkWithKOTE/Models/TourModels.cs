@@ -9,21 +9,6 @@ using System.Web.Security;
 
 namespace WorkWithKOTE.Models
 {
-   /* public class TourContext:DbContext
-    {
-        public TourContext ()
-            :base("DefaultConnection")
-    {
-
-    }
-        public DbSet<Trip> Trip { get; set; }
-        public DbSet<Tour> Tour { get; set; }
-        public DbSet<DateTour> DateTours { get; set; }
-        public DbSet<Tag> Teg { get; set; }
-        public DbSet<DopUslug> DopUslugs { get; set; }
-        public DbSet<Gallery> Gallery { get; set; }
-        public DbSet<RoutePoint> RoutePoint { get; set; }
-    }*/
     [Table("Trip")]
     public class Trip
     {
@@ -47,9 +32,9 @@ namespace WorkWithKOTE.Models
         public string email { get; set; }
         public int DateTourId { get; set; }
         public string Valuta { get; set; }
+        public float? BonusPay { get; set; }
         public int UserId { get; set; }
         public int TourId { get; set; }
-       // public List<UserProfile> Users { get; set; }
     }
     [Table ("Tour")]
    public class Tour
@@ -57,6 +42,7 @@ namespace WorkWithKOTE.Models
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
        public int TourId { get; set; }
+       [Required(ErrorMessage = "Поле должно быть установлено")]
        public string NameTour {get;set;}
        public string TitleTour { get; set; }
        [AllowHtml]
@@ -117,10 +103,12 @@ namespace WorkWithKOTE.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int DateTourId { get; set; }
         public int TourId { get; set; }
+        [Required(ErrorMessage = "Поле должно быть установлено")]
         [DataType (DataType.Date)]
         [DisplayFormat(DataFormatString="{0:dd'.'MM'.'yyyy}",ApplyFormatInEditMode=true)]
         [Display(Name="Дата отправки")]
         public DateTime FirstDate { get; set; }
+        [Required(ErrorMessage = "Поле должно быть установлено")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Дата приезда")]
@@ -156,9 +144,27 @@ namespace WorkWithKOTE.Models
         public Tour TourDownPrev { get; set; }
         public List<Tour> TourDown { get; set; }
     }
-    public class DateForMonth
+    [Table ("News")]
+    public class News
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int NewsId { get; set; }
+        public string NewsTitle { get; set; }
+        [AllowHtml]
+        [Required(ErrorMessage = "Поле должно быть установлено")]
+        public string NewsBody { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Поле должно быть установлено")]
+        public DateTime NewsDate { get; set; }
+    }
+    public class TourForEdit
+    {
+        public Tour MyTour { get; set; }
+        public List<DateTour> TourDate { get; set; }
+        public List<DopUslug> TourDopUsluga { get; set; }
+        public List<Tag> TourTag { get; set; }
+        public List<DateTour> Date { get; set; }
     }
 }

@@ -23,6 +23,7 @@ namespace WorkWithKOTE.Models
         public DbSet<DopUslug> DopUslugs { get; set; }
         public DbSet<Gallery> Gallery { get; set; }
         public DbSet<RoutePoint> RoutePoint { get; set; }
+        public DbSet<News> News { get; set; }
     }
 
     [Table("UserProfiles")]
@@ -54,7 +55,7 @@ namespace WorkWithKOTE.Models
         [Display(Name = "Дата выдачи загран паспорта")]
         public DateTime? DateZagran { get; set; }
         public string Mobile { get; set; }
-        public int? Bonus { get; set; }
+        public float? Bonus { get; set; }
         public string Avatar { get; set; } 
         public List<Trip> Trips { get; set; } 
     }

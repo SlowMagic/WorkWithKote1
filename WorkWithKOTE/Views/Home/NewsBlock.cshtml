@@ -1,4 +1,5 @@
-﻿<div class="news clearfix">
+﻿@model IEnumerable<WorkWithKOTE.Models.News>
+<div class="news clearfix">
     <div class="align_center_to_left">
         <div class="align_center_to_right">
             <div class="news-title">
@@ -6,26 +7,14 @@
                 <h4>будь в курсе всех событий</h4>
             </div>
             <div class="news-block clearfix">
-                <article>
-                    <a href="#" class="new-title">Туроператор &quot;OpenGeorgia&quot;<br /></a>
-                    <span class="new-date">11.02.2015<br /></span>
-                    <span class="new-content">Мы являемся первым профильным туристическим оператором по Грузии в Украине.</span>
-                </article>
-                <article>
-                    <a href="#" class="new-title">Туроператор &quot;OpenGeorgia&quot;<br /></a>
-                    <span class="new-date">11.02.2015<br /></span>
-                    <span class="new-content">Мы являемся первым профильным туристическим оператором по Грузии в Украине.</span>
-                </article>
-                <article>
-                    <a href="#" class="new-title">Туроператор &quot;OpenGeorgia&quot;<br /></a>
-                    <span class="new-date">11.02.2015<br /></span>
-                    <span class="new-content">Мы являемся первым профильным туристическим оператором по Грузии в Украине.</span>
-                </article>
-                <article>
-                    <a href="#" class="new-title">Туроператор &quot;OpenGeorgia&quot;<br /></a>
-                    <span class="new-date">11.02.2015<br /></span>
-                    <span class="new-content">Мы являемся первым профильным туристическим оператором по Грузии в Украине.</span>
-                </article>
+                @foreach (var item in Model)
+                {
+                 <article>
+                    <a href="#" class="new-title">@Html.DisplayFor(m=>item.NewsTitle)<br /></a>
+                    <span class="new-date">@Html.DisplayFor(m=>item.NewsDate)<br /></span>
+                    <span class="new-content"@Html.DisplayFor(m=>item.NewsBody)></span>
+                </article> 
+                }
             </div>
         </div>
     </div>

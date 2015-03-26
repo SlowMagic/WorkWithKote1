@@ -1,0 +1,163 @@
+﻿@{
+    ViewBag.Title = "TourEdit";
+}
+@model WorkWithKOTE.Models.TourForEdit
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<h2>Редактирование Туров</h2>
+<form action="@Url.Action("TourEdit")" method="post" enctype="multipart/form-data">
+    <div>
+        @Html.HiddenFor(m => m.MyTour.TourId)
+        Название  @Html.TextBoxFor(m => m.MyTour.NameTour)
+        @Html.ValidationMessageFor(model => model.MyTour.NameTour)
+        Заголовок  @Html.TextBoxFor(m => m.MyTour.TitleTour) <br />
+        Выберите тип тура:   @Html.DropDownListFor(m => m.MyTour.TypeOfTour, new List<SelectListItem>() { new SelectListItem { Text = "Туры по Украину" }, new SelectListItem { Text = "Туры в Грузию" }, new SelectListItem { Text = "Приключенческие туры" } })
+        Cтатус тура : @Html.DropDownListFor(m => m.MyTour.TourStatus, new List<SelectListItem>() { new SelectListItem { Text = "Активный" }, new SelectListItem { Text = "Неактивный" }, new SelectListItem { Text = "Превью главной" },
+                 new SelectListItem { Text = "Превью блока" },new SelectListItem { Text = "Рекомендуемый" }})
+        Описание:
+        <textarea name="DescriptionTour">@Html.Raw(Model.MyTour.DescriptionTour)</textarea><br />
+        Выезд из @Html.TextBoxFor(m => m.MyTour.PlaceOfDeparture)<br />
+        Прибываем в @Html.TextBoxFor(m => m.MyTour.PlaceOfArrival)<br />
+        стоимость @Html.TextBoxFor(m => m.MyTour.Cost)<br />
+        <input type="radio" name="Valuta" value="гривна" checked style="height:15px; width:15px" />Гривна<br />
+        <input type="radio" name="Valuta" value="доллар" style="height:15px; width:15px " />Dollar<br />
+        <input type="radio" name="Valuta" value="евро" style="height:15px; width:15px " />Euro<br />
+        Предоплата :<input type="checkbox" id="Predop" onclick="valid()" />
+        @Html.TextBoxFor(m => m.MyTour.PrePay, new { style = "visibility:hidden", id = "PrePay" })<br />
+        <br />
+        Бронь:<input type="checkbox" id="Reserv" onclick="reserv()" />
+        @Html.TextBoxFor(m => m.MyTour.Reservation, new { style = "visibility:hidden", id = "Reservation" })<br />
+        @{int i = 0;}
+        @foreach (var item in Model.TourDate)
+        {
+            <div id="datetour-pannel">
+                <div class="datetour">
+                    Введите дату отправки:<br />
+                    <input type='date' id="myDateFirst+@i" name="TourDate[@i].FirstDate" />
+                    <br />
+                    Введите дату приезда:<br />
+                    <input type='date' id="myDateSecond+@i"  name="TourDate[@i].SecondDate" />
+                </div>
+            </div>
+            <script type="text/javascript">
+                function myFunction() {
+                document.getElementById("myDateFirst+@i").value = "@Html.DisplayFor(m => item.FirstDate)";
+                document.getElementById("myDateSecond+@i").value = "@Html.DisplayFor(m => item.SecondDate)";
+                }
+                myFunction();
+            </script>
+            i++;
+        }
+        <p><a class="addLink">Добавить новый элемент</a></p>
+        <br />
+        Виды Транспорта :<br />
+        Автобус @Html.CheckBoxFor(m => m.MyTour.IsBus)<br />
+        Самолет @Html.CheckBoxFor(m => m.MyTour.IsAriplane)<br />
+        Лайнер  @Html.CheckBoxFor(m => m.MyTour.IsShip)<br />
+        Поезд @Html.CheckBoxFor(m => m.MyTour.IsTrain)<br />
+        Подпись к цене
+        @Html.TextBoxFor(m => m.MyTour.PodpicePrice)
+        <p>Аукционная цена : @Html.TextBoxFor(m => m.MyTour.AukcionPrice)</p>
+        <p>
+            Сумма Агента:  <input type="checkbox" id="Summa" onclick="valid2()" />
+            @Html.TextBoxFor(m => m.MyTour.KommisiaAgent, new { style = "visibility:hidden", id = "SummaAgent" })<br />
+        </p>
+        <p>
+            @{int k = 0;}
+            @foreach (var item in Model.TourDopUsluga)
+            {
+                <div>
+                    Введите дату отправки:<br />
+                    <input type='text' name="TourDopUsluga[@k].Name" value="@Html.DisplayFor(m=>item.Name)" />
+                    <br />
+                    Введите дату приезда:<br />
+                    <input type='text' name="TourDopUsluga[@k].Price" value="@Html.DisplayFor(m=>item.Price)" />
+                </div>
+                k++;
+            }
+        </p>
+        <p>
+            Имя Сопровождающего :@Html.TextBoxFor(m => m.MyTour.SuppName)<br />
+        <p>@ViewBag.Message</p>
+        <p>
+            Фото сопровождающего:<input type="file" name="MyTour.AvatarSupp" />
+            Ссылка на соц. сеть: @Html.TextBoxFor(m => m.MyTour.SuppVkontakte)<br />
+            Описание сопровождающего :@Html.TextAreaFor(m => m.MyTour.SuppDiscription)<br />
+        </p>
+        <select name="KindOfPay">
+            <option selected="selected">Способ оплаты</option>
+            <option>Наличный</option>
+            <option>Безналичный</option>
+            <option>Оба</option>
+        </select>
+        <br />
+        Количество участyков :@Html.TextBoxFor(m => m.MyTour.AllPeople)<br />
+        Уже едут :@Html.TextBoxFor(m => m.MyTour.People)<br />
+        Обложка тура - <input type="file" name="MyTour.TourImg" /><br />
+        Галлерея : @Html.DropDownList("GalleryID", String.Empty)<br />
+        Загрузить файл :<input type="file" name="MyTour.Document" /><br />
+        Бонус за тур :
+        <input type="checkbox" id="Bonus" onclick="valid3()" />
+        @Html.TextBoxFor(m => m.MyTour.Bonus, new { style = "visibility:hidden", id = "BonusText" })<br />
+        @Html.Partial("TegPartialView")<br />
+        <input type="submit" value="Редактировать Тур" />
+        <div id="route-points"></div>
+    </div>
+    @Html.Partial("MapPartial")
+</form>
+@section scripts
+                {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        CKEDITOR.replace("DescriptionTour", {
+            filebrowserBrowseUrl: '/Scripts/Filemanager-master/index.html'
+        });
+    </script>
+    <script type="text/javascript">
+        function valid() {
+            if (document.getElementById('Predop').checked) {
+                document.getElementById('PrePay').style.visibility = 'visible';
+            }
+        }
+        function reserv() {
+            if (document.getElementById('Reserv').checked) {
+                document.getElementById('Reservation').style.visibility = 'visible';
+            }
+        }
+        function valid2() {
+            if (document.getElementById('Summa').checked) {
+                document.getElementById('SummaAgent').style.visibility = 'visible';
+            }
+        }
+        function valid3() {
+            if (document.getElementById('Bonus').checked) {
+                document.getElementById('BonusText').style.visibility = 'visible';
+            }
+        }
+    </script>
+<script type="text/javascript">
+    $(function () {
+            $(function () {
+                $("input[type='date']")
+                            .datepicker({ dateFormat: 'dd.mm.yy' })
+                            .get(0);
+            })
+    });
+</script>
+
+    <script>
+        $(function () {
+            var i = 0;
+            $('.addLink').click(function () {
+                var html2Add = "<div class='dateTour'>" +
+                     " Введите дату отправки" + (i) + "(дд/мм/год)" +
+                "<input type='date' name='Date[" + i + "].FirstDate' /><br/>" +
+                " Введите дату приезда" + (i) + "(дд/мм/год)" +
+                "<input type='date' name='Date[" + i + "].SecondDate' />" +
+                "<input type='hidden' name='Date[" + i + "].TourId' value='@Model.MyTour.TourId' />" +
+            "</div></div>";
+                $('#datetour-pannel').append(html2Add);
+                i++
+            })
+        })
+    </script>
+}

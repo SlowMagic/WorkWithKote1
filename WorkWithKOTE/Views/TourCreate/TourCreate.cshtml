@@ -8,8 +8,9 @@
 <form action="@Url.Action("TourCreate")" method="post" enctype="multipart/form-data">
     <div>
         Название  @Html.TextBoxFor(m => m.NameTour)
+        @Html.ValidationMessageFor(model => model.NameTour)
         Заголовок  @Html.TextBoxFor(m => m.TitleTour) <br />
-        Выберите тип тура:   @Html.DropDownListFor(m => m.TypeOfTour, new List<SelectListItem>() { new SelectListItem { Text = "Гастрономический" }, new SelectListItem { Text = "Развлекательный" }, new SelectListItem { Text = "Шопинг" } })
+        Выберите тип тура:   @Html.DropDownListFor(m => m.TypeOfTour, new List<SelectListItem>() { new SelectListItem { Text = "Туры по Украине" }, new SelectListItem { Text = "Туры в Грузию" }, new SelectListItem { Text = "Приключенческие туры" } })
         Cтатус тура : @Html.DropDownListFor(m => m.TourStatus, new List<SelectListItem>() { new SelectListItem { Text = "Активный" }, new SelectListItem { Text = "Неактивный" }, new SelectListItem { Text = "Превью главной" },
                  new SelectListItem { Text = "Превью блока" },new SelectListItem { Text = "Рекомендуемый" }})
         Описание:
@@ -69,9 +70,12 @@
             @Html.Partial("TegPartialView")<br/>
             <input type="submit" value="Создать Тур" />
             <div id="route-points"></div>
+        </div>
     @Html.Partial("MapPartial")
             </form>
-            @section scripts {
+            @section scripts 
+                {
+                @Scripts.Render("~/bundles/jqueryval")
                 <script>
                     CKEDITOR.replace("DescriptionTour", {
                         filebrowserBrowseUrl: '/Scripts/Filemanager-master/index.html'
