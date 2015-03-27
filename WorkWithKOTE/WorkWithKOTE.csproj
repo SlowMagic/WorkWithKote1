@@ -236,6 +236,10 @@
     <Content Include="Content\img\small-logo-red.png" />
     <Content Include="Content\img\small-logo.png" />
     <Content Include="Content\img\small-preview-img.jpg" />
+    <Content Include="Content\img\t-bus.png" />
+    <Content Include="Content\img\t-plane.png" />
+    <Content Include="Content\img\t-ship.png" />
+    <Content Include="Content\img\t-train.png" />
     <Content Include="Content\img\top-shadow.png" />
     <Content Include="Content\img\twitter.png" />
     <Content Include="Content\img\user-black.png" />
