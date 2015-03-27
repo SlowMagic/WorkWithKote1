@@ -1,0 +1,100 @@
+#small-preview-img {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    min-height: 230px;
+    display: block;
+    background: url("img/top-bg.jpg") no-repeat center;
+}
+
+.container, hgroup {
+    margin: 0 auto;
+    width: 80%;
+    min-width: 930px;
+    font-family: HelveticaNeueCyr;
+}
+
+h1 {
+    font-size: 2.25em;
+    line-height: 18px;
+    color: rgb(255, 255, 255);
+    font-style: normal;
+    font-weight: 300;
+}
+
+h2 {
+    font-size: 0.75em;
+    line-height: 24px;
+    color: rgb(255, 255, 255);
+    font-style: normal;
+    font-weight: 300;
+}
+
+h3 {
+    font-size: 1.5em;
+    font-weight: normal;
+    line-height: 1em;
+    color: rgb(18, 18, 18);
+    font-style: normal;
+}
+
+h4 {
+    font-size: 1.125em;
+    line-height: 36px;
+    color: rgb(255, 111, 64);
+    font-weight: normal;
+    margin: 0;
+}
+
+.order {
+}
+
+.additional {
+    float: right;
+    width: 30%;
+    padding: 1.5%;
+    border: solid rgb(220, 220, 220) 1px;
+    background-color: rgb(245, 245, 240);
+
+    font-size: 0.875em;
+    color: rgb(18, 18, 18);
+}
+
+input[type=date], input[type=number] {
+    display: inline-block;
+}
+input[type=date] {
+    width: 38.5%;
+}
+input[type=number] {
+    width: 10%;
+}
+
+input[type=radio].css-checkbox + label.css-label {
+    padding-left: 19px;
+    height: 14px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-top: -2.5em;
+}
+
+
+.price {
+    margin-right: 33%;
+    width: 67%;
+    font-size: 1.125em;
+    line-height: 36px;
+    color: rgb(18, 18, 18);
+    font-style: normal;
+    font-weight: 300;
+}
+
+.personal-information {
+    width: 100%;
+}
