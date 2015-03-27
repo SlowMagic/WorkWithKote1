@@ -240,6 +240,7 @@
     <Content Include="Content\img\t-plane.png" />
     <Content Include="Content\img\t-ship.png" />
     <Content Include="Content\img\t-train.png" />
+    <Content Include="Content\img\top-bg.jpg" />
     <Content Include="Content\img\top-shadow.png" />
     <Content Include="Content\img\twitter.png" />
     <Content Include="Content\img\user-black.png" />
@@ -304,6 +305,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\tour_description.css" />
+    <Content Include="Content\tour_order.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
