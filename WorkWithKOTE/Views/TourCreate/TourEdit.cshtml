@@ -10,7 +10,7 @@
         Название  @Html.TextBoxFor(m => m.MyTour.NameTour)
         @Html.ValidationMessageFor(model => model.MyTour.NameTour)
         Заголовок  @Html.TextBoxFor(m => m.MyTour.TitleTour) <br />
-        Выберите тип тура:   @Html.DropDownListFor(m => m.MyTour.TypeOfTour, new List<SelectListItem>() { new SelectListItem { Text = "Туры по Украину" }, new SelectListItem { Text = "Туры в Грузию" }, new SelectListItem { Text = "Приключенческие туры" } })
+        Выберите тип тура:   @Html.DropDownListFor(m => m.MyTour.TypeOfTour, new List<SelectListItem>() { new SelectListItem { Text = "Туры по Украине" }, new SelectListItem { Text = "Туры в Грузию" }, new SelectListItem { Text = "Приключенческие туры" } })
         Cтатус тура : @Html.DropDownListFor(m => m.MyTour.TourStatus, new List<SelectListItem>() { new SelectListItem { Text = "Активный" }, new SelectListItem { Text = "Неактивный" }, new SelectListItem { Text = "Превью главной" },
                  new SelectListItem { Text = "Превью блока" },new SelectListItem { Text = "Рекомендуемый" }})
         Описание:
@@ -32,19 +32,20 @@
             <div id="datetour-pannel">
                 <div class="datetour">
                     Введите дату отправки:<br />
+                    <input type="hidden" name="TourDate[@i].DateTourId" value="@item.DateTourId">
                     <input type='date' id="myDateFirst+@i" name="TourDate[@i].FirstDate" />
                     <br />
                     Введите дату приезда:<br />
                     <input type='date' id="myDateSecond+@i"  name="TourDate[@i].SecondDate" />
                 </div>
             </div>
-            <script type="text/javascript">
+           @* <script type="text/javascript">
                 function myFunction() {
                 document.getElementById("myDateFirst+@i").value = "@Html.DisplayFor(m => item.FirstDate)";
                 document.getElementById("myDateSecond+@i").value = "@Html.DisplayFor(m => item.SecondDate)";
                 }
                 myFunction();
-            </script>
+            </script>*@
             i++;
         }
         <p><a class="addLink">Добавить новый элемент</a></p>
@@ -65,16 +66,20 @@
             @{int k = 0;}
             @foreach (var item in Model.TourDopUsluga)
             {
-                <div>
-                    Введите дату отправки:<br />
+                <div id="dopusluga-pannel">
+                     <div class="dopusluga">
+                    Дополнительная услуга
                     <input type='text' name="TourDopUsluga[@k].Name" value="@Html.DisplayFor(m=>item.Name)" />
                     <br />
-                    Введите дату приезда:<br />
+                     Цена дополнительной услуги:<br />
                     <input type='text' name="TourDopUsluga[@k].Price" value="@Html.DisplayFor(m=>item.Price)" />
+                         <input type="hidden" name="TourDopUsluga[@k].DopUslugId" value="@item.DopUslugId">
                 </div>
+               </div>
                 k++;
             }
         </p>
+        <p><input type="button" class="addUslug" value=" + "></p>
         <p>
             Имя Сопровождающего :@Html.TextBoxFor(m => m.MyTour.SuppName)<br />
         <p>@ViewBag.Message</p>
@@ -98,9 +103,24 @@
         Бонус за тур :
         <input type="checkbox" id="Bonus" onclick="valid3()" />
         @Html.TextBoxFor(m => m.MyTour.Bonus, new { style = "visibility:hidden", id = "BonusText" })<br />
-        @Html.Partial("TegPartialView")<br />
-        <input type="submit" value="Редактировать Тур" />
         <div id="route-points"></div>
+        <p>
+            @{int j = 0;}
+            @foreach (var item in Model.TourTag)
+            {
+                <div id="tag-pannel">
+                       <div class="teg">
+                        Тэг тура:
+                           <input type='text' name="TourTag[@j].TagName" value="@Html.DisplayFor(m=>item.TagName)" />
+                           <input type="hidden" name="TourTag[@j].TagId" value="@item.TagId">
+                        <br />
+                    </div>
+                </div>
+                j++;
+            }
+        </p>
+        <p><a class="addTeg">Добавить новый элемент</a></p>
+        <input type="submit" value="Редактировать Тур" />
     </div>
     @Html.Partial("MapPartial")
 </form>
@@ -134,16 +154,6 @@
             }
         }
     </script>
-<script type="text/javascript">
-    $(function () {
-            $(function () {
-                $("input[type='date']")
-                            .datepicker({ dateFormat: 'dd.mm.yy' })
-                            .get(0);
-            })
-    });
-</script>
-
     <script>
         $(function () {
             var i = 0;
@@ -160,4 +170,34 @@
             })
         })
     </script>
+<script>
+    $(function () {
+        var i = 0;
+        $('.addUslug').click(function () {
+            var html2Adds = "<div class='dopusluga'>" +
+         "<h4>Дополнительная услуга тура №" + "</h4>" +
+                 "<input type='text' name='DopU[" + i + "].Name' /><br/>" +
+                 "<h4>Цена Дополнительной услуги №" + "</h4>" +
+                 "<input type='text' name='DopU[" + i + "].Price' />" +
+                  "<input type='hidden' name='DopU[" + i + "].TourId' value='@Model.MyTour.TourId' />" +
+             "</div>";
+            $('#dopusluga-pannel').append(html2Adds);
+            i++;
+        })
+    })
+</script>
+<script>
+    $(function () {
+        var i = 0;
+        $('.addTeg').click(function () {
+            var html2Addss = "<div class='teg'>" +
+          "<h4>Тег тура №" + (i + 1) + "</h4>" +
+                 "<input type='text' name='TagTour[" + i + "].TagName' /><br/>" +
+                  "<input type='hidden' name='TagTour[" + i + "].TourId' value='@Model.MyTour.TourId' />" +
+             "</div>";
+            $('#tag-pannel').append(html2Addss);
+            i++;
+        })
+    })
+</script>
 }

@@ -1,34 +1,39 @@
 ﻿@{
     ViewBag.Title = "Тур";
 }
-@model  WorkWithKOTE.Models.Tour
-<h2>@Html.DisplayFor(m=>m.NameTour)</h2>
- Название Тура: @Html.DisplayFor(m=>m.NameTour)<br/>
- Заголовок Тура: @Html.DisplayFor(m=>m.TitleTour)<br/>
- Описание Тура: @Html.Raw(Model.DescriptionTour)<br/>
-<input type="button" value="Загрузить файл тура" onclick="location.href='@Url.Action("FileDownload", "TourDisplay", new {id = Model.TourId })'"/><br/>
-       стоимость тура:@Html.DisplayFor(m=>m.Cost)  @Html.DisplayFor(m=>m.Valuta) <br/>
- @{ Html.RenderAction("DatePartial", new { id = Model.TourId });};<br/>
- Предоплата:  @Html.DisplayFor(m=>m.PrePay)<br/>
- Цена: @Html.DisplayFor(m=>m.PodpicePrice)<br/>
- Ауцкионная цена: @Html.DisplayFor(m=>m.AukcionPrice)<br/>
- Комиссия Агента: @Html.DisplayFor(m=>m.KommisiaAgent)<br/>
- Имя Спопровождающего:@Html.DisplayFor(m=>m.SuppName)<br/>
- <a href="@Html.DisplayFor(m=>m.SuppVkontakte)">Ссылка на соц сеть</a><br/>
- <img src="@Html.DisplayFor(m=>m.SuppFoto)" width="50px" height="100px"/>@Html.DisplayFor(m=>m.SuppDiscription)<br/>
-@{ Html.RenderAction("DopUsluga", new { id = Model.TourId });}<br />
- Способы оплаты тура :@Html.DisplayFor(m=>m.KindOfPay)<br/>
- Количество мест (@Html.DisplayFor(m=>m.AllPeople)) и уже едут(@Html.DisplayFor(m=>m.People))<br/>
- Обложка тура - <img src="@Html.DisplayFor(m=>m.TourImg)" width="50px" height="100px" /><br/>
- @{ Html.RenderAction("Teg", new { id = Model.TourId });}<br />
+@model  WorkWithKOTE.Models.TourForDisplaing
+<h2>@Html.DisplayFor(m=>m.TourForDisplay.NameTour)</h2>
+ Название Тура: @Html.DisplayFor(m => m.TourForDisplay.NameTour)<br/>
+ Заголовок Тура: @Html.DisplayFor(m => m.TourForDisplay.TitleTour)<br/>
+ Описание Тура: @Html.Raw(Model.TourForDisplay.DescriptionTour)<br/>
+<input type="button" value="Загрузить файл тура" onclick="location.href='@Url.Action("FileDownload", "TourDisplay", new {id = Model.TourForDisplay.TourId })'"/><br/>
+       стоимость тура:@Html.DisplayFor(m => m.TourForDisplay.Cost)  @Html.DisplayFor(m => m.TourForDisplay.Valuta) <br/>
+ @foreach(var item in Model.DateForDisplay)
+ {
+     @Html.DisplayFor(m=>item.FirstDate) @: - @Html.DisplayFor(m=>item.SecondDate)
+ }<br/>
+ Предоплата:  @Html.DisplayFor(m => m.TourForDisplay.PrePay)<br/>
+ Цена: @Html.DisplayFor(m => m.TourForDisplay.PodpicePrice)<br/>
+ Ауцкионная цена: @Html.DisplayFor(m => m.TourForDisplay.AukcionPrice)<br/>
+ Комиссия Агента: @Html.DisplayFor(m => m.TourForDisplay.KommisiaAgent)<br/>
+ Имя Спопровождающего:@Html.DisplayFor(m => m.TourForDisplay.SuppName)<br/>
+ <a href="@Html.DisplayFor(m => m.TourForDisplay.SuppVkontakte)">Ссылка на соц сеть</a><br/>
+ <img src="@Html.DisplayFor(m => m.TourForDisplay.SuppFoto)" width="50px" height="100px"/>@Html.DisplayFor(m => m.TourForDisplay.SuppDiscription)<br/>
+ Дополнительные услги:@foreach(var item in Model.DopUslugForDisplay){
+                          @Html.DisplayFor(m=>item.Name) @:,
+ }
+ Способы оплаты тура :@Html.DisplayFor(m => m.TourForDisplay.KindOfPay)<br/>
+ Количество мест (@Html.DisplayFor(m => m.TourForDisplay.AllPeople)) и уже едут(@Html.DisplayFor(m => m.TourForDisplay.People))<br/>
+ Обложка тура - <img src="@Html.DisplayFor(m => m.TourForDisplay.TourImg)" width="50px" height="100px" /><br/>
+ Тэги тура @foreach(var item in Model.TagForDisplay ){@Html.DisplayFor(m=>item.TagName)}<br />
 <p>Транспортировка : @ViewBag.Message @ViewBag.Message1 @ViewBag.Message2</p>
-Бронь:@Html.DisplayFor(m => m.Reservation)<br/>
-Бонус за тур :@Html.DisplayFor(m => m.Bonus)<br/>
+Бронь:@Html.DisplayFor(m => m.TourForDisplay.Reservation)<br/>
+Бонус за тур :@Html.DisplayFor(m => m.TourForDisplay.Bonus)<br/>
  @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
  {
-     <input type="button" value="Редактировать" onclick="location.href='@Url.Action("TourEdit", "TourCreate", new {id = Model.TourId})'" />
+     <input type="button" value="Редактировать" onclick="location.href='@Url.Action("TourEdit", "TourCreate", new { id = Model.TourForDisplay.TourId })'" />
  }
-<input type="button" value="Оплатить тур" onclick="location.href='@Url.Action("Index", "Buy", new {id=Model.TourId })'"><div id="map_canvas" style="width:300px; height:300px"></div>
-@{Html.RenderAction("MapForDisplay", new { id = Model.TourId });}
+<input type="button" value="Оплатить тур" onclick="location.href='@Url.Action("Index", "Buy", new { id = Model.TourForDisplay.TourId })'"><div id="map_canvas" style="width:300px; height:300px"></div>
+@{Html.RenderAction("MapForDisplay", new { id = Model.TourForDisplay.TourId });}
 @section scripts{
 }
