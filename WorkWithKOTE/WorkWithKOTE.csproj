@@ -1129,7 +1129,6 @@
     <Content Include="Views\TourDisplay\MapForDisplay.cshtml" />
     <Content Include="Views\News\CreateNews.cshtml" />
     <Content Include="Views\TourCreate\TourEdit.cshtml" />
-    <Content Include="Views\TourCreate\DateTourForEditAdd.cshtml" />
     <Content Include="Views\News\NewsBlock.cshtml" />
     <Content Include="Views\Shared\HeaderPartial_main.cshtml" />
   </ItemGroup>

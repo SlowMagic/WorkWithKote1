@@ -56,29 +56,7 @@ namespace WorkWithKOTE.Controllers
             tour.Trips.Add(model);
             db.Entry(tour).State = EntityState.Modified;
             db.Entry(model).State = EntityState.Added;
-         //   db.SaveChanges();
-            try
-            {
-
-                db.SaveChanges();
-            }
-            catch (DbEntityValidationException ex)
-                {
-                    string s = null;
-                    string k = null;
-                    foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
-                    {
-                         s = "Object: "+validationError.Entry.Entity.ToString();
-                        
-                        foreach (DbValidationError err in validationError.ValidationErrors)
-                        {
-                             k  = err.ErrorMessage + "";
-                        }
-                    }
-                    ViewBag.Error = s;
-                    ViewBag.Error1= k;
-                }
-
+            db.SaveChanges();
             return RedirectToAction("Index","Home");
         }
         public ActionResult DopPricePartial(int id = 0)

@@ -166,5 +166,14 @@ namespace WorkWithKOTE.Models
         public List<DopUslug> TourDopUsluga { get; set; }
         public List<Tag> TourTag { get; set; }
         public List<DateTour> Date { get; set; }
+        public List<DopUslug> DopU { get; set; }
+        public List<Tag> TagTour { get; set; }
+    }
+    public class TourForDisplaing
+    {
+        public Tour TourForDisplay { get; set; }
+        public List<DateTour> DateForDisplay { get; set; }
+        public List<DopUslug> DopUslugForDisplay { get; set; }
+        public List<Tag> TagForDisplay { get; set; }
     }
 }

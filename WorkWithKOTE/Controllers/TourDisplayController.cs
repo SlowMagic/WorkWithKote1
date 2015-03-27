@@ -16,14 +16,17 @@ namespace WorkWithKOTE.Controllers
         public ActionResult Index(int id=0)
         {
            if(id != 0){
-            var data = db.Tour.Find(id);
-            if(data.IsBus)
+               var data = new TourForDisplaing();
+               data.TourForDisplay = db.Tour.Find(id);
+               if(data.TourForDisplay.IsBus)
              ViewBag.Message = "Автобус"; 
-            if(data.IsAriplane)
+            if(data.TourForDisplay.IsAriplane)
              ViewBag.Message1 = "Авиалинии"; 
-            if (data.IsShip)
+            if (data.TourForDisplay.IsShip)
              ViewBag.Message2 = "Лайнером";
-
+            data.DateForDisplay = db.DateTours.Where(m => m.TourId == id).ToList();
+            data.DopUslugForDisplay = db.DopUslugs.Where(m=>m.TourId==id).ToList();
+            data.TagForDisplay = db.Teg.Where(m=>m.TourId==id).ToList();
             return View(data);
            }
             return View();//Добавить страницу ошибки
