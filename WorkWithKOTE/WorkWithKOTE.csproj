@@ -203,6 +203,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\boilerplate.css" />
+    <Content Include="Content\common.css" />
+    <Content Include="Content\img\10942586.jpg" />
     <Content Include="Content\img\arr.png" />
     <Content Include="Content\img\arrow.png" />
     <Content Include="Content\img\big-logo.png" />
@@ -212,11 +214,6 @@
     <Content Include="Content\img\google.png" />
     <Content Include="Content\img\group-border.png" />
     <Content Include="Content\img\groups-bg.png" />
-    <Content Include="Content\img\img копия 2.png" />
-    <Content Include="Content\img\img копия 3.png" />
-    <Content Include="Content\img\img копия 4.png" />
-    <Content Include="Content\img\img копия 5.png" />
-    <Content Include="Content\img\img копия.png" />
     <Content Include="Content\img\img.png" />
     <Content Include="Content\img\instagram-ico.png" />
     <Content Include="Content\img\mailme-bg.jpg" />
@@ -230,19 +227,26 @@
     <Content Include="Content\img\plane.png" />
     <Content Include="Content\img\play-btn.png" />
     <Content Include="Content\img\scroll.png" />
+    <Content Include="Content\img\Searching-black.png" />
     <Content Include="Content\img\Searching.png" />
+    <Content Include="Content\img\separator-black.png" />
     <Content Include="Content\img\separator.png" />
     <Content Include="Content\img\small-btn1.png" />
     <Content Include="Content\img\small-btn2.png" />
+    <Content Include="Content\img\small-logo-red.png" />
     <Content Include="Content\img\small-logo.png" />
     <Content Include="Content\img\small-preview-img.jpg" />
+    <Content Include="Content\img\t-bus.png" />
+    <Content Include="Content\img\t-plane.png" />
+    <Content Include="Content\img\t-ship.png" />
+    <Content Include="Content\img\t-train.png" />
     <Content Include="Content\img\top-shadow.png" />
     <Content Include="Content\img\twitter.png" />
+    <Content Include="Content\img\user-black.png" />
     <Content Include="Content\img\user.png" />
     <Content Include="Content\img\video-preview.jpg" />
     <Content Include="Content\img\yes-btn.png" />
     <Content Include="Content\img\youtube-ico.png" />
-    <Content Include="Content\img\загруженное %287%29.png" />
     <Content Include="Content\js\common.js" />
     <Content Include="Content\page.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -299,6 +303,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\tour_description.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
@@ -1129,6 +1134,7 @@
     <Content Include="Views\News\CreateNews.cshtml" />
     <Content Include="Views\TourCreate\TourEdit.cshtml" />
     <Content Include="Views\News\NewsBlock.cshtml" />
+    <Content Include="Views\Shared\HeaderPartial_main.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,18 +3,22 @@
 }
 @model WorkWithKOTE.Models.TourForEdit
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <h2>Редактирование Туров</h2>
 <form action="@Url.Action("TourEdit")" method="post" enctype="multipart/form-data">
     <div>
         @Html.HiddenFor(m => m.MyTour.TourId)
         Название  @Html.TextBoxFor(m => m.MyTour.NameTour)
         @Html.ValidationMessageFor(model => model.MyTour.NameTour)
+        @Html.HiddenFor(m=>m.MyTour.SuppFoto)
+        @Html.HiddenFor(m=>m.MyTour.TourImg)
+        @Html.HiddenFor(m=>m.MyTour.Document)
         Заголовок  @Html.TextBoxFor(m => m.MyTour.TitleTour) <br />
         Выберите тип тура:   @Html.DropDownListFor(m => m.MyTour.TypeOfTour, new List<SelectListItem>() { new SelectListItem { Text = "Туры по Украине" }, new SelectListItem { Text = "Туры в Грузию" }, new SelectListItem { Text = "Приключенческие туры" } })
         Cтатус тура : @Html.DropDownListFor(m => m.MyTour.TourStatus, new List<SelectListItem>() { new SelectListItem { Text = "Активный" }, new SelectListItem { Text = "Неактивный" }, new SelectListItem { Text = "Превью главной" },
                  new SelectListItem { Text = "Превью блока" },new SelectListItem { Text = "Рекомендуемый" }})
         Описание:
-        <textarea name="DescriptionTour">@Html.Raw(Model.MyTour.DescriptionTour)</textarea><br />
+        <textarea name="MyTour.DescriptionTour">@Html.Raw(Model.MyTour.DescriptionTour)</textarea><br />
         Выезд из @Html.TextBoxFor(m => m.MyTour.PlaceOfDeparture)<br />
         Прибываем в @Html.TextBoxFor(m => m.MyTour.PlaceOfArrival)<br />
         стоимость @Html.TextBoxFor(m => m.MyTour.Cost)<br />
@@ -34,17 +38,17 @@
                     Введите дату отправки:<br />
                     <input type="hidden" name="TourDate[@i].DateTourId" value="@item.DateTourId">
                     <input type='date' id="myDateFirst+@i" name="TourDate[@i].FirstDate" />
-                        <br />
-                        Введите дату приезда:<br />
-                        <input type='date' id="myDateSecond+@i"  name="TourDate[@i].SecondDate" />
+                    <br />
+                    Введите дату приезда:<br />
+                    <input type='date' id="myDateSecond+@i"  name="TourDate[@i].SecondDate" />
                 </div>
             </div>
              <script type="text/javascript">
-                    function myFunction() {
+                function myFunction() {
                     document.getElementById("myDateFirst+@i").value = "@item.FirstDate.ToString("yyyy-MM-dd")";
                     document.getElementById("myDateSecond+@i").value = "@item.SecondDate.ToString("yyyy-MM-dd")";
-                    }
-                    myFunction();
+                }
+                myFunction();
                 </script>
             i++;
         }
@@ -67,15 +71,15 @@
             @foreach (var item in Model.TourDopUsluga)
             {
                 <div id="dopusluga-pannel">
-                    <div class="dopusluga">
-                        Дополнительная услуга
-                        <input type='text' name="TourDopUsluga[@k].Name" value="@Html.DisplayFor(m=>item.Name)" />
-                        <br />
-                        Цена дополнительной услуги:<br />
-                        <input type='text' name="TourDopUsluga[@k].Price" value="@Html.DisplayFor(m=>item.Price)" />
-                        <input type="hidden" name="TourDopUsluga[@k].DopUslugId" value="@item.DopUslugId">
-                    </div>
+                     <div class="dopusluga">
+                    Дополнительная услуга
+                    <input type='text' name="TourDopUsluga[@k].Name" value="@Html.DisplayFor(m=>item.Name)" />
+                    <br />
+                     Цена дополнительной услуги:<br />
+                    <input type='text' name="TourDopUsluga[@k].Price" value="@Html.DisplayFor(m=>item.Price)" />
+                         <input type="hidden" name="TourDopUsluga[@k].DopUslugId" value="@item.DopUslugId">
                 </div>
+               </div>
                 k++;
             }
         </p>
@@ -109,10 +113,10 @@
             @foreach (var item in Model.TourTag)
             {
                 <div id="tag-pannel">
-                    <div class="teg">
+                       <div class="teg">
                         Тэг тура:
-                        <input type='text' name="TourTag[@j].TagName" value="@Html.DisplayFor(m=>item.TagName)" />
-                        <input type="hidden" name="TourTag[@j].TagId" value="@item.TagId">
+                           <input type='text' name="TourTag[@j].TagName" value="@Html.DisplayFor(m=>item.TagName)" />
+                           <input type="hidden" name="TourTag[@j].TagId" value="@item.TagId">
                         <br />
                     </div>
                 </div>
@@ -122,13 +126,22 @@
         <p><a class="addTeg">Добавить новый элемент</a></p>
         <input type="submit" value="Редактировать Тур" />
     </div>
-    @Html.Partial("MapPartial")
+    @{int l = 0;}
+    @foreach (var iteam in Model.RoutPointTour)
+    {
+        <input type="hidden" id="item[@l].lat" value="@Html.DisplayFor(m=>iteam.Lat)" name="RoutPointTour[@l].Lat" />
+    <input type="hidden" id="item[@l].lng" value="@Html.DisplayFor(m=>iteam.Lng)" name="RoutPointTour[@l].Lng" />
+    <input type="hidden" name="RoutPointTour[@l].RoutePointID" value="@iteam.RoutePointID">
+        l++;
+    } 
+    <input type="button" value="Убрать маркеры" onclick="DeleteAllPoints()" />
+    <div id="map_canvas" style="width:400px; height:400px"></div>
 </form>
 @section scripts
                 {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        CKEDITOR.replace("DescriptionTour", {
+        CKEDITOR.replace("MyTour.DescriptionTour", {
             filebrowserBrowseUrl: '/Scripts/Filemanager-master/index.html'
         });
     </script>
@@ -170,34 +183,133 @@
             })
         })
     </script>
-    <script>
-        $(function () {
-            var i = 0;
-            $('.addUslug').click(function () {
-                var html2Adds = "<div class='dopusluga'>" +
-             "<h4>Дополнительная услуга тура №" + "</h4>" +
-                     "<input type='text' name='DopU[" + i + "].Name' /><br/>" +
-                     "<h4>Цена Дополнительной услуги №" + "</h4>" +
-                     "<input type='text' name='DopU[" + i + "].Price' />" +
-                      "<input type='hidden' name='DopU[" + i + "].TourId' value='@Model.MyTour.TourId' />" +
-                 "</div>";
-                $('#dopusluga-pannel').append(html2Adds);
-                i++;
-            })
+<script>
+    $(function () {
+        var i = 0;
+        $('.addUslug').click(function () {
+            var html2Adds = "<div class='dopusluga'>" +
+         "<h4>Дополнительная услуга тура №" + "</h4>" +
+                 "<input type='text' name='DopU[" + i + "].Name' /><br/>" +
+                 "<h4>Цена Дополнительной услуги №" + "</h4>" +
+                 "<input type='text' name='DopU[" + i + "].Price' />" +
+                  "<input type='hidden' name='DopU[" + i + "].TourId' value='@Model.MyTour.TourId' />" +
+             "</div>";
+            $('#dopusluga-pannel').append(html2Adds);
+            i++;
         })
-    </script>
-    <script>
-        $(function () {
-            var i = 0;
-            $('.addTeg').click(function () {
-                var html2Addss = "<div class='teg'>" +
-              "<h4>Тег тура №" + (i + 1) + "</h4>" +
-                     "<input type='text' name='TagTour[" + i + "].TagName' /><br/>" +
-                      "<input type='hidden' name='TagTour[" + i + "].TourId' value='@Model.MyTour.TourId' />" +
-                 "</div>";
-                $('#tag-pannel').append(html2Addss);
-                i++;
-            })
+    })
+</script>
+<script>
+    $(function () {
+        var i = 0;
+        $('.addTeg').click(function () {
+            var html2Addss = "<div class='teg'>" +
+          "<h4>Тег тура №" + (i + 1) + "</h4>" +
+                 "<input type='text' name='TagTour[" + i + "].TagName' /><br/>" +
+                  "<input type='hidden' name='TagTour[" + i + "].TourId' value='@Model.MyTour.TourId' />" +
+             "</div>";
+            $('#tag-pannel').append(html2Addss);
+            i++;
         })
-    </script>
+    })
+</script>
+<script type="text/javascript">
+    var map;
+    var arryLat = [];
+    var arryLng = [];
+    var arrayMarker = [];
+    var PathForPoly = [];
+    var poly;
+    var polyOptions;
+    var arrayMarkerAdd = [];
+    var g = @l
+    initialize();
+    save();
+    addMarker();
+    function save() {
+        for (var k = 0; k <= g - 1; k++) {
+
+            arryLat[k] = parseFloat(document.getElementById("item[" + k + "].lat").value);
+            arryLng[k] = parseFloat(document.getElementById("item[" + k + "].lng").value);
+        }
+    }
+    function addMarker() {
+        for (var k = 0; k <= arryLat.length ; k++) {
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(arryLat[k], arryLng[k]),
+                map: map
+            });
+            PathForPoly.push(new google.maps.LatLng(arryLat[k], arryLng[k]));
+            arrayMarker.push(marker);
+        }
+        var lineSymbol = {
+            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+        }
+        var polyOptions = {
+            path: PathForPoly,
+            strokeColor: '#000000',
+            strokeOpacity: 1.0,
+            strokeWeight: 3,
+            icons: [{
+                icon: lineSymbol,
+                offset: '10%',
+                repeat: '100px'
+            }]
+        }
+        poly = new google.maps.Polyline(polyOptions);
+        poly.setMap(map);
+    }
+    function initialize() {
+        var mapOptions = {
+            center: new google.maps.LatLng(49.7191, 35.112),
+            zoom: 5,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        google.maps.event.addListener(map, 'click', addLatLng);
+    }
+    function addLatLng(event) {
+        var path = poly.getPath();
+        path.push(event.latLng);
+        arrayMarkerAdd = poly.getPath();
+        var marker = new google.maps.Marker({
+            position: event.latLng,
+            title: '#' + path.getLength(),
+            map: map
+
+        });
+    }
+    function DeleteAllPoints() {
+        arrayMarker = [];
+        for (var k = 0; k <= g - 1; k++)
+        {
+            document.getElementById("item[" + k + "].lat").value= null;
+            document.getElementById("item[" + k + "].lng").value= null;
+        }
+        $("#map_canvas").html("");
+        initialize();
+        poly = new google.maps.Polyline(polyOptions);
+        poly.setMap(map);
+    } 4
+    function prepareRoutePoints() {
+        $.each(arrayMarkerAdd, function (i, v) {
+            $('#route-points').append(
+                $('<input>').attr({
+                    'type': 'hidden',
+                    'name': 'RoutPoints[' + i + '].Lat'
+                }).val(arrayMarkerAdd.getAt(i).lat())
+            ).append(
+                $('<input>').attr({
+                    'type': 'hidden',
+                    'name': 'RoutPoints[' + i + '].Lng'
+                }).val(arrayMarkerAdd.getAt(i).lng())
+            );
+        });
+    }
+    if(arrayMarker != null){
+        $('form').submit(function () {
+            prepareRoutePoints();
+        });
+        }
+</script> 
 }

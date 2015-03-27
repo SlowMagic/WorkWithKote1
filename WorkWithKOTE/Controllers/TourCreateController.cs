@@ -50,41 +50,70 @@ namespace WorkWithKOTE.Controllers
             data.TourDate = db.DateTours.Where(m => m.TourId == id).ToList();
             data.TourDopUsluga = db.DopUslugs.Where(m => m.TourId == id).ToList();
             data.TourTag = db.Teg.Where(m => m.TourId == id).ToList();
+            data.RoutPointTour = db.RoutePoint.Where(m => m.TourId == id).ToList();
             ViewBag.GalleryID = new SelectList(db.Gallery, "GalleryId", "GalleryName");
             return View(data);
         }
         [HttpPost]
-        public ActionResult TourEdit(TourForEdit model)
+        public ActionResult TourEdit(TourForEdit model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp)
         {
-            foreach (var item in model.TourDate)
+            if(model.RoutPointTour == null)
             {
-                item.TourId = model.MyTour.TourId;
-                db.Entry(item).State = EntityState.Modified;
-               
+                foreach (var item in model.RoutPointTour)
+                {
+                    db.RoutePoint.Remove(item);
+                }
             }
-            foreach (var item in model.TourTag)
+            if(model.RoutPoints !=null)
+                foreach(var item in model.RoutPoints)
+                {
+                    item.TourId = model.MyTour.TourId;
+                    db.Entry(item).State = EntityState.Added;
+                }
+            if (model.TourDate != null)
+                foreach (var item in model.TourDate)
+                {
+                    item.TourId = model.MyTour.TourId;
+                    db.Entry(item).State = EntityState.Modified;
+                }
+            if (model.TourTag != null)
+                foreach (var item in model.TourTag)
+                {
+                    item.TourId = model.MyTour.TourId;
+                    db.Entry(item).State = EntityState.Modified;
+                }
+            if (model.TourDopUsluga != null)
+                foreach (var item in model.TourDopUsluga)
+                {
+                    item.TourId = model.MyTour.TourId;
+                    db.Entry(item).State = EntityState.Modified;
+                }
+            if (model.Date != null)
+                foreach (var item in model.Date)
+                {
+                    db.Entry(item).State = EntityState.Added;
+                }
+            if (model.DopU != null)
+                foreach (var item in model.DopU)
+                {
+                    db.Entry(item).State = EntityState.Added;
+                }
+            if (model.TagTour != null)
+                foreach (var item in model.TagTour)
+                {
+                    db.Entry(item).State = EntityState.Added;
+                }
+            string check = UploadImg(TourImg, "/UpLoad/TourImg/");
+            if (check != null)
+                model.MyTour.TourImg = check;
+            check = UploadImg(AvatarSupp, "/UpLoad/SuppFoto/");
+            if (check != null)
+                model.MyTour.SuppFoto = check;
+            model.MyTour.DescriptionTour = Regex.Replace(model.MyTour.DescriptionTour, "<script.*?</script>", "", RegexOptions.IgnoreCase);
+            if (Document != null)
             {
-                item.TourId = model.MyTour.TourId;
-                db.Entry(item).State = EntityState.Modified;
-              
-            }
-            foreach (var item in model.TourDopUsluga)
-            {
-                item.TourId = model.MyTour.TourId;
-                db.Entry(item).State = EntityState.Modified; 
-            }
-            foreach (var item in model.Date)
-            {
-                db.Entry(item).State = EntityState.Added;  
-            }
-            foreach (var item in model.DopU)
-            {                
-                db.Entry(item).State = EntityState.Added;
-            }
-            foreach (var item in model.TagTour)
-            {
-                db.Entry(item).State = EntityState.Added;
-                db.SaveChanges();
+                Document.SaveAs(Server.MapPath("/UpLoad/TourDocument/" + Document.FileName));
+                model.MyTour.Document = "/UpLoad/TourDocument/" + Document.FileName;
             }
             db.Entry(model.MyTour).State = EntityState.Modified;
             db.SaveChanges();

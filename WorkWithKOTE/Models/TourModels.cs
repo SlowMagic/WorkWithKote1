@@ -168,6 +168,8 @@ namespace WorkWithKOTE.Models
         public List<DateTour> Date { get; set; }
         public List<DopUslug> DopU { get; set; }
         public List<Tag> TagTour { get; set; }
+        public List<RoutePoint> RoutPointTour { get; set; }
+        public List<RoutePoint> RoutPoints { get; set; }
     }
     public class TourForDisplaing
     {
