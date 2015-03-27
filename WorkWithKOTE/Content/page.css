@@ -1,42 +1,3 @@
-nav, footer, header, section, article, iframe, img {
-    display: block
-}
-
-header {
-    position: fixed;
-    text-align: center;
-    left: 0;
-    right: 0;
-    margin: auto;
-    clear: none;
-    width: 100%;
-    z-index: 200;
-}
-
-nav {
-    display: inline-block;
-    font-size: 1em;
-    text-align: center;
-    font-weight: 300;
-    line-height: 1em;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    z-index: 324;
-    margin-top: 40px;
-    clear: none;
-}
-
-nav a {
-    margin-left: 25px;
-    padding-bottom: 44px;
-}
-
-nav a:hover {
-    padding-bottom: 41px;
-    border-bottom: 3px solid rgba(255, 255, 255, 0.5);
-}
 
 .primaryContainer {
     min-height: 100%;
@@ -44,7 +5,7 @@ nav a:hover {
     width: 100%;
 }
 
-.buttons {
+.buttons-page {
     width: 510px;
     margin: 50px auto 0 auto;
     font-family: georgia;
@@ -142,78 +103,6 @@ nav a:hover {
     height: auto;
 }
 
-.cont {
-    margin: 0 auto;
-    padding-top: 40px;
-    width: 80%;
-    min-width: 930px;
-}
-
-#copyrighter {
-    font-size: 1em;
-    text-align: center;
-    font-weight: normal;
-    line-height: 1em;
-    top: 0;
-    left: 0;
-    margin: 8px auto;
-    clear: none;
-}
-
-#copyright {
-    float: none;
-    font-size: 0.75em;
-    line-height: 14px;
-    color: rgb(153, 153, 153);
-    font-style: normal;
-    font-weight: 300;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#copyright-site {
-    font-size: 0.75em;
-    line-height: 14px;
-    color: rgb(255, 111, 64);
-    font-weight: normal;
-    letter-spacing: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#rights {
-    font-size: 0.75em;
-    line-height: 14px;
-    color: rgb(153, 153, 153);
-    font-weight: 300;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-}
-
-#copy-bg {
-    float: left;
-    background-color: rgb(12, 12, 12);
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-#about {
-    float: left;
-    font-size: 0.75em;
-    text-align: left;
-    font-weight: 300;
-    line-height: 16px;
-    color: rgb(153, 153, 153);
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    top: 0;
-    left: 0;
-    clear: none;
-    margin-right: 0;
-}
-
 #media-bg {
     height: 605px;
     background-image: url("img/media-bg.jpg");
@@ -224,55 +113,6 @@ nav a:hover {
     *zoom: 1;
 }
 
-#contacts {
-    float: left;
-    font-size: 1em;
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1em;
-    top: 0;
-    left: 0;
-    margin-top: 0;
-    margin-left: 0.06%;
-    clear: none;
-    margin-right: 0;
-}
-
-#contacts h5 {
-    margin-top: 0;
-    font-weight: lighter;
-    font-size: 1.125em;
-    margin-bottom: 0.7em;
-    color: rgb(254, 254, 254);
-    font-family: HelveticaNeueCyr;
-}
-
-.mail {
-    font-size: 0.875em;
-    color: rgb(255, 255, 255);
-    font-family: HelveticaNeueCyr;
-}
-
-.phone {
-    font-size: 0.875em;
-    color: rgb(255, 255, 255);
-    font-family: HelveticaNeueCyr;
-}
-
-.phone-code {
-    color: rgb(255, 111, 64);
-}
-
-footer {
-    height: 244px;
-    color: rgb(0, 0, 0);
-    top: 0;
-    left: 0;
-    background-image: url("img/footer-bg.jpg");
-    -webkit-background-size: 100%;
-}
 
 #textspan84 {
     float: none;
@@ -359,28 +199,6 @@ footer {
     -o-background-size: cover;
     background-size: cover;
     clear: both;
-}
-
-#follow-us {
-    float: left;
-    width: 100%;
-    font-size: 0.875em;
-    text-align: left;
-    font-weight: 300;
-    line-height: 1em;
-    color: rgb(255, 255, 255);
-    font-family: HelveticaNeueCyr;
-    margin-top: 29px;
-    clear: none;
-    margin-right: 0;
-}
-
-#follow-us p {
-    float: left;
-}
-
-#follow-us img {
-    margin-top: -8px;
 }
 
 #arrow5 {
@@ -548,55 +366,6 @@ footer {
     font-family: HelveticaNeueCyr;
 }
 
-#top-shadow {
-    max-width: 100%;
-    /*position: absolute;*/
-    margin: auto;
-    right: 0;
-    left: 0;
-    clear: both;
-}
-
-#address {
-    float: left;
-    font-size: 0.875em;
-    color: rgb(254, 254, 254);
-    width: auto;
-    height: auto;
-    text-align: left;
-    font-weight: normal;
-    line-height: 1.5em;
-    top: 0;
-    left: 0;
-    z-index: 22;
-    margin-top: 41px;
-    clear: both;
-    margin-right: 0;
-    font-family: HelveticaNeueCyr;
-}
-
-#footer-nav {
-    float: left;
-    width: 100%;
-    height: auto;
-    text-align: left;
-    line-height: 1em;
-    font-family: HelveticaNeueCyr;
-    top: 0;
-    left: 0;
-    z-index: 24;
-    margin: 0;
-    clear: none;
-}
-#footer-nav a {
-    float: left;
-    text-decoration: none;
-    width: 25%;
-    color: rgb(255, 111, 64);
-    font-size: 0.875em;
-    font-weight: bold;
-}
-
 #subscribe {
     float: left;
     display: block;
@@ -612,6 +381,7 @@ footer {
     display: block;
     clear: both;
 }
+
 .align_center_to_left
 {
     position: relative;
@@ -721,20 +491,6 @@ footer {
     font-family: HelveticaNeueCyr;
 }
 
-#username {
-    /*float: left;*/
-    font-size: 0.875em;
-    text-align: center;
-    font-weight: 300;
-    line-height: 1em;
-    color: rgb(255, 255, 255);
-    font-style: normal;
-    text-decoration: none;
-    font-family: HelveticaNeueCyr;
-    clear: none;
-    /*margin-right: 0%;*/
-}
-
 .scroll-text {
     background: url("img/scroll.png") no-repeat left center;
     display: table-cell;
@@ -749,14 +505,6 @@ footer {
     font-family: HelveticaNeueCyr;
     text-shadow: rgba(0, 0, 0, 0.74902) 0 1px 1px;
     clear: both;
-}
-
-.image-icons {
-    float: left;
-    max-width: 100%;
-    margin-left: 3%;
-    clear: none;
-    margin-right: 0;
 }
 
 #arrow2 {
@@ -900,11 +648,6 @@ footer {
     font-family: HelveticaNeueCyr;
 }
 
-#user {
-    float: left;
-    margin-right: 10px;
-}
-
 #textspan5 {
     float: none;
     font-size: 1.5em;
@@ -972,8 +715,8 @@ footer {
 
 .recommendedTour {
     float: left;
-    min-width: 160px;
     width: 30%;
+    max-width: 160px;
 }
 
 .recommendedLink {
@@ -1043,12 +786,6 @@ a.recLink:hover {
     margin-left: -63.416028%;
     clear: none;
     margin-right: 0%;
-}
-
-#Searching {
-    display: inline-block;
-    z-index: 32;
-    clear: both;
 }
 
 #textspan2 {
@@ -1211,12 +948,6 @@ span.arr {
     width: 80%;
 }
 
-.separator {
-    display: inline;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
 #main-preview-image2 {
     float: left;
     width: auto;
@@ -1278,14 +1009,6 @@ span.arr {
     margin-top: -200.71875px;
     margin-left: 3.058328%;
     clear: none;
-}
-
-#small-logo {
-    opacity: 0;
-    filter: alpha(opacity=0);
-    float: left;
-    margin: 15px;
-    margin-left: 15%;
 }
 
 #main-block-border1 {
@@ -1488,26 +1211,6 @@ h2.tourTitle {
     clear: both;
 }
 
-#column1 {
-    float: left;
-    height: auto;
-    width: 33%;
-}
-
-#column2 {
-    float: left;
-    height: auto;
-    margin-left: 5%;
-    width: 36%;
-}
-
-#column3 {
-    float: left;
-    height: auto;
-    margin-left: 10%;
-    width: 15%;
-}
-
 #box18 {
     float: left;
     height: auto;
@@ -1643,40 +1346,8 @@ div.tour {
     width: 150px;
     margin: auto;
     margin-top: 180px;
-    /*clear: both;*/
-    /*width: 4.006243%;*/
 }
 
-.user {
-    display: table-cell;
-    /*width: 150px;*/
-    /*height: 50px;*/
-    /*margin: auto;*/
-}
-
-.profile {
-    display: inline-block;
-    margin: 10px;
-    vertical-align: middle;
-}
-
-/*.profile:before {*/
-/*content: url("img/separator.png");*/
-/*width: 1px;*/
-/*height: 44px;*/
-/*position: inherit;*/
-/*}*/
-
-/*.profile:after {*/
-/*content: url("img/separator.png");*/
-/*width: 1px;*/
-/*height: 44px;*/
-/*position: inherit;*/
-/*}*/
-#bar {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding-bottom: 28px;
-}
 
 .wish {
     left: 0;

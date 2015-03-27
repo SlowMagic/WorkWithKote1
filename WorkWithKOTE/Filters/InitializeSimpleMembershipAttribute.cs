@@ -66,7 +66,7 @@ namespace WorkWithKOTE.Filters
                 if (!roles.IsUserInRole("LevitskiyOrange@gmail.com", "Admin"))
                     roles.AddUsersToRoles(new[] { "LevitskiyOrange@gmail.com" }, new[] { "Admin" });
                 var TourDefault = new TourInitialization();
-                TourDefault.Seed();
+//                TourDefault.Seed();
             }
 
         }
