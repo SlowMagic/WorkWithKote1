@@ -13,7 +13,7 @@
             <div class="align_center_to_left">
                 <div class="align_center_to_right">
                     <div class="short-description">
-                        <p class="tour-date">25.06.2015 - 28.06.2015</p>
+                      @foreach (var item in Model.DateForDisplay) {   <p class="tour-date">@Html.DisplayFor(m=>item.FirstDate) - @Html.DisplayFor(m=>item.SecondDate)</p>}
 
                         <p class="tour-destination">@Html.DisplayFor(m => m.TourForDisplay.PlaceOfDeparture) -> @Html.DisplayFor(m => m.TourForDisplay.PlaceOfArrival)</p>
                     </div>

@@ -57,13 +57,11 @@ namespace WorkWithKOTE.Controllers
         [HttpPost]
         public ActionResult TourEdit(TourForEdit model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp)
         {
-            if(model.RoutPointTour == null)
-            {
                 foreach (var item in model.RoutPointTour)
                 {
-                    db.RoutePoint.Remove(item);
+                    if (item.Lat == 0.0 && item.Lng == 0.0)
+                        db.Entry(item).State = EntityState.Deleted;
                 }
-            }
             if(model.RoutPoints !=null)
                 foreach(var item in model.RoutPoints)
                 {
