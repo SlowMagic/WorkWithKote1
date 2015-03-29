@@ -215,11 +215,11 @@
         @{int counter1 = 0;}
         @foreach (var item in Model.TourCenter)
         {
-            if (counter1 > 2)
+            if (counter1 > 1)
             {
                 break;
             }
-            counter++;
+            counter1++;
             <div class="tour clearfix">
                 <div class="tourName">
                     <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})"><img src="@Html.DisplayFor(m => item.TourImg)" class="groupSubPreview image"></a>
@@ -321,11 +321,11 @@
         @{int counter2 = 0;}
         @foreach (var item in Model.TourDown)
         {
-            if (counter2 > 2)
+            if (counter2 > 1)
             {
                 break;
             }
-            counter++;
+            counter2++;
             <div class="tour clearfix">
                 <div class="tourName">
                     <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})"><img src="@Html.DisplayFor(m => item.TourImg)" class="groupSubPreview image"></a>
