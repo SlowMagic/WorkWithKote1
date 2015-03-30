@@ -10,9 +10,9 @@
                 @foreach (var item in Model)
                 {
                  <article>
-                    <a href="#" class="new-title">@Html.DisplayFor(m=>item.NewsTitle)<br /></a>
+                    <a href="@Url.Action("NewsBlock","News")" class="new-title">@Html.DisplayFor(m=>item.NewsTitle)<br /></a>
                     <span class="new-date">@Html.DisplayFor(m=>item.NewsDate)<br /></span>
-                    <span class="new-content"@Html.DisplayFor(m=>item.NewsBody)></span>
+                    <span class="new-content"@Html.Raw(item.NewsBody)></span>
                 </article> 
                 }
             </div>

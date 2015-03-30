@@ -32,5 +32,15 @@ namespace WorkWithKOTE.Controllers
         {
             return View(db.News.ToList());
         }
+        public ActionResult NewsDelete(int id = 0)
+        {
+           if(id != 0)
+           {
+               var data = db.News.Find(id);
+               db.Entry(data).State = EntityState.Deleted;
+               db.SaveChanges();
+           }
+           return RedirectToAction("NewsBlock","News");
+        }
     }
 }

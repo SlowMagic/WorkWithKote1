@@ -93,7 +93,7 @@
                 @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                 {
                     <a href='@Url.Action("TourEdit", "TourCreate", new {id = Model.TourForDisplay.TourId})' id="book-tour">Редактировать тур</a>
-
+                    <a href='@Url.Action("TourDelete","TourDisplay",new {id = Model.TourForDisplay.TourId})'id="book-tour">Удалить тур</a>
                 }
             </div>
         </div>

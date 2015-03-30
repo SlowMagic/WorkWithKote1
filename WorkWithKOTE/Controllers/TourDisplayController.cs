@@ -11,24 +11,18 @@ namespace WorkWithKOTE.Controllers
     {
         //
         // GET: /TourDisplay/
-       // TourContext db = new TourContext();
         UsersContext db = new UsersContext();
-        public ActionResult Index(int id=0)
+        public ActionResult Index(int id = 0)
         {
-           if(id != 0){
-               var data = new TourForDisplaing();
-               data.TourForDisplay = db.Tour.Find(id);
-               if(data.TourForDisplay.IsBus)
-             ViewBag.Message = "Автобус"; 
-            if(data.TourForDisplay.IsAriplane)
-             ViewBag.Message1 = "Авиалинии"; 
-            if (data.TourForDisplay.IsShip)
-             ViewBag.Message2 = "Лайнером";
-            data.DateForDisplay = db.DateTours.Where(m => m.TourId == id).ToList();
-            data.DopUslugForDisplay = db.DopUslugs.Where(m=>m.TourId==id).ToList();
-            data.TagForDisplay = db.Teg.Where(m=>m.TourId==id).ToList();
-            return View(data);
-           }
+            if (id != 0)
+            {
+                var data = new TourForDisplaing();
+                data.TourForDisplay = db.Tour.Find(id);
+                data.DateForDisplay = db.DateTours.Where(m => m.TourId == id).ToList();
+                data.DopUslugForDisplay = db.DopUslugs.Where(m => m.TourId == id).ToList();
+                data.TagForDisplay = db.Teg.Where(m => m.TourId == id).ToList();
+                return View(data);
+            }
             return View();//Добавить страницу ошибки
         }
         public ActionResult DatePartial(int id)
@@ -61,12 +55,32 @@ namespace WorkWithKOTE.Controllers
             if (file_name != null)
                 return File(file_path, extension, file_name);
             else
-                return RedirectToAction("Index",id);
+                return RedirectToAction("Index", id);
         }
-       public ActionResult MapForDisplay(int id)
+        public ActionResult MapForDisplay(int id)
         {
-            var data = db.RoutePoint.Where(m=>m.TourId == id);
+            var data = db.RoutePoint.Where(m => m.TourId == id);
             return PartialView(data);
+        }
+        public ActionResult TourDelete(int id = 0)
+        {
+            if(id != 0)
+            {
+                var model = db.Tour.Find(id);
+                var date = db.DateTours.Where(m => m.TourId == id);
+                var Tag = db.Teg.Where(m => m.TourId == id);
+                var Dopuslg = db.DopUslugs.Where(m=>m.TourId == id);
+                var MapPoint = db.RoutePoint.Where(m => m.TourId == id);
+                var Trip = db.Trip.Where(m=>m.TourId == id);
+                db.Entry(model).State = System.Data.EntityState.Deleted;
+                foreach (var item in date) { db.Entry(item).State = System.Data.EntityState.Deleted;}
+                foreach (var item in date) { db.Entry(item).State = System.Data.EntityState.Deleted; }
+                foreach (var item in date) { db.Entry(item).State = System.Data.EntityState.Deleted; }
+                foreach (var item in date) { db.Entry(item).State = System.Data.EntityState.Deleted; }
+                foreach (var item in date) { db.Entry(item).State = System.Data.EntityState.Deleted; }
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index","Home");
         }
     }
 }

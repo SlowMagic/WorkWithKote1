@@ -1120,9 +1120,6 @@
     <Content Include="Views\Home\DateForCurrentTour.cshtml" />
     <Content Include="Views\TourDisplay\Index.cshtml" />
     <Content Include="Views\TourCreate\TegPartialView.cshtml" />
-    <Content Include="Views\TourDisplay\DatePartial.cshtml" />
-    <Content Include="Views\TourDisplay\DopUsluga.cshtml" />
-    <Content Include="Views\TourDisplay\Teg.cshtml" />
     <Content Include="Views\Buy\Index.cshtml" />
     <Content Include="Views\Buy\DopPricePartial.cshtml" />
     <Content Include="Views\Account\RolesForUser.cshtml" />
