@@ -54,6 +54,7 @@ namespace WorkWithKOTE.Models
         [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Дата выдачи загран паспорта")]
         public DateTime? DateZagran { get; set; }
+        public string Sex { get; set; }
         public string Mobile { get; set; }
         public float? Bonus { get; set; }
         public string Avatar { get; set; } 
