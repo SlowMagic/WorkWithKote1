@@ -23,6 +23,7 @@ namespace WorkWithKOTE.Controllers
             ViewBag.TourStatusId = new SelectList(db.TourStatus, "TourStatusId", "TourStatusName");
             ViewBag.TypeOfTourId = new SelectList(db.TypeOfTours, "TypeOfTourId", "TypeOfTourName");
             ViewBag.SameTourId = new MultiSelectList(db.Tour, "TourId", "NameTour");
+            ViewBag.LogoId = new SelectList(db.BigLogos,"LogoId","LogoName");
             return View();
 
         }

@@ -14,7 +14,7 @@ namespace WorkWithKOTE.Models
             : base("DefaultConnection")
         {
         }
-
+        public DbSet<BigLogo> BigLogos { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Trip> Trip { get; set; }
         public DbSet<Tour> Tour { get; set; }

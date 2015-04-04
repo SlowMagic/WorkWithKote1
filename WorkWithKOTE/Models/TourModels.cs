@@ -79,6 +79,7 @@ namespace WorkWithKOTE.Models
        public IList<DateTour> DateTour { get; set; }
        public IList<DopUslug> DopUslug { get; set; }
        public int? GalleryID { get; set; }
+       public BigLogo LogoId { get; set; }
        public List<Trip> Trips { get; set; }
 
     }
@@ -192,5 +193,14 @@ namespace WorkWithKOTE.Models
         public int TourId { get; set; }
         public int SameTourID { get; set; }
         public string SameTourName { get; set; }
+    }
+    [Table("BigLogo")]
+    public class BigLogo
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int LogoId { get; set; }
+        public string LogoName { get; set; }
+        public string UrlImg { get; set; }
     }
 }
