@@ -2,20 +2,20 @@
     ViewBag.Title = "Тур";
 }
 @using WorkWithKOTE.Models
-@model  WorkWithKOTE.Models.TourForDisplaing
+@model  WorkWithKOTE.Models.Tour
 
 <div class="primaryContainer clearfix">
     @{ Html.RenderPartial("HeaderPartial_main");}
-    <div id="big-preview-img" class="clearfix" style="background: url('@Html.DisplayFor(m => m.TourForDisplay.TourImg)') no-repeat center 100%; background-size:100% 850px;">
-        <div class="tour-name">@Html.DisplayFor(m => m.TourForDisplay.NameTour)</div>
+    <div id="big-preview-img" class="clearfix" style="background: url('@Html.DisplayFor(m => m.TourImg)') no-repeat center 100%; background-size:100% 850px;">
+        <div class="tour-name">@Html.DisplayFor(m => m.NameTour)</div>
 
         <div class="bottom">
             <div class="align_center_to_left">
                 <div class="align_center_to_right">
                     <div class="short-description">
-                      @foreach (var item in Model.DateForDisplay) {   <p class="tour-date">@Html.DisplayFor(m=>item.FirstDate) - @Html.DisplayFor(m=>item.SecondDate)</p>}
+                      @foreach (var item in Model.DateTour) {   <p class="tour-date">@Html.DisplayFor(m=>item.FirstDate) - @Html.DisplayFor(m=>item.SecondDate)</p>}
 
-                        <p class="tour-destination">@Html.DisplayFor(m => m.TourForDisplay.PlaceOfDeparture) -> @Html.DisplayFor(m => m.TourForDisplay.PlaceOfArrival)</p>
+                        <p class="tour-destination">@Html.DisplayFor(m => m.PlaceOfDeparture) -> @Html.DisplayFor(m => m.PlaceOfArrival)</p>
                     </div>
                 </div>
             </div>
@@ -31,54 +31,54 @@
                 <p>Стоимость:</p>
 
                 <p>
-                    @if (Model.TourForDisplay.AukcionPrice != null)
+                    @if (Model.AukcionPrice != null)
                     {
-                        <span class="old-price">@Model.TourForDisplay.Cost @Model.TourForDisplay.Valuta</span> <span class="new-price">@Model.TourForDisplay.AukcionPrice @Model.TourForDisplay.Valuta</span>
+                        <span class="old-price">@Model.Cost @Model.Valuta</span> <span class="new-price">@Model.AukcionPrice @Model.Valuta</span>
                     }
-                    @Html.DisplayFor(m => m.TourForDisplay.PodpicePrice);
+                    @Html.DisplayFor(m => m.PodpicePrice);
                 </p>
 
                 @*                <p>Тип тура: <a href="">Семейный отдых</a>, <a href="">бизнес отдых</a></p>*@
-                @if (Model.TourForDisplay.Bonus != null)
+                @if (Model.Bonus != null)
                 {
                     <p>
-                        Бонус за тур :@Html.DisplayFor(m => m.TourForDisplay.Bonus)
+                        Бонус за тур :@Html.DisplayFor(m => m.Bonus)
                     </p>
                 }
                 <p>
                     Теги тура:
-                    @foreach (var item in Model.TagForDisplay)
+                    @foreach (var item in Model.Tag)
                     {@Html.DisplayFor(m => item.TagName)
                     }
                 </p>
                 <p>
                     Транспорт:
-                    @if (Model.TourForDisplay.IsTrain)
+                    @if (Model.IsTrain)
                     {
                         <img src="~/Content/img/t-train.png" style="display: inline-block; width: 25px; height: 25px;">
                     }
-                    @if (Model.TourForDisplay.IsShip)
+                    @if (Model.IsShip)
                     {
                         <img src="~/Content/img/t-ship.png" style="display: inline-block; width: 25px; height: 25px;">
                     }
-                    @if (Model.TourForDisplay.IsBus)
+                    @if (Model.IsBus)
                     {
                         <img src="~/Content/img/t-bus.png" style="display: inline-block; width: 25px; height: 25px;">
                     }
-                    @if (Model.TourForDisplay.IsAriplane)
+                    @if (Model.IsAriplane)
                     {
                         <img src="~/Content/img/t-plane.png" style="display: inline-block; width: 25px; height: 25px;">
                     }
                 </p>
 
                 <p>
-                    Дополнительные услги: @foreach (var item in Model.DopUslugForDisplay)
+                    Дополнительные услги: @foreach (var item in Model.DopUslug)
                     {
                         @Html.DisplayFor(m => item.Name) @:,
  }
                 </p>
 
-                <span>Количество участников:  @Html.DisplayFor(m => m.TourForDisplay.AllPeople) ( Уже едут: @Html.DisplayFor(m => m.TourForDisplay.People) )</span>
+                <span>Количество участников:  @Html.DisplayFor(m => m.AllPeople) ( Уже едут: @Html.DisplayFor(m => m.People) )</span>
             </div>
             <div class="right-column">
                 <p>Если у Вас есть вопросы,обратитесь к нашему консультанту:</p>
@@ -88,12 +88,12 @@
                 <p><a href="">Обратный звонок</a></p>
             </div>
             <div class="buttons">
-                <a href="@Url.Action("Index", "Buy", new { id = Model.TourForDisplay.TourId })" id="book-and-pay">Бронь и оплата</a>
+                <a href="@Url.Action("Index", "Buy", new { id = Model.TourId })" id="book-and-pay">Бронь и оплата</a>
                 @*                <a href="#" id="book-tour">Предварительная бронь</a>*@
                 @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                 {
-                    <a href='@Url.Action("TourEdit", "TourCreate", new {id = Model.TourForDisplay.TourId})' id="book-tour">Редактировать тур</a>
-                    <a href='@Url.Action("TourDelete","TourDisplay",new {id = Model.TourForDisplay.TourId})'id="book-tour">Удалить тур</a>
+                    <a href='@Url.Action("TourEdit", "TourCreate", new {id = Model.TourId})' id="book-tour">Редактировать тур</a>
+                    <a href='@Url.Action("TourDelete","TourDisplay",new {id = Model.TourId})'id="book-tour">Удалить тур</a>
                 }
             </div>
         </div>
@@ -102,12 +102,12 @@
 
                 <div class="guide">
                     <h4>Сопровождающий</h4>
-                    <img src="@Html.DisplayFor(m => m.TourForDisplay.SuppFoto)" class="img-photo guide-photo">
+                    <img src="@Html.DisplayFor(m => m.SuppFoto)" class="img-photo guide-photo">
 
-                    <div class="person-name"><a href="@Html.DisplayFor(m => m.TourForDisplay.SuppVkontakte)">@Html.DisplayFor(m => m.TourForDisplay.SuppName)</a></div>
+                    <div class="person-name"><a href="@Html.DisplayFor(m => m.SuppVkontakte)">@Html.DisplayFor(m => m.SuppName)</a></div>
                     @*                    <div class="position">Директор туристического оператора КОТЕ</div>*@
                     <div class="about-person">
-                        @Html.DisplayFor(m => m.TourForDisplay.SuppDiscription)
+                        @Html.DisplayFor(m => m.SuppDiscription)
                     </div>
                 </div>
 
@@ -120,17 +120,20 @@
                         <a href="#"><img src="~/Content/img/10942586.jpg" class="tourist"></a>
                         <a href="#"><img src="~/Content/img/10942586.jpg" class="tourist"></a>
                     </div>
-
+                 @if (Model.SameTour != null) { 
                     <div class="similar-tour">
                         <p>Похожие туры:</p>
-                        <a href="#">Летний отдых в Батуми</a>
-                        <a href="#">Грузинские приключения</a>
+                        @foreach(SameTour item in Model.SameTour)
+                        { 
+                             @Html.ActionLink(item.SameTourName, "Index", "TourDisplay", new { id = item.SameTourID},null)
+                        }
                     </div>
+                 }
                     <div class="">
                         <p>Поделиться:</p>
                     </div>
                     <ul>
-                        @foreach (var item in Model.TagForDisplay)
+                        @foreach (var item in Model.Tag)
                         {
                             <li>@Html.DisplayFor(m => item.TagName)</li>
                         }
@@ -140,10 +143,10 @@
             </div>
             <div class="full-description">
                 <h1>Программа тура:</h1>
-                @Html.Raw(Model.TourForDisplay.DescriptionTour)
+                @Html.Raw(Model.DescriptionTour)
                 <div id="map_canvas" style="width: 90%; height: 300px">
                     <h1>Карта путешествия:</h1>
-                    @{Html.RenderAction("MapForDisplay", new { id = Model.TourForDisplay.TourId });}
+                    @{Html.RenderAction("MapForDisplay", new { id = Model.TourId });}
                 </div>
             </div>
         </div>

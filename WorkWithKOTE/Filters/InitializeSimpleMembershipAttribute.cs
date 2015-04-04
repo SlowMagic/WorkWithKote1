@@ -37,6 +37,8 @@ namespace WorkWithKOTE.Filters
                             // Create the SimpleMembership database without Entity Framework migration schema
                            
                           ((IObjectContextAdapter)context).ObjectContext.CreateDatabase();
+                          DefaultValueForTour.DefaultValueForTourStatus();
+                          DefaultValueForTour.DefaultValueForTourTypeOfTour();
                            // Database.SetInitializer<UsersContext>(new TourInitialization());
                             
                         }
@@ -65,8 +67,6 @@ namespace WorkWithKOTE.Filters
                 // Если у пользователя admin нет роли admin, присваиваем ему эту роль
                 if (!roles.IsUserInRole("LevitskiyOrange@gmail.com", "Admin"))
                     roles.AddUsersToRoles(new[] { "LevitskiyOrange@gmail.com" }, new[] { "Admin" });
-                var TourDefault = new TourInitialization();
-//                TourDefault.Seed();
             }
 
         }

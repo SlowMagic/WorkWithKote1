@@ -18,12 +18,8 @@
                 Название @Html.TextBoxFor(m => m.NameTour)
                 @Html.ValidationMessageFor(model => model.NameTour)
                 Заголовок @Html.TextBoxFor(m => m.TitleTour) <br/>
-                Выберите тип тура: @Html.DropDownListFor(m => m.TypeOfTour, new List<SelectListItem>() {new SelectListItem {Text = "Туры по Украине"}, new SelectListItem {Text = "Туры в Грузию"}, new SelectListItem {Text = "Приключенческие туры"}})
-                Cтатус тура : @Html.DropDownListFor(m => m.TourStatus, new List<SelectListItem>()
-                              {
-                                  new SelectListItem {Text = "Активный"}, new SelectListItem {Text = "Неактивный"}, new SelectListItem {Text = "Превью главной"},
-                                  new SelectListItem {Text = "Превью блока"}, new SelectListItem {Text = "Рекомендуемый"}
-                              })
+                Выберите тип тура: @Html.DropDownList("TypeOfTourId")
+                Cтатус тура : @Html.DropDownList("TourStatusId")
                 Описание:
                 @Html.TextAreaFor(m => m.DescriptionTour)<br/>
                 Выезд из @Html.TextBoxFor(m => m.PlaceOfDeparture)<br/>
@@ -39,7 +35,6 @@
                 @Html.TextBoxFor(m => m.Reservation, new {style = "visibility:hidden", id = "Reservation"})<br/>
                 @*    @Html.EditorFor(m => m.DateTour, "DateTour")*@
                 @Html.Partial("DateTourPartial")
-                @Url.
                 <br/>
                 Виды Транспорта :<br/>
                 Автобус @Html.CheckBoxFor(m => m.IsBus)<br/>
@@ -80,6 +75,7 @@
                 <input type="checkbox" id="Bonus" onclick=" valid3() "/>
                 @Html.TextBoxFor(m => m.Bonus, new {style = "visibility:hidden", id = "BonusText"})<br/>
                 @Html.Partial("TegPartialView")<br/>
+                @Html.ListBox("SameTours",(MultiSelectList)ViewBag.SameTourId)
                 <input type="submit" value="Создать Тур"/>
                 <div id="route-points"></div>
             </div>

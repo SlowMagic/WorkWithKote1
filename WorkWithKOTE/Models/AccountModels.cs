@@ -24,6 +24,8 @@ namespace WorkWithKOTE.Models
         public DbSet<Gallery> Gallery { get; set; }
         public DbSet<RoutePoint> RoutePoint { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<TourStatus> TourStatus { get; set; }
+        public DbSet<TypeOfTour> TypeOfTours { get; set; }
     }
 
     [Table("UserProfiles")]
@@ -56,7 +58,8 @@ namespace WorkWithKOTE.Models
         public DateTime? DateZagran { get; set; }
         public string Mobile { get; set; }
         public float? Bonus { get; set; }
-        public string Avatar { get; set; } 
+        public string Avatar { get; set; }
+        public string Sex { get; set; }
         public List<Trip> Trips { get; set; } 
     }
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WorkWithKOTE.Models;
+using System.Data.Entity;
 namespace WorkWithKOTE.Controllers
 {
     public class TourDisplayController : Controller
@@ -16,35 +17,10 @@ namespace WorkWithKOTE.Controllers
         {
             if (id != 0)
             {
-                var data = new TourForDisplaing();
-                data.TourForDisplay = db.Tour.Find(id);
-                data.DateForDisplay = db.DateTours.Where(m => m.TourId == id).ToList();
-                data.DopUslugForDisplay = db.DopUslugs.Where(m => m.TourId == id).ToList();
-                data.TagForDisplay = db.Teg.Where(m => m.TourId == id).ToList();
-                return View(data);
+                var data = db.Tour.Include(m=>m.DopUslug).Include(m => m.DateTour).Include(m => m.RoutePoints).Include(m => m.Tag).Include(m => m.Trips).Include(m=>m.SameTour).Where(m => m.TourId == id).FirstOrDefault();
+                    return View(data);
             }
             return View();//Добавить страницу ошибки
-        }
-        public ActionResult DatePartial(int id)
-        {
-
-            var date = db.DateTours.Where(m => m.TourId == id);
-
-            return PartialView(date);
-        }
-        public ActionResult DopUsluga(int id)
-        {
-
-            var date = db.DopUslugs.Where(m => m.TourId == id);
-
-            return PartialView(date);
-        }
-        public ActionResult Teg(int id)
-        {
-
-            var date = db.Teg.Where(m => m.TourId == id);
-            string file_path = Server.MapPath("~/Files/PDFIcon.pdf");
-            return PartialView(date);
         }
         public ActionResult FileDownload(int id)
         {
@@ -67,17 +43,7 @@ namespace WorkWithKOTE.Controllers
             if(id != 0)
             {
                 var model = db.Tour.Find(id);
-                var date = db.DateTours.Where(m => m.TourId == id);
-                var Tag = db.Teg.Where(m => m.TourId == id);
-                var Dopuslg = db.DopUslugs.Where(m=>m.TourId == id);
-                var MapPoint = db.RoutePoint.Where(m => m.TourId == id);
-                var Trip = db.Trip.Where(m=>m.TourId == id);
-                db.Entry(model).State = System.Data.EntityState.Deleted;
-                foreach (var item in date) { db.Entry(item).State = System.Data.EntityState.Deleted;}
-                foreach (var item in date) { db.Entry(item).State = System.Data.EntityState.Deleted; }
-                foreach (var item in date) { db.Entry(item).State = System.Data.EntityState.Deleted; }
-                foreach (var item in date) { db.Entry(item).State = System.Data.EntityState.Deleted; }
-                foreach (var item in date) { db.Entry(item).State = System.Data.EntityState.Deleted; }
+                db.Tour.Remove(model);
                 db.SaveChanges();
             }
             return RedirectToAction("Index","Home");

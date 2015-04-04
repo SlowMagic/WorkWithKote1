@@ -44,12 +44,20 @@
         addMarker();
         for (var k = 0; k <= arryLat.length ; k++) {
              PathForPoly.push( new google.maps.LatLng(arryLat[k], arryLng[k]));
-            };
+        };
+        var lineSymbol = {
+            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+        }
         var polyOptions = {
             path: PathForPoly,
             strokeColor: '#000000',
             strokeOpacity: 1.0,
-            strokeWeight: 3
+            strokeWeight: 3,
+            icons: [{
+                icon: lineSymbol,
+                offset: '10%',
+                repeat: '100px'
+            }]
         }
         poly = new google.maps.Polyline(polyOptions);
         poly.setMap(map);

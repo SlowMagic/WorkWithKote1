@@ -32,6 +32,7 @@ namespace WorkWithKOTE.Models
         public string email { get; set; }
         public int DateTourId { get; set; }
         public string Valuta { get; set; }
+        public float? Bonus { get; set; }
         public float? BonusPay { get; set; }
         public int UserId { get; set; }
         public int TourId { get; set; }
@@ -57,8 +58,8 @@ namespace WorkWithKOTE.Models
        public bool IsTrain { get; set; }
        public string PlaceOfDeparture { get; set; }
        public string PlaceOfArrival { get; set; }
-       public string TourStatus { get; set; }
-       public string TypeOfTour { get; set; }
+       public int  TourStatusId { get; set; }
+       public int   TypeOfTourId { get; set; }
        public string PodpicePrice { get; set; }
        public decimal? AukcionPrice { get; set; }
        public string KommisiaAgent { get; set; } 
@@ -70,7 +71,7 @@ namespace WorkWithKOTE.Models
        public int? People { get; set; }
        public int? AllPeople { get; set; }
        public string TourImg { get; set; }
-       public string PohozTour { get; set; }
+       public List<SameTour> SameTour { get; set; }
        public string Document { get; set; }
        public float? Bonus { get; set; }
        public IList<Tag> Tag { get; set; }
@@ -159,23 +160,37 @@ namespace WorkWithKOTE.Models
         [Required(ErrorMessage = "Поле должно быть установлено")]
         public DateTime NewsDate { get; set; }
     }
-    public class TourForEdit
+    [Table ("TourStatus")]
+    public class TourStatus
     {
-        public Tour MyTour { get; set; }
-        public List<DateTour> TourDate { get; set; }
-        public List<DopUslug> TourDopUsluga { get; set; }
-        public List<Tag> TourTag { get; set; }
-        public List<DateTour> Date { get; set; }
-        public List<DopUslug> DopU { get; set; }
-        public List<Tag> TagTour { get; set; }
-        public List<RoutePoint> RoutPointTour { get; set; }
-        public List<RoutePoint> RoutPoints { get; set; }
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int TourStatusId { get; set; }
+        public string TourStatusName { get; set; }
     }
-    public class TourForDisplaing
+    public class TypeOfTour
     {
-        public Tour TourForDisplay { get; set; }
-        public List<DateTour> DateForDisplay { get; set; }
-        public List<DopUslug> DopUslugForDisplay { get; set; }
-        public List<Tag> TagForDisplay { get; set; }
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int TypeOfTourId { get; set; }
+        public string TypeOfTourName { get; set; }
+
+    }
+ 
+    public class BuyTour
+    {
+        public List<bool> cheked { get; set; }
+        public List<DopUslug> Uslugi { get; set; }
+        public Trip Trips { get; set; }
+    }
+    [Table("SameTour")]
+    public class SameTour
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
+        public int TourId { get; set; }
+        public int SameTourID { get; set; }
+        public string SameTourName { get; set; }
     }
 }
