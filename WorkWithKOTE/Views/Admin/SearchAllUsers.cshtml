@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "SearchAllUsers";
+}
+@model IEnumerable<WorkWithKOTE.Models.UserProfile>
+<h2>SearchAllUsers</h2>
+<form method="post" action="@Url.Action("SearchAllUsers")">
+    Введите Email пользователя @Html.TextBox("mail") <br />
+    Введите Имя пользователя @Html.TextBox("name")<br />
+    Введите Фамилию пользователя @Html.TextBox("surname")<br />
+    Введите возраст пользователя @Html.TextBox("age")<br />
+    Выберите пол пользователя @Html.DropDownList("sex", new List<SelectListItem> { new SelectListItem { Text = "Мужской" }, new SelectListItem { Text = "Женский" } }, "Любой пол")<br />
+    @{int i = 0; }
+    @foreach (var item in Model)
+    {
+        @Html.DisplayFor(m => item.Email) @: Имя : @Html.DisplayFor(m => item.RuFirstName)  Фамилия : @Html.DisplayFor(m => item.RuSecondName) Дата рождения @Html.DisplayFor(m => item.Birthday) Бонусы :@Html.DisplayFor(m => item.Bonus)
+        <input type="button" value="Назначить мадоретором" onclick="location.href='@Url.Action("RolesForUser", "Admin", new { moder = @item.Email })'" />
+        @:Введите количество бонусов
+        <input type="text" id="BonusAmt+@i" name="BonusAmt" />
+        <input type="button" value="Отправить бонусы" id="Bonus" />
+        <script type="text/javascript">
+            $('#Bonus').click(function () {
+                var amtBonus = document.getElementById("BonusAmt+" + "@i").value;
+                location.href = '@Url.Action("BonusForUser", "Admin", new {id= item.UserId})' + "?amtBonus=" + amtBonus;
+            });
+        </script>
+        i++;
+        <hr />
+    }
+    <input type="submit" value="Поиск" />
+</form>

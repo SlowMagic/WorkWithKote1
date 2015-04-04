@@ -23,7 +23,7 @@ namespace WorkWithKOTE.Controllers
         [HttpPost]
         public ActionResult SearchAllUsers(string mail = null, string name = null, string surname = null, string age = null, string sex = null)
         {
-            IQueryable<UserProfile> data = db.UserProfiles ;
+            IQueryable<UserProfile> data = db.UserProfiles;
             if (!String.IsNullOrEmpty(mail))
                 data = data.Where(m => m.Email == mail);
             if (!String.IsNullOrEmpty(name))
@@ -66,7 +66,7 @@ namespace WorkWithKOTE.Controllers
                 user.Bonus = amtBonus;
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
-             return RedirectToAction("SearchAllUsers", "Admin");
+            return RedirectToAction("SearchAllUsers", "Admin");
         }
     }
 }

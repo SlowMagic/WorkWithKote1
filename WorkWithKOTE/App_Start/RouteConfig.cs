@@ -15,9 +15,13 @@ namespace WorkWithKOTE
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
+                url: "{controller}/{action}/{id}/{*catchall}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "Admin",
+                url: "{controller}/{action}/{id}/{name}"
+                );
         }
     }
 }

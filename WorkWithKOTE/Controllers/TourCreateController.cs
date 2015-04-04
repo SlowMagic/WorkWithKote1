@@ -7,6 +7,7 @@ using WorkWithKOTE.Models;
 using System.Data;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Data.Entity;
 namespace WorkWithKOTE.Controllers
 {
     public class TourCreateController : Controller
@@ -19,13 +20,26 @@ namespace WorkWithKOTE.Controllers
         public ActionResult TourCreate()
         {
             ViewBag.GalleryID = new SelectList(db.Gallery, "GalleryId", "GalleryName");
+            ViewBag.TourStatusId = new SelectList(db.TourStatus, "TourStatusId", "TourStatusName");
+            ViewBag.TypeOfTourId = new SelectList(db.TypeOfTours, "TypeOfTourId", "TypeOfTourName");
+            ViewBag.SameTourId = new MultiSelectList(db.Tour, "TourId", "NameTour");
+            ViewBag.LogoId = new SelectList(db.BigLogos,"LogoId","LogoName");
             return View();
 
         }
         [HttpPost]
 
-        public ActionResult TourCreate(Tour model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp)
+        public ActionResult TourCreate(List<int>SameTours,Tour model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp)
         {
+            if (SameTours != null)
+            {
+                model.SameTour = new List<SameTour>();
+                foreach (int item in SameTours)
+                {
+                    var d = db.Tour.Find(item);
+                    model.SameTour.Add(new SameTour { SameTourID = d.TourId, SameTourName = d.NameTour });
+                }
+            }
             string check = UploadImg(TourImg, "/UpLoad/TourImg/");
 
             if (check != null)
@@ -45,75 +59,47 @@ namespace WorkWithKOTE.Controllers
         }
         public ActionResult TourEdit(int id = 0)
         {
-            var data = new TourForEdit();
-            data.MyTour = db.Tour.Find(id);
-            data.TourDate = db.DateTours.Where(m => m.TourId == id).ToList();
-            data.TourDopUsluga = db.DopUslugs.Where(m => m.TourId == id).ToList();
-            data.TourTag = db.Teg.Where(m => m.TourId == id).ToList();
-            data.RoutPointTour = db.RoutePoint.Where(m => m.TourId == id).ToList();
+            ViewBag.TourStatusId = new SelectList(db.TourStatus, "TourStatusId", "TourStatusName");
             ViewBag.GalleryID = new SelectList(db.Gallery, "GalleryId", "GalleryName");
+            ViewBag.TypeOfTourId = new SelectList(db.TypeOfTours, "TypeOfTourId", "TypeOfTourName");
+            ViewBag.SameTourId = new MultiSelectList(db.Tour, "TourId", "NameTour");
+            var data = db.Tour.Include(m => m.DopUslug).Include(m => m.DateTour).Include(m => m.RoutePoints).Include(m=>m.Tag).Where(m => m.TourId == id).FirstOrDefault();
+            ViewBag.Id = id;
             return View(data);
         }
         [HttpPost]
-        public ActionResult TourEdit(TourForEdit model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp)
+        public ActionResult TourEdit(List<int>SameTours,Tour model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp)
         {
-                foreach (var item in model.RoutPointTour)
+            if (SameTours != null)
+            {
+                model.SameTour = new List<SameTour>();
+                foreach (int item in SameTours)
                 {
-                    if (item.Lat == 0.0 && item.Lng == 0.0)
-                        db.Entry(item).State = EntityState.Deleted;
+                    var d = db.Tour.Find(item);
+                    model.SameTour.Add(new SameTour { SameTourID = d.TourId, SameTourName = d.NameTour });
                 }
-            if(model.RoutPoints !=null)
-                foreach(var item in model.RoutPoints)
-                {
-                    item.TourId = model.MyTour.TourId;
-                    db.Entry(item).State = EntityState.Added;
-                }
-            if (model.TourDate != null)
-                foreach (var item in model.TourDate)
-                {
-                    item.TourId = model.MyTour.TourId;
-                    db.Entry(item).State = EntityState.Modified;
-                }
-            if (model.TourTag != null)
-                foreach (var item in model.TourTag)
-                {
-                    item.TourId = model.MyTour.TourId;
-                    db.Entry(item).State = EntityState.Modified;
-                }
-            if (model.TourDopUsluga != null)
-                foreach (var item in model.TourDopUsluga)
-                {
-                    item.TourId = model.MyTour.TourId;
-                    db.Entry(item).State = EntityState.Modified;
-                }
-            if (model.Date != null)
-                foreach (var item in model.Date)
-                {
-                    db.Entry(item).State = EntityState.Added;
-                }
-            if (model.DopU != null)
-                foreach (var item in model.DopU)
-                {
-                    db.Entry(item).State = EntityState.Added;
-                }
-            if (model.TagTour != null)
-                foreach (var item in model.TagTour)
-                {
-                    db.Entry(item).State = EntityState.Added;
-                }
-            string check = UploadImg(TourImg, "/UpLoad/TourImg/");
+            }
+            var OldTour = db.Tour.Find(model.TourId);
+            model.Trips = new List<Trip>();
+            var OldTrip = db.Trip.Where(m => m.TourId == model.TourId);
+            foreach(var item in OldTrip)
+            {
+                model.Trips.Add(item);
+            }
+            string check = UploadImg(TourImg, "/UpLoad/TourImg/"); 
             if (check != null)
-                model.MyTour.TourImg = check;
+                model.TourImg = check;
             check = UploadImg(AvatarSupp, "/UpLoad/SuppFoto/");
             if (check != null)
-                model.MyTour.SuppFoto = check;
-            model.MyTour.DescriptionTour = Regex.Replace(model.MyTour.DescriptionTour, "<script.*?</script>", "", RegexOptions.IgnoreCase);
+                model.SuppFoto = check;
+            model.DescriptionTour = Regex.Replace(model.DescriptionTour, "<script.*?</script>", "", RegexOptions.IgnoreCase);
             if (Document != null)
             {
                 Document.SaveAs(Server.MapPath("/UpLoad/TourDocument/" + Document.FileName));
-                model.MyTour.Document = "/UpLoad/TourDocument/" + Document.FileName;
+                model.Document = "/UpLoad/TourDocument/" + Document.FileName;
             }
-            db.Entry(model.MyTour).State = EntityState.Modified;
+            db.Entry(model).State = EntityState.Added;
+            db.Tour.Remove(OldTour);
             db.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
