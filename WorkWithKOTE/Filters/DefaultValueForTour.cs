@@ -35,7 +35,17 @@ namespace WorkWithKOTE.Filters
 
                 db.SaveChanges();
             }
-        }
-       
+        } 
+       public static void DefaultValueForBigLogo()
+        {
+            UsersContext db = new UsersContext();
+            var BigLogo = db.BigLogos.ToList();
+           if(BigLogo.Count == 0)
+           {
+               db.BigLogos.Add(new BigLogo { LogoName = "Красный логотип", UrlImg = "/Content/img/small-logo-red.png" });
+               db.BigLogos.Add(new BigLogo { LogoName = "Белый логотип", UrlImg = "/Content/img/small-logo.png" });
+           }
+           db.SaveChanges();
+       }
     }
 }

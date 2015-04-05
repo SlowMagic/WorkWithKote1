@@ -23,7 +23,7 @@ namespace WorkWithKOTE.Controllers
                 .SelectMany(m => m.DateTour)
                 .Where(m => m.FirstDate >= DateTime.Now);
             DateTime? min = date.Min(dt=> (DateTime?)dt.FirstDate);
-            var data = db.Tour.Where(m => m.DateTour.Any(dt => dt.FirstDate == min)).FirstOrDefault();
+            var data = db.Tour.Include(m=>m.BigLogo).Where(m => m.DateTour.Any(dt => dt.FirstDate == min)).FirstOrDefault();
             return data;
         }
         protected List<Tour> TourList(int tourStatusId, int typeofTourId)
@@ -33,18 +33,28 @@ namespace WorkWithKOTE.Controllers
                .SelectMany(m => m.DateTour)
                .Where(m => m.FirstDate >= DateTime.Now)
                .OrderBy(m=>m.FirstDate).ToList();
-            List<Tour> data  = new List<Tour>(); 
+               List<Tour> data  = new List<Tour>();
+               List<Tour> data1 = new List<Tour>();
            foreach(var Item in date)
            {
                var dataItem = db.Tour.Where(m => m.DateTour.Any(dt => dt.FirstDate == Item.FirstDate) && m.TourStatusId == tourStatusId && m.TypeOfTourId == typeofTourId).First();
                data.Add(dataItem);
            }
-           data = data.ToList();
-            //  DateTime? min = date.Min(dt=> (DateTime?)dt.FirstDate);
-           // var data = db.Tour.Where(m => m.DateTour.Any(dt => dt.FirstDate >= min) && m.TourStatusId == tourStatusId && m.TypeOfTourId == typeofTourId)
-             //   .Include(m=>m.DateTour)
-             //   .ToList();
-            return data;
+           if(data.Count != 0)
+           for (int i = 0; i < data.Count; i++ )
+           {
+               int k = data.Last().TourId;
+               if (data[i].TourId != k)
+               {
+                   if (data[i].TourId != data[i].TourId)
+                       data1.Add(data[i]);
+               }
+               else if(data[i].TourId != data[0].TourId)
+                   data1.Add(data[i]);
+               else if(i == 0)
+                   data1.Add(data[i]);
+           }
+               return data1;
         }
         public ActionResult Index()
         {

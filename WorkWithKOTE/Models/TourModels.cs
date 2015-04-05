@@ -59,7 +59,9 @@ namespace WorkWithKOTE.Models
        public string PlaceOfDeparture { get; set; }
        public string PlaceOfArrival { get; set; }
        public int  TourStatusId { get; set; }
+       public TourStatus TourStatus { get; set; }
        public int   TypeOfTourId { get; set; }
+       public TypeOfTour TypeOfTour { get; set; }
        public string PodpicePrice { get; set; }
        public decimal? AukcionPrice { get; set; }
        public string KommisiaAgent { get; set; } 
@@ -79,7 +81,8 @@ namespace WorkWithKOTE.Models
        public IList<DateTour> DateTour { get; set; }
        public IList<DopUslug> DopUslug { get; set; }
        public int? GalleryID { get; set; }
-       public BigLogo LogoId { get; set; }
+       public int LogoId { get; set; }
+       public BigLogo BigLogo { get; set; }
        public List<Trip> Trips { get; set; }
 
     }
@@ -105,6 +108,7 @@ namespace WorkWithKOTE.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int DateTourId { get; set; }
         public int TourId { get; set; }
+        public Tour Tour { get; set; }
         [Required(ErrorMessage = "Поле должно быть установлено")]
         [DataType (DataType.Date)]
         [DisplayFormat(DataFormatString="{0:dd'.'MM'.'yyyy}",ApplyFormatInEditMode=true)]
@@ -191,6 +195,7 @@ namespace WorkWithKOTE.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
         public int TourId { get; set; }
+        public Tour Tour { get; set; }
         public int SameTourID { get; set; }
         public string SameTourName { get; set; }
     }
