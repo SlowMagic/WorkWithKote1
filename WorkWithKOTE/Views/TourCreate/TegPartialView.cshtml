@@ -1,20 +1,31 @@
 ﻿<div id="tag-pannel">
     <div class="teg">
-         Тег тура №1 :
+         Тег тура  :
         <input type="text" name="Tag[0].TagName" /><br />
     </div>
 </div>
-<p><a class="addTeg">Добавить новый элемент</a></p>
+<p>
+    <input type="button" class="addTeg" value=" + ">
+    <input type="button" class="deleteLinkTag" value="-" />
+</p>
 <script>
+    var l = 1;
     $(function () {
-        var i = 0;
         $('.addTeg').click(function () {
-            i++;
-            var html2Addss = "<div class='tag'>" +
-          "<h4>Тег тура №"+ (i + 1) + "</h4>" +
-                 "<input type='text' name='Tag[" + i + "].TagName' /><br/>" +
+            var html2Addss = "<div class='tag"+ l +"'>" +
+          "<h4>Тег тура №" + "</h4>" +
+                 "<input type='text' name='Tag[" + l + "].TagName' /><br/>" +
              "</div>";
             $('#tag-pannel').append(html2Addss);
+            l++;
         })
-    })
+    });
+    $(function () {
+        $('.deleteLinkTag').click(function () {
+            var count = l - 1;
+            $('.tag' + count).remove();
+            if (l != 0)
+            l--
+        })
+    });
 </script>

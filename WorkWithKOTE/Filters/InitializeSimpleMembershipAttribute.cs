@@ -39,6 +39,7 @@ namespace WorkWithKOTE.Filters
                           ((IObjectContextAdapter)context).ObjectContext.CreateDatabase();
                           DefaultValueForTour.DefaultValueForTourStatus();
                           DefaultValueForTour.DefaultValueForTourTypeOfTour();
+                          DefaultValueForTour.DefaultValueForBigLogo();
                            // Database.SetInitializer<UsersContext>(new TourInitialization());
                             
                         }

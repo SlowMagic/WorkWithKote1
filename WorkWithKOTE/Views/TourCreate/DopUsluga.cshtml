@@ -1,24 +1,33 @@
 ﻿<div id="dopusluga-pannel">
     <div class="dopusluga">
-      Дополнительные услуга тура №1 :
+      Дополнительные услуга тура  :
         <input type="text" name="DopUslug[0].Name"/><br/>
-        Цена Дополнительной услуги №1:
+        Цена Дополнительной услуги:
         <input type="text" name="DopUslug[0].Price"/><br/>
     </div>
 </div>
-<p><input type="button" class="addUslug" value=" + " ></p>
+<p><input type="button" class="addUslug" value=" + " >
+    <input type="button" class="deleteLinkUslugi" value="-" /></p>
 <script>
+    var k = 1;
     $(function () {
-        var i = 0;
         $('.addUslug').click(function () {
-            i++;
-            var html2Adds = "<div class='dopusluga'>" +
-         "<h4>Дополнительная услуга тура №" + (i + 1) + "</h4>" +
-                 "<input type='text' name='DopUslug[" + i + "].Name' /><br/>" +
-                 "<h4>Цена Дополнительной услуги №" + (i + 1) + "</h4>" +
-                 "<input type='text' name='DopUslug[" + i + "].Price' />" +
+            var html2Adds = "<div id='dopusluga" + k + "'>" +
+         "<h4>Дополнительная услуга тура "  + "</h4>" +
+                 "<input type='text' name='DopUslug[" + k + "].Name' /><br/>" +
+                 "<h4>Цена Дополнительной услуги "  + "</h4>" +
+                 "<input type='text' name='DopUslug[" + k + "].Price' />" +
              "</div>";
             $('#dopusluga-pannel').append(html2Adds);
+            k++;
         })
-    })
+    });
+    $(function () {
+        $('.deleteLinkUslugi').click(function () {
+            var count = k - 1;
+            $('#dopusluga' + count).remove();
+            if(k != 1)
+            k--
+        })
+    });
 </script>

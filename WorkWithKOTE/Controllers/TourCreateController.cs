@@ -63,6 +63,7 @@ namespace WorkWithKOTE.Controllers
             ViewBag.GalleryID = new SelectList(db.Gallery, "GalleryId", "GalleryName");
             ViewBag.TypeOfTourId = new SelectList(db.TypeOfTours, "TypeOfTourId", "TypeOfTourName");
             ViewBag.SameTourId = new MultiSelectList(db.Tour, "TourId", "NameTour");
+            ViewBag.LogoId = new SelectList(db.BigLogos, "LogoId", "LogoName");
             var data = db.Tour.Include(m => m.DopUslug).Include(m => m.DateTour).Include(m => m.RoutePoints).Include(m=>m.Tag).Where(m => m.TourId == id).FirstOrDefault();
             ViewBag.Id = id;
             return View(data);

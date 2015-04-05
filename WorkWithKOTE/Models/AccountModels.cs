@@ -60,7 +60,6 @@ namespace WorkWithKOTE.Models
         public string Mobile { get; set; }
         public float? Bonus { get; set; }
         public string Avatar { get; set; }
-        public string Sex { get; set; }
         public List<Trip> Trips { get; set; } 
     }
 
@@ -68,6 +67,7 @@ namespace WorkWithKOTE.Models
     {
         [Required]
         [Display(Name = "Email")]
+        [RegularExpression(@"^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$", ErrorMessage = "Номер введён неверно.")]
         public string Email { get; set; }
 
         public string ExternalLoginData { get; set; }
