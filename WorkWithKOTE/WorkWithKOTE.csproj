@@ -181,8 +181,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Code\DropDown.cs" />
     <Compile Include="Code\VKontakteAuthenticationClient.cs.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BuyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -190,8 +192,8 @@
     <Compile Include="Controllers\TourCreateController.cs" />
     <Compile Include="Controllers\TourDisplayController.cs" />
     <Compile Include="Controllers\TourSearchController.cs" />
+    <Compile Include="Filters\DefaultValueForTour.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
-    <Compile Include="Filters\TourInitialization.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1122,7 +1124,6 @@
     <Content Include="Views\TourCreate\TegPartialView.cshtml" />
     <Content Include="Views\Buy\Index.cshtml" />
     <Content Include="Views\Buy\DopPricePartial.cshtml" />
-    <Content Include="Views\Account\RolesForUser.cshtml" />
     <Content Include="Views\TourCreate\MapPartial.cshtml" />
     <Content Include="Views\Shared\HeaderPartial.cshtml" />
     <Content Include="Views\TourSearch\Search.cshtml" />
@@ -1134,6 +1135,7 @@
     <Content Include="Views\TourCreate\TourEdit.cshtml" />
     <Content Include="Views\News\NewsBlock.cshtml" />
     <Content Include="Views\Shared\HeaderPartial_main.cshtml" />
+    <Content Include="Views\Admin\SearchAllUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

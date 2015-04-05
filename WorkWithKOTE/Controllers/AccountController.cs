@@ -19,30 +19,6 @@ namespace WorkWithKOTE.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
-        [Authorize(Roles = "Admin")]
-        public ActionResult RolesForUser()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult RolesForUser(string moder)
-        {
-            var roles = (SimpleRoleProvider)Roles.Provider;
-            var membership = (SimpleMembershipProvider)Membership.Provider;
-            if (!roles.RoleExists("Moderator"))
-                roles.CreateRole("Moderator");
-            if (moder != null)
-            {
-                if (membership.GetUser(moder, false) == null)
-                {
-                    ViewBag.Message = "Такой почтовый ящик не зарегестрирован";
-                    return View();
-                }
-            }
-            if (!roles.IsUserInRole(moder, "Moderator"))
-                roles.AddUsersToRoles(new[] { moder }, new[] { "Moderator" });
-            return RedirectToAction("Profile","Profile");
-        }
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {

@@ -14,7 +14,7 @@ namespace WorkWithKOTE.Models
             : base("DefaultConnection")
         {
         }
-
+        public DbSet<BigLogo> BigLogos { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Trip> Trip { get; set; }
         public DbSet<Tour> Tour { get; set; }
@@ -24,6 +24,8 @@ namespace WorkWithKOTE.Models
         public DbSet<Gallery> Gallery { get; set; }
         public DbSet<RoutePoint> RoutePoint { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<TourStatus> TourStatus { get; set; }
+        public DbSet<TypeOfTour> TypeOfTours { get; set; }
     }
 
     [Table("UserProfiles")]
@@ -54,9 +56,11 @@ namespace WorkWithKOTE.Models
         [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Дата выдачи загран паспорта")]
         public DateTime? DateZagran { get; set; }
+        public string Sex { get; set; }
         public string Mobile { get; set; }
         public float? Bonus { get; set; }
-        public string Avatar { get; set; } 
+        public string Avatar { get; set; }
+        public string Sex { get; set; }
         public List<Trip> Trips { get; set; } 
     }
 

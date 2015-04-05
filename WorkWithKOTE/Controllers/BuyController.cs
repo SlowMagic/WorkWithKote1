@@ -18,44 +18,50 @@ namespace WorkWithKOTE.Controllers
         UsersContext db = new UsersContext();
         public ActionResult Index(int id )
         {
-            Tour data = db.Tour.Find(id);
-            ViewBag.TourPrices = data.Cost;
-            Trip trip = new Trip();
-            //  trip.TourId = data.TourId;
-            trip.TourPrice = data.Cost;
-            ViewBag.DateTourId = new SelectList(db.DateTours.Where(m => m.TourId == id), "DateTourId", "FirstDate");
-            if (Request.IsAuthenticated)
+            BuyTour data = new BuyTour();
+            Tour tour = db.Tour.Find(id);
+            if (tour != null)
             {
-                int userID = WebSecurity.GetUserId(User.Identity.Name);
-                var userprofile = db.UserProfiles.Find(userID);
-                trip.email = userprofile.Email;
-                trip.BirthDay = userprofile.Birthday;
-                trip.Citizenship = userprofile.Nationality;
-                trip.Name = userprofile.RuFirstName;
-                trip.Surname = userprofile.RuSecondName;
-                trip.FatherName = userprofile.RuThirdName;
-                trip.mobile = userprofile.Mobile;
-                trip.Pasport = userprofile.PasportData;
+                data.Uslugi = db.DopUslugs.Where(m => m.TourId == id).ToList();
+                ViewBag.TourPrices = tour.Cost;
+                data.Trips = new Trip();
+                //   data.Trips .TourId = data.TourId;
+                data.Trips.TourPrice = tour.Cost;
+                ViewBag.DateTourId = new SelectList(db.DateTours.Where(m => m.TourId == id), "DateTourId", "FirstDate");
+                if (Request.IsAuthenticated)
+                {
+                    int userID = WebSecurity.GetUserId(User.Identity.Name);
+                    var userprofile = db.UserProfiles.Find(userID);
+                    data.Trips.email = userprofile.Email;
+                    data.Trips.BirthDay = userprofile.Birthday;
+                    data.Trips.Citizenship = userprofile.Nationality;
+                    data.Trips.Name = userprofile.RuFirstName;
+                    data.Trips.Surname = userprofile.RuSecondName;
+                    data.Trips.FatherName = userprofile.RuThirdName;
+                    data.Trips.mobile = userprofile.Mobile;
+                    data.Trips.Pasport = userprofile.PasportData;
+                }
+                ViewBag.TitleOf = tour.NameTour;
             }
-            ViewBag.TitleOf = data.NameTour;
-            return View(trip);
+            return View(data);
         }
         [HttpPost]
-        public ActionResult Index(int id,Trip model)
+        public ActionResult Index(int id,BuyTour model,string DateTourId)
         {
             var tour = db.Tour.Find(id);
+            model.Trips.DateTourId = int.Parse(DateTourId);
             if (Request.IsAuthenticated)
             {
                 int userID = WebSecurity.GetUserId(User.Identity.Name);
                 UserProfile userprofile = db.UserProfiles.Find(userID);
                 userprofile.Trips = new List<Trip>();
-                userprofile.Trips.Add(model);
+                userprofile.Trips.Add(model.Trips);
                 db.Entry(userprofile).State = EntityState.Modified;
             }
             tour.Trips = new List<Trip>();
-            tour.Trips.Add(model);
+            tour.Trips.Add(model.Trips);
             db.Entry(tour).State = EntityState.Modified;
-            db.Entry(model).State = EntityState.Added;
+            db.Entry(model.Trips).State = EntityState.Added;
             db.SaveChanges();
             return RedirectToAction("Index","Home");
         }

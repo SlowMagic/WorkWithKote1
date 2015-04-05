@@ -12,10 +12,6 @@
             <br />
             @Html.ActionLink("Изменить фото", "Upload", "Profile")
         </p>
-        @if (User.IsInRole("Admin"))
-        { 
-        <input type="button" value="Назначить Модератора" onclick="location.href='@Url.Action("RolesForUser", "Account")'" />
-        }
         @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
         {
            <input type="button" value="Создать тур" onclick="location.href='@Url.Action("TourCreate", "TourCreate")'" />
@@ -64,6 +60,10 @@
         <p>
             Серия и номер паспорта
             @Html.DisplayFor(m => m.PasportData)
+        </p>
+        <p>
+           Бонусы :
+            @Html.DisplayFor(m=>m.Bonus)
         </p>
         <p>
             Дата выдачи паспорта

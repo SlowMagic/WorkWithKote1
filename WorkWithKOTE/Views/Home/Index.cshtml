@@ -6,7 +6,7 @@
 <div id="big-preview-img" class="clearfix">
     @{ Html.RenderPartial("HeaderPartial_main");}
     <div class="wish">
-        <img id="big-logo" src="~/Content/img/big-logo.png" />
+        <img id="big-logo" src="@Html.DisplayFor(m=>m.TourHightPrev.LogoId.UrlImg)" />
 
         <p id="wishletter">
             <span id="textspan">Я хочу...<br /></span><span id="textspan1">Тур в Карпаты из Днепропетровска</span>
