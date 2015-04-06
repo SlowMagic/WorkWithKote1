@@ -8,6 +8,7 @@
     min-height: 230px;
     display: block;
     background: url("img/top-bg.jpg") no-repeat center;
+    margin-top: 100px;
 }
 
 .container, hgroup {
@@ -15,6 +16,11 @@
     width: 80%;
     min-width: 930px;
     font-family: HelveticaNeueCyr;
+    font-weight: 300;
+}
+
+hgroup {
+    margin-top: 6%;
 }
 
 h1 {
@@ -34,6 +40,7 @@ h2 {
 }
 
 h3 {
+    margin-top: 0;
     font-size: 1.5em;
     font-weight: normal;
     line-height: 1em;
@@ -49,31 +56,42 @@ h4 {
     margin: 0;
 }
 
-.order {
+.layout {
+    overflow: hidden;
+    margin: 3% 0 2% 0;
 }
 
-.additional {
+.layout-right-column {
     float: right;
+    width: 40%;
+    padding: 1.5%;
+    border: solid rgb(220, 220, 220) 1px;
+    background-color: rgb(245, 245, 240);
+    color: rgb(18, 18, 18);
+}
+
+.layout-left-column {
+    float: left;
     width: 30%;
     padding: 1.5%;
     border: solid rgb(220, 220, 220) 1px;
     background-color: rgb(245, 245, 240);
-
-    font-size: 0.875em;
     color: rgb(18, 18, 18);
 }
 
 input[type=date], input[type=number] {
     display: inline-block;
 }
+
 input[type=date] {
     width: 38.5%;
 }
+
 input[type=number] {
     width: 10%;
 }
 
-input[type=radio].css-checkbox + label.css-label {
+input[type=checkbox].css-checkbox + label.css-label {
     padding-left: 19px;
     height: 14px;
     display: inline-block;
@@ -84,17 +102,135 @@ input[type=radio].css-checkbox + label.css-label {
     margin-top: -2.5em;
 }
 
-
-.price {
-    margin-right: 33%;
+.layout-main-right {
+    margin-left: 33%;
     width: 67%;
-    font-size: 1.125em;
-    line-height: 36px;
-    color: rgb(18, 18, 18);
-    font-style: normal;
-    font-weight: 300;
 }
 
-.personal-information {
+.layout-main {
+    margin-right: 43%;
+    width: 57%;
+    color: rgb(18, 18, 18);
+    font-style: normal;
+}
+
+.personal-information, .contact-information, .agreement-and-pay {
     width: 100%;
+    clear: both;
+}
+
+.tourist {
+    height: 72px;
+    width: 72px;
+    border-radius: 50%;
+    float: left;
+    margin: 3px;
+}
+
+.info {
+    float: left;
+    text-align: center;
+    margin: 0 2% 0 0;
+}
+
+.info > input, .info > select {
+    float: left;
+    padding: 5px;
+}
+
+.info > label {
+    display: block;
+}
+
+#name, #surname, #second-name {
+    width: 33%;
+}
+
+#date-of-birth {
+    width: 120px;
+}
+
+#nationality {
+    width: 120px;
+}
+
+#passport {
+    width: 100px;
+}
+
+#user-profile {
+    float: right;
+    width: 35%;
+}
+
+#user-profile > * {
+    float: left;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+td, th {
+    padding: 1%;
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+}
+
+tbody {
+    border: 1px solid #cccccc;
+}
+
+.history tr > td:first-child {
+    width: 60%;
+    text-align: left;
+}
+
+th {
+    background-color: #ff6f40;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 300;
+    font-size: 1.125em;
+}
+
+#agreement label {
+    border-bottom: 1px dotted #ff6f40;
+    color: #ff6f40;
+    margin-left: 3%;
+}
+
+#i-agree {
+    float: left;
+    padding: 1% 2% 0 0;
+}
+
+#change-order, #pay-order, #delete-order {
+    width: 15%;
+    margin: 0 1% 0 1%;
+}
+
+#change-profile, #change-password {
+    width: 150px;
+    margin: 3% 3% 0 0;
+}
+
+.layout-left-column > select{
+    width: 96%;
+    padding: 5px;
+    margin: 2%;
+}
+
+.layout-left-column > input{
+    display: inline;
+    width: 43%;
+    padding: 5px;
+    margin: 2%;
+}
+
+#search {
+    width: 100%;
+    padding: 3%;
+    margin-top: 5%;
 }
