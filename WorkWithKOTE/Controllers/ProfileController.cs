@@ -60,6 +60,7 @@ namespace WorkWithKOTE.Controllers
 
             int i = WebSecurity.GetUserId(User.Identity.Name);
             UserProfile user = db.UserProfiles.Include(m => m.VisitedTours).First(m => m.UserId == i);
+            ViewBag.UserRole = Roles.GetRolesForUser(User.Identity.Name);
             return View(user);
         }
         [Authorize]

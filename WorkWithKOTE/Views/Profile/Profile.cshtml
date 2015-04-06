@@ -73,6 +73,12 @@
             Дата до какого числа действителен Загран паспорт:
             @Html.DisplayFor(m => m.DateZagran)
         </p>
+        @foreach(var item in Roles.GetRolesForUser(User.Identity.Name))
+        {
+            <label>
+                @item;
+            </label>
+        }
         <div>
             <h4>Туры в которых вы побывали: </h4>
             @foreach(var item in Model.VisitedTours)
