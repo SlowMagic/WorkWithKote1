@@ -2,89 +2,122 @@
 @{
     ViewBag.Title = "Личный кабинет";
 }
+@Styles.Render("~/Content/order")
+@{ Html.RenderPartial("HeaderPartial_main");}
+<div id="small-preview-img" class="clearfix">
 
-<h2>Личный Кабинет @User.Identity.Name</h2>
-@using (Html.BeginForm())
-{
-    <fieldset>
-        <p>
-            <img src="@Html.DisplayFor(m => m.Avatar)" height="150" width="250" />
-            <br />
-            @Html.ActionLink("Изменить фото", "Upload", "Profile")
-        </p>
-        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
-        {
-           <input type="button" value="Создать тур" onclick="location.href='@Url.Action("TourCreate", "TourCreate")'" />
-           <input type="button" value="Создать новость" onclick="location.href='@Url.Action("CreateNews", "News")'" />
-        }
-            <p>
-            Ваше Имя:
-            @Html.DisplayFor(m => m.RuFirstName)
-        </p>
-        <p>
-            Ваша Фамилия:
-            @Html.DisplayFor(m => m.RuSecondName)
-        </p>
-        <p>
-            Ваше Отчество:
-            @Html.DisplayFor(m => m.RuThirdName)
-        </p>
-        <p>
-            Your Name:
-            @Html.DisplayFor(m => m.EngFirstName)
-        </p>
-        <p>
-            Your Surname:
-            @Html.DisplayFor(m => m.EngSecondName)
-        </p>
-        <p>
-            Your Patronymic:
-            @Html.DisplayFor(m => m.EngThirdName)
-        </p>
-        <p>
-            Дата рождения :
-            @Html.DisplayFor(m => m.Birthday)
-        </p>
-        <p>
-            Гражданство:
-            @Html.DisplayFor(m => m.Nationality)
-        </p>
-        <p>
-            Мобильный телефон:
-            @Html.DisplayFor(m => m.Mobile)
-        </p>
-        <p>
-            Ваши Бонусы:
-            @Html.DisplayFor(m => m.Bonus)
-        </p>
-        <p>
-            Серия и номер паспорта
-            @Html.DisplayFor(m => m.PasportData)
-        </p>
-        <p>
-           Бонусы :
-            @Html.DisplayFor(m=>m.Bonus)
-        </p>
-        <p>
-            Дата выдачи паспорта
-            @Html.DisplayFor(m => m.DatePasport)
-        </p>
-        <p>
-            Дата до какого числа действителен Загран паспорт:
-            @Html.DisplayFor(m => m.DateZagran)
-        </p>
-        <div>
-            <h4>Туры в которых вы побывали: </h4>
-            @foreach(var item in Model.VisitedTours)
-            {
-                if (item.FirstDate < DateTime.Now)
-                {
-                  @:Название @Html.DisplayFor(m=>item.TourName)  @Html.DisplayFor(m=>item.FirstDate) - @Html.DisplayFor(m=>item.SecondDate)<br/>   
-                }
-            }
+    <hgroup>
+        <h1>Личный кабинет</h1>
+
+        <h2>Главная / Личный кабинет</h2>
+    </hgroup>
+
+</div>
+<div class="container">
+    <div class="layout">
+        <div class="layout-right-column">
+            <div id="user-profile">
+                <img src="@Html.DisplayFor(m => m.Avatar)" class="tourist">
+
+                <p>Группа: <span id="user-position">Администратор</span></p>
+
+                <p>Бонусы: <span id="user-bonuses">@Html.DisplayFor(m => m.Bonus)</span>&nbsp;грн.</p>
+            </div>
+            <p>Фамилия: <span id="user-surname">@Html.DisplayFor(m => m.RuSecondName)</span></p>
+
+            <p>Имя: <span id="user-name">@Html.DisplayFor(m => m.RuFirstName)</span></p>
+
+            <p>Отчество: <span id="user-second-name">@Html.DisplayFor(m => m.RuThirdName)</span></p>
+            <br>
+
+            <p>Страна: <span id="user-country">@Html.DisplayFor(m => m.Nationality)</span></p>
+
+@*            <p>Город: <span id="user-town">Днепропетровск</span></p>*@
+@*            <br>*@
+
+            <p>Телефон: <span id="user-tel">@Html.DisplayFor(m => m.Mobile)</span></p>
+
+            <p>Почта: <span id="user-mail">@Html.DisplayFor(m => m.Email)</span></p>
+
+            <a href="@Url.Action("EditProfile", "Profile")" class="button" id="change-profile">Редактировать<br>профиль</a>
+            <a href="@Url.Action("Manage", "Account")" class="button" id="change-password">Изменить<br>пароль</a>
         </div>
-       @{Html.RenderAction("UsersTour", new { id = Model.UserId });}
-        <input type="button" value="Изменить профиль" onclick="location.href='@Url.Action("EditProfile", "Profile")'" />
-        <input type="button" value="Изменить пароль" onclick="location.href='@Url.Action("Manage", "Account")'" />         
-    </fieldset>
-}
+        <div class="layout-main">
+            <h3>История</h3>
+            <table class="history">
+                <tr>
+                    <th>Название тура</th>
+                    <th>Даты</th>
+                </tr>
+                <tr>
+                    <td>Львов</td>
+                    <td>14.01.2015 - 18.03.2015</td>
+                </tr>
+                <tr>
+                    <td>Тур по странам Европы</td>
+                    <td>14.05.2015 - 14.05.2015</td>
+                </tr>
+            </table>
+
+
+        </div>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <p>
+@*                <img src="@Html.DisplayFor(m => m.Avatar)" height="150" width="250" />*@
+                <br />
+                @Html.ActionLink("Изменить фото", "Upload", "Profile")
+            </p>
+            @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+            {
+                <input type="button" value="Создать тур" onclick="location.href='@Url.Action("TourCreate", "TourCreate")'" />
+                <input type="button" value="Создать новость" onclick="location.href='@Url.Action("CreateNews", "News")'" />
+            }
+            <p>
+                Your Name:
+                @Html.DisplayFor(m => m.EngFirstName)
+            </p>
+            <p>
+                Your Surname:
+                @Html.DisplayFor(m => m.EngSecondName)
+            </p>
+            <p>
+                Your Patronymic:
+                @Html.DisplayFor(m => m.EngThirdName)
+            </p>
+            <p>
+                Дата рождения :
+                @Html.DisplayFor(m => m.Birthday)
+            </p>
+            <p>
+                Серия и номер паспорта
+                @Html.DisplayFor(m => m.PasportData)
+            </p>
+            <p>
+                Бонусы :
+                @Html.DisplayFor(m => m.Bonus)
+            </p>
+            <p>
+                Дата выдачи паспорта
+                @Html.DisplayFor(m => m.DatePasport)
+            </p>
+            <p>
+                Дата до какого числа действителен Загран паспорт:
+                @Html.DisplayFor(m => m.DateZagran)
+            </p>
+            <div>
+                <h4>Туры в которых вы побывали: </h4>
+                @foreach (var item in Model.VisitedTours)
+                {
+                    if (item.FirstDate < DateTime.Now)
+                    {
+                        @:Название @Html.DisplayFor(m => item.TourName)  @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)<br />
+                }
+                }
+            </div>
+            @{Html.RenderAction("UsersTour", new { id = Model.UserId });}
+        </fieldset>
+    }
+</div>

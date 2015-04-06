@@ -74,6 +74,15 @@ nav a:hover {
     border-bottom: 3px solid #acacac;
 }
 
+#second-navigation{
+    text-transform: capitalize;
+    opacity: 0;
+    top: 50px;
+    padding: 10px;
+    border-top: 1px solid #ffffff;
+    background-color: rgba(0,0,0,0.6);
+}
+
 .separator {
     display: inline;
     margin-left: 10px;
@@ -123,7 +132,7 @@ nav a:hover {
     left: 0;
     clear: both;
 }
-
+img
 .cont {
     margin: 0 auto;
     padding-top: 40px;
@@ -327,4 +336,18 @@ footer {
     color: rgb(153, 153, 153);
     font-weight: 300;
     text-decoration: none;
+}
+
+.button,
+.button:hover, .button:focus,
+.button:visited, .button:active{
+    background-color: #ff6f40;
+    color: #ffffff;
+    text-align: center;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    padding: 0.875% 3%;
+    float: left;
+    display: inline-block;
 }

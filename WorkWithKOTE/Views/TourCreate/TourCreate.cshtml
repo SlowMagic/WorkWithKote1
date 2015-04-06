@@ -4,7 +4,6 @@
 @model WorkWithKOTE.Models.Tour
     @Styles.Render("~/Content/order")
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
-<div class="primaryContainer clearfix">
     <div id="small-preview-img" class="clearfix">
         @{ Html.RenderPartial("HeaderPartial_main");}
         <hgroup>
@@ -83,7 +82,6 @@
             </div>
             @Html.Partial("MapPartial")
         </form>
-</div>
 @section scripts
                 {
     @Scripts.Render("~/bundles/jqueryval")
