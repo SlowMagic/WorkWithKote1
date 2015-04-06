@@ -34,8 +34,12 @@
                     @if (Model.AukcionPrice != null)
                     {
                         <span class="old-price">@Model.Cost @Model.Valuta</span> <span class="new-price">@Model.AukcionPrice @Model.Valuta</span>
+                        @Html.DisplayFor(m => m.PodpicePrice);
                     }
-                    @Html.DisplayFor(m => m.PodpicePrice);
+                    @if(Model.AukcionPrice == null)
+                    {
+                        @Html.DisplayFor(m=>m.Cost)  @Model.Valuta
+                    }
                 </p>
 
                 @*                <p>Тип тура: <a href="">Семейный отдых</a>, <a href="">бизнес отдых</a></p>*@

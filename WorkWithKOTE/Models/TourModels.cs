@@ -27,8 +27,11 @@ namespace WorkWithKOTE.Models
         public DateTime? BirthDay { get; set; }
         public string Citizenship { get; set; }
         public string Pasport { get; set; }
+         [Required(ErrorMessage = "Номер телефона должен быть указан")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Номер введён неверно.")]
         public string mobile { get; set; }
+        [Required(ErrorMessage = "Почтовый ящик должен быть указан")]
+        [RegularExpression(@"^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$", ErrorMessage = "Е-Mail введен не верно")]
         public string email { get; set; }
         public int DateTourId { get; set; }
         public string Valuta { get; set; }
@@ -43,13 +46,17 @@ namespace WorkWithKOTE.Models
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
        public int TourId { get; set; }
-       [Required(ErrorMessage = "Поле должно быть установлено")]
+       [Required(ErrorMessage = "Поле Название  должно быть установлено")]
        public string NameTour {get;set;}
+       [Required(ErrorMessage = "Поле Заголовок  быть установлено")]
        public string TitleTour { get; set; }
-       [AllowHtml]
+      [AllowHtml]
        public string DescriptionTour { get; set; }
+        [Required(ErrorMessage = "Цена тура не может быть пустой ")]
+       [RegularExpression(@"\-?\d+(\.\d{0,})?", ErrorMessage = "Ошибка поле Стоимость .Не верно введено число.Возможно вы поставили , вместо .")]
        public decimal? Cost { get; set; }
        public string Valuta { get; set; }
+       [RegularExpression(@"\-?\d+(\.\d{0,})?", ErrorMessage = "Ошибка поле Стоимость .Не верно введено число.Возможно вы поставили , вместо .")]
        public decimal? PrePay { get; set; }
        public string Reservation { get; set; }
        public bool IsBus { get; set; }
@@ -207,5 +214,28 @@ namespace WorkWithKOTE.Models
         public int LogoId { get; set; }
         public string LogoName { get; set; }
         public string UrlImg { get; set; }
+    }
+    [Table ("VisitedTour")]
+    public class VisitedTour
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int VisitedTourId { get; set; }
+        public int UserId { get; set; }
+        public UserProfile User { get; set; }
+        public string TourName { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? FirstDate { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? SecondDate { get; set; }
+
+    }
+    public class ProfileTour
+    {
+        public List<Tour> tours { get; set; }
+        public List<Trip> trips { get; set; }
+        public List<DateTour> date { get;set; }
     }
 }

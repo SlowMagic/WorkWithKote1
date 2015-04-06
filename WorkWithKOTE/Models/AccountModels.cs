@@ -26,6 +26,7 @@ namespace WorkWithKOTE.Models
         public DbSet<News> News { get; set; }
         public DbSet<TourStatus> TourStatus { get; set; }
         public DbSet<TypeOfTour> TypeOfTours { get; set; }
+        public DbSet<VisitedTour> VisitedTours { get; set; }
     }
 
     [Table("UserProfiles")]
@@ -57,17 +58,19 @@ namespace WorkWithKOTE.Models
         [Display(Name = "Дата выдачи загран паспорта")]
         public DateTime? DateZagran { get; set; }
         public string Sex { get; set; }
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Номер введён неверно.")]
         public string Mobile { get; set; }
         public float? Bonus { get; set; }
         public string Avatar { get; set; }
-        public List<Trip> Trips { get; set; } 
+        public List<Trip> Trips { get; set; }
+        public List<VisitedTour> VisitedTours { get; set; }
     }
 
     public class RegisterExternalLoginModel
     {
         [Required]
         [Display(Name = "Email")]
-        [RegularExpression(@"^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$", ErrorMessage = "Номер введён неверно.")]
+        [RegularExpression(@"^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$", ErrorMessage = "Е-Mail введен не верно")]
         public string Email { get; set; }
 
         public string ExternalLoginData { get; set; }
@@ -111,6 +114,7 @@ namespace WorkWithKOTE.Models
     {
         [Required]
         [Display(Name = "Email")]
+        [RegularExpression(@"^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$", ErrorMessage = "Е-Mail введен не верно")]
         public string Email { get; set; }
 
         [Required]
