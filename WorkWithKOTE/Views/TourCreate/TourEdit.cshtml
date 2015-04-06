@@ -34,10 +34,10 @@
         {
                 <div id="dateTour_@i">
                     Введите дату отправки:<br />
-                    <input type='date' id="myDateFirst+@i" name="DateTour[@i].FirstDate" />
+                    <input type='date' id="myDateFirst+@i" name="DateTour[@i].FirstDate" required />
                     <br />
                     Введите дату приезда:<br />
-                    <input type='date' id="myDateSecond+@i" name="DateTour[@i].SecondDate" />
+                    <input type='date' id="myDateSecond+@i" name="DateTour[@i].SecondDate" required />
                 </div>
             <script type="text/javascript">
                 function myFunction() {
@@ -177,9 +177,9 @@
             $('.addLink').click(function () {
                 var html2Add = "<div id='dateTour_" + i + "'>" +
                      " Введите дату отправки" + "(дд/мм/год)" +
-                "<input type='date' name='DateTour[" + @i + "].FirstDate' /><br/>" +
+                "<input type='date' name='DateTour[" + @i + "].FirstDate' required /><br/>" +
                 " Введите дату приезда" + "(дд/мм/год)" +
-                "<input type='date' name='DateTour[" + @i + "].SecondDate' />" +
+                "<input type='date' name='DateTour[" + @i + "].SecondDate' required />" +
             "</div></div>";
                 $('#datetour-pannel').append(html2Add);
                 i++

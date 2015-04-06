@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebMatrix.WebData;
+using System.Data.Entity;
 using WorkWithKOTE.Models;
 namespace WorkWithKOTE.Controllers
 {
@@ -48,14 +49,21 @@ namespace WorkWithKOTE.Controllers
         [HttpPost]
         public ActionResult Index(int id,BuyTour model,string DateTourId)
         {
+            VisitedTour addtour = new VisitedTour();
             var tour = db.Tour.Find(id);
             model.Trips.DateTourId = int.Parse(DateTourId);
             if (Request.IsAuthenticated)
             {
+                var dateTour = db.DateTours.Find(model.Trips.DateTourId);
                 int userID = WebSecurity.GetUserId(User.Identity.Name);
                 UserProfile userprofile = db.UserProfiles.Find(userID);
                 userprofile.Trips = new List<Trip>();
                 userprofile.Trips.Add(model.Trips);
+                addtour.TourName = tour.NameTour;
+                addtour.FirstDate = dateTour.FirstDate;
+                addtour.SecondDate = dateTour.SecondDate;
+                userprofile.VisitedTours = new List<VisitedTour>();
+                userprofile.VisitedTours.Add(addtour);
                 db.Entry(userprofile).State = EntityState.Modified;
             }
             tour.Trips = new List<Trip>();

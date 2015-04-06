@@ -73,15 +73,18 @@
             Дата до какого числа действителен Загран паспорт:
             @Html.DisplayFor(m => m.DateZagran)
         </p>
-        @Html.ActionLink("EditProfile", "EditProfile", "Profile")
-        <input type="button" value="Изменить пароль" onclick="location.href='@Url.Action("Manage", "Account")'" />
-  @*  @if(Model.Trips != null){
-        foreach(var Item in Model.Trips)
-    {
-        Html.RenderPartial("UsersTour", new { id = Item.TourId });
-    }
-       }
-*@     
-       @{Html.RenderAction("UsersTour", new { id = Model.UserId });}     
+        <div>
+            <h4>Туры в которых вы побывали: </h4>
+            @foreach(var item in Model.VisitedTours)
+            {
+                if (item.FirstDate < DateTime.Now)
+                {
+                  @:Название @Html.DisplayFor(m=>item.TourName)  @Html.DisplayFor(m=>item.FirstDate) - @Html.DisplayFor(m=>item.SecondDate)<br/>   
+                }
+            }
+        </div>
+       @{Html.RenderAction("UsersTour", new { id = Model.UserId });}
+        <input type="button" value="Изменить профиль" onclick="location.href='@Url.Action("EditProfile", "Profile")'" />
+        <input type="button" value="Изменить пароль" onclick="location.href='@Url.Action("Manage", "Account")'" />         
     </fieldset>
 }

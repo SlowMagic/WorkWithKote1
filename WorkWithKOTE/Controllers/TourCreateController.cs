@@ -52,6 +52,8 @@ namespace WorkWithKOTE.Controllers
                 Document.SaveAs(Server.MapPath("/UpLoad/TourDocument/" + Document.FileName));
                 model.Document = "/UpLoad/TourDocument/" + Document.FileName;
             }
+            if (model.DescriptionTour == null)
+                model.DescriptionTour = "<p>Нет описания тура</p>";
             model.DescriptionTour = Regex.Replace(model.DescriptionTour, "<script.*?</script>", "", RegexOptions.IgnoreCase);
             db.Entry(model).State = EntityState.Added;
             db.SaveChanges();
@@ -93,6 +95,7 @@ namespace WorkWithKOTE.Controllers
             check = UploadImg(AvatarSupp, "/UpLoad/SuppFoto/");
             if (check != null)
                 model.SuppFoto = check;
+            if (model.DescriptionTour != null)
             model.DescriptionTour = Regex.Replace(model.DescriptionTour, "<script.*?</script>", "", RegexOptions.IgnoreCase);
             if (Document != null)
             {

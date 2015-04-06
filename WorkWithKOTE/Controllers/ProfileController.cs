@@ -13,6 +13,7 @@ using WorkWithKOTE.Models;
 using System.Data;
 using System.IO;
 using System.Net.Mail;
+using System.Data.Entity;
 namespace WorkWithKOTE.Controllers
 {
     [InitializeSimpleMembership]
@@ -58,7 +59,7 @@ namespace WorkWithKOTE.Controllers
         {
 
             int i = WebSecurity.GetUserId(User.Identity.Name);
-            UserProfile user = db.UserProfiles.Find(i);
+            UserProfile user = db.UserProfiles.Include(m => m.VisitedTours).First(m => m.UserId == i);
             return View(user);
         }
         [Authorize]
@@ -191,16 +192,24 @@ namespace WorkWithKOTE.Controllers
         [ChildActionOnly]
         public ActionResult UsersTour(int id = 0)
         {
-            var trip = db.Trip.Where(m=> m.UserId  == id);
-            List<Tour> tours = new List<Tour>();
-            if(trip != null)
-            foreach ( var Item in trip)
+            ProfileTour profileTour = new ProfileTour();
+            profileTour.trips = db.Trip.Where(m => m.UserId == id).ToList();
+            profileTour.tours = new List<Tour>();
+            profileTour.date = new List<DateTour>();
+            if (profileTour.trips != null)
             {
-                int TourId = Item.TourId;
-                var tour = db.Tour.Find(TourId);
-                tours.Add(tour);
+                foreach (var Item in profileTour.trips)
+                {
+                    var tour = db.Tour.Find(Item.TourId);
+                    profileTour.tours.Add(tour);
+                }
+                foreach (var Item in profileTour.trips)
+                {
+                    var date = db.DateTours.Find(Item.DateTourId);
+                    profileTour.date.Add(date);
+                }
             }
-           return PartialView(tours);
+            return PartialView(profileTour);
         }
     }
 }

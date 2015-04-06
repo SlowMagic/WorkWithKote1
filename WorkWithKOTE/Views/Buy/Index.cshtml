@@ -4,6 +4,7 @@
 @model WorkWithKOTE.Models.BuyTour
 <h2>@ViewBag.Titleof</h2>
 <form action="@Url.Action("Index")" method="post">
+    @Html.ValidationSummary()
     Стоимость Тура : @ViewBag.TourPrices<br/>
     Сумма заказа с учетом изменений :@Html.TextBoxFor(m => m.Trips.TourPrice, new {id="Prices",@readonly = "readonly"})
     К Оплате :@Html.TextBoxFor(m => m.Trips.TourPrice, new { id = "Prices", @readonly = "readonly" }) <br />
@@ -38,6 +39,7 @@
     <input type="submit" value="Заказать тур" />
 </form>
 @section scripts{
+@Scripts.Render("~/bundles/jqueryval")
 <script type="text/javascript">
     $(function () {
         var sum0 = parseFloat($("#Prices").val());
@@ -51,5 +53,4 @@
         $('#options input[type=checkbox]').click(sumFunction);
     })
 </script>
-
 }

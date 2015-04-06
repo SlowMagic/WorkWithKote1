@@ -1,6 +1,22 @@
-﻿@model IEnumerable<WorkWithKOTE.Models.Tour>
-@foreach(var Item in Model){
- @Html.DisplayFor(m => Item.NameTour)
-@Html.DisplayFor(m=>Item.TitleTour)   
-    <br/>
-}
+﻿@model WorkWithKOTE.Models.ProfileTour
+<div style="margin:auto">
+    <h4>Ваши Заказы</h4>
+    <div style="display:inline-block">
+    @foreach (var item in Model.trips)
+    {
+        <div style="display:block">Номер Заявки: @Html.DisplayFor(m=>item.TripID) Цена Заказа: @Html.DisplayFor(m=>item.TourPrice) @Html.DisplayFor(m=>item.Valuta)</div>
+    }
+</div>
+    <div style="display:inline-block">
+        @foreach(var item in Model.tours)
+        {
+            <div style="display:block">Название тура: @Html.DisplayFor(m=>item.NameTour)</div>
+        }
+    </div>
+    <div style="display:inline-block">
+        @foreach(var item in Model.date)
+        {
+            <div style="display:block">Дата приезда - @Html.DisplayFor(m=>item.FirstDate)  - Дата приезда @Html.DisplayFor(m=>item.SecondDate)</div>
+        }
+    </div> 
+</div>

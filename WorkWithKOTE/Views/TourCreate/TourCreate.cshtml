@@ -15,6 +15,7 @@
     </div>
         <form action="@Url.Action("TourCreate")" method="post" enctype="multipart/form-data">
             <div>
+                @Html.ValidationSummary()
                 Название @Html.TextBoxFor(m => m.NameTour)
                 @Html.ValidationMessageFor(model => model.NameTour)
                 Заголовок @Html.TextBoxFor(m => m.TitleTour) <br/>
@@ -25,8 +26,8 @@
                 Выезд из @Html.TextBoxFor(m => m.PlaceOfDeparture)<br/>
                 Прибываем в @Html.TextBoxFor(m => m.PlaceOfArrival)<br/>
                 стоимость @Html.TextBoxFor(m => m.Cost)<br/>
-                <input type="radio" name="Valuta" value="гривна" checked style="height: 15px; width: 15px"/>Гривна<br/>
-                <input type="radio" name="Valuta" value="доллар" style="height: 15px; width: 15px"/>Dollar<br/>
+                <input type="radio" name="Valuta" value="гривен" checked style="height: 15px; width: 15px"/>Гривна<br/>
+                <input type="radio" name="Valuta" value="долларов" style="height: 15px; width: 15px"/>Dollar<br/>
                 <input type="radio" name="Valuta" value="евро" style="height: 15px; width: 15px"/>Euro<br/>
                 Предоплата :<input type="checkbox" id="Predop" onclick=" valid() "/>
                 @Html.TextBoxFor(m => m.PrePay, new {style = "visibility:hidden", id = "PrePay"})<br/>
@@ -68,7 +69,7 @@
                 <br/>
                 Количество участyков :@Html.TextBoxFor(m => m.AllPeople)<br/>
                 Уже едут :@Html.TextBoxFor(m => m.People)<br/>
-                Обложка тура - <input type="file" name="TourImg"/><br/>
+                Обложка тура - <input type="file" name="TourImg" required/><br/>
                 Выберите стиль Логотипа :@Html.DropDownList("LogoId")<br/>
                 Галлерея : @Html.DropDownList("GalleryID", String.Empty)<br/>
                 Загрузить файл :<input type="file" name="Document"/><br/>
