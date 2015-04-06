@@ -24,37 +24,6 @@ namespace WorkWithKOTE.Controllers
         // GET: /Account/Logi
 
         [Authorize]
-        public ActionResult Upload()
-        {
-            return View();
-        }
-        [Authorize]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult UpLoad(HttpPostedFileBase file)
-        {
-
-            string filename = Guid.NewGuid().ToString();
-            string extension = Path.GetExtension(file.FileName);
-            filename += extension;
-            int i = WebSecurity.GetUserId(User.Identity.Name);
-            UserProfile user = db.UserProfiles.Find(i);
-            List<string> extensions = new List<string>() { ".png", ".jpg", ".gif" };
-            if (extensions.Contains(extension))
-            {
-                file.SaveAs(Server.MapPath("/UpLoad/" + filename));
-                user.Avatar = "/UpLoad/" + filename;
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-            }
-            else
-            {
-                ViewBag.Message = "Ошибка формата загружаемой картинки";
-            }
-            return RedirectToAction("Profile", "Profile");
-        }
-
-        [Authorize]
         public ActionResult Profile()
         {
 
@@ -74,11 +43,13 @@ namespace WorkWithKOTE.Controllers
 
         }
         [Authorize]
-        [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult EditProfile(UserProfile model)
+        public ActionResult EditProfile(UserProfile model, HttpPostedFileBase file)
         {
             int i = WebSecurity.GetUserId(User.Identity.Name);
+            var check = UploadImg(file, "/UpLoad/Avatar/");
+            if (check != null)
+                model.Avatar = check;
             model.UserId = i;
             model.Email = User.Identity.Name;
             db.Entry(model).State = EntityState.Modified;
@@ -151,7 +122,6 @@ namespace WorkWithKOTE.Controllers
                 ViewBag.Message = "Возникла ошибка при отсылки письма. " +
                                                           ex.Message;
             }
-
             return RedirectToAction("Login", "Account");
         }
         private string GenerateRandomPassword(int length)
@@ -211,6 +181,24 @@ namespace WorkWithKOTE.Controllers
                 }
             }
             return PartialView(profileTour);
+        }
+        protected string UploadImg(HttpPostedFileBase file, string path)
+        {
+            if (file != null)
+            {
+                string fullPath = null;
+                string file1 = Guid.NewGuid().ToString();
+                string extension = Path.GetExtension(file.FileName);
+                file1 += extension;
+                List<string> extensions = new List<string>() { ".png", ".jpg", ".gif" };
+                if (extensions.Contains(extension))
+                {
+                    file.SaveAs(Server.MapPath(path + file1));
+                    fullPath = path + file1;
+                }
+                return fullPath;
+            }
+            return null;
         }
     }
 }

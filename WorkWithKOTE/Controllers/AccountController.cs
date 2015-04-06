@@ -45,7 +45,7 @@ namespace WorkWithKOTE.Controllers
         //
         // POST: /Account/LogOff
 
-        [HttpPost]
+       // [HttpPost]
        // [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {

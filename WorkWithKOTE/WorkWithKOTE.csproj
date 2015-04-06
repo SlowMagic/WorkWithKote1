@@ -1111,7 +1111,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Profile\Upload.cshtml" />
     <Content Include="Views\Profile\Profile.cshtml" />
     <Content Include="Views\Profile\EditProfile.cshtml" />
     <Content Include="Views\Profile\ForgotPassword.cshtml" />
@@ -1139,6 +1138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UpLoad\Avatar\" />
     <Folder Include="UpLoad\ContentImg\" />
     <Folder Include="UpLoad\SuppFoto\" />
     <Folder Include="UpLoad\TourDescription\" />
