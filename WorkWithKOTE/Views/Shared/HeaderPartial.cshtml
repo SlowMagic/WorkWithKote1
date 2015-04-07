@@ -17,7 +17,6 @@
                 @if (Request.IsAuthenticated)
                 {
                     @Html.ActionLink(User.Identity.Name, "Profile", "Profile", null, new { @class = "username" })
-                    @Html.ActionLink("Выйти","LogOff", "Account")
                 }
                 else
                 {

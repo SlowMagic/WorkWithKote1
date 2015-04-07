@@ -62,11 +62,10 @@
 
         </div>
     </div>
-    @using (Html.BeginForm())
-    {
+
         <fieldset>
             <p>
-@*                <img src="@Html.DisplayFor(m => m.Avatar)" height="150" width="250" />*@
+              <img src="@Html.DisplayFor(m => m.Avatar)" height="150" width="250" />
                 <br />
                 @Html.ActionLink("Изменить фото", "Upload", "Profile")
             </p>
@@ -119,5 +118,5 @@
             </div>
             @{Html.RenderAction("UsersTour", new { id = Model.UserId });}
         </fieldset>
-    }
+       <input type="button" value="Выйти" onclick="location.href='@Url.Action("LogOff", "Account")'" />
 </div>

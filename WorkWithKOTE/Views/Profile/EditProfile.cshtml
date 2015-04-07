@@ -3,10 +3,10 @@
 }
 @model WorkWithKOTE.Models.UserProfile
 <h2>Редактирование Личного Кабинета</h2>
-@using (Html.BeginForm("EditProfile", "Profile"))
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.Avatar);
+
+
+  <form method="post" action="@Url.Action("EditProfile","Profile")" enctype="multipart/form-data">
+    <p>  Аватар - <input type="file" name="file" /></p>
     <p>
         @Html.Label("Введите ваше имя")
         @Html.TextBoxFor(m => m.RuFirstName)
@@ -56,4 +56,4 @@
         @Html.EditorFor(m => m.Mobile)
     </p>
     <input type="submit" value="Подтвердить" />
-}
+</form>
