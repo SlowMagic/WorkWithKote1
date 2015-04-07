@@ -2,17 +2,47 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "xhtml11.dtd">
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ForWait</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+    <title>KOTE Traver. Look soon.</title>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="~/Content/parked.css" type="text/css" />
 </head>
 <body>
-    <div>
-         @Html.ActionLink("Вход","Login","Account") 
-         Только для Админа
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+    $(function() {
+        var curr = new Date();
+        var estim = 10;
+        var res = estim - curr.getDate();
+        var day = 'дней';
+        if ($.inArray(res, [2,3,4])!='-1'){
+            day = 'дня';
+        }else if(res == 1){
+            day = 'день';
+        }
+        document.getElementById('day').innerHTML = res+ "&nbsp;"+ day;
+    });
+    </script>
+    <div class="container">
+        <img src="~/Content/img/parked.jpg" class="bg">
+
+        <div class="content">
+            <div class="start">
+                До запуска осталось <span id="day" class="day"></span>
+            </div>
+            <div class="links">
+                <a class="fb" href="https://www.facebook.com/kotetravel"><img src="~/Content/img/fb.png"></a>
+                <a class="kote">kote.travel@gmail.com</a>
+            </div>
+            <div style="font-size: 10pt">
+                @Html.ActionLink("Вход", "Login", "Account") для Админа
+            </div>
+        </div>
+
+
     </div>
 </body>
 </html>

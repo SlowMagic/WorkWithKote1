@@ -218,6 +218,7 @@
     <Content Include="Content\img\big-logo.png" />
     <Content Include="Content\img\big-preview-img.jpg" />
     <Content Include="Content\img\facebook.png" />
+    <Content Include="Content\img\fb.png" />
     <Content Include="Content\img\footer-bg.jpg" />
     <Content Include="Content\img\google.png" />
     <Content Include="Content\img\group-border.png" />
@@ -228,6 +229,7 @@
     <Content Include="Content\img\main-preview-image.jpg" />
     <Content Include="Content\img\media-bg.jpg" />
     <Content Include="Content\img\no-btn.png" />
+    <Content Include="Content\img\parked.jpg" />
     <Content Include="Content\img\photo1.jpg" />
     <Content Include="Content\img\photo2.jpg" />
     <Content Include="Content\img\photo3.jpg" />
@@ -258,6 +260,7 @@
     <Content Include="Content\img\youtube-ico.png" />
     <Content Include="Content\js\common.js" />
     <Content Include="Content\page.css" />
+    <Content Include="Content\parked.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
