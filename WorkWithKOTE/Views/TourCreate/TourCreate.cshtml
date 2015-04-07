@@ -4,8 +4,8 @@
 @model WorkWithKOTE.Models.Tour
     @Styles.Render("~/Content/order")
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+@{ Html.RenderPartial("HeaderPartial_main");}
     <div id="small-preview-img" class="clearfix">
-        @{ Html.RenderPartial("HeaderPartial_main");}
         <hgroup>
             <h1>Создание тура</h1>
 

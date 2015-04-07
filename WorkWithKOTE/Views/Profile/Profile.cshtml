@@ -67,7 +67,6 @@
             <p>
               <img src="@Html.DisplayFor(m => m.Avatar)" height="150" width="250" />
                 <br />
-                @Html.ActionLink("Изменить фото", "Upload", "Profile")
             </p>
             @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
             {

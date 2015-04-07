@@ -54,7 +54,9 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Transactions" />
@@ -204,6 +206,10 @@
     <Compile Include="Scripts\Filemanager-master\connectors\mvc\FilemanagerController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\TourDB.mdf" />
+    <Content Include="App_Data\TourDB_log.ldf">
+      <DependentUpon>TourDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\boilerplate.css" />
     <Content Include="Content\common.css" />
     <Content Include="Content\img\10942586.jpg" />
@@ -345,6 +351,9 @@
     <Content Include="Scripts\Filemanager-master\userfiles\web.config" />
     <Content Include="Scripts\Filemanager-master\utils\generate-lang.py" />
     <Content Include="Scripts\Filemanager-master\utils\minify.py" />
+    <None Include="Properties\PublishProfiles\kote-pub.pubxml" />
+    <None Include="Properties\PublishProfiles\kote-pub2.pubxml" />
+    <None Include="Properties\PublishProfiles\kote-pub3.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\build-config.js" />
@@ -1116,7 +1125,6 @@
     <Content Include="Views\Profile\ForgotPassword.cshtml" />
     <Content Include="Views\TourCreate\TourCreate.cshtml" />
     <Content Include="Views\TourCreate\DopUsluga.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\DateTour.cshtml" />
     <Content Include="Views\TourCreate\DateTourPartial.cshtml" />
     <Content Include="Views\Home\DateForCurrentTour.cshtml" />
     <Content Include="Views\TourDisplay\Index.cshtml" />
@@ -1137,13 +1145,13 @@
     <Content Include="Views\Admin\SearchAllUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="UpLoad\Avatar\" />
     <Folder Include="UpLoad\ContentImg\" />
     <Folder Include="UpLoad\SuppFoto\" />
     <Folder Include="UpLoad\TourDescription\" />
     <Folder Include="UpLoad\TourDocument\" />
     <Folder Include="UpLoad\TourImg\" />
+    <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
