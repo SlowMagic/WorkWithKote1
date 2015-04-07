@@ -16,6 +16,10 @@ namespace WorkWithKOTE.Controllers
     {
         //TourContext db = new TourContext();
         UsersContext db = new UsersContext();
+        public ActionResult ForWait()
+        {
+            return View();
+        }
         protected Tour TourBlock(int tourStatusId,int typeofTourId)
         {
             var date = db.Tour.Include(m => m.DateTour)

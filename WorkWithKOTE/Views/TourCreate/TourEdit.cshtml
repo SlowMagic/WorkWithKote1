@@ -20,8 +20,8 @@
         Выезд из @Html.TextBoxFor(m => m.PlaceOfDeparture)<br />
         Прибываем в @Html.TextBoxFor(m => m.PlaceOfArrival)<br />
         стоимость @Html.TextBoxFor(m => m.Cost)<br />
-        <input type="radio" name="Valuta" value="гривна" checked style="height:15px; width:15px" />Гривна<br />
-        <input type="radio" name="Valuta" value="доллар" style="height:15px; width:15px " />Dollar<br />
+        <input type="radio" name="Valuta" value="гривень" checked style="height:15px; width:15px" />Гривна<br />
+        <input type="radio" name="Valuta" value="долларов" style="height:15px; width:15px " />Dollar<br />
         <input type="radio" name="Valuta" value="евро" style="height:15px; width:15px " />Euro<br />
         Предоплата :<input type="checkbox" id="Predop" onclick="valid()" />
         @Html.TextBoxFor(m => m.PrePay, new { style = "visibility:hidden", id = "PrePay" })<br />

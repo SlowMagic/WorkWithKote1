@@ -1116,7 +1116,6 @@
     <Content Include="Views\Profile\ForgotPassword.cshtml" />
     <Content Include="Views\TourCreate\TourCreate.cshtml" />
     <Content Include="Views\TourCreate\DopUsluga.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\DateTour.cshtml" />
     <Content Include="Views\TourCreate\DateTourPartial.cshtml" />
     <Content Include="Views\Home\DateForCurrentTour.cshtml" />
     <Content Include="Views\TourDisplay\Index.cshtml" />
@@ -1135,6 +1134,7 @@
     <Content Include="Views\News\NewsBlock.cshtml" />
     <Content Include="Views\Shared\HeaderPartial_main.cshtml" />
     <Content Include="Views\Admin\SearchAllUsers.cshtml" />
+    <Content Include="Views\Home\ForWait.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1144,6 +1144,7 @@
     <Folder Include="UpLoad\TourDescription\" />
     <Folder Include="UpLoad\TourDocument\" />
     <Folder Include="UpLoad\TourImg\" />
+    <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

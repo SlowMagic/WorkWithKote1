@@ -34,12 +34,15 @@
         </ol>
         <input type="submit" value="Log in" />
     </fieldset>
-    <p>
+    if (User.IsInRole("Admin"))
+    {   
+        <p>
         @Html.ActionLink("Register", "Register") if you don't have an account.
     </p>
     <p>
         @Html.ActionLink("Забыл пароль?","ForgotPassword","Profile")
-    </p>
+    </p>   
+    }
 }
 </section>
 
