@@ -3,7 +3,7 @@
 }
 @using WorkWithKOTE.Models
 @model  WorkWithKOTE.Models.Tour
-
+@Styles.Render("~/Content/description")
 <div class="primaryContainer clearfix">
     @{ Html.RenderPartial("HeaderPartial_main");}
     <div id="big-preview-img" class="clearfix" style="background: url('@Html.DisplayFor(m => m.TourImg)') no-repeat center 100%; background-size:100% 850px;">

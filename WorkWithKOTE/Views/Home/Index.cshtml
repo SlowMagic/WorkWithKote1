@@ -3,6 +3,7 @@
 }
 @using WorkWithKOTE.Controllers
 @model WorkWithKOTE.Models.TourForHomePage
+   @Styles.Render("~/Content/page")   
 <div id="big-preview-img" class="clearfix">
     @{ Html.RenderPartial("HeaderPartial_main");}
     <div class="wish">
@@ -12,7 +13,7 @@
             <span id="textspan">Я хочу...<br /></span><span id="textspan1">Тур в Карпаты из Днепропетровска</span>
         </p>
 
-        <div class="buttons-page clearfix">
+        <div class="buttons clearfix">
             <a href="#" class="yes-btn">
                 <span id="textspan2">Да,</span> <span> Я хочу&#x21;</span>
             </a>
