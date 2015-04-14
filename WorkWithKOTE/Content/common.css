@@ -356,3 +356,11 @@ footer {
     color:white;
     cursor:pointer;
 }
+
+.hidden {
+    display:none;
+}
+
+#block_links{
+   display:inherit;
+}
