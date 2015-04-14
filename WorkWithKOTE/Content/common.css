@@ -351,3 +351,16 @@ footer {
     float: left;
     display: inline-block;
 }
+
+#user_name,.user_links {
+    color:white;
+    cursor:pointer;
+}
+
+.hidden {
+    display:none;
+}
+
+#block_links{
+   display:inherit;
+}

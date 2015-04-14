@@ -14,6 +14,17 @@
 
 </div>
 <div class="container">
+    <div class="additional-nav">
+        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+        {
+            <a href="@Url.Action("CreateNews", "News")">Создать&nbsp;новость&nbsp;</a>
+            @*        <a href="#">Пользователи</a>*@
+            <a href="@Url.Action("TourCreate", "TourCreate")">Создать&nbsp;тур&nbsp;</a>
+    <a href="@Url.Action("LogOff", "Account")">Выход</a>
+            @*        <a href="#">Бронь тура для агента</a>*@
+            @*        <a href="#">Управление заявками</a>*@
+        }
+    </div>
     <div class="layout">
         <div class="layout-right-column">
             <div id="user-profile">
@@ -21,7 +32,9 @@
 
                 <p>Группа: <span id="user-position">Администратор</span></p>
 
-                <p>Бонусы: <span id="user-bonuses">@Html.DisplayFor(m => m.Bonus)</span>&nbsp;грн.</p>
+                <p>
+                    Бонусы: <span id="user-bonuses">@Html.DisplayFor(m => m.Bonus)</span>&nbsp;грн.
+                </p>
             </div>
             <p>Фамилия: <span id="user-surname">@Html.DisplayFor(m => m.RuSecondName)</span></p>
 
@@ -32,8 +45,8 @@
 
             <p>Страна: <span id="user-country">@Html.DisplayFor(m => m.Nationality)</span></p>
 
-@*            <p>Город: <span id="user-town">Днепропетровск</span></p>*@
-@*            <br>*@
+            @*            <p>Город: <span id="user-town">Днепропетровск</span></p>*@
+            @*            <br>*@
 
             <p>Телефон: <span id="user-tel">@Html.DisplayFor(m => m.Mobile)</span></p>
 
@@ -49,73 +62,25 @@
                     <th>Название тура</th>
                     <th>Даты</th>
                 </tr>
-                <tr>
-                    <td>Львов</td>
-                    <td>14.01.2015 - 18.03.2015</td>
-                </tr>
-                <tr>
-                    <td>Тур по странам Европы</td>
-                    <td>14.05.2015 - 14.05.2015</td>
-                </tr>
-            </table>
-
-
-        </div>
-    </div>
-
-        <fieldset>
-            <p>
-              <img src="@Html.DisplayFor(m => m.Avatar)" height="150" width="250" />
-                <br />
-            </p>
-            @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
-            {
-                <input type="button" value="Создать тур" onclick="location.href='@Url.Action("TourCreate", "TourCreate")'" />
-                <input type="button" value="Создать новость" onclick="location.href='@Url.Action("CreateNews", "News")'" />
-            }
-            <p>
-                Your Name:
-                @Html.DisplayFor(m => m.EngFirstName)
-            </p>
-            <p>
-                Your Surname:
-                @Html.DisplayFor(m => m.EngSecondName)
-            </p>
-            <p>
-                Your Patronymic:
-                @Html.DisplayFor(m => m.EngThirdName)
-            </p>
-            <p>
-                Дата рождения :
-                @Html.DisplayFor(m => m.Birthday)
-            </p>
-            <p>
-                Серия и номер паспорта
-                @Html.DisplayFor(m => m.PasportData)
-            </p>
-            <p>
-                Бонусы :
-                @Html.DisplayFor(m => m.Bonus)
-            </p>
-            <p>
-                Дата выдачи паспорта
-                @Html.DisplayFor(m => m.DatePasport)
-            </p>
-            <p>
-                Дата до какого числа действителен Загран паспорт:
-                @Html.DisplayFor(m => m.DateZagran)
-            </p>
-            <div>
-                <h4>Туры в которых вы побывали: </h4>
                 @foreach (var item in Model.VisitedTours)
                 {
                     if (item.FirstDate < DateTime.Now)
                     {
-                        @:Название @Html.DisplayFor(m => item.TourName)  @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)<br />
+                        <tr>
+                            <td>@Html.DisplayFor(m => item.TourName)</td>
+                            <td>@Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)</td>
+                        </tr>
+                    }
                 }
-                }
-            </div>
-            @{Html.RenderAction("UsersTour", new { id = Model.UserId });}
-        </fieldset>
-       <input type="button" value="Выйти" onclick="location.href='@Url.Action("LogOff", "Account")'" />
+            </table>
+
+
+        </div>
+    </div> 
+    @{Html.RenderAction("UsersTour", new { id = Model.UserId });}
+    
+    <fieldset>
+@*        @{Html.RenderAction("UsersTour", new { id = Model.UserId });}*@
+    </fieldset>
+    <input type="button" value="Выйти" onclick=" location.href='@Url.Action("LogOff", "Account")' " />
 </div>
