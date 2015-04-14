@@ -1143,6 +1143,7 @@
     <Content Include="Views\Shared\HeaderPartial_main.cshtml" />
     <Content Include="Views\Admin\SearchAllUsers.cshtml" />
     <Content Include="Views\Home\ForWait.cshtml" />
+    <Content Include="Views\Buy\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

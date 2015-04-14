@@ -27,18 +27,20 @@ namespace WorkWithKOTE.Models
         public DateTime? BirthDay { get; set; }
         public string Citizenship { get; set; }
         public string Pasport { get; set; }
-         [Required(ErrorMessage = "Номер телефона должен быть указан")]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Номер введён неверно.")]
+        [Required(ErrorMessage = "Номер телефона должен быть указан")]
         public string mobile { get; set; }
         [Required(ErrorMessage = "Почтовый ящик должен быть указан")]
         [RegularExpression(@"^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$", ErrorMessage = "Е-Mail введен не верно")]
         public string email { get; set; }
         public int DateTourId { get; set; }
+        public DateTour DateTour { get; set; }
         public string Valuta { get; set; }
         public float? Bonus { get; set; }
         public float? BonusPay { get; set; }
         public int UserId { get; set; }
+        public UserProfile User { get; set; }
         public int TourId { get; set; }
+        public Tour Tour { get; set; }
     }
     [Table ("Tour")]
    public class Tour
@@ -126,6 +128,7 @@ namespace WorkWithKOTE.Models
         [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Дата приезда")]
         public DateTime SecondDate { get; set; }
+        public List<Trip> Trips { get; set; }
     }
     [Table ("Gallery")]
     public class Gallery
@@ -165,6 +168,7 @@ namespace WorkWithKOTE.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int NewsId { get; set; }
         public string NewsTitle { get; set; }
+        public string NewsContent { get; set; }
         [AllowHtml]
         [Required(ErrorMessage = "Поле должно быть установлено")]
         public string NewsBody { get; set; }
@@ -190,12 +194,6 @@ namespace WorkWithKOTE.Models
 
     }
  
-    public class BuyTour
-    {
-        public List<bool> cheked { get; set; }
-        public List<DopUslug> Uslugi { get; set; }
-        public Trip Trips { get; set; }
-    }
     [Table("SameTour")]
     public class SameTour
     {

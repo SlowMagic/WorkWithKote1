@@ -57,32 +57,39 @@ namespace WorkWithKOTE.Controllers
             VisitedTour addtour = new VisitedTour();
             var tour = db.Tour.Find(id);
             decimal Price = tour.Cost.Value;
+            if(Item != null)
             for (int i = 0; i < Item.Length; i++)
             {
                 var DopUslug = db.DopUslugs.Find(Item[i]);
                 Price += DopUslug.Price;
             }
-                model.DateTourId = int.Parse(DateTourId);
-            if (Request.IsAuthenticated)
+            Price = Price * model.AmtPeople;
+            if (model.TourPrice == Price)
             {
-                var dateTour = db.DateTours.Find(model.DateTourId);
-                int userID = WebSecurity.GetUserId(User.Identity.Name);
-                UserProfile userprofile = db.UserProfiles.Find(userID);
-                userprofile.Trips = new List<Trip>();
-                userprofile.Trips.Add(model);
-                addtour.TourName = tour.NameTour;
-                addtour.FirstDate = dateTour.FirstDate;
-                addtour.SecondDate = dateTour.SecondDate;
-                userprofile.VisitedTours = new List<VisitedTour>();
-                userprofile.VisitedTours.Add(addtour);
-                db.Entry(userprofile).State = EntityState.Modified;
+                model.DateTourId = int.Parse(DateTourId);
+                if (Request.IsAuthenticated)
+                {
+                    var dateTour = db.DateTours.Find(model.DateTourId);
+                    int userID = WebSecurity.GetUserId(User.Identity.Name);
+                    UserProfile userprofile = db.UserProfiles.Find(userID);
+                    userprofile.Trips = new List<Trip>();
+                    userprofile.Trips.Add(model);
+                    addtour.TourName = tour.NameTour;
+                    addtour.FirstDate = dateTour.FirstDate;
+                    addtour.SecondDate = dateTour.SecondDate;
+                    userprofile.VisitedTours = new List<VisitedTour>();
+                    userprofile.VisitedTours.Add(addtour);
+                    db.Entry(userprofile).State = EntityState.Modified;
+                }
+                tour.Trips = new List<Trip>();
+                tour.Trips.Add(model);
+                db.Entry(tour).State = EntityState.Modified;
+                db.Entry(model).State = EntityState.Added;
+                db.SaveChanges();
+                return RedirectToAction("Payment", new { id = model.TripID});
             }
-            tour.Trips = new List<Trip>();
-            tour.Trips.Add(model);
-            db.Entry(tour).State = EntityState.Modified;
-            db.Entry(model).State = EntityState.Added;
-            db.SaveChanges();
-            return RedirectToAction("Index","Home");
+            else
+                return RedirectToAction("Error","Error");
         }
         public ActionResult DopPricePartial(int id = 0)
         {
@@ -90,6 +97,18 @@ namespace WorkWithKOTE.Controllers
             
             return View(data);
         }
+       public ActionResult Payment(int id)
+        {
+            var data = db.Trip.Find(id);
+           var dataTour = db.Tour.Find(data.TourId);
+           var body = new { version = 3, public_key = "i69833650669", amount = data.TourPrice, currency = "UAH",description = dataTour.NameTour,order_id = data.TripID,pay_way = "card,liqpay,delayed,invoice,privat24", language = "ru"};
+           System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+           string str = serializer.Serialize(body);
+           byte[] bytes = System.Text.Encoding.UTF8.GetBytes(str);
+           ViewBag.Body = System.Convert.ToBase64String(bytes);
 
+           return View();
+        }
+        
     }
 }

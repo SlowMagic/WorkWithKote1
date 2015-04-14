@@ -6,6 +6,7 @@
 <form action="@Url.Action("CreateNews","News")" method="post" enctype="multipart/form-data">
     <h2>Создать новость</h2>
     Заголовок новости: @Html.TextBoxFor(m => m.NewsTitle)<br />
+    Краткое описание: @Html.TextAreaFor(m=>m.NewsContent)<br/>
     Контент новости: @Html.TextAreaFor(m => m.NewsBody)<br/>
     @Html.TextBoxFor(m=>m.NewsDate)
     <br />
