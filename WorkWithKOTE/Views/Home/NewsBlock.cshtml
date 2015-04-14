@@ -12,7 +12,7 @@
                  <article>
                     <a href="@Url.Action("NewsBlock","News")" class="new-title">@Html.DisplayFor(m=>item.NewsTitle)<br /></a>
                     <span class="new-date">@Html.DisplayFor(m=>item.NewsDate)<br /></span>
-                    <span class="new-content"@Html.Raw(item.NewsBody)></span>
+                    <span class="new-content">@Html.DisplayFor(m=>item.NewsContent)</span>
                 </article> 
                 }
             </div>

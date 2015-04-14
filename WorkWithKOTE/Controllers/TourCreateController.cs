@@ -82,13 +82,13 @@ namespace WorkWithKOTE.Controllers
                     model.SameTour.Add(new SameTour { SameTourID = d.TourId, SameTourName = d.NameTour });
                 }
             }
-            var OldTour = db.Tour.Find(model.TourId);
+          /*  var OldTour = db.Tour.Find(model.TourId);
             model.Trips = new List<Trip>();
             var OldTrip = db.Trip.Where(m => m.TourId == model.TourId);
             foreach(var item in OldTrip)
             {
                 model.Trips.Add(item);
-            }
+            }*/
             string check = UploadImg(TourImg, "/UpLoad/TourImg/"); 
             if (check != null)
                 model.TourImg = check;
@@ -102,8 +102,8 @@ namespace WorkWithKOTE.Controllers
                 Document.SaveAs(Server.MapPath("/UpLoad/TourDocument/" + Document.FileName));
                 model.Document = "/UpLoad/TourDocument/" + Document.FileName;
             }
-            db.Entry(model).State = EntityState.Added;
-            db.Tour.Remove(OldTour);
+            db.Entry(model).State = EntityState.Modified;
+           // db.Tour.Remove(OldTour);
             db.SaveChanges();
             return RedirectToAction("Index", "Home");
         }

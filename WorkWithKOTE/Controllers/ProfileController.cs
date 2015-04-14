@@ -163,6 +163,8 @@ namespace WorkWithKOTE.Controllers
         [ChildActionOnly]
         public ActionResult UsersTour(int id = 0)
         {
+            //Trip data = db.Trip.Include()
+
             ProfileTour profileTour = new ProfileTour();
             profileTour.trips = db.Trip.Where(m => m.UserId == id).ToList();
             profileTour.tours = new List<Tour>();

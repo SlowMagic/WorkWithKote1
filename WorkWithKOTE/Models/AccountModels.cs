@@ -27,6 +27,14 @@ namespace WorkWithKOTE.Models
         public DbSet<TourStatus> TourStatus { get; set; }
         public DbSet<TypeOfTour> TypeOfTours { get; set; }
         public DbSet<VisitedTour> VisitedTours { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Trip>()
+                .HasRequired(m => m.DateTour)
+                .WithMany(m => m.Trips)
+                .WillCascadeOnDelete(false);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 
     [Table("UserProfiles")]
@@ -58,7 +66,6 @@ namespace WorkWithKOTE.Models
         [Display(Name = "Дата выдачи загран паспорта")]
         public DateTime? DateZagran { get; set; }
         public string Sex { get; set; }
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Номер введён неверно.")]
         public string Mobile { get; set; }
         public float? Bonus { get; set; }
         public string Avatar { get; set; }

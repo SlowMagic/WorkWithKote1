@@ -6,18 +6,20 @@
 
 
   <form method="post" action="@Url.Action("EditProfile","Profile")" enctype="multipart/form-data">
-    <p>  Аватар - <input type="file" name="file" /></p>
+      @Html.ValidationSummary()
+      <p>  Аватар - <input type="file" name="file" /></p>
     <p>
         @Html.Label("Введите ваше имя")
         @Html.TextBoxFor(m => m.RuFirstName)
+        <input type="text" name="RuFirstName" value="@Model.RuFirstName"  required />
     </p>
     <p>
         Введите Вашу Фамилию:
-        @Html.EditorFor(m => m.RuSecondName)
+        <input type="text" name="RuSecondName" value="@Model.RuSecondName" required />
     </p>
     <p>
         Отчество:
-        @Html.EditorFor(m => m.RuThirdName)
+        <input type="text" name="RuThirdName" value="@Model.RuThirdName" required />
     </p>
     <p>
         Enter your Name
@@ -54,6 +56,11 @@
     <p>
         Ваш мобильный телефон
         @Html.EditorFor(m => m.Mobile)
+        @Html.ValidationMessageFor(m=>m.Mobile)
     </p>
+      @Html.HiddenFor(m => m.Avatar)
     <input type="submit" value="Подтвердить" />
 </form>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

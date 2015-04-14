@@ -1134,6 +1134,7 @@
     <Content Include="Views\Shared\HeaderPartial.cshtml" />
     <Content Include="Views\TourSearch\Search.cshtml" />
     <Content Include="Views\Profile\UsersTour.cshtml" />
+    <Content Include="Views\Home\HeaderPartial_main.cshtml" />
     <Content Include="Views\Home\NewsBlock.cshtml" />
     <Content Include="Views\TourDisplay\MapForDisplay.cshtml" />
     <Content Include="Views\News\CreateNews.cshtml" />
@@ -1142,15 +1143,7 @@
     <Content Include="Views\Shared\HeaderPartial_main.cshtml" />
     <Content Include="Views\Admin\SearchAllUsers.cshtml" />
     <Content Include="Views\Home\ForWait.cshtml" />
-    <Content Include="Web - Копировать.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web - Копировать.Debug.config">
-      <DependentUpon>Web - Копировать.config</DependentUpon>
-    </Content>
-    <Content Include="Web - Копировать.Release.config">
-      <DependentUpon>Web - Копировать.config</DependentUpon>
-    </Content>
+    <Content Include="Views\Buy\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
