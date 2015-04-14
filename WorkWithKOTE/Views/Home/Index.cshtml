@@ -3,9 +3,9 @@
 }
 @using WorkWithKOTE.Controllers
 @model WorkWithKOTE.Models.TourForHomePage
-   @Styles.Render("~/Content/page")   
+@Styles.Render("~/Content/page")
+@{ Html.RenderPartial("HeaderPartial_main");}
 <div id="big-preview-img" class="clearfix">
-    @{ Html.RenderPartial("HeaderPartial_main");}
     <div class="wish">
         <img id="big-logo" src="@Html.DisplayFor(m=>m.TourHightPrev.BigLogo.UrlImg)" />
 
@@ -33,9 +33,9 @@
     <div class="groups clearfix">
         <div class="groupLinks">
             <span id="textspan30">Туры&#x3a;</span>
-            <a href="#">туры по Украине</a>
-            <a href="#">Грузия</a>
-            <a href="#">Приключенческие</a>
+            <a href="#first">туры по Украине</a>
+            <a href="#second">Грузия</a>
+            <a href="#third">Приключенческие</a>
         </div>
         <div class="middleHelper"></div>
     </div>
@@ -49,7 +49,7 @@
 </div>
 
 <div class="tourGroup clearfix">
-    <h1 class="groupTitle">
+    <h1 class="groupTitle" id="first">
         Туры по Украине
     </h1>
     @if (Model.TourHightPrev != null) { 
@@ -153,7 +153,7 @@
     </form>
 </div>
 <div class="tourGroup clearfix">
-    <h1 class="groupTitle">
+    <h1 class="groupTitle" id="second">
         Туры в Грузию
     </h1>
     @if (Model.TourCenterPrev != null) { 
@@ -258,7 +258,7 @@
     </form>
 </div>
 <div class="tourGroup clearfix">
-    <h1 class="groupTitle">
+    <h1 class="groupTitle" id="third">
         Приключенческие туры
     </h1>
     @if (Model.TourDownPrev != null) { 
