@@ -156,6 +156,7 @@ namespace WorkWithKOTE.Models
         public List<Tour> TourCenter { get; set; }
         public Tour TourDownPrev { get; set; }
         public List<Tour> TourDown { get; set; }
+        public List<Tour> TourMain { get; set; }
     }
     [Table ("News")]
     public class News
