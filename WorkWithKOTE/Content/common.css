@@ -76,7 +76,7 @@ nav a:hover {
 
 #second-navigation{
     text-transform: capitalize;
-    opacity: 0;
+    display:none;
     top: 50px;
     padding: 10px;
     border-top: 1px solid #ffffff;
