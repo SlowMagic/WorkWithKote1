@@ -1142,6 +1142,15 @@
     <Content Include="Views\Shared\HeaderPartial_main.cshtml" />
     <Content Include="Views\Admin\SearchAllUsers.cshtml" />
     <Content Include="Views\Home\ForWait.cshtml" />
+    <Content Include="Web - Копировать.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web - Копировать.Debug.config">
+      <DependentUpon>Web - Копировать.config</DependentUpon>
+    </Content>
+    <Content Include="Web - Копировать.Release.config">
+      <DependentUpon>Web - Копировать.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

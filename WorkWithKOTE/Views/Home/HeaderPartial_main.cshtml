@@ -16,11 +16,7 @@
                 <img id="user" src="~/Content/img/user.png" />
                 @if (Request.IsAuthenticated)
                 {
-                    <span id="user_name">@User.Identity.Name</span>
-                      <div style="display:none" id="block_links">
-                          <a class="user_links">Профиль</a>
-                          <a class="user_links">Выход</a>
-                      </div>
+                    @Html.ActionLink(User.Identity.Name, "Profile", "Profile", null, new { id = "username" })
                 }
                 else
                 {
@@ -31,12 +27,12 @@
         <img src="~/Content/img/separator.png" class="separator" />
         <a href="@Url.Action("Search", "TourSearch")"><img id="Searching" src="~/Content/img/Searching.png" /></a>
     </div>
-    <img id="top-shadow" src="~/Content/img/top-shadow.png"/>
+    <img id="top-shadow" src="~/Content/img/top-shadow.png" />
     <div id="second-navigation">
-    <div class="groupLinks">
-        <a href="#first">по Украине</a>
-        <a href="#second">в Грузию</a>
-        <a href="#third">Приключенческие</a>
+        <div class="groupLinks">
+            <a href="#first">по Украине</a>
+            <a href="#second">в Грузию</a>
+            <a href="#third">Приключенческие</a> 
+        </div>
     </div>
-</div>
 </header>

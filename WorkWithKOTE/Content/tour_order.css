@@ -234,3 +234,18 @@ th {
     padding: 3%;
     margin-top: 5%;
 }
+
+.additional-nav {
+    text-align: center;
+    padding: 1% 0;
+}
+
+.additional-nav a, .additional-nav a:hover,
+.additional-nav a:visited, .additional-nav a:focus{
+    padding: 1% 3%;
+    font-weight: 300;
+    font-size: 1em;
+    border: 1px solid #bec2c2;
+    background-color: #ffffff;
+    margin-left: -5px;
+}
