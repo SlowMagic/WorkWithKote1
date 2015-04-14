@@ -50,7 +50,7 @@
         }
            </div>
         <p>
-            <input type="button" class="addLink" value=" + "><input type="button" class="deleteLink" value="-" />
+            <input type="button" id="addLink" onclick="AddLink()" value=" + "><input type="button" onclick="DeleteLinkDate()" class="deleteLink" value="-" />
         </p>
         <br />
         Виды Транспорта :<br />
@@ -82,8 +82,8 @@
                 </div>
 </p>
         <p>
-            <input type="button" class="addUslug" value=" + ">
-            <input type="button" class="deleteLinkUslugi" value="-" />
+            <input type="button" class="addUslug" onclick="AddUslug()" value=" + ">
+            <input type="button" class="deleteLinkUslugi" onclick="DeleteUslug()" value="-" />
         </p>
         <p>
             Имя Сопровождающего :@Html.TextBoxFor(m => m.SuppName)<br />
@@ -125,11 +125,10 @@
                 </div>
 </p>
         <p>
-            <input type="button" class="addTeg" value=" + ">
-            <input type="button" class="deleteLinkTag" value="-" />
+            <input type="button" class="addTeg" onclick="AddTag()" value=" + ">
+            <input type="button" class="deleteLinkTag" value="-" onclick="DeleteTag()" />
         </p>
         <input type="submit" value="Редактировать Тур" />
-    </div>
     @{int l = 0;}
     @foreach (var iteam in Model.RoutePoints)
     {
@@ -171,34 +170,33 @@
             }
         }
     </script>
-    <script>
-        var i = @i
-        $(function () {
-            $('.addLink').click(function () {
-                var html2Add = "<div id='dateTour_" + i + "'>" +
-                     " Введите дату отправки" + "(дд/мм/год)" +
-                "<input type='date' name='DateTour[" + @i + "].FirstDate' required /><br/>" +
-                " Введите дату приезда" + "(дд/мм/год)" +
-                "<input type='date' name='DateTour[" + @i + "].SecondDate' required />" +
-            "</div></div>";
-                $('#datetour-pannel').append(html2Add);
-                i++
-            })
-        });
-        $(function () {
-            $('.deleteLink').click(function () {
-                if (i != 1) {
-                    var count = i - 1;
-                    $('#dateTour_' + count).remove();
-                    i--
-                }
-            })
-        });
-    </script>
-<script>
+    <script type="text/javascript">
+    var i = @i
+   @* $(function () {
+        $('#addLink').click(
+       *@
+    function AddLink() {
+       var html2Add = "<div id='dateTour_" + i + "'>" +
+            " Введите дату отправки" + "(дд/мм/год)" +
+       "<input type='date' name='DateTour[" + @i + "].FirstDate' required /><br/>" +
+       " Введите дату приезда" + "(дд/мм/год)" +
+       "<input type='date' name='DateTour[" + @i + "].SecondDate' required />" +
+   "</div></div>";
+       $('#datetour-pannel').append(html2Add);
+       i++
+   }
+   function DeleteLinkDate() {
+            if (i != 1) {
+                var count = i - 1;
+                $('#dateTour_' + count).remove();
+                i--
+            }
+        }
+</script>
+
+<script type="text/javascript">
     var k = @k
-    $(function () {
-        $('.addUslug').click(function () {
+    function AddUslug(){
             var html2Adds = "<div id='dopusluga_" + k + "'>" +
          "<h4>Дополнительная услуга тура №" + "</h4>" +
                  "<input type='text' name='DopUslug[" +@k + "].Name' /><br/>" +
@@ -207,22 +205,18 @@
              "</div>";
             $('#dopusluga-pannel').append(html2Adds);
             k++;
-        })
-    });
-    $(function () {
-        $('.deleteLinkUslugi').click(function () {
+        }
+      function DeleteUslug() {
             if (k != 1) {
                 var count = k - 1;
                 $('#dopusluga_' + count).remove();
                 k--
             }
-        })
-    });
+        }
 </script>
-<script>
+<script type="text/javascript">
     var l = @j
-    $(function () {
-        $('.addTeg').click(function () {
+function AddTag() {
             var html2Addss = "<div class='tag_" + l + "'>" +
           "<h4>Тег тура " + "</h4>" +
                  "<input type='text' name='Tag[" + @j + "].TagName' /><br/>" +
@@ -230,17 +224,14 @@
              "</div>";
             $('#tag-pannel').append(html2Addss);
             l++;
-        })
-    });
-    $(function () {
-        $('.deleteLinkTag').click(function () {
-            if (l != 1) {
-                var count = l - 1;
-                $('.tag_' + count).remove();
-                l--
-            }
-        })
-    });
+        }
+    function DeleteTag() {
+        if (l != 1) {
+            var count = l - 1;
+            $('.tag_' + count).remove();
+            l--
+        }
+    }
 </script>
 <script type="text/javascript">
     var map;

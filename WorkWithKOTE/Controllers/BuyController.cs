@@ -19,46 +19,57 @@ namespace WorkWithKOTE.Controllers
         UsersContext db = new UsersContext();
         public ActionResult Index(int id )
         {
-            BuyTour data = new BuyTour();
+            Trip data = new Trip();
             Tour tour = db.Tour.Find(id);
             if (tour != null)
             {
-                data.Uslugi = db.DopUslugs.Where(m => m.TourId == id).ToList();
                 ViewBag.TourPrices = tour.Cost;
-                data.Trips = new Trip();
-                //   data.Trips .TourId = data.TourId;
-                data.Trips.TourPrice = tour.Cost;
-                ViewBag.DateTourId = new SelectList(db.DateTours.Where(m => m.TourId == id), "DateTourId", "FirstDate");
+                data .TourId = id;
+                data.TourPrice = tour.Cost;
+                ViewBag.DateTourId = new SelectList(db.DateTours.Where(m => m.TourId == id)
+                .AsEnumerable()
+                .Select(m => new
+                {
+                    Date = m.FirstDate.ToString("dd.MM.yyyy"),
+                    ID = m.DateTourId
+                }), "ID", "Date");
+                data.AmtPeople = 1;
                 if (Request.IsAuthenticated)
                 {
                     int userID = WebSecurity.GetUserId(User.Identity.Name);
                     var userprofile = db.UserProfiles.Find(userID);
-                    data.Trips.email = userprofile.Email;
-                    data.Trips.BirthDay = userprofile.Birthday;
-                    data.Trips.Citizenship = userprofile.Nationality;
-                    data.Trips.Name = userprofile.RuFirstName;
-                    data.Trips.Surname = userprofile.RuSecondName;
-                    data.Trips.FatherName = userprofile.RuThirdName;
-                    data.Trips.mobile = userprofile.Mobile;
-                    data.Trips.Pasport = userprofile.PasportData;
+                    data.email = userprofile.Email;
+                    data.BirthDay = userprofile.Birthday;
+                    data.Citizenship = userprofile.Nationality;
+                    data.Name = userprofile.RuFirstName;
+                    data.Surname = userprofile.RuSecondName;
+                    data.FatherName = userprofile.RuThirdName;
+                    data.mobile = userprofile.Mobile;
+                    data.Pasport = userprofile.PasportData;
                 }
                 ViewBag.TitleOf = tour.NameTour;
             }
             return View(data);
         }
         [HttpPost]
-        public ActionResult Index(int id,BuyTour model,string DateTourId)
+        public ActionResult Index(int id,Trip model,string DateTourId , int[] Item)
         {
             VisitedTour addtour = new VisitedTour();
             var tour = db.Tour.Find(id);
-            model.Trips.DateTourId = int.Parse(DateTourId);
+            decimal Price = tour.Cost.Value;
+            for (int i = 0; i < Item.Length; i++)
+            {
+                var DopUslug = db.DopUslugs.Find(Item[i]);
+                Price += DopUslug.Price;
+            }
+                model.DateTourId = int.Parse(DateTourId);
             if (Request.IsAuthenticated)
             {
-                var dateTour = db.DateTours.Find(model.Trips.DateTourId);
+                var dateTour = db.DateTours.Find(model.DateTourId);
                 int userID = WebSecurity.GetUserId(User.Identity.Name);
                 UserProfile userprofile = db.UserProfiles.Find(userID);
                 userprofile.Trips = new List<Trip>();
-                userprofile.Trips.Add(model.Trips);
+                userprofile.Trips.Add(model);
                 addtour.TourName = tour.NameTour;
                 addtour.FirstDate = dateTour.FirstDate;
                 addtour.SecondDate = dateTour.SecondDate;
@@ -67,9 +78,9 @@ namespace WorkWithKOTE.Controllers
                 db.Entry(userprofile).State = EntityState.Modified;
             }
             tour.Trips = new List<Trip>();
-            tour.Trips.Add(model.Trips);
+            tour.Trips.Add(model);
             db.Entry(tour).State = EntityState.Modified;
-            db.Entry(model.Trips).State = EntityState.Added;
+            db.Entry(model).State = EntityState.Added;
             db.SaveChanges();
             return RedirectToAction("Index","Home");
         }
