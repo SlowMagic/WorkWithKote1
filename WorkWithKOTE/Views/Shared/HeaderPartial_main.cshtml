@@ -16,7 +16,11 @@
                 <img id="user" src="~/Content/img/user.png" />
                 @if (Request.IsAuthenticated)
                 {
-                    @Html.ActionLink(User.Identity.Name, "Profile", "Profile", null, new { id = "username" })
+                    <span id="user_name">@User.Identity.Name</span>
+                      <div style="display:none" id="block_links">
+                          <a class="user_links">Профиль</a>
+                          <a class="user_links">Выход</a>
+                      </div>
                 }
                 else
                 {

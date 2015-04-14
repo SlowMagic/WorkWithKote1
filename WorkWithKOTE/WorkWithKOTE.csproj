@@ -1134,7 +1134,6 @@
     <Content Include="Views\Shared\HeaderPartial.cshtml" />
     <Content Include="Views\TourSearch\Search.cshtml" />
     <Content Include="Views\Profile\UsersTour.cshtml" />
-    <Content Include="Views\Home\HeaderPartial_main.cshtml" />
     <Content Include="Views\Home\NewsBlock.cshtml" />
     <Content Include="Views\TourDisplay\MapForDisplay.cshtml" />
     <Content Include="Views\News\CreateNews.cshtml" />
