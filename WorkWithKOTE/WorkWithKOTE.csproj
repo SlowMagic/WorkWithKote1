@@ -206,10 +206,6 @@
     <Compile Include="Scripts\Filemanager-master\connectors\mvc\FilemanagerController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\TourDB.mdf" />
-    <Content Include="App_Data\TourDB_log.ldf">
-      <DependentUpon>TourDB.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\boilerplate.css" />
     <Content Include="Content\common.css" />
     <Content Include="Content\img\10942586.jpg" />
@@ -1149,6 +1145,7 @@
     <Content Include="Views\Home\ForWait.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="UpLoad\Avatar\" />
     <Folder Include="UpLoad\ContentImg\" />
     <Folder Include="UpLoad\SuppFoto\" />
