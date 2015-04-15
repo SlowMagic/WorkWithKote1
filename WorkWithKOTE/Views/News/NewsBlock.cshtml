@@ -2,32 +2,10 @@
     ViewBag.Title = "NewsBlock";
 }
 @model WorkWithKOTE.Models.News
-@{ Html.RenderPartial("HeaderPartial_main");}
-@Styles.Render("~/Content/order")
-    <div id="small-preview-img" class="clearfix">
 
-        <hgroup>
-            <h1>@Html.DisplayFor(m => m.NewsTitle)</h1>
-
-            <h2>Главная / Новости</h2>
-        </hgroup>
-
-    </div>
-    <div class="container">
-        <div class="layout-right-column">
-            <div class="social">
-                <div class="">
-                    <p>Поделиться:</p>
-                </div>
-            </div>
-        </div>
-        <div class="layout-main">
-            @Html.Raw(Model.NewsBody)
-        </div>
-        <div >
-            @Html.DisplayFor(m => m.NewsDate)
-        </div>
-    </div>
+   <h2>@Html.DisplayFor(m => m.NewsTitle)</h2><br />
+    @Html.Raw(Model.NewsBody)<br />
+    @Html.DisplayFor(m => m.NewsDate)<br />
     @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
     {
         <input type="button" value="Удалить новость" onclick="location.href='@Url.Action("NewsDelete", new {id = Model.NewsId })'">

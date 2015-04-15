@@ -3,7 +3,7 @@
 }
 
 <form method="POST" accept-charset="utf-8" action="https://www.liqpay.com/api/checkout">
-    <input type="hidden" name="data" value=@ViewBag.Body />
-    <input type="hidden" name="signature" value="eJOmtNXHd38GLCtMRdlUopiro+c=" />
+    <input type="hidden" name="data" value="@ViewBag.Data" />
+    <input type="hidden" name="signature" value="@ViewBag.Signature" />
     <input type="image" src="//static.liqpay.com/buttons/p1ru.radius.png" name="btn_text" />
 </form>
