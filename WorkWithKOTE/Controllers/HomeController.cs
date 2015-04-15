@@ -27,7 +27,7 @@ namespace WorkWithKOTE.Controllers
                 .SelectMany(m => m.DateTour)
                 .Where(m => m.FirstDate >= DateTime.Now);
             DateTime? min = date.Min(dt=> (DateTime?)dt.FirstDate);
-            var data = db.Tour.Include(m=>m.BigLogo).Where(m => m.DateTour.Any(dt => dt.FirstDate == min) && m.TourStatusId == tourStatusId && m.TypeOfTourId ==typeofTourId).FirstOrDefault();
+            var data = db.Tour.Include(m => m.BigLogo).Where(m => m.DateTour.Any(dt => dt.FirstDate == min) && (m.TourStatusId == tourStatusId && m.TypeOfTourId == typeofTourId)).FirstOrDefault();
             return data;
         }
         protected List<Tour> TourList(int tourStatusId, int typeofTourId)

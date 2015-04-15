@@ -181,12 +181,18 @@ td, th {
 tbody {
     border: 1px solid #cccccc;
 }
-
+.button {
+    padding: 0.875% 3%;
+    float: left;
+}
 .history tr > td:first-child {
     width: 60%;
     text-align: left;
 }
-
+.request tr > td:first-child {
+    width: 5%;
+    text-align: center;
+}
 th {
     background-color: #ff6f40;
     text-align: center;

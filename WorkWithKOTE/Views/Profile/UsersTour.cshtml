@@ -1,17 +1,27 @@
 ﻿@model IEnumerable< WorkWithKOTE.Models.Trip>
 <div class="layout">
     <h3> Заявки</h3>
-    <table id="requests">
-        @foreach (var Item in Model) {         
-            <tr>
-            <th>@Item.TripID<br>заказа</th>
-            <th>@Item.Name @Item.Surname @Item.FatherName</th>
-            <th>@Item.Tour.NameTour</th>
-            <th>@Item.DateTour.FirstDate.ToString("dd.MM.yyyy")  -  @Item.DateTour.SecondDate.ToString("dd.MM.yyyy")</th>
-            <th>@Item.TourPrice</th>
-            <th>@Item.Status<br>заказа</th>
+    <table class="request" id="requests">
+
+        <tr>
+            <th>Номер заказа</th>
+            <th>ФИО</th>
+            <th>Имя&nbsp;тура</th>
+            <th>Дата&nbsp;тура</th>
+            <th>Стоимость</th>
+            <th>Статус&nbsp;заказа</th>
         </tr>
-        }
+@foreach (var Item in Model)
+{
+    <tr>
+        <td>@Item.TripID</td>
+        <td>@Item.Name @Item.Surname @Item.FatherName</td>
+        <td>@Item.Tour.NameTour</td>
+        <td>@Item.DateTour.FirstDate.ToString("dd.MM.yyyy") - @Item.DateTour.SecondDate.ToString("dd.MM.yyyy")</td>
+        <td>@Item.TourPrice</td>
+        <td>@Item.Status</td>
+    </tr>
+}
     </table>
 
 </div>
