@@ -24,7 +24,17 @@
                 }
                 else
                 {
-                    @Html.ActionLink("Войти", "Login", "Account", null, new { id = "username" })
+                    <span id="user_name">Вход в личный кабинет </span>
+                      <div id="block_enter" class="hidden">
+
+                          <input type="text" class="input_log_in" placeholder="Логин" />
+                          <input type="text" class="input_log_in" placeholder="Пароль" />
+                          <input id="enter_button" type="button" value="Войти" />
+
+                          <a href='@Url.Action("Register","Account")' class="user_links_e">Регистрация</a>
+                          <a href='@Url.Action("ForgotPassword","Profile")' class="user_links_e">Забыли пароль ?</a>
+                      </div>
+
                 }
             </div>
         </div>
