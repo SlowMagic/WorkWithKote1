@@ -13,11 +13,16 @@
             <div class="align_center_to_left">
                 <div class="align_center_to_right">
                     <div class="short-description">
-                      @foreach (var item in Model.DateTour) {   <p class="tour-date">@Html.DisplayFor(m=>item.FirstDate) - @Html.DisplayFor(m=>item.SecondDate)</p>}
-
+                      @foreach (var item in Model.DateTour) {
+                          <p class="tour-date">
+                              @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
+                              <img id="tour_calendar" src="~/Content/img/calendar.png" />
+                          </p>
+                      }
+                        
                         <p class="tour-destination">
                             <span>@Html.DisplayFor(m => m.PlaceOfDeparture)</span>
-                            <img class="destination_arrow" src="~/Content/img/arrow.png"/>
+                            <img class="destination_arrow" src="~/Content/img/arrow_small.png"/>
                             <span> @Html.DisplayFor(m => m.PlaceOfArrival)</span>
                         </p>
                     </div>
@@ -85,23 +90,26 @@
                         @Html.DisplayFor(m => item.Name) @:,
  }
                 </p>
-
-                <span>Количество участников:  @Html.DisplayFor(m => m.AllPeople) ( Уже едут: @Html.DisplayFor(m => m.People) )</span>
+                <img id="people_count" src="~/Content/img/guys-count.png" />
+                <span>Количество участников:  @Html.DisplayFor(m => m.AllPeople) ( Уже едут:<span id="places"> @Html.DisplayFor(m => m.People)</span> )</span>
             </div>
             <div class="right-column">
                 <p>Если у Вас есть вопросы,обратитесь к нашему консультанту:</p>
 
-                <p><span class="telephone">+38 097-815-68-38</span> <span class="telephone">+38 050-774-99-18</span></p>
+                <p>
+                    <img class="phone_icon" src="~/Content/img/megafon.png"/><span class="telephone">+38 097-815-68-38</span>
+                    <img class="phone_icon" src="~/Content/img/megafon.png" /><span class="telephone">+38 050-774-99-18</span>
+                </p>
 
-                <p><a href="">Обратный звонок</a></p>
+                <p><a href="#">Обратный звонок</a></p>
             </div>
             <div class="buttons">
-                <a href="@Url.Action("Index", "Buy", new { id = Model.TourId })" id="book-and-pay">Бронь и оплата</a>
+                <a href="@Url.Action("Index", "Buy", new { id = Model.TourId })" id="book-and-pay" class="button">Бронь и оплата</a>
                 @*                <a href="#" id="book-tour">Предварительная бронь</a>*@
                 @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                 {
-                    <a href='@Url.Action("TourEdit", "TourCreate", new {id = Model.TourId})' id="book-tour">Редактировать тур</a>
-                    <a href='@Url.Action("TourDelete","TourDisplay",new {id = Model.TourId})'id="book-tour">Удалить тур</a>
+                    <a href='@Url.Action("TourEdit", "TourCreate", new {id = Model.TourId})' id="book-tour" class="button">Редактировать тур</a>
+                    <a href='@Url.Action("TourDelete","TourDisplay",new {id = Model.TourId})'id="book-tour" class="button">Удалить тур</a>
                 }
             </div>
         </div>
