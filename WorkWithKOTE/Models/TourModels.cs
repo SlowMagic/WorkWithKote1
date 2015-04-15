@@ -35,6 +35,7 @@ namespace WorkWithKOTE.Models
         public int DateTourId { get; set; }
         public DateTour DateTour { get; set; }
         public string Valuta { get; set; }
+        public string Status { get; set; }
         public float? Bonus { get; set; }
         public float? BonusPay { get; set; }
         public int UserId { get; set; }

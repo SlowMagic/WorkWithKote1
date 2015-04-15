@@ -66,6 +66,7 @@ namespace WorkWithKOTE.Controllers
             Price = Price * model.AmtPeople;
             if (model.TourPrice == Price)
             {
+                model.Status = "Не оплачена";
                 model.DateTourId = int.Parse(DateTourId);
                 if (Request.IsAuthenticated)
                 {
