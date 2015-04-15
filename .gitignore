@@ -154,3 +154,6 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+WorkWithKOTE/WorkWithKOTE.csproj
+WorkWithKOTE/App_Data/TourDB.mdf
+WorkWithKOTE/App_Data/TourDB_log.ldf
