@@ -1,47 +1,17 @@
-﻿@model WorkWithKOTE.Models.ProfileTour
+﻿@model IEnumerable< WorkWithKOTE.Models.Trip>
 <div class="layout">
     <h3> Заявки</h3>
     <table id="requests">
-        <tr>
-            <th>Номер<br>заказа</th>
-            <th>ФИО</th>
-            <th>Название тура</th>
-            <th>Даты тура</th>
-            <th>К оплате</th>
-            <th>Статус<br>документов</th>
-            <th>Статус<br>заказа</th>
+        @foreach (var Item in Model) {         
+            <tr>
+            <th>@Item.TripID<br>заказа</th>
+            <th>@Item.Name @Item.Surname @Item.FatherName</th>
+            <th>@Item.Tour.NameTour</th>
+            <th>@Item.DateTour.FirstDate.ToString("dd.MM.yyyy")  -  @Item.DateTour.SecondDate.ToString("dd.MM.yyyy")</th>
+            <th>@Item.TourPrice</th>
+            <th>@Item.Status<br>заказа</th>
         </tr>
-
-        <tr>
-            <td>2345</td>
-            <td>Пупкович Василий Пупкин</td>
-            <td>Новый год во Львове</td>
-            <td>14.02.2015 - 18.02.2015</td>
-            <td> 12 123</td>
-            <td>В обработке</td>
-            <td>В обработке</td>
-        </tr>
+        }
     </table>
 
-</div>
-<div style="margin:auto">
-    <h4>Ваши Заказы</h4>
-    <div style="display:inline-block">
-    @foreach (var item in Model.trips)
-    {
-        <div style="display:block">Номер Заявки: @Html.DisplayFor(m=>item.TripID) Цена Заказа: @Html.DisplayFor(m=>item.TourPrice) @Html.DisplayFor(m=>item.Valuta)</div>
-    }
-</div>
-    <div style="display:inline-block">
-        @foreach(var item in Model.tours)
-        {
-            <div style="display:block">Название тура: @Html.DisplayFor(m=>item.NameTour)</div>
-        }
-    </div>
-    <div style="display:inline-block">
-        @foreach(var item in Model.date)
-        {
-            <div style="display:block">Дата приезда - @Html.DisplayFor(m=>item.FirstDate)  - Дата приезда @Html.DisplayFor(m=>item.SecondDate)</div>
-        }
-    </div> 
 </div>
