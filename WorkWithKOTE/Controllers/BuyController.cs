@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using WebMatrix.WebData;
 using System.Data.Entity;
 using WorkWithKOTE.Models;
+using System.Security.Cryptography;
 namespace WorkWithKOTE.Controllers
 {
 
@@ -101,14 +102,34 @@ namespace WorkWithKOTE.Controllers
        public ActionResult Payment(int id)
         {
             var data = db.Trip.Find(id);
-           var dataTour = db.Tour.Find(data.TourId);
-           var body = new { version = 3, public_key = "i69833650669", amount = data.TourPrice, currency = "UAH",description = dataTour.NameTour,order_id = data.TripID,pay_way = "card,liqpay,delayed,invoice,privat24", language = "ru"};
-           System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-           string str = serializer.Serialize(body);
-           byte[] bytes = System.Text.Encoding.UTF8.GetBytes(str);
-           ViewBag.Body = System.Convert.ToBase64String(bytes);
+            var dataTour = db.Tour.Find(data.TourId);
 
-           return View();
+            var dataObj = new
+            {
+                version = 3,
+                public_key ="i69833650669",
+                amount = data.TourPrice,
+                currency = "UAH",
+                description = dataTour.NameTour,
+                order_id = data.TripID,
+                pay_way = "card,liqpay,delayed,invoice,privat24",
+                language = "ru"
+            };
+
+            System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string dataJson = serializer.Serialize(dataObj);
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(dataJson);
+            string dataStr = System.Convert.ToBase64String(bytes);
+            string privateKey = "v2Rhrz287rrJtDSHq228gsg70ZkA8omC2mhl7aha";
+            var signature = privateKey + dataStr + privateKey;
+
+            SHA1 sha1 = SHA1.Create();
+            byte[] hash = sha1.ComputeHash(System.Text.Encoding.UTF8.GetBytes(signature));
+
+            ViewBag.Data = dataStr;
+            ViewBag.Signature = System.Convert.ToBase64String(hash);
+
+            return View();
         }
         
     }

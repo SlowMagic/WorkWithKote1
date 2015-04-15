@@ -6,7 +6,7 @@
    <h2>@Html.DisplayFor(m => m.NewsTitle)</h2><br />
     @Html.Raw(Model.NewsBody)<br />
     @Html.DisplayFor(m => m.NewsDate)<br />
-    if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
     {
         <input type="button" value="Удалить новость" onclick="location.href='@Url.Action("NewsDelete", new {id = Model.NewsId })'">
     }
