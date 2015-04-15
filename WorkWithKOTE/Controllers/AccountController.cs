@@ -78,7 +78,12 @@ namespace WorkWithKOTE.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.Email, model.Password);
                     WebSecurity.Login(model.Email, model.Password);
-
+                    UsersContext db = new UsersContext();
+                    int UserId = WebSecurity.GetUserId(model.Email);
+                    var user = db.UserProfiles.Find(UserId);
+                    user.Bonus = 200;
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
