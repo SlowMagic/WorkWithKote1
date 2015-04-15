@@ -28,7 +28,11 @@ namespace WorkWithKOTE.Controllers
             db.SaveChanges();
             return RedirectToAction("Index","Home");
         }
-        public ActionResult NewsBlock()
+        public ActionResult NewsBlock(int id)
+        {
+            return View(db.News.Find(id));
+        }
+        public ActionResult AllNewsBlock( )
         {
             return View(db.News.ToList());
         }

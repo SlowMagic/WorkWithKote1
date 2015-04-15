@@ -1,16 +1,13 @@
 ﻿@{
     ViewBag.Title = "NewsBlock";
 }
-@model List<WorkWithKOTE.Models.News>
-<h2>NewsBlock</h2>
-@foreach (var item in Model)
-{
-   <h2>@Html.DisplayFor(m => item.NewsTitle)</h2><br />
-    @Html.Raw(item.NewsBody)<br />
-    @Html.DisplayFor(m => item.NewsDate)<br />
+@model WorkWithKOTE.Models.News
+
+   <h2>@Html.DisplayFor(m => m.NewsTitle)</h2><br />
+    @Html.Raw(Model.NewsBody)<br />
+    @Html.DisplayFor(m => m.NewsDate)<br />
     if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
     {
-        <input type="button" value="Удалить новость" onclick="location.href='@Url.Action("NewsDelete", new {id = item.NewsId })'">
+        <input type="button" value="Удалить новость" onclick="location.href='@Url.Action("NewsDelete", new {id = Model.NewsId })'">
     }
     <hr />
-}

@@ -3,7 +3,7 @@
     <div class="align_center_to_left">
         <div class="align_center_to_right">
             <div class="news-title">
-                <h3>Новости</h3>
+                <h3>@Html.ActionLink("Новости","AllNewsBlock","News")</h3>
                 <h4>будь в курсе всех событий</h4>
             </div>
             <div class="news-block clearfix">
@@ -12,7 +12,7 @@
                 {
                     if(i>3) {break;}
                     <article>
-                        <a href="@Url.Action("NewsBlock", "News")" class="new-title">@Html.DisplayFor(m => item.NewsTitle)<br/></a>
+                        <a href="@Url.Action("NewsBlock", "News", new {id = item.NewsId })" class="new-title">@Html.DisplayFor(m => item.NewsTitle)<br/></a>
                         <span class="new-date">@Html.DisplayFor(m => item.NewsDate)<br /></span>
                         <span class="new-content">@Html.DisplayFor(m => item.NewsContent)</span>
                     </article>
