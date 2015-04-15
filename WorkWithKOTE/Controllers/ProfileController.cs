@@ -163,9 +163,9 @@ namespace WorkWithKOTE.Controllers
         [ChildActionOnly]
         public ActionResult UsersTour(int id = 0)
         {
-            //Trip data = db.Trip.Include()
+            var data = db.Trip.Include(m => m.DateTour).Include(m => m.Tour).Include(m=>m.User).Where(m => m.UserId == id);
 
-            ProfileTour profileTour = new ProfileTour();
+          /*  ProfileTour profileTour = new ProfileTour();
             profileTour.trips = db.Trip.Where(m => m.UserId == id).ToList();
             profileTour.tours = new List<Tour>();
             profileTour.date = new List<DateTour>();
@@ -181,8 +181,8 @@ namespace WorkWithKOTE.Controllers
                     var date = db.DateTours.Find(Item.DateTourId);
                     profileTour.date.Add(date);
                 }
-            }
-            return PartialView(profileTour);
+            }*/
+            return PartialView(data);
         }
         protected string UploadImg(HttpPostedFileBase file, string path)
         {
