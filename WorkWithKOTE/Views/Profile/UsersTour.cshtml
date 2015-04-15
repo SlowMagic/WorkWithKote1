@@ -5,9 +5,9 @@
         @foreach (var Item in Model) {         
             <tr>
             <th>@Item.TripID<br>заказа</th>
-            <th>@Item.User.RuFirstName @Item.User.RuSecondName @Item.User.RuThirdName</th>
+            <th>@Item.Name @Item.Surname @Item.FatherName</th>
             <th>@Item.Tour.NameTour</th>
-            <th>@Item.DateTour.FirstDate  -  @Item.DateTour.SecondDate</th>
+            <th>@Item.DateTour.FirstDate.ToString("dd.MM.yyyy")  -  @Item.DateTour.SecondDate.ToString("dd.MM.yyyy")</th>
             <th>@Item.TourPrice</th>
             <th>@Item.Status<br>заказа</th>
         </tr>
