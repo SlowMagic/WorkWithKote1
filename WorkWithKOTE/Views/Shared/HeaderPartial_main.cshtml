@@ -9,11 +9,11 @@
             <a href="#">Галерея</a>
             <a href="#">Контакты</a>
         </nav>
-        <img src="~/Content/img/separator.png" class="separator" />
 
         <div class="profile">
             <div class="user">
-                <img id="user" src="~/Content/img/user.png" />
+                <img src="~/Content/img/separator.png" class="separator" />
+             
                 @if (Request.IsAuthenticated)
                 {
                     <span id="user_name">@User.Identity.Name</span>
@@ -26,19 +26,22 @@
                 {
                     <span id="user_name">Вход в личный кабинет </span>
                       <div id="block_enter" class="hidden">
-
-                          <input type="text" class="input_log_in" placeholder="Логин" />
-                          <input type="text" class="input_log_in" placeholder="Пароль" />
-                          <input id="enter_button" type="button" value="Войти" />
-
-                          <a href='@Url.Action("Register","Account")' class="user_links_e">Регистрация</a>
-                          <a href='@Url.Action("ForgotPassword","Profile")' class="user_links_e">Забыли пароль ?</a>
+                         @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, @id = "signForm" }))
+                         {
+                              @Html.AntiForgeryToken();
+                              <input name="Email" type="text" class="input_log_in notHide" placeholder="Логин" />
+                              <input name="Password" type="password" class="input_log_in notHide" placeholder="Пароль" />
+                              <input id="enter_button" type="submit" value="Войти" class="notHide" />
+                          
+                         }
+                          <a href='@Url.Action("Register","Account")' id="register" class="user_links_e">Регистрация</a>
+                          <a href='@Url.Action("ForgotPassword","Profile")' id="amnesia" class="user_links_e">Забыли пароль ?</a>
                       </div>
-
                 }
+                <img src="~/Content/img/separator.png" class="separator" />
             </div>
         </div>
-        <img src="~/Content/img/separator.png" class="separator" />
+    
         <a href="@Url.Action("Search", "TourSearch")"><img id="Searching" src="~/Content/img/Searching.png" /></a>
     </div>
     <img id="top-shadow" src="~/Content/img/top-shadow.png"/>

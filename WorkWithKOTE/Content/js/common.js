@@ -36,7 +36,7 @@ function switchLogo(pos)
     }
     else 
     {
-        $('#user_name').css('color', 'white');
+        $('#user_name').css({ 'color': 'white' ,'background-image':'url("/Content/img/user.png")'});
 
         if ( pos >= $('#big-logo').height() || pos > 200 )
         {
@@ -64,18 +64,25 @@ function switchLogo(pos)
     }
 }
 
-$(function () {
+$(function ()
+{
+    $('#block_links').css('width', $('#user_name').width() + 57 + 'px');
+
     $('#user_name').click(function () {
         $('#block_links,#block_enter').toggleClass('hidden');
     });
 
     $(window).scroll(function () {
-        $('#block_links').addClass('hidden');
+        $('#block_links,#block_enter').addClass('hidden');
     });
 
-  //  $('body').click(function (event) {
-   //     if ( $(event.target).attr('id') != 'user_name' ) {
-    //         $('#block_links').addClass('hidden');
-     //   }
-   // });
+    $('body').click(function (event) {
+        if ( $(event.target).attr('id') != 'user_name' && $(event.target).attr('id') != 'signForm' && !$(event.target).hasClass('notHide') ) {
+             $('#block_links,#block_enter').addClass('hidden');
+       }
+    });
+
+    $('#enter_button').click(function(){
+        $('#block_links,#block_enter').addClass('hidden');
+    });
 });
