@@ -76,7 +76,7 @@ namespace WorkWithKOTE.Controllers
                 var token = WebSecurity.GeneratePasswordResetToken(Email);
                 var resetLink = "<a href=\"" + Url.Action("ResetPassword", "Profile", new { un = i, rt = token }, "http") + "\">ReserPasswor</a>";
                 string subject = "Если вы хотите сбросить пароль то перейдите по данной ссылке";
-                string body = "<b>Если вы хотите сбросить пароль то перейдите по данной ссылке</b><br/>" + resetLink;
+                string body = "<b>Если вы хотите сбросить пароль то перейдите по данной ссылке</b><br/>" + resetLink +" Операция необратимая. Пароль будет выслан на ваш ящик через 1 секунду";
                 try
                 {
                     SendMail(Email, subject, body);
@@ -111,7 +111,7 @@ namespace WorkWithKOTE.Controllers
 
             // высылаем письмо с новым паролем
             string subject = "Новый пароль";
-            string body = "<b>Новый пароль</b><br>" + newpassword;
+            string body = "<b>Новый пароль. Вводить учитывая регистр и все символы и ручками. Не копировать.</b><br>" + newpassword;
             try
             {
                 SendMail(userProfile.Email, subject, body);
@@ -122,7 +122,7 @@ namespace WorkWithKOTE.Controllers
                 ViewBag.Message = "Возникла ошибка при отсылки письма. " +
                                                           ex.Message;
             }
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Index", "Home");
         }
         private string GenerateRandomPassword(int length)
         {
