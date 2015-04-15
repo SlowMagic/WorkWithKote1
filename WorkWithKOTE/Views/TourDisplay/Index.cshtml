@@ -15,7 +15,11 @@
                     <div class="short-description">
                       @foreach (var item in Model.DateTour) {   <p class="tour-date">@Html.DisplayFor(m=>item.FirstDate) - @Html.DisplayFor(m=>item.SecondDate)</p>}
 
-                        <p class="tour-destination">@Html.DisplayFor(m => m.PlaceOfDeparture) -> @Html.DisplayFor(m => m.PlaceOfArrival)</p>
+                        <p class="tour-destination">
+                            <span>@Html.DisplayFor(m => m.PlaceOfDeparture)</span>
+                            <img class="destination_arrow" src="~/Content/img/arrow.png"/>
+                            <span> @Html.DisplayFor(m => m.PlaceOfArrival)</span>
+                        </p>
                     </div>
                 </div>
             </div>
