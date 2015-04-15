@@ -67,4 +67,14 @@ $(function () {
     $('#user_name').click(function () {
         $('#block_links').toggleClass('hidden');
     });
+
+    $(window).scroll(function () {
+        $('#block_links').addClass('hidden');
+    });
+
+    $('body').click(function (event) {
+        if ( $(event.target).attr('id') != 'user_name' ) {
+             $('#block_links').addClass('hidden');
+        }
+    });
 });

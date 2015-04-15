@@ -56,7 +56,7 @@ nav a:hover {
     text-align: center;
     font-weight: 300;
     line-height: 1em;
-    color: #121212;
+    color: #121212 !important;
     font-style: normal;
     text-decoration: none;
     z-index: 324;
@@ -353,14 +353,34 @@ footer {
 }
 
 #user_name,.user_links {
-    color:white;
-    cursor:pointer;
+    color  : white;
+    cursor : pointer;
+}
+
+.user_links {
+    display     : block;
+    padding-top : 10px;
+    float       : inherit;
+    display     : block;
+    margin-left : 25px;
+    font-size   : 18px;
+    width       : 40px !important;
+    color       : white !important;
 }
 
 .hidden {
     display:none;
 }
 
-#block_links{
-   display:inherit;
+#block_links {
+    display     : inherit;
+    position    : absolute;
+    width       : 260px;
+    margin-left : -25px;
+    height      : 77px;
+    background-color: #121212;
+    border-bottom-left-radius : 10px;
+    border-bottom-right-radius: 10px;
+    margin-top : 9px;
+    text-align : left;
 }
