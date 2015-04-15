@@ -7,13 +7,16 @@
                 <h4>будь в курсе всех событий</h4>
             </div>
             <div class="news-block clearfix">
+                @{int i = 0;}
                 @foreach (var item in Model)
                 {
-                 <article>
-                    <a href="@Url.Action("NewsBlock","News")" class="new-title">@Html.DisplayFor(m=>item.NewsTitle)<br /></a>
-                    <span class="new-date">@Html.DisplayFor(m=>item.NewsDate)<br /></span>
-                    <span class="new-content">@Html.DisplayFor(m=>item.NewsContent)</span>
-                </article> 
+                    if(i>3) {break;}
+                    <article>
+                        <a href="@Url.Action("NewsBlock", "News")" class="new-title">@Html.DisplayFor(m => item.NewsTitle)<br/></a>
+                        <span class="new-date">@Html.DisplayFor(m => item.NewsDate)<br /></span>
+                        <span class="new-content">@Html.DisplayFor(m => item.NewsContent)</span>
+                    </article>
+                    i++;
                 }
             </div>
         </div>
