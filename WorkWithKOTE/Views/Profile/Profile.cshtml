@@ -78,9 +78,4 @@
         </div>
     </div> 
     @{Html.RenderAction("UsersTour", new { id = Model.UserId });}
-    
-    <fieldset>
-@*        @{Html.RenderAction("UsersTour", new { id = Model.UserId });}*@
-    </fieldset>
-    <input type="button" value="Выйти" onclick=" location.href='@Url.Action("LogOff", "Account")' " />
 </div>

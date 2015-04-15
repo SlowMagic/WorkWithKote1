@@ -13,7 +13,7 @@
         </hgroup>
     </div>
         <form action="@Url.Action("TourCreate")" method="post" enctype="multipart/form-data">
-            <div>
+            <div class="layout">
                 @Html.ValidationSummary()
                 Название @Html.TextBoxFor(m => m.NameTour)
                 @Html.ValidationMessageFor(model => model.NameTour)
