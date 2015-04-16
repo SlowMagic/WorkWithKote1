@@ -119,9 +119,10 @@
               Уже едут : @Html.TextBoxFor(m => m.People)
           </span><br /> 
 
+
+          <span id="payChange"> Cпособ оплаты : </span> 
           <select id="paymentSelect" name="KindOfPay">
-              <option selected="selected">Способ оплаты</option>
-              <option>Наличный</option>
+              <option selected>Наличный</option>
               <option>Безналичный</option>
               <option>Оба</option>
           </select><br/><br/>
@@ -157,29 +158,20 @@
           </span><br /><br/>
 
               @Html.Partial("MapPartial")
-             
+           
               <input id="createTour" type="submit" value="Создать Тур" />
               <div id="route-points"></div>
-        </div>
-          
-        </form>
+        </div>      
+     </form>
 
 @section scripts
 {
-    @Scripts.Render("~/bundles/jqueryval")
+  @Scripts.Render("~/bundles/jqueryval")
     <script>
         CKEDITOR.replace("DescriptionTour", {
             filebrowserBrowseUrl: '/Scripts/Filemanager-master/index.html'
         });
     </script>
-
-
-    
-
-
-
-
-
 
     <script type="text/javascript">
         function valid() {
