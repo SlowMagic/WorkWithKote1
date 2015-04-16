@@ -33,7 +33,7 @@ namespace WorkWithKOTE.Controllers
         protected List<Tour> TourList(int tourStatusId, int typeofTourId)
         {
             List<DateTour> date = new List<DateTour>();
-            if(typeofTourId != 0){
+            if(typeofTourId == 0){
                date = db.Tour.Include(m => m.DateTour)
                .Where(m => m.TourStatusId == tourStatusId)
                .SelectMany(m => m.DateTour)

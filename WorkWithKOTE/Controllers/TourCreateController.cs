@@ -66,12 +66,12 @@ namespace WorkWithKOTE.Controllers
             ViewBag.TypeOfTourId = new SelectList(db.TypeOfTours, "TypeOfTourId", "TypeOfTourName");
             ViewBag.SameTourId = new MultiSelectList(db.Tour, "TourId", "NameTour");
             ViewBag.LogoId = new SelectList(db.BigLogos, "LogoId", "LogoName");
-            var data = db.Tour.Include(m => m.DopUslug).Include(m => m.DateTour).Include(m => m.RoutePoints).Include(m=>m.Tag).Where(m => m.TourId == id).FirstOrDefault();
+            var data = db.Tour.Include(m=>m.Trips).Include(m => m.DopUslug).Include(m => m.DateTour).Include(m => m.RoutePoints).Include(m=>m.Tag).Where(m => m.TourId == id).FirstOrDefault();
             ViewBag.Id = id;
             return View(data);
         }
         [HttpPost]
-        public ActionResult TourEdit(List<int>SameTours,Tour model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp)
+        public ActionResult TourEdit(List<int> SameTours, Tour model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp, DateTour[] DT, DopUslug[] DP,Tag[] Ts)
         {
             if (SameTours != null)
             {
@@ -82,13 +82,6 @@ namespace WorkWithKOTE.Controllers
                     model.SameTour.Add(new SameTour { SameTourID = d.TourId, SameTourName = d.NameTour });
                 }
             }
-          /*  var OldTour = db.Tour.Find(model.TourId);
-            model.Trips = new List<Trip>();
-            var OldTrip = db.Trip.Where(m => m.TourId == model.TourId);
-            foreach(var item in OldTrip)
-            {
-                model.Trips.Add(item);
-            }*/
             string check = UploadImg(TourImg, "/UpLoad/TourImg/"); 
             if (check != null)
                 model.TourImg = check;
@@ -102,8 +95,33 @@ namespace WorkWithKOTE.Controllers
                 Document.SaveAs(Server.MapPath("/UpLoad/TourDocument/" + Document.FileName));
                 model.Document = "/UpLoad/TourDocument/" + Document.FileName;
             }
+            if(DT !=null)
+            foreach (var item in DT)
+            { db.Entry(item).State = EntityState.Added; }
+            if(DP!=null)
+            foreach (var item in DP)
+            { db.Entry(item).State = EntityState.Added; }
+            if(Ts != null)
+            foreach (var item in Ts)
+            { db.Entry(item).State = EntityState.Added; }
+            foreach(var item in model.DateTour)
+            {
+                db.Entry(item).State = EntityState.Modified;
+            }
+            foreach (var item in model.DopUslug)
+            {
+                db.Entry(item).State = EntityState.Modified;
+            }
+           foreach(var item in model.RoutePoints)
+                {
+                    if(item.RoutePointID  == 0)
+                    db.Entry(item).State = EntityState.Added;
+                }
+            foreach(var item in model.Tag)
+            {
+                db.Entry(item).State = EntityState.Modified;
+            }
             db.Entry(model).State = EntityState.Modified;
-           // db.Tour.Remove(OldTour);
             db.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
