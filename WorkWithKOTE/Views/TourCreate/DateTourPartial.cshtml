@@ -1,35 +1,42 @@
 ﻿
 <div id="datetour-pannel">
-    <div class="datetour">
-    Введите дату отправки:<br />
-    <input type='date' name="DateTour[0].FirstDate" required />
-    <br />
-    Введите дату приезда:<br />
-    <input type='date' name="DateTour[0].SecondDate" required />
-</div>
-</div>
-<p><input type="button" class="addLink" value=" + ">
-<input type="button" class="deleteLink" value="-" /></p>
+  <div class="datetour">
+    <span class="dateText">Введите дату отправки : </span><input type='date' name="DateTour[0].FirstDate" required />
+    <span class="dateText">Введите дату приезда  : </span><input type='date' name="DateTour[0].SecondDate" required />
+  </div>
+</div><br/>
+
+<input type="button" class="addLink date" value=" Добавить дату ">
+<input type="button" class="deleteLink date" value="Удалить дату" />
+
+
 <script >
     var i = 1;
-    $(function () {
-        $('.addLink').click(function () {
-            var html2Add = "<div id='dateTour" +i+"'>" +
-                 " Введите дату отправки" + "(дд/мм/год)" +
-                 "<input type='date' name='DateTour[" + i + "].FirstDate' required  /><br/>" +
-                 " Введите дату приезда"+"(дд/мм/год)" +
-                 "<input type='date' name='DateTour[" + i + "].SecondDate' required  />" +
-             "</div></div>";
+    $(function ()
+    {
+        $('.addLink').click(function ()
+        {
+            var html2Add = "<div id='dateTour" + i + "' style='margin-left : 35px;'><br/>" +
+                             "Введите дату отправки : "+
+                             "<input type='date' name='DateTour[" + i + "].FirstDate' required  />" +
+                             "<span style='margin-left: 24px;'>Введите дату приезда : </span>"+
+                             "<input type='date' name='DateTour[" + i + "].SecondDate' required  />" +
+                           "</div>";
             $('#datetour-pannel').append(html2Add);
-            i++
-        })
+            i++;
+        });
     });
-    $(function () {
-        $('.deleteLink').click(function () {
+
+    $(function ()
+    {
+        $('.deleteLink').click(function ()
+        {
             var count = i - 1;
             $('#dateTour' + count).remove();
-            if(i != 1)
-            i--
-        })
+
+            if (i != 1) {
+                i--;
+            }
+        });
     });
 </script>
