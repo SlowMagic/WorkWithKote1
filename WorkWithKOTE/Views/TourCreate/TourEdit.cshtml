@@ -38,6 +38,8 @@
                     <br />
                     Введите дату приезда:<br />
                     <input type='date' id="myDateSecond+@i" name="DateTour[@i].SecondDate" required />
+                    <input type="hidden" name="DateTour[@i].DateTourId" value="@item.DateTourId" />
+                    <input type="hidden" name="DateTour[@i].TourId" value="@Model.TourId" />
                 </div>
             <script type="text/javascript">
                 function myFunction() {
@@ -76,6 +78,8 @@
                         <br />
                         Цена дополнительной услуги:<br />
                         <input type='text' name="DopUslug[@k].Price" value="@Html.DisplayFor(m=>item.Price)" />
+                        <input type="hidden" name="DopUslug[@k].DopUslugId" value="@item.DopUslugId" />
+                        <input type="hidden" name="DopUslug[@k].TourId" value="@Model.TourId" />
                     </div>
                     k++;
                 }
@@ -118,6 +122,8 @@
                     <div class="tag_@j">
                         Тэг тура:
                         <input type='text' name="Tag[@j].TagName" value="@Html.DisplayFor(m=>item.TagName)" />
+                        <input type="hidden" name="Tag[@j].TagId" value="@item.TagId" />
+                        <input type="hidden" name="Tag[@j].TourId" value="@Model.TourId" />
                         <br />
                     </div>
                     j++;
@@ -134,6 +140,8 @@
     {
         <input type="hidden" id="item[@l].lat" value="@Html.DisplayFor(m=>iteam.Lat)" name="RoutePoints[@l].Lat" />
     <input type="hidden" id="item[@l].lng" value="@Html.DisplayFor(m=>iteam.Lng)" name="RoutePoints[@l].Lng" />
+    <input type="hidden" name="RoutePoints[@l].RoutePointID" value="@iteam.RoutePointID" />
+    <input type="hidden" name="RoutePoints[@l].TourId" value="@Model.TourId" />
         l++;
     } 
     @Html.ListBox("SameTours", (MultiSelectList)ViewBag.SameTourId)
@@ -171,64 +179,63 @@
         }
     </script>
     <script type="text/javascript">
-    var i = @i
-   @* $(function () {
-        $('#addLink').click(
-       *@
-    function AddLink() {
-       var html2Add = "<div id='dateTour_" + i + "'>" +
+        var i = 0;
+        function AddLink() {
+       var html2Add = "<div id='dateTours_" + i + "'>" +
             " Введите дату отправки" + "(дд/мм/год)" +
-       "<input type='date' name='DateTour[" + @i + "].FirstDate' required /><br/>" +
+       "<input type='date' name='DT[" + i + "].FirstDate' required /><br/>" +
        " Введите дату приезда" + "(дд/мм/год)" +
-       "<input type='date' name='DateTour[" + @i + "].SecondDate' required />" +
+       "<input type='date' name='DT[" + i + "].SecondDate' required />" +
+       " <input type='hidden' name='DT["+i+"].TourId' value='@Model.TourId' />"+
    "</div></div>";
        $('#datetour-pannel').append(html2Add);
        i++
    }
    function DeleteLinkDate() {
-            if (i != 1) {
+            if (i >=0) {
                 var count = i - 1;
-                $('#dateTour_' + count).remove();
+                $('#dateTours_' + count).remove();
                 i--
             }
         }
 </script>
 
 <script type="text/javascript">
-    var k = @k
+    var k = 0
     function AddUslug(){
-            var html2Adds = "<div id='dopusluga_" + k + "'>" +
+            var html2Adds = "<div id='dopuslugas_" + k + "'>" +
          "<h4>Дополнительная услуга тура №" + "</h4>" +
-                 "<input type='text' name='DopUslug[" +@k + "].Name' /><br/>" +
+                 "<input type='text' name='DP[" +k + "].Name' /><br/>" +
                  "<h4>Цена Дополнительной услуги №" + "</h4>" +
-                 "<input type='text' name='DopUslug[" + @k +"].Price' />" +
+                 "<input type='text' name='DP[" + k + "].Price' />" +
+                  " <input type='hidden' name='DP[" + k + "].TourId' value='@Model.TourId' />"+
              "</div>";
             $('#dopusluga-pannel').append(html2Adds);
             k++;
         }
       function DeleteUslug() {
-            if (k != 1) {
+            if (k >= 0) {
                 var count = k - 1;
-                $('#dopusluga_' + count).remove();
+                $('#dopuslugas_' + count).remove();
                 k--
             }
         }
 </script>
 <script type="text/javascript">
-    var l = @j
+    var l = 0
 function AddTag() {
-            var html2Addss = "<div class='tag_" + l + "'>" +
+            var html2Addss = "<div class='tags_" + l + "'>" +
           "<h4>Тег тура " + "</h4>" +
-                 "<input type='text' name='Tag[" + @j + "].TagName' /><br/>" +
-                  "<input type='hidden' name='Tag[" + @j + "].TourId' value='@Model.TourId' />" +
+                 "<input type='text' name='Ts[" + l + "].TagName' /><br/>" +
+                  "<input type='hidden' name='Ts[" + l + "].TourId' value='@Model.TourId' />" +
              "</div>";
             $('#tag-pannel').append(html2Addss);
             l++;
         }
     function DeleteTag() {
-        if (l != 1) {
+        if (l  >= 0) {
             var count = l - 1;
-            $('.tag_' + count).remove();
+            $('.tags_' + count).remove();
             l--
         }
     }
@@ -316,13 +323,18 @@ function AddTag() {
             $('#route-points').append(
                 $('<input>').attr({
                     'type': 'hidden',
-                    'name': 'RoutePoints[' + i + '].Lat'
+                    'name': 'Point[' + i + '].Lat'
                 }).val(arrayMarkerAdd.getAt(i).lat())
             ).append(
                 $('<input>').attr({
                     'type': 'hidden',
-                    'name': 'RoutePoints[' +i + '].Lng'
+                    'name': 'Point[' +i + '].Lng'
                 }).val(arrayMarkerAdd.getAt(i).lng())
+            ).append(
+            $('<input>').attr({
+                'type': 'hidden',
+                'name': 'Point['+i+'].TourId'
+            }).val(@Model.TourId)
             );
         });
     }

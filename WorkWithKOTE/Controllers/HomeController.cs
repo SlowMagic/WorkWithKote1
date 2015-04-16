@@ -33,7 +33,7 @@ namespace WorkWithKOTE.Controllers
         protected List<Tour> TourList(int tourStatusId, int typeofTourId)
         {
             List<DateTour> date = new List<DateTour>();
-            if(typeofTourId != 0){
+            if(typeofTourId == 0){
                date = db.Tour.Include(m => m.DateTour)
                .Where(m => m.TourStatusId == tourStatusId)
                .SelectMany(m => m.DateTour)
@@ -54,13 +54,13 @@ namespace WorkWithKOTE.Controllers
            if(typeofTourId != 0)
            foreach(var Item in date)
            {
-               var dataItem = db.Tour.Where(m => m.DateTour.Any(dt => dt.FirstDate == Item.FirstDate) && m.TourStatusId == tourStatusId ).First();
+               var dataItem = db.Tour.Where(m => m.DateTour.Any(dt => dt.FirstDate == Item.FirstDate) && m.TourStatusId == tourStatusId && m.TypeOfTourId == typeofTourId).First();
                data.Add(dataItem);
            }
            else
                foreach (var Item in date)
                {
-                   var dataItem = db.Tour.Where(m => m.DateTour.Any(dt => dt.FirstDate == Item.FirstDate) && m.TourStatusId == tourStatusId && m.TypeOfTourId == typeofTourId).First();
+                   var dataItem = db.Tour.Where(m => m.DateTour.Any(dt => dt.FirstDate == Item.FirstDate) && m.TourStatusId == tourStatusId ).FirstOrDefault();
                    data.Add(dataItem);
                }
 

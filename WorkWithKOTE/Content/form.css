@@ -32,7 +32,7 @@
     margin-left: 11px;
 }
 
-#cke_DescriptionTour {
+#cke_DescriptionTour,#cke_NewsBody{
     margin-left : 35px;
     width : 80% !important;
 }
@@ -66,12 +66,20 @@ input[name="DopUslug[0].Name"] {
     margin-left : 3px;
 }
 
+input[name="Tag[0].TagName"] {
+    margin-left : 52px;
+}
+
+#payChange{
+    margin-left : 35px;
+}
+
 #SuppVkontakte{
     margin-left : 34px;
 }
 
 #paymentSelect{
-    margin-left : 222px;
+    margin-left : 59px;
 }
 
 #GalleryID{
@@ -130,6 +138,14 @@ input[name="DopUslug[0].Name"] {
     margin-top: 6px;
 }
 
+#form_tour input[type=button] {
+   border-radius : 4px;
+   background-color : #ff6f40;
+   border : 1px solid #ff6f40;
+   color : white;
+   height : 30px;
+}
+
 #form_tour input[type=date] {
     width : 150px;
 }
@@ -160,7 +176,12 @@ input[name="DopUslug[0].Name"] {
     margin-left : 35px;
 }
 
-#createTour{
+#createTour,#createNews{
     margin-left : 35px;
+    border-radius : 4px;
+    background-color : #ff6f40;
+    border : 1px solid #ff6f40;
+    color : white;
+    height : 35px;
 }
 

@@ -84,6 +84,8 @@ namespace WorkWithKOTE.Controllers
                     db.Entry(userprofile).State = EntityState.Modified;
                 }
                 tour.Trips = new List<Trip>();
+                if(!Request.IsAuthenticated)
+                model.UserId = 0;
                 tour.Trips.Add(model);
                 db.Entry(tour).State = EntityState.Modified;
                 db.Entry(model).State = EntityState.Added;
