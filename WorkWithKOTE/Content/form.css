@@ -1,4 +1,4 @@
-#form_tour input[type=text] {
+#form_tour input[type=text],#form_tour input[type=password],#form_tour input[type=email] {
     width: 230px !important;
     height: 30px;
     border-radius: 4px;
@@ -183,5 +183,9 @@ input[name="Tag[0].TagName"] {
     border : 1px solid #ff6f40;
     color : white;
     height : 35px;
+}
+
+.label {
+    width : 120px;
 }
 

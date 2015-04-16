@@ -1,37 +1,185 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
+@Styles.Render("~/Content/order")
+
 @model WorkWithKOTE.Models.Trip
 @{ Html.RenderPartial("HeaderPartial_main");}
-<h2>@ViewBag.Titleof</h2>
-<form action="@Url.Action("Index")" method="post" enctype="multipart/form-data">
+
+<style>
+    #toPay {
+        margin-top : 20px;
+    }
+
+    .orderContent{
+        margin-top : 8px;
+    }
+
+    .layout-right-column{
+        margin-top: -145px; 
+        width: 360px !important; 
+        margin-right: 15%
+    }
+
+    .layout-main{
+        margin-left: 10%;
+        margin-top:40px;
+    }
+
+    .enterData{
+       margin-top: 170px;
+       margin-left:10%
+    }
+
+    .contactData{
+        margin-left:10%
+    }
+
+    .firstHR{
+        width : 50%;
+    }
+
+    .secondHR{
+        width : 93%;
+    }
+
+    .active{
+        margin-left : 35px;
+        border-radius : 4px;
+        background-color : #ff6f40;
+        border : 1px solid #ff6f40;
+        color : white;
+        height : 35px;
+    }
+
+    .notActive {
+        cursor : default !important;
+        background-color : #cccccc;
+        border : 1px solid #cccccc;
+        color : white;
+        height : 35px;
+        margin-left : 35px;
+        border-radius : 4px;
+    }
+
+    #agree {
+        display : inline;
+    }
+
+    #agreeLabel {
+        color:#ff6f40;
+        text-decoration:underline;
+    }
+</style>
+
+<div id="small-preview-img" class="clearfix">
+    <hgroup>
+        <h1>@ViewBag.Titleof</h1>
+          <h2>
+            <a href="@Url.Action("Index", "Home")">Главная</a> / Бронь и Оплата
+          </h2>
+    </hgroup>
+</div>
+
+<form class="buyTour" action="@Url.Action("Index")" method="post" enctype="multipart/form-data">
     @Html.ValidationSummary()
-    Стоимость Тура : @ViewBag.TourPrices<br />
-    Сумма заказа с учетом изменений :@Html.TextBoxFor(m => m.TourPrice, new { id = "Prices", @readonly = "readonly" })
-    К Оплате :@Html.TextBoxFor(m => m.TourPrice, new { id = "Price", @readonly = "readonly" }) <br />
+
+    <div class="layout-main">
+        <h3>Состав вашего заказа</h3><hr class="firstHR" />
+        
+        <p class="orderContent">Стоимость тура : @ViewBag.TourPrices</p>
+
+        <p class="orderContent">Сумма заказа с учетом изменений : @Html.DisplayFor(m => m.TourPrice, new { id = "Prices" })</p>
+
+        <p class="orderContent" id="toPay">К оплате :@Html.DisplayFor(m => m.TourPrice, new { id = "Price" })</p>
+    </div>
+ 
     @{Html.RenderAction("DopPricePartial", new { id = Model.TourId });}
-    Количество человек: @Html.TextBoxFor(m => m.AmtPeople, new { onchange = "Changes()", id = "AmtPeople" })<br />
-    Дата :@Html.DropDownList("DateTourId")<br />
-    <h2>Введите свои данные </h2>
-    Ваш пол
-    <select name="Trips.Sex">
-        <option>Муж.</option>
-        <option>Жен.</option>
-    </select><br />
-    Фамилия: @Html.TextBoxFor(m => m.Surname)<br />
-    Имя :@Html.TextBoxFor(m => m.Name)<br />
-    Отчество: @Html.TextBoxFor(m => m.FatherName)<br />
-    Дата Рождение @Html.TextBoxFor(m => m.BirthDay)<br />
-    Гражданство:@Html.TextBoxFor(m => m.Citizenship)<br />
-    Номер и Серия Паспорта: @Html.TextBoxFor(m => m.Pasport)<br />
-    <h2>Контакты</h2>
-    Номер телефона :@Html.TextBoxFor(m => m.mobile)<br />
-    Почтовый ящик : @Html.TextBoxFor(m => m.email, new { type = "Email" })
-    <input type="submit" value="Заказать тур" />
+
+    <div class="layout-right-column">
+        <h4>Дополнительные услуги:</h4>
+
+        <p> Кол-во человек <input value="@Model.AmtPeople" name="AmtPeople" id="user_num" type="number" min="1" max="100" step="1" />
+            Дата :@Html.DropDownList("DateTourId")
+        </p><br/>
+
+        <input type="checkbox" id="meal1" class="css-checkbox" style="margin-top: 4px;" />
+           <label for="meal1" class="css-label">Питание 2 раза в день (+250 грн.)</label>
+        <input type="checkbox" id="meal2" class="css-checkbox" style="margin-top: 4px;" />
+           <label for="meal2" class="css-label">Экскурсия по городу (+500 грн.)</label>
+        <input type="checkbox" id="meal3" class="css-checkbox" style="margin-top: 4px;" />
+           <label for="meal3" class="css-label">Без питания (-100 грн.)</label>
+
+      <div>
+         <select>
+            <option>Хостел</option>
+            <option>Гостинница</option>
+         </select>
+         <select id="transport">
+             <option>Автобус</option>
+         </select>
+      </div>
+    </div>
+
+    <div class="layout enterData">
+        <h3> Введите свои данные</h3><hr class="secondHR" />
+       
+        <div class="info">
+            <label>Ваш пол</label>
+            <select name="Trips.Sex">
+                <option>Муж</option>
+                <option>Жен</option>
+            </select>
+        </div>
+        <div class="info">
+            <label>ФИО</label>
+            <input placeholder="Фамилия" name="Surname" value="@Model.Surname" id="surname">
+            <input placeholder="Имя" name="Name" value="@Model.Name" id="name">
+            <input placeholder="Отчество" name="FatherName" value="@Model.FatherName" id="second-name">
+        </div>
+        <div class="info">
+            <label>Дата рождения</label>
+            <input name="BirthDay" value="@Model.BirthDay" id="date-of-birth" placeholder="__ . __ . ____" maxlength="10">
+        </div>
+        <div class="info">
+            <label>Гражданство</label>
+            <input value="@Model.Citizenship" name="Citizenship" id="nationality">
+        </div>
+        <div class="info">
+            <label>Паспорт</label>
+            <input value="@Model.Pasport" name="Pasport" id="passport" placeholder="АН 000000" maxlength="9">
+        </div>
+    </div>
+
+    <div class="layout contactData">
+        <div class="info">
+            <p>Контактные данные:</p>
+        </div>
+        <div class="info">
+            <label>Номер телефона</label>
+            <input value="@Model.mobile" name="mobile" placeholder="+38 (___) ___-__-__" type="tel">
+        </div>
+        <div class="info">
+            <label>Почта</label>
+            <input value="@Model.email" name="email" placeholder="user000@mail.com">
+        </div>
+        <div class="info">
+            Ваша личная информация никогда не будет разглашена или передана третьим лицам без Вашего на то прямого согласия.
+        </div>
+    </div>
+
+    <div>
+      <input id="agree" type="checkbox">
+      <label id="agreeLabel" for="agree">Cогласен с условиями соглашения</label>
+      <input type="submit" disabled value="Перейти к оплате" id="orderTour" class="notActive" />
+    </div>
+   <br/>
 </form>
+
 @section scripts{
 @Scripts.Render("~/bundles/jqueryval")
 <script type="text/javascript">
+
     function Changes() {
         var AmtPeople = parseFloat($('#AmtPeople').val());
         var price = parseFloat($("#Prices").val());
@@ -39,5 +187,19 @@
         $("#Prices").val(sum);
         $('#Price').val(sum);
     }
+
+    $(function ()
+    {
+        $('#agree').change(function ()
+        {
+            if ($(this).is(':checked')) {
+                $('#orderTour').removeClass('notActive').addClass('active').prop('disabled', false);
+            }
+            else {
+                $('#orderTour').removeClass('active').addClass('notActive').prop('disabled', true);
+            }
+        });
+    });
+
 </script>
 }

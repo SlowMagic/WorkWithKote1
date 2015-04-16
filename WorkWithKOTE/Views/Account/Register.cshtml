@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Register";
 }
+@Styles.Render("~/Content/form")
 
 <hgroup class="title">
     <h1>@ViewBag.Title.</h1>
@@ -12,7 +13,7 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
-    <fieldset>
+    <fieldset id="form_tour">
         <legend>Registration Form</legend>
         <ol>
             <li>
