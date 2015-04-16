@@ -1,7 +1,7 @@
 ﻿
 <header>
     <div id="bar">
-        <img id="small-logo" src="~/Content/img/small-logo.png" />
+        <a href="@Url.Action("Index","Home")"><img id="small-logo" src="~/Content/img/small-logo.png" /></a>
 
         <nav>
             @Html.ActionLink("Главная", "Index", "Home", null, null)

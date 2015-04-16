@@ -1,8 +1,22 @@
 ﻿@{
-    ViewBag.Title = "AllNewsBlock";
+    ViewBag.Title = "Все новости";
 }
 @model List<WorkWithKOTE.Models.News>
-<h2>AllNewsBlock</h2>
+
+@{ Html.RenderPartial("HeaderPartial_main");}
+@Styles.Render("~/Content/order")
+
+<div id="small-preview-img" class="clearfix">
+
+    <hgroup>
+        <h1>Все новости</h1>
+
+        <h2><a href="@Url.Action("Index", "Home")">Главная</a> / Новости
+        </h2>
+    </hgroup>
+
+</div>
+<div class="container">
 @foreach(var item in Model)
 {
     <h2>@Html.DisplayFor(m => item.NewsTitle)</h2><br />
@@ -10,7 +24,8 @@
     @Html.DisplayFor(m => item.NewsDate)<br />
     if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
     {
-        <input type="button" value="Удалить новость" onclick="location.href='@Url.Action("NewsDelete", new { id = item.NewsId })'">
+        <a style="float:none" class="button" href='@Url.Action("NewsDelete", new { id = item.NewsId })'>Удалить новость</a>
     }
     <hr />
 }
+</div>
