@@ -1,33 +1,42 @@
 ﻿<div id="dopusluga-pannel">
     <div class="dopusluga">
-      Дополнительные услуга тура  :
-        <input type="text" name="DopUslug[0].Name"/><br/>
-        Цена Дополнительной услуги:
-        <input type="text" name="DopUslug[0].Price"/><br/>
+        Дополнительные услуга тура : <input type="text" name="DopUslug[0].Name"/><br/>
+        Цена Дополнительной услуги : <input type="text" name="DopUslug[0].Price"/><br/>
     </div>
-</div>
-<p><input type="button" class="addUslug" value=" + " >
-    <input type="button" class="deleteLinkUslugi" value="-" /></p>
+</div><br />
+
+  <input type="button" class="addUslug usluga" value=" Добавить услугу " />
+  <input type="button" class="deleteLinkUslugi usluga" value="Удалить услугу" />
+
 <script>
+
     var k = 1;
-    $(function () {
-        $('.addUslug').click(function () {
-            var html2Adds = "<div id='dopusluga" + k + "'>" +
-         "<h4>Дополнительная услуга тура "  + "</h4>" +
-                 "<input type='text' name='DopUslug[" + k + "].Name' /><br/>" +
-                 "<h4>Цена Дополнительной услуги "  + "</h4>" +
-                 "<input type='text' name='DopUslug[" + k + "].Price' />" +
-             "</div>";
+
+    $(function ()
+    {
+        $('.addUslug').click(function ()
+        {
+          var html2Adds = "<div id='dopusluga" + k + "'>" +
+                             "<h4>Дополнительная услуга тура " + "</h4>" +
+                             "<input type='text' name='DopUslug[" + k + "].Name' /><br/>" +
+                             "<h4>Цена Дополнительной услуги " + "</h4>" +
+                             "<input type='text' name='DopUslug[" + k + "].Price' />" +
+                          "</div>";
             $('#dopusluga-pannel').append(html2Adds);
             k++;
-        })
+        });
     });
-    $(function () {
-        $('.deleteLinkUslugi').click(function () {
+
+    $(function ()
+    {
+        $('.deleteLinkUslugi').click(function ()
+        {
             var count = k - 1;
             $('#dopusluga' + count).remove();
-            if(k != 1)
-            k--
-        })
+
+            if (k != 1) {
+                k--;
+            }
+        });
     });
 </script>
