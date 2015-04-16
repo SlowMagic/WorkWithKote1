@@ -47,5 +47,15 @@ namespace WorkWithKOTE.Filters
            }
            db.SaveChanges();
        }
+      public static void Anonimus()
+       {
+           UsersContext db = new UsersContext();
+           var anonimus = db.UserProfiles.ToList();
+          if(anonimus.Count == 0 )
+          {
+              db.UserProfiles.Add(new UserProfile { Email = "Anonimus@mail.com" });
+              db.SaveChanges();
+          }
+       }
     }
 }
