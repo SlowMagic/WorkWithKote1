@@ -61,107 +61,59 @@
                @Html.TextBoxFor(m => m.PrePay, new { style = "visibility:hidden", id = "PrePay" })
             </span>
 
-            <span class="armor">
+            <span class="textbox">
               Бронь:<input type="checkbox" id="Reserv" onclick=" reserv() " />
               @Html.TextBoxFor(m => m.Reservation, new { style = "visibility:hidden", id = "Reservation" })
             </span><br/><br/>
 
+              @*  @Html.EditorFor(m => m.DateTour, "DateTour")*@
               @Html.Partial("DateTourPartial")
-              <br/><br/><br/>
-
-          <span class="textbox">
-              Виды Транспорта :
-          </span><br />
-
-          <span class="textbox">
-            <span class="byTransport"> Автобус @Html.CheckBoxFor(m => m.IsBus)       </span>
-            <span class="byTransport"> Самолет @Html.CheckBoxFor(m => m.IsAriplane)  </span>
-            <span class="byTransport"> Лайнер  @Html.CheckBoxFor(m => m.IsShip)      </span>
-            <span class="byTransport"> Поезд   @Html.CheckBoxFor(m => m.IsTrain)     </span>        
-          </span><br/><br/>
-
-          <span class="textbox">
-              Подпись к цене : @Html.TextBoxFor(m => m.PodpicePrice)
-          </span><br/>
-
-          <span class="textbox">
-              Аукционная цена : @Html.TextBoxFor(m => m.AukcionPrice)
-          </span><br/>
-
-          <span class="textbox">
-              Сумма Агента: <input type="checkbox" id="Summa" onclick=" valid2() " />
-              @Html.TextBoxFor(m => m.KommisiaAgent, new { style = "visibility:hidden", id = "SummaAgent" })
-          </span><br /><br/>
-
-          @Html.Partial("DopUsluga") <br/><br/><br/>
-      
-          <span class="textbox">
-              Имя Сопровождающего : @Html.TextBoxFor(m => m.SuppName)
-          </span><br/>
-
-          <span class="textbox">
-              Фото сопровождающего : <input type="file" name="AvatarSupp" />
-          </span><br/>
-
-          <span class="textbox">
-              Ссылка на соц. сеть: @Html.TextBoxFor(m => m.SuppVkontakte)
-          </span><br/><br/>
-
-          <span class="textbox">
-              Описание сопровождающего : @Html.TextAreaFor(m => m.SuppDiscription)
-          </span><br />
-   
-          <span class="textbox">
-              Количество участников : @Html.TextBoxFor(m => m.AllPeople)
-          </span><br />  
-          
-          <span class="textbox">
-              Уже едут : @Html.TextBoxFor(m => m.People)
-          </span><br /> 
-
-          <select id="paymentSelect" name="KindOfPay">
-              <option selected="selected">Способ оплаты</option>
-              <option>Наличный</option>
-              <option>Безналичный</option>
-              <option>Оба</option>
-          </select><br/><br/>
-
-          <span class="textbox">
-              Обложка тура <input type="file" name="TourImg" required />
-          </span><br />
-          
-          <span class="textbox">
-              Выберите стиль Логотипа : @Html.DropDownList("LogoId")
-          </span><br/>
-
-          <span class="textbox">
-              Галлерея : @Html.DropDownList("GalleryID", String.Empty)
-          </span><br/><br/>
-
-          <span class="textbox">
-              Загрузить файл : <input type="file" name="Document" />
-          </span><br />
-
-          <span class="textbox">
+              <br />
+              Виды Транспорта :<br />
+              Автобус @Html.CheckBoxFor(m => m.IsBus)<br />
+              Самолет @Html.CheckBoxFor(m => m.IsAriplane)<br />
+              Лайнер @Html.CheckBoxFor(m => m.IsShip)<br />
+              Поезд @Html.CheckBoxFor(m => m.IsTrain)<br />
+              Подпись к цене
+              @Html.TextBoxFor(m => m.PodpicePrice)
+              <p>Аукционная цена : @Html.TextBoxFor(m => m.AukcionPrice)</p>
+              <p>
+                  Сумма Агента: <input type="checkbox" id="Summa" onclick=" valid2() " />
+                  @Html.TextBoxFor(m => m.KommisiaAgent, new { style = "visibility:hidden", id = "SummaAgent" })<br />
+              </p>
+              <p>
+                  @Html.Partial("DopUsluga")
+              </p>
+              <p>
+                  Имя Сопровождающего :@Html.TextBoxFor(m => m.SuppName)<br />
+              <p>@ViewBag.Message</p>
+              <p>
+                  Фото сопровождающего:<input type="file" name="AvatarSupp" />
+                  Ссылка на соц. сеть: @Html.TextBoxFor(m => m.SuppVkontakte)<br />
+                  Описание сопровождающего :@Html.TextAreaFor(m => m.SuppDiscription)<br />
+              </p>
+              <select name="KindOfPay">
+                  <option selected="selected">Способ оплаты</option>
+                  <option>Наличный</option>
+                  <option>Безналичный</option>
+                  <option>Оба</option>
+              </select>
+              <br />
+              Количество участyков :@Html.TextBoxFor(m => m.AllPeople)<br />
+              Уже едут :@Html.TextBoxFor(m => m.People)<br />
+              Обложка тура - <input type="file" name="TourImg" required /><br />
+              Выберите стиль Логотипа :@Html.DropDownList("LogoId")<br />
+              Галлерея : @Html.DropDownList("GalleryID", String.Empty)<br />
+              Загрузить файл :<input type="file" name="Document" /><br />
               Бонус за тур :
               <input type="checkbox" id="Bonus" onclick=" valid3() " />
-              @Html.TextBoxFor(m => m.Bonus, new { style = "visibility:hidden", id = "BonusText" })
-          </span><br />
-
-              @Html.Partial("TegPartialView")<br/><br/>
-
-
-          <span class="textbox">
-            Похожие туры :
-           @Html.ListBox("SameTours", (MultiSelectList)ViewBag.SameTourId)
-          </span><br /><br/>
-
-              @Html.Partial("MapPartial")
-             
-              <input id="createTour" type="submit" value="Создать Тур" />
+              @Html.TextBoxFor(m => m.Bonus, new { style = "visibility:hidden", id = "BonusText" })<br />
+              @Html.Partial("TegPartialView")<br />
+              @Html.ListBox("SameTours", (MultiSelectList)ViewBag.SameTourId)
+              <input type="submit" value="Создать Тур" />
               <div id="route-points"></div>
-        </div>
-          
+</div>
+            @Html.Partial("MapPartial")
         </form>
 
 @section scripts
@@ -173,45 +125,25 @@
         });
     </script>
 
-
-    
-
-
-
-
-
-
     <script type="text/javascript">
         function valid() {
             if (document.getElementById('Predop').checked) {
                 document.getElementById('PrePay').style.visibility = 'visible';
-            }
-            else {
-                document.getElementById('PrePay').style.visibility = 'hidden';
             }
         }
         function reserv() {
             if (document.getElementById('Reserv').checked) {
                 document.getElementById('Reservation').style.visibility = 'visible';
             }
-            else {
-                document.getElementById('Reservation').style.visibility = 'hidden';
-            }
         }
         function valid2() {
             if (document.getElementById('Summa').checked) {
                 document.getElementById('SummaAgent').style.visibility = 'visible';
             }
-            else {
-                document.getElementById('SummaAgent').style.visibility = 'hidden';
-            }
         }
         function valid3() {
             if (document.getElementById('Bonus').checked) {
                 document.getElementById('BonusText').style.visibility = 'visible';
-            }
-            else {
-                document.getElementById('BonusText').style.visibility = 'hidden';
             }
         }
     </script>

@@ -26,7 +26,7 @@ hgroup {
     margin-top: 6%;
 }
 
-h1 {
+#small-preview-img h1 {
     font-size: 2.25em;
     line-height: 18px;
     color: rgb(255, 255, 255);
@@ -34,7 +34,7 @@ h1 {
     font-weight: 300;
 }
 
-h2 {
+#small-preview-img h2 {
     font-size: 0.75em;
     line-height: 24px;
     color: rgb(255, 255, 255);
@@ -259,8 +259,15 @@ th {
 }
 
 .additional-nav {
+    margin-top: -20px;
     text-align: center;
     padding: 1% 0;
+}
+.transport {
+    margin-left: 25px;
+}
+.transport input[type=checkbox]{
+    display: inline;
 }
 
 .additional-nav a, .additional-nav a:hover,
@@ -271,4 +278,37 @@ th {
     border: 1px solid #bec2c2;
     background-color: #ffffff;
     margin-left: -5px;
+}
+
+.found-tour {
+    width: 250px;
+    margin-right: 15px;
+    float: left;
+}
+
+.found-tour h3 {
+    width: 150px;
+    margin-top: -60px;
+    color: white;
+    font-size: 1em; 
+    font-weight: 300;
+    position: relative;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #ff6f40;
+    top: 75px;
+    left: -10px;
+    
+}
+.found-tour h3:before {
+    content: '';
+    position: absolute;
+    left: -1px; top: 26px;
+    border: 6px solid transparent;	
+    border-top: 6px solid rgb(255, 100, 44); 
+    border-right: 6px solid rgb(255, 100, 44);
+}
+.found-tour h4 {
+    line-height: 20px;
 }
