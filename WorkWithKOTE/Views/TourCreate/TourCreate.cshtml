@@ -21,12 +21,11 @@
           @Html.ValidationSummary()
 
             <span class="textbox">
-              Название : @Html.TextBoxFor(m => m.NameTour)
-              @Html.ValidationMessageFor(model => model.NameTour)
+              Название :  <input type="text" name="NameTour" id="NameTour" required />
             </span><br/>
               
             <span class="textbox">
-              Заголовок : @Html.TextBoxFor(m => m.TitleTour) 
+               Заголовок : <input type="text" name="TitleTour" id="TitleTour" required />
             </span><br/>
               
             <span class="textbox">
@@ -50,7 +49,7 @@
             </span><br />
 
             <span class="textbox">
-               Cтоимость @Html.TextBoxFor(m => m.Cost)
+               Cтоимость <input type="text" name="Cost" id="Cost" required />
                <input type="radio" name="Valuta" value="гривен" checked />Гривна
                <input type="radio" name="Valuta" value="долларов" />Dollar
                <input type="radio" name="Valuta" value="евро" />Euro
