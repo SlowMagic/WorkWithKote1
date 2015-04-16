@@ -131,6 +131,21 @@ namespace WorkWithKOTE.Controllers
 
             return View();
         }
+         [HttpPost]
+       public ActionResult ValidatePay(string data, string signature)
+       {
+           string privateKey = "v2Rhrz287rrJtDSHq228gsg70ZkA8omC2mhl7aha";
+           byte[] dataByte = Convert.FromBase64String(data);
+           data = privateKey + data + privateKey;
+           SHA1 sha1 = SHA1.Create();
+            byte[] hash = sha1.ComputeHash(System.Text.Encoding.UTF8.GetBytes(data));
+             data = System.Convert.ToBase64String(hash);
+             if(string.Compare(data,signature) == 0)
+             {
+
+             }
+           return View();
+       }
         
     }
 }

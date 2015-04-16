@@ -211,23 +211,19 @@
     <Content Include="Content\img\10942586.jpg" />
     <Content Include="Content\img\arr.png" />
     <Content Include="Content\img\arrow.png" />
-    <Content Include="Content\img\arrow_small.png" />
     <Content Include="Content\img\big-logo.png" />
     <Content Include="Content\img\big-preview-img.jpg" />
-    <Content Include="Content\img\calendar.png" />
     <Content Include="Content\img\facebook.png" />
     <Content Include="Content\img\fb.png" />
     <Content Include="Content\img\footer-bg.jpg" />
     <Content Include="Content\img\google.png" />
     <Content Include="Content\img\group-border.png" />
     <Content Include="Content\img\groups-bg.png" />
-    <Content Include="Content\img\guys-count.png" />
     <Content Include="Content\img\img.png" />
     <Content Include="Content\img\instagram-ico.png" />
     <Content Include="Content\img\mailme-bg.jpg" />
     <Content Include="Content\img\main-preview-image.jpg" />
     <Content Include="Content\img\media-bg.jpg" />
-    <Content Include="Content\img\megafon.png" />
     <Content Include="Content\img\no-btn.png" />
     <Content Include="Content\img\parked.jpg" />
     <Content Include="Content\img\photo1.jpg" />
@@ -1139,6 +1135,7 @@
     <Content Include="Views\Shared\HeaderPartial.cshtml" />
     <Content Include="Views\TourSearch\Search.cshtml" />
     <Content Include="Views\Profile\UsersTour.cshtml" />
+    <Content Include="Views\Home\HeaderPartial_main.cshtml" />
     <Content Include="Views\Home\NewsBlock.cshtml" />
     <Content Include="Views\TourDisplay\MapForDisplay.cshtml" />
     <Content Include="Views\News\CreateNews.cshtml" />
@@ -1148,6 +1145,7 @@
     <Content Include="Views\Admin\SearchAllUsers.cshtml" />
     <Content Include="Views\Home\ForWait.cshtml" />
     <Content Include="Views\Buy\Payment.cshtml" />
+    <Content Include="Views\News\AllNewsBlock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
