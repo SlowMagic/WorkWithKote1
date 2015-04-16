@@ -84,9 +84,15 @@ namespace WorkWithKOTE.Controllers
                     db.Entry(userprofile).State = EntityState.Modified;
                 }
                 tour.Trips = new List<Trip>();
-                if(!Request.IsAuthenticated)
-                model.UserId = 0;
                 tour.Trips.Add(model);
+                if (!Request.IsAuthenticated)
+                {
+                    int anonimusID = WebSecurity.GetUserId("Anonimus@mail.com");
+                    UserProfile anonimus = db.UserProfiles.Find(anonimusID);
+                    anonimus.Trips = new List<Trip>();
+                    anonimus.Trips.Add(model);
+                    db.Entry(anonimus).State = EntityState.Added;
+                }
                 db.Entry(tour).State = EntityState.Modified;
                 db.Entry(model).State = EntityState.Added;
                 db.SaveChanges();
