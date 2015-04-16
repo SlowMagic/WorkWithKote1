@@ -16,9 +16,18 @@
 <div class="container">
     <div class="layout-right-column">
         <div class="social">
-            <div class="">
-                <p>Поделиться:</p>
+            <div class="repost">
+                <p>
+                    Поделиться:
+                    <img src="~/Content/img/facebook.png">
+                    <img src="~/Content/img/twitter.png">
+                    <img src="~/Content/img/google.png">
+                </p>
             </div>
+            @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+            {
+                <a  class="button" href='@Url.Action("NewsDelete", new {id = Model.NewsId })'>Удалить новость</a>
+            }
         </div>
     </div>
     <div class="layout-main">
@@ -28,8 +37,5 @@
         @Html.DisplayFor(m => m.NewsDate)
     </div>
 </div>
-@if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
-{
-    <input type="button" value="Удалить новость" onclick="location.href='@Url.Action("NewsDelete", new {id = Model.NewsId })'">
-}
+
 <hr />

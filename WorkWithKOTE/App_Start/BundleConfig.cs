@@ -26,6 +26,10 @@ namespace WorkWithKOTE
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            //Galleria
+            bundles.Add(new ScriptBundle("~/bundles/galleria").Include(
+                       "~/Content/js/galleria-*"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/common.css", "~/Content/boilerplate.css"));
             bundles.Add(new StyleBundle("~/Content/order").Include("~/Content/tour_order.css")); 
             bundles.Add(new StyleBundle("~/Content/description").Include("~/Content/tour_description.css"));

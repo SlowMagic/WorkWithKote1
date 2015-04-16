@@ -5,6 +5,9 @@
 @model WorkWithKOTE.Models.TourForHomePage
 @Styles.Render("~/Content/page")
 @{ Html.RenderPartial("HeaderPartial_main");}
+<script>
+    if (Galleria) { console.log('it works')}
+</script>
 <div id="big-preview-img" class="clearfix">
     <div class="wish">
         <img id="big-logo" src="@Html.DisplayFor(m=>m.TourHightPrev.BigLogo.UrlImg)" />

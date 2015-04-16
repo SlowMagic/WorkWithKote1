@@ -7,69 +7,70 @@
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/galleria")
     @Scripts.Render("~/bundles/common")
 </head>
 <body>
     <div class="primaryContainer clearfix">
-@*        @RenderSection("featured", required: false)*@
-@*        <section class="content-wrapper main-content clear-fix">*@
-            @RenderBody()
-@*        </section>*@
+        @*        @RenderSection("featured", required: false)*@
+        @*        <section class="content-wrapper main-content clear-fix">*@
+        @RenderBody()
+        @*        </section>*@
     </div>
-<footer>
-    <div class="cont">
-        <div id="column1" class="clearfix">
-            <p id="about">
-                kote.travel - это уникальный в своем роде сервис выбора путешествий!
-                У нас вы точно найдете только лучшие туры, походы, фестивали, экспедиции по Украине и всему миру!
-                Над созданием сервиса трудятся профессионалы сферы туризма (ученые, путешественники, турменеджеры, гиды).
-                Мы отбираем только самое интересное и уникальное для Вас.
-            </p>
+    <footer>
+        <div class="cont">
+            <div id="column1" class="clearfix">
+                <p id="about">
+                    kote.travel - это уникальный в своем роде сервис выбора путешествий!
+                    У нас вы точно найдете только лучшие туры, походы, фестивали, экспедиции по Украине и всему миру!
+                    Над созданием сервиса трудятся профессионалы сферы туризма (ученые, путешественники, турменеджеры, гиды).
+                    Мы отбираем только самое интересное и уникальное для Вас.
+                </p>
+            </div>
+            <div id="column2">
+                <div id="footer-nav">
+                    @Html.ActionLink("Главная", "Index", "Home", null, null)
+                    @Html.ActionLink("Туры", "Search", "TourSearch", null, null)
+                    <a>Галерея</a>
+                    <a>Контакты</a>
+                </div>
+
+                <div id="address">
+                    @*                <p>Будем рады видеть вас по адресу&#x3a;</p>*@
+                    @**@
+                    @*                <p>Украина, г. Днепропетровск ул. Красная, 17</p>*@
+                </div>
+
+                <div id="follow-us">
+                    <p>Следи за нами&#x3a;</p>
+                    <img src="~/Content/img/twitter.png" class="image-icons" />
+                    <img src="~/Content/img/google.png" class="image-icons" />
+                    <img src="~/Content/img/facebook.png" class="image-icons" />
+                </div>
+
+            </div>
+            <div id="column3" class="clearfix">
+                <div id="contacts">
+                    <h5>Консультант&#x3a;</h5>
+
+                    <p class="phone">&#x2b;38 <span class="phone-code">097</span>-815-68-38</p>
+
+                    <p class="phone">&#x2b;38 <span class="phone-code">050</span>-774-99-18</p>
+
+                    <p class="phone">&#x2b;38 <span class="phone-code">063</span>-796-25-00</p>
+
+                    <br>
+                    <h5>Наша почта&#x3a;<br /></h5>
+
+                    <p class="mail">kote.travel&#x40;gmail.com</p>
+                    <br />
+                    <h5>Skype&#x3a;<br /></h5>
+                    <p class="mail">kote.travel</p>
+                </div>
+            </div>
         </div>
-        <div id="column2">
-            <div id="footer-nav">
-                @Html.ActionLink("Главная", "Index", "Home", null, null)
-                @Html.ActionLink("Туры", "Search", "TourSearch", null, null)
-                <a>Галерея</a>
-                <a>Контакты</a>
-            </div>
-
-            <div id="address">
-@*                <p>Будем рады видеть вас по адресу&#x3a;</p>*@
-@**@
-@*                <p>Украина, г. Днепропетровск ул. Красная, 17</p>*@
-            </div>
-
-            <div id="follow-us">
-                <p>Следи за нами&#x3a;</p>
-                <img src="~/Content/img/twitter.png" class="image-icons" />
-                <img src="~/Content/img/google.png" class="image-icons" />
-                <img src="~/Content/img/facebook.png" class="image-icons" />
-            </div>
-
-        </div>
-        <div id="column3" class="clearfix">
-            <div id="contacts">
-                <h5>Консультант&#x3a;</h5>
-
-                <p class="phone">&#x2b;38 <span class="phone-code">097</span>-815-68-38</p>
-
-                <p class="phone">&#x2b;38 <span class="phone-code">050</span>-774-99-18</p>
-
-                <p class="phone">&#x2b;38 <span class="phone-code">063</span>-796-25-00</p>
-
-                <br>
-                <h5>Наша почта&#x3a;<br /></h5>
-
-                <p class="mail">kote.travel&#x40;gmail.com</p>
-                <br/>
-                <h5>Skype&#x3a;<br /></h5>
-                <p class="mail">kote.travel</p>
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
     <div id="copy-bg" class="clearfix">
         <div id="copyrighter">
             <span id="copyright">&copy; 2015 </span>

@@ -18,7 +18,10 @@
     font-family: HelveticaNeueCyr;
     font-weight: 300;
 }
-
+.container {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
 hgroup {
     margin-top: 6%;
 }
@@ -60,7 +63,21 @@ h4 {
     overflow: hidden;
     margin: 3% 0 2% 0;
 }
+.repost {
+    margin-bottom: 10px;
+}
+.repost img {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+}
 
+.social p {
+    color: rgb(18, 18, 18);
+    font-weight: 300;
+    font-size: 1.125em;
+    line-height: 30px;
+}
 .layout-right-column {
     float: right;
     width: 40%;
