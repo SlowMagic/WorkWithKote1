@@ -5,16 +5,31 @@
 @model WorkWithKOTE.Models.TourForHomePage
 @Styles.Render("~/Content/page")
 @{ Html.RenderPartial("HeaderPartial_main");}
+
 <script>
     if (Galleria) { console.log('it works')}
 </script>
+
+<ul>
+        @foreach(var item in Model.TourMain)
+        {
+            var i = item.TourImg;
+         <li> @i</li>
+        }
+        </ul>
+
 <div id="big-preview-img" class="clearfix">
     <div class="wish">
         <img id="big-logo" src="@Html.DisplayFor(m=>m.TourHightPrev.BigLogo.UrlImg)" />
 
         <p id="wishletter">
-            <span id="textspan">Я хочу...<br /></span><span id="textspan1">Тур в Карпаты из Днепропетровска</span>
+            <span id="textspan">Я хочу...<br /></span>
+            <span id="textspan1">Тур в 
+               <span id="to">Карпаты</span> из <span id="from">Днепропетровска</span>
+            </span>
         </p>
+
+        
 
         <div class="buttons clearfix">
             <a href="#" class="yes-btn">
@@ -31,6 +46,7 @@
         </p>
     </div>
 </div>
+
 @{Html.RenderAction("NewsBlock");}
 <div class="groups-bg clearfix">
     <div class="groups clearfix" id="second-nav">
