@@ -8,8 +8,12 @@
 }
 
 .textbox {
-    margin-left : 15px;
+    margin-left : 35px;
     width:50px;
+}
+
+.armor {
+    margin-left : 15px;
 }
 
 #NameTour {
@@ -28,13 +32,82 @@
     margin-left: 11px;
 }
 
-#cke_DescriptionTour {
-    margin-left : 15px;
+#cke_DescriptionTour,#cke_NewsBody{
+    margin-left : 35px;
+    width : 80% !important;
 }
 
+/*Margings*/
 #PlaceOfArrival{
     margin-left : 15px;
 }
+
+#PodpicePrice{
+    margin-left : 12px;
+}
+
+#SummaAgent{
+    margin-left : 6px;
+}
+
+#dopusluga-pannel {
+    margin-left : 35px;
+}
+
+.dateText{
+    margin-left : 20px;
+}
+
+#SuppName{
+    margin-left : 3px;
+}
+
+input[name="DopUslug[0].Name"] {
+    margin-left : 3px;
+}
+
+input[name="Tag[0].TagName"] {
+    margin-left : 52px;
+}
+
+#payChange{
+    margin-left : 35px;
+}
+
+#SuppVkontakte{
+    margin-left : 34px;
+}
+
+#paymentSelect{
+    margin-left : 59px;
+}
+
+#GalleryID{
+    margin-left : 120px;
+}
+
+#People{
+    margin-left : 106px;
+}
+
+.usluga{
+    margin-left : 35px;
+    display : inline !important;
+}
+
+.byTransport{
+    margin-left : 15px;
+}
+
+.datetour {
+   margin-left : 15px;
+}
+
+#turTag{
+    margin-left : 35px;
+}
+/*Margings*/
+
 
 #form_tour input[type=radio] {
     display : inline-block;
@@ -42,12 +115,39 @@
     margin-top: 6px;
     height: 15px; 
     width: 15px;
+    cursor : pointer;
 }
 
 #form_tour input[type=checkbox] {
     display : inline-block;
     margin-top: 6px;
     margin-left : 3px;
+    cursor : pointer;
+}
+
+#form_tour textarea {
+    display : block;
+    margin-top: 6px;
+    min-width : 500px;
+    min-height : 80px;
+    margin-left : 35px;
+}
+
+#form_tour input[type=file] {
+    display : inline-block;
+    margin-top: 6px;
+}
+
+#form_tour input[type=button] {
+   border-radius : 4px;
+   background-color : #ff6f40;
+   border : 1px solid #ff6f40;
+   color : white;
+   height : 30px;
+}
+
+#form_tour input[type=date] {
+    width : 150px;
 }
 
 #form_tour select {
@@ -58,3 +158,30 @@
     display: inline-block;
     margin-top: 6px;
 }
+
+.date{
+   margin-left : 30px;
+   display : inline !important;
+}
+
+.tags{
+     display : inline !important;
+     margin-left : 35px;
+}
+
+#SameTours{
+    min-width : 200px;
+    min-height : 70px;
+    display : block !important;
+    margin-left : 35px;
+}
+
+#createTour,#createNews{
+    margin-left : 35px;
+    border-radius : 4px;
+    background-color : #ff6f40;
+    border : 1px solid #ff6f40;
+    color : white;
+    height : 35px;
+}
+
