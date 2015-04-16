@@ -32,7 +32,7 @@
     margin-left: 11px;
 }
 
-#cke_DescriptionTour {
+#cke_DescriptionTour,#cke_NewsBody{
     margin-left : 35px;
     width : 80% !important;
 }
@@ -176,7 +176,7 @@ input[name="Tag[0].TagName"] {
     margin-left : 35px;
 }
 
-#createTour{
+#createTour,#createNews{
     margin-left : 35px;
     border-radius : 4px;
     background-color : #ff6f40;
