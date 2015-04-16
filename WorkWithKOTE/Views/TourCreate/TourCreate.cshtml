@@ -3,93 +3,128 @@
 }
 @model WorkWithKOTE.Models.Tour
     @Styles.Render("~/Content/order")
+    @Styles.Render("~/Content/form")
+
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+
 @{ Html.RenderPartial("HeaderPartial_main");}
+
     <div id="small-preview-img" class="clearfix">
         <hgroup>
             <h1>Создание тура</h1>
-
             <h2>@Html.ActionLink("Главная", "Index", "Home", null, null) / Создание тура</h2>
         </hgroup>
     </div>
-        <form action="@Url.Action("TourCreate")" method="post" enctype="multipart/form-data">
-            <div class="layout">
-                @Html.ValidationSummary()
-                Название @Html.TextBoxFor(m => m.NameTour)
-                @Html.ValidationMessageFor(model => model.NameTour)
-                Заголовок @Html.TextBoxFor(m => m.TitleTour) <br/>
-                Выберите тип тура: @Html.DropDownList("TypeOfTourId")
-                Cтатус тура : @Html.DropDownList("TourStatusId")
-                Описание:
-                @Html.TextAreaFor(m => m.DescriptionTour)<br/>
-                Выезд из @Html.TextBoxFor(m => m.PlaceOfDeparture)<br/>
-                Прибываем в @Html.TextBoxFor(m => m.PlaceOfArrival)<br/>
-                стоимость @Html.TextBoxFor(m => m.Cost)<br/>
-                <input type="radio" name="Valuta" value="гривен" checked style="height: 15px; width: 15px"/>Гривна<br/>
-                <input type="radio" name="Valuta" value="долларов" style="height: 15px; width: 15px"/>Dollar<br/>
-                <input type="radio" name="Valuta" value="евро" style="height: 15px; width: 15px"/>Euro<br/>
-                Предоплата :<input type="checkbox" id="Predop" onclick=" valid() "/>
-                @Html.TextBoxFor(m => m.PrePay, new {style = "visibility:hidden", id = "PrePay"})<br/>
-                <br/>
-                Бронь:<input type="checkbox" id="Reserv" onclick=" reserv() "/>
-                @Html.TextBoxFor(m => m.Reservation, new {style = "visibility:hidden", id = "Reservation"})<br/>
-                @*    @Html.EditorFor(m => m.DateTour, "DateTour")*@
-                @Html.Partial("DateTourPartial")
-                <br/>
-                Виды Транспорта :<br/>
-                Автобус @Html.CheckBoxFor(m => m.IsBus)<br/>
-                Самолет @Html.CheckBoxFor(m => m.IsAriplane)<br/>
-                Лайнер @Html.CheckBoxFor(m => m.IsShip)<br/>
-                Поезд @Html.CheckBoxFor(m => m.IsTrain)<br/>
-                Подпись к цене
-                @Html.TextBoxFor(m => m.PodpicePrice)
-                <p>Аукционная цена : @Html.TextBoxFor(m => m.AukcionPrice)</p>
-                <p>
-                    Сумма Агента: <input type="checkbox" id="Summa" onclick=" valid2() "/>
-                    @Html.TextBoxFor(m => m.KommisiaAgent, new {style = "visibility:hidden", id = "SummaAgent"})<br/>
-                </p>
-                <p>
-                    @Html.Partial("DopUsluga")
-                </p>
-                <p>
-                Имя Сопровождающего :@Html.TextBoxFor(m => m.SuppName)<br/>
-                <p>@ViewBag.Message</p>
-                <p>
-                    Фото сопровождающего:<input type="file" name="AvatarSupp"/>
-                    Ссылка на соц. сеть: @Html.TextBoxFor(m => m.SuppVkontakte)<br/>
-                    Описание сопровождающего :@Html.TextAreaFor(m => m.SuppDiscription)<br/>
-                </p>
-                <select name="KindOfPay">
-                    <option selected="selected">Способ оплаты</option>
-                    <option>Наличный</option>
-                    <option>Безналичный</option>
-                    <option>Оба</option>
-                </select>
-                <br/>
-                Количество участyков :@Html.TextBoxFor(m => m.AllPeople)<br/>
-                Уже едут :@Html.TextBoxFor(m => m.People)<br/>
-                Обложка тура - <input type="file" name="TourImg" required/><br/>
-                Выберите стиль Логотипа :@Html.DropDownList("LogoId")<br/>
-                Галлерея : @Html.DropDownList("GalleryID", String.Empty)<br/>
-                Загрузить файл :<input type="file" name="Document"/><br/>
-                Бонус за тур :
-                <input type="checkbox" id="Bonus" onclick=" valid3() "/>
-                @Html.TextBoxFor(m => m.Bonus, new {style = "visibility:hidden", id = "BonusText"})<br/>
-                @Html.Partial("TegPartialView")<br/>
-                @Html.ListBox("SameTours",(MultiSelectList)ViewBag.SameTourId)
-                <input type="submit" value="Создать Тур"/>
-                <div id="route-points"></div>
-            </div>
+
+    <form action="@Url.Action("TourCreate")" method="post" enctype="multipart/form-data">
+      <div class="layout" id="form_tour">
+          @Html.ValidationSummary()
+
+            <span class="textbox">
+              Название : @Html.TextBoxFor(m => m.NameTour)
+              @Html.ValidationMessageFor(model => model.NameTour)
+            </span><br/>
+              
+            <span class="textbox">
+              Заголовок : @Html.TextBoxFor(m => m.TitleTour) 
+            </span><br/>
+              
+            <span class="textbox">
+              Тип тура : @Html.DropDownList("TypeOfTourId")
+            </span>
+
+            <span class="textbox">
+              Cтатус тура : @Html.DropDownList("TourStatusId")
+            </span><br/><br/><br/>
+
+            <span class="textbox">
+              Описание : @Html.TextAreaFor(m => m.DescriptionTour)<br />
+            </span>
+
+            <span class="textbox">
+                Выезд из @Html.TextBoxFor(m => m.PlaceOfDeparture)
+            </span><br/>
+
+            <span class="textbox">
+                Прибываем в @Html.TextBoxFor(m => m.PlaceOfArrival)
+            </span><br />
+
+            <span class="textbox">
+               Cтоимость @Html.TextBoxFor(m => m.Cost)
+               <input type="radio" name="Valuta" value="гривен" checked />Гривна
+               <input type="radio" name="Valuta" value="долларов" />Dollar
+               <input type="radio" name="Valuta" value="евро" />Euro
+            </span><br/>
+
+            <span class="textbox">
+               Предоплата :<input type="checkbox" id="Predop" onclick=" valid() " />
+               @Html.TextBoxFor(m => m.PrePay, new { style = "visibility:hidden", id = "PrePay" })
+            </span>
+
+            <span class="textbox">
+              Бронь:<input type="checkbox" id="Reserv" onclick=" reserv() " />
+              @Html.TextBoxFor(m => m.Reservation, new { style = "visibility:hidden", id = "Reservation" })
+            </span><br/><br/>
+
+              @*  @Html.EditorFor(m => m.DateTour, "DateTour")*@
+              @Html.Partial("DateTourPartial")
+              <br />
+              Виды Транспорта :<br />
+              Автобус @Html.CheckBoxFor(m => m.IsBus)<br />
+              Самолет @Html.CheckBoxFor(m => m.IsAriplane)<br />
+              Лайнер @Html.CheckBoxFor(m => m.IsShip)<br />
+              Поезд @Html.CheckBoxFor(m => m.IsTrain)<br />
+              Подпись к цене
+              @Html.TextBoxFor(m => m.PodpicePrice)
+              <p>Аукционная цена : @Html.TextBoxFor(m => m.AukcionPrice)</p>
+              <p>
+                  Сумма Агента: <input type="checkbox" id="Summa" onclick=" valid2() " />
+                  @Html.TextBoxFor(m => m.KommisiaAgent, new { style = "visibility:hidden", id = "SummaAgent" })<br />
+              </p>
+              <p>
+                  @Html.Partial("DopUsluga")
+              </p>
+              <p>
+                  Имя Сопровождающего :@Html.TextBoxFor(m => m.SuppName)<br />
+              <p>@ViewBag.Message</p>
+              <p>
+                  Фото сопровождающего:<input type="file" name="AvatarSupp" />
+                  Ссылка на соц. сеть: @Html.TextBoxFor(m => m.SuppVkontakte)<br />
+                  Описание сопровождающего :@Html.TextAreaFor(m => m.SuppDiscription)<br />
+              </p>
+              <select name="KindOfPay">
+                  <option selected="selected">Способ оплаты</option>
+                  <option>Наличный</option>
+                  <option>Безналичный</option>
+                  <option>Оба</option>
+              </select>
+              <br />
+              Количество участyков :@Html.TextBoxFor(m => m.AllPeople)<br />
+              Уже едут :@Html.TextBoxFor(m => m.People)<br />
+              Обложка тура - <input type="file" name="TourImg" required /><br />
+              Выберите стиль Логотипа :@Html.DropDownList("LogoId")<br />
+              Галлерея : @Html.DropDownList("GalleryID", String.Empty)<br />
+              Загрузить файл :<input type="file" name="Document" /><br />
+              Бонус за тур :
+              <input type="checkbox" id="Bonus" onclick=" valid3() " />
+              @Html.TextBoxFor(m => m.Bonus, new { style = "visibility:hidden", id = "BonusText" })<br />
+              @Html.Partial("TegPartialView")<br />
+              @Html.ListBox("SameTours", (MultiSelectList)ViewBag.SameTourId)
+              <input type="submit" value="Создать Тур" />
+              <div id="route-points"></div>
+</div>
             @Html.Partial("MapPartial")
         </form>
+
 @section scripts
-                {
+{
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         CKEDITOR.replace("DescriptionTour", {
             filebrowserBrowseUrl: '/Scripts/Filemanager-master/index.html'
         });
     </script>
+
     <script type="text/javascript">
         function valid() {
             if (document.getElementById('Predop').checked) {
@@ -112,5 +147,4 @@
             }
         }
     </script>
-
 }

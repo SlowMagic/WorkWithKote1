@@ -1,0 +1,60 @@
+#form_tour input[type=text] {
+    width: 230px !important;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid gainsboro;
+    display: inline-block;
+    margin-top: 6px;
+}
+
+.textbox {
+    margin-left : 15px;
+    width:50px;
+}
+
+#NameTour {
+    margin-left:4px;
+}
+
+#Cost {
+    margin-left: 35px;
+}
+
+#PlaceOfDeparture {
+    margin-left: 47px;
+}
+
+#TypeOfTourId{
+    margin-left: 11px;
+}
+
+#cke_DescriptionTour {
+    margin-left : 15px;
+}
+
+#PlaceOfArrival{
+    margin-left : 15px;
+}
+
+#form_tour input[type=radio] {
+    display : inline-block;
+    margin-left : 15px;
+    margin-top: 6px;
+    height: 15px; 
+    width: 15px;
+}
+
+#form_tour input[type=checkbox] {
+    display : inline-block;
+    margin-top: 6px;
+    margin-left : 3px;
+}
+
+#form_tour select {
+    width: 230px !important;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid gainsboro;
+    display: inline-block;
+    margin-top: 6px;
+}
