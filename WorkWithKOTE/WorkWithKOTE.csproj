@@ -255,6 +255,7 @@
     <Content Include="Content\img\yes-btn.png" />
     <Content Include="Content\img\youtube-ico.png" />
     <Content Include="Content\js\common.js" />
+    <Content Include="Content\form.css" />
     <Content Include="Content\page.css" />
     <Content Include="Content\parked.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
