@@ -71,7 +71,7 @@ namespace WorkWithKOTE.Controllers
             return View(data);
         }
         [HttpPost]
-        public ActionResult TourEdit(List<int> SameTours, Tour model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp, DateTour[] DT, DopUslug[] DP,Tag[] Ts)
+        public ActionResult TourEdit(List<int> SameTours, Tour model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp, DateTour[] DT, DopUslug[] DP,Tag[] Ts,RoutePoint[] Point)
         {
             if (SameTours != null)
             {
@@ -112,16 +112,27 @@ namespace WorkWithKOTE.Controllers
             {
                 db.Entry(item).State = EntityState.Modified;
             }
-           foreach(var item in model.RoutePoints)
+           if(Point != null)
+                foreach (var item in Point)
                 {
-                    if(item.RoutePointID  == 0)
                     db.Entry(item).State = EntityState.Added;
                 }
             foreach(var item in model.Tag)
             {
                 db.Entry(item).State = EntityState.Modified;
             }
-            db.Entry(model).State = EntityState.Modified;
+            if(model.RoutePoints != null)
+            foreach (var item in model.RoutePoints)
+            {
+                    db.Entry(item).State = EntityState.Modified;
+            }
+            int i = model.TourId;
+            db.Entry(model).State = EntityState.Modified;               
+            foreach(var item in model.RoutePoints.ToList())
+            {
+                if (item.Lat == 0.0 && item.Lng == 0.0)
+                db.Entry(item).State = EntityState.Deleted;
+            }
             db.SaveChanges();
             return RedirectToAction("Index", "Home");
         }

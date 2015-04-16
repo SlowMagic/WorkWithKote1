@@ -323,17 +323,17 @@ function AddTag() {
             $('#route-points').append(
                 $('<input>').attr({
                     'type': 'hidden',
-                    'name': 'RoutePoints[' + i + '].Lat'
+                    'name': 'Point[' + i + '].Lat'
                 }).val(arrayMarkerAdd.getAt(i).lat())
             ).append(
                 $('<input>').attr({
                     'type': 'hidden',
-                    'name': 'RoutePoints[' +i + '].Lng'
+                    'name': 'Point[' +i + '].Lng'
                 }).val(arrayMarkerAdd.getAt(i).lng())
             ).append(
             $('<input>').attr({
                 'type': 'hidden',
-                'name': 'RoutePoints['+i+'].TourId'
+                'name': 'Point['+i+'].TourId'
             }).val(@Model.TourId)
             );
         });
