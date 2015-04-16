@@ -3,31 +3,77 @@
 }
 @model IEnumerable<WorkWithKOTE.Models.Tour>
 @using WorkWithKOTE.Code
-<h2>Поиск</h2>
-<form action="@Url.Action("Search","TourSearch")" method="post" enctype="multipart/form-data">
-   @if (User.IsInRole("Admin"))
-   {
-    <input type="button"value="Поиск людей" onclick="location.href='@Url.Action("SearchAllUsers","Admin")'" />   
-   }
-    Дата отправки: @Html.DropDownList("Date", new List<SelectListItem> { new SelectListItem{Value="1", Text="Январь"},  new SelectListItem{Value="2",Text="Февраль"}, new SelectListItem{Value="3",Text="Март"},
+@Styles.Render("~/Content/order")
+@{ Html.RenderPartial("HeaderPartial_main");}
+<div id="small-preview-img" class="clearfix">
+    <hgroup>
+        <h1>Поиск</h1>
+        <h2>
+            <a href="@Url.Action("Index", "Home")">Главная</a> / Поиск
+        </h2>
+    </hgroup>
+</div>
+<div class="container">
+    <div class="layout">
+        <form action="@Url.Action("Search","TourSearch")" method="post" enctype="multipart/form-data">
+            <div class="layout-left-column">
+
+                <p>Даты</p>
+                @Html.DropDownList("Date", new List<SelectListItem> { new SelectListItem{Value="1", Text="Январь"},  new SelectListItem{Value="2",Text="Февраль"}, new SelectListItem{Value="3",Text="Март"},
                  new SelectListItem{Value="4",Text="Апрель"}, new SelectListItem{Value="5",Text="Май"}, new SelectListItem{Value = "6",Text="Июнь"}, new SelectListItem{Value="7",Text="Июль"},
-                 new SelectListItem{Value="8",Text="Август"}, new SelectListItem{Value="9",Text="Сентябрь"}, new SelectListItem{Value="10",Text="Октябрь"}, new SelectListItem{Value="11",Text="Ноябрь"}, new SelectListItem{Value="12",Text="Декабрь"}},"Все даты") &mdash;
-     Типы тура : @Html.DropDownList("TypeOfTour",DropDown.SelectlistForTypeTour(),"Все туры")
-     Путешествие в @Html.DropDownList("ArrivePlace",DropDown.SelectlistForArrive(),"Все направления")
-    Транспорт:<br/>
-    Автобус @Html.CheckBox("IsCar") 
-    Поезд @Html.CheckBox("IsTrain")
-    Лайнер @Html.CheckBox("IsShip")
-    Самолет @Html.CheckBox("IsPlane")
-    Цена от @Html.DropDownList("Prices",DropDown.Price(),"Любая цена")  
-    <input type="submit" value="Поиск" />
-    @foreach (var c in Model)
-    {
-        @Html.DisplayFor(m => c.NameTour);<br />
-        @Html.DisplayFor(m => c.TitleTour);<br />
-        @Html.Raw(c.DescriptionTour);<br/>
-        Html.RenderAction("DateForCurrentTour","Home", new { id = c.TourId});
-        <input type="button" value="Просмотреть тур" onclick="location.href='@Url.Action("Index", "TourDisplay", new {id=c.TourId })'" />
-        
-    }
-</form>
+                 new SelectListItem{Value="8",Text="Август"}, new SelectListItem{Value="9",Text="Сентябрь"}, new SelectListItem{Value="10",Text="Октябрь"}, new SelectListItem{Value="11",Text="Ноябрь"}, new SelectListItem{Value="12",Text="Декабрь"}}, "Все даты")
+                <p>Типы тура</p>
+                @Html.DropDownList("TypeOfTour", DropDown.SelectlistForTypeTour(), "Все туры")
+                <p>Путешествие в</p>
+                @Html.DropDownList("ArrivePlace", DropDown.SelectlistForArrive(), "Все направления")
+                <p>Цена от</p>
+                @Html.DropDownList("Prices", DropDown.Price(), "Любая цена")
+                @*                <p>Тип тура</p>*@
+                @*                <select>*@
+                @*                    <option></option>*@
+                @*                </select>*@
+                <p>Транспорт</p>
+                <div class="transport">
+                    <p>@Html.CheckBox("IsCar")&nbsp;Автобус</p>
+                    <p>@Html.CheckBox("IsTrain")&nbsp;Поезд</p>
+                    <p>@Html.CheckBox("IsShip")&nbsp;Лайнер</p>
+                    <p>@Html.CheckBox("IsPlane")&nbsp;Самолет</p>
+                </div>
+                @*                <p>Город</p>*@
+                @*                <select>*@
+                @*                    <option></option>*@
+                @*                </select>*@
+                <p style="margin-top: 10px">
+                    <a href="#" onclick=" $(this).closest('form').submit(); return false" class="button">Поиск</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a style="margin-left: 10px" class="button" href='@Url.Action("SearchAllUsers", "Admin")'>Поиск людей</a>
+                    }
+                </p>
+            </div>
+            <div class="layout-main-right">
+                <div class="found-tour">
+                    @{ int index = 0; }
+                    @{ int max = Model.Count(); }
+                    @foreach (var c in Model)
+                    {
+                        if (index >= max / 2)
+                        {
+                           @: </div>
+                           @:<div class="found-tour">
+                        }
+                            <div style="margin-bottom: 15px">
+                                 <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m=>c.Valuta)</h3><br/>
+                                <img style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)">
+                                <h4> @Html.DisplayFor(m => c.TitleTour)</h4><br/>
+                                @{ Html.RenderAction("DateForCurrentTour", "Home", new {id = c.TourId}); }
+                                <a class=" button " style="float: none; margin-top: 10px" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'>Просмотреть тур</a>
+                            </div>
+                             index++;
+                    }
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

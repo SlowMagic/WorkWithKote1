@@ -21,11 +21,12 @@
           @Html.ValidationSummary()
 
             <span class="textbox">
-              Название : <input type="text" name="NameTour" id="NameTour" required />
+              Название : @Html.TextBoxFor(m => m.NameTour)
+              @Html.ValidationMessageFor(model => model.NameTour)
             </span><br/>
               
             <span class="textbox">
-              Заголовок : <input type="text" name="TitleTour" id="TitleTour" required /> 
+              Заголовок : @Html.TextBoxFor(m => m.TitleTour) 
             </span><br/>
               
             <span class="textbox">
@@ -49,7 +50,7 @@
             </span><br />
 
             <span class="textbox">
-               Cтоимость <input type="text" name="Cost" id="Cost" required />
+               Cтоимость @Html.TextBoxFor(m => m.Cost)
                <input type="radio" name="Valuta" value="гривен" checked />Гривна
                <input type="radio" name="Valuta" value="долларов" />Dollar
                <input type="radio" name="Valuta" value="евро" />Euro
@@ -165,6 +166,7 @@
 
 @section scripts
 {
+ @* @Scripts.Render("~/bundles/jqueryval")*@
     <script>
         CKEDITOR.replace("DescriptionTour", {
             filebrowserBrowseUrl: '/Scripts/Filemanager-master/index.html'

@@ -22,6 +22,7 @@ namespace WorkWithKOTE.Models
         public DbSet<Tag> Teg { get; set; }
         public DbSet<DopUslug> DopUslugs { get; set; }
         public DbSet<Gallery> Gallery { get; set; }
+        public DbSet<Pic> Pics { get; set; }
         public DbSet<RoutePoint> RoutePoint { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<TourStatus> TourStatus { get; set; }

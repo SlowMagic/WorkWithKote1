@@ -138,9 +138,20 @@ namespace WorkWithKOTE.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int GalleryId { get; set; }
         public string GalleryName { get; set; }
-        public string FirstImg { get; set; }
-        public string SecondImg { get; set; }
-        public string ThirdImg { get; set; }
+        public List<Pic> Pics { get; set; } 
+    }
+    [Table("Pic")]
+    public class Pic
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int PicId { get; set; }
+        public string PicName { get; set; }
+        public string PicDescription { get; set; }
+        public string PicType { get; set; }
+        public string PicLink { get; set; }
+        public int GalleryId { get; set; }
+        public Gallery Gallery { get; set; }
     }
     [Table ("DopUslug")]
     public class DopUslug

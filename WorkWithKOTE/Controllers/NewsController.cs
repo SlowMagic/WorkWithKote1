@@ -44,7 +44,7 @@ namespace WorkWithKOTE.Controllers
                db.Entry(data).State = EntityState.Deleted;
                db.SaveChanges();
            }
-           return RedirectToAction("NewsBlock","News");
+           return RedirectToAction("AllNewsBlock","News");
         }
     }
 }
