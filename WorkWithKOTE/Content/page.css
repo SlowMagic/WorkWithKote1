@@ -676,8 +676,6 @@
     display: block;
     z-index: 97;
     position: relative;
-   /*background: url("img/big-preview-img.jpg") no-repeat 50% 100%*/ ;
-   /*background: url("img/big-preview-img.jpg") no-repeat center;*/ 
 }
 
 #small-preview-img5 {
