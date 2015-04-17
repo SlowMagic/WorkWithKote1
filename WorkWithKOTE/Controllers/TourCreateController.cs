@@ -8,6 +8,7 @@ using System.Data;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Data.Entity;
+using WorkWithKOTE.Code;
 namespace WorkWithKOTE.Controllers
 {
     public class TourCreateController : Controller
@@ -40,11 +41,11 @@ namespace WorkWithKOTE.Controllers
                     model.SameTour.Add(new SameTour { SameTourID = d.TourId, SameTourName = d.NameTour });
                 }
             }
-            string check = UploadImg(TourImg, "/UpLoad/TourImg/");
+            string check = UploadImages.UploadImg(TourImg, "/UpLoad/TourImg/");
 
             if (check != null)
                 model.TourImg = check;
-            check = UploadImg(AvatarSupp, "/UpLoad/SuppFoto/");
+            check = UploadImages.UploadImg(AvatarSupp, "/UpLoad/SuppFoto/");
             if (check != null)
                 model.SuppFoto = check;
             if (Document != null)
@@ -66,7 +67,7 @@ namespace WorkWithKOTE.Controllers
             ViewBag.GalleryID = new SelectList(db.Gallery, "GalleryId", "GalleryName");
             ViewBag.TypeOfTourId = new SelectList(db.TypeOfTours, "TypeOfTourId", "TypeOfTourName",data.TypeOfTourId);
             ViewBag.SameTourId = new MultiSelectList(db.Tour, "TourId", "NameTour");
-            ViewBag.LogoId = new SelectList(db.BigLogos, "LogoId", "LogoName");
+            ViewBag.LogoId = new SelectList(db.BigLogos, "LogoId", "LogoName",data.LogoId);
             ViewBag.Id = id;
             return View(data);
         }
@@ -82,10 +83,10 @@ namespace WorkWithKOTE.Controllers
                     model.SameTour.Add(new SameTour { SameTourID = d.TourId, SameTourName = d.NameTour });
                 }
             }
-            string check = UploadImg(TourImg, "/UpLoad/TourImg/"); 
+            string check = UploadImages.UploadImg(TourImg, "/UpLoad/TourImg/"); 
             if (check != null)
                 model.TourImg = check;
-            check = UploadImg(AvatarSupp, "/UpLoad/SuppFoto/");
+            check = UploadImages.UploadImg(AvatarSupp, "/UpLoad/SuppFoto/");
             if (check != null)
                 model.SuppFoto = check;
             if (model.DescriptionTour != null)
@@ -137,25 +138,5 @@ namespace WorkWithKOTE.Controllers
             db.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
-
-        protected string UploadImg(HttpPostedFileBase file, string path)
-        {
-            if (file != null)
-            {
-                string fullPath = null;
-                string file1 = Guid.NewGuid().ToString();
-                string extension = Path.GetExtension(file.FileName);
-                file1 += extension;
-                List<string> extensions = new List<string>() { ".png", ".jpg", ".gif" };
-                if (extensions.Contains(extension))
-                {
-                    file.SaveAs(Server.MapPath(path + file1));
-                    fullPath = path + file1;
-                }
-                return fullPath;
-            }
-            return null;
-        }
-
     }
 }

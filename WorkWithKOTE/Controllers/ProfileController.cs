@@ -14,6 +14,7 @@ using System.Data;
 using System.IO;
 using System.Net.Mail;
 using System.Data.Entity;
+using WorkWithKOTE.Code;
 namespace WorkWithKOTE.Controllers
 {
     [InitializeSimpleMembership]
@@ -47,7 +48,7 @@ namespace WorkWithKOTE.Controllers
         public ActionResult EditProfile(UserProfile model, HttpPostedFileBase file)
         {
             int i = WebSecurity.GetUserId(User.Identity.Name);
-            var check = UploadImg(file, "/UpLoad/Avatar/");
+            var check = UploadImages.UploadImg(file, "/UpLoad/Avatar/"); 
             if (check != null)
                 model.Avatar = check;
             model.UserId = i;
@@ -164,43 +165,7 @@ namespace WorkWithKOTE.Controllers
         public ActionResult UsersTour(int id = 0)
         {
             var data = db.Trip.Include(m => m.DateTour).Include(m => m.Tour).Include(m=>m.User).Where(m => m.UserId == id);
-
-          /*  ProfileTour profileTour = new ProfileTour();
-            profileTour.trips = db.Trip.Where(m => m.UserId == id).ToList();
-            profileTour.tours = new List<Tour>();
-            profileTour.date = new List<DateTour>();
-            if (profileTour.trips != null)
-            {
-                foreach (var Item in profileTour.trips)
-                {
-                    var tour = db.Tour.Find(Item.TourId);
-                    profileTour.tours.Add(tour);
-                }
-                foreach (var Item in profileTour.trips)
-                {
-                    var date = db.DateTours.Find(Item.DateTourId);
-                    profileTour.date.Add(date);
-                }
-            }*/
             return PartialView(data);
-        }
-        protected string UploadImg(HttpPostedFileBase file, string path)
-        {
-            if (file != null)
-            {
-                string fullPath = null;
-                string file1 = Guid.NewGuid().ToString();
-                string extension = Path.GetExtension(file.FileName);
-                file1 += extension;
-                List<string> extensions = new List<string>() { ".png", ".jpg", ".gif" };
-                if (extensions.Contains(extension))
-                {
-                    file.SaveAs(Server.MapPath(path + file1));
-                    fullPath = path + file1;
-                }
-                return fullPath;
-            }
-            return null;
         }
     }
 }

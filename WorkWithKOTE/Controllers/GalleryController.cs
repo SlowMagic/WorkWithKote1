@@ -20,6 +20,7 @@ namespace WorkWithKOTE.Controllers
         [HttpPost]
         public ActionResult CreateGallery(HttpPostedFileBase[] file)
         {
+            
             return View();
         }
 
