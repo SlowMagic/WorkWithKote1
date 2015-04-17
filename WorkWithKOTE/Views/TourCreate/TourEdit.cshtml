@@ -2,36 +2,68 @@
     ViewBag.Title = "TourEdit";
 }
 @model WorkWithKOTE.Models.Tour
+@Styles.Render("~/Content/order")
+@Styles.Render("~/Content/form")
+
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
 <h2>Редактирование Туров</h2>
+
 <form action="@Url.Action("TourEdit")" method="post" enctype="multipart/form-data">
-        @Html.HiddenFor(m=>m.TourId)
-        Название  @Html.TextBoxFor(m => m.NameTour)
-        @Html.ValidationMessageFor(model => model.NameTour)
-        @Html.HiddenFor(m=>m.SuppFoto)
-        @Html.HiddenFor(m=>m.TourImg)
-        @Html.HiddenFor(m=>m.Document)
-        Заголовок  @Html.TextBoxFor(m => m.TitleTour) <br />
-        Выберите тип тура:   @Html.DropDownList("TypeOfTourId")
-        Cтатус тура :@Html.DropDownList("TourStatusId")
-        Описание:
-        <textarea name="DescriptionTour">@Html.Raw(Model.DescriptionTour)</textarea><br />
-        Выезд из @Html.TextBoxFor(m => m.PlaceOfDeparture)<br />
-        Прибываем в @Html.TextBoxFor(m => m.PlaceOfArrival)<br />
-        стоимость @Html.TextBoxFor(m => m.Cost)<br />
-        <input type="radio" name="Valuta" value="гривень" checked style="height:15px; width:15px" />Гривна<br />
-        <input type="radio" name="Valuta" value="долларов" style="height:15px; width:15px " />Dollar<br />
-        <input type="radio" name="Valuta" value="евро" style="height:15px; width:15px " />Euro<br />
+  <div class="layout" id="form_tour">
+        @Html.HiddenFor(m => m.TourId)
+
+        <span class="textbox">
+            Название :  <input type="text" value="@Model.NameTour" name="NameTour" id="NameTour" required />
+        </span><br />
+
+        @Html.HiddenFor(m => m.SuppFoto)
+        @Html.HiddenFor(m => m.TourImg)
+        @Html.HiddenFor(m => m.Document)
+
+        <span class="textbox">
+            Заголовок : <input type="text" value="@Model.TitleTour" name="TitleTour" id="TitleTour" required />
+        </span><br />
+
+        <span class="textbox">
+            Тип тура : @Html.DropDownList("TypeOfTourId")
+        </span>
+
+        <span class="textbox">
+            Cтатус тура : @Html.DropDownList("TourStatusId")
+        </span><br /><br /><br />
+
+        <span class="textbox">
+            <textarea id="DescriptionTour" name="DescriptionTour">
+                @Html.Raw(Model.DescriptionTour)
+            </textarea>
+        </span><br />
+
+        <span class="textbox">
+            Выезд из @Html.TextBoxFor(m => m.PlaceOfDeparture)
+        </span><br />
+
+        <span class="textbox">
+            Прибываем в @Html.TextBoxFor(m => m.PlaceOfArrival)
+        </span><br />
+
+        <span class="textbox">
+            Cтоимость <input type="text" value="@Model.Cost" name="Cost" id="Cost" required />
+            <input type="radio" name="Valuta" value="UAH" checked />UAH
+            <input type="radio" name="Valuta" value="USD" />USD
+            <input type="radio" name="Valuta" value="EUR" />EUR
+        </span><br />
+
         Предоплата :<input type="checkbox" id="Predop" onclick="valid()" />
         @Html.TextBoxFor(m => m.PrePay, new { style = "visibility:hidden", id = "PrePay" })<br />
         <br />
         Бронь:<input type="checkbox" id="Reserv" onclick="reserv()" />
         @Html.TextBoxFor(m => m.Reservation, new { style = "visibility:hidden", id = "Reservation" })<br />
         <div id="datetour-pannel">
-        @{int i = 0;}
-        @foreach (var item in Model.DateTour)
-        {
+            @{int i = 0;}
+            @foreach (var item in Model.DateTour)
+            {
                 <div id="dateTour_@i">
                     Введите дату отправки:<br />
                     <input type='date' id="myDateFirst+@i" name="DateTour[@i].FirstDate" required />
@@ -41,16 +73,16 @@
                     <input type="hidden" name="DateTour[@i].DateTourId" value="@item.DateTourId" />
                     <input type="hidden" name="DateTour[@i].TourId" value="@Model.TourId" />
                 </div>
-            <script type="text/javascript">
-                function myFunction() {
-                    document.getElementById("myDateFirst+@i").value = "@item.FirstDate.ToString("yyyy-MM-dd")";
-                    document.getElementById("myDateSecond+@i").value = "@item.SecondDate.ToString("yyyy-MM-dd")";
-                }
-                myFunction();
-            </script>
-            i++;
-        }
-           </div>
+                <script type="text/javascript">
+                    function myFunction() {
+                        document.getElementById("myDateFirst+@i").value = "@item.FirstDate.ToString("yyyy-MM-dd")";
+                        document.getElementById("myDateSecond+@i").value = "@item.SecondDate.ToString("yyyy-MM-dd")";
+                    }
+                    myFunction();
+                </script>
+                i++;
+            }
+        </div>
         <p>
             <input type="button" id="addLink" onclick="AddLink()" value=" + "><input type="button" onclick="DeleteLinkDate()" class="deleteLink" value="-" />
         </p>
@@ -83,8 +115,8 @@
                     </div>
                     k++;
                 }
-                </div>
-</p>
+            </div>
+        </p>
         <p>
             <input type="button" class="addUslug" onclick="AddUslug()" value=" + ">
             <input type="button" class="deleteLinkUslugi" onclick="DeleteUslug()" value="-" />
@@ -128,25 +160,26 @@
                     </div>
                     j++;
                 }
-                </div>
-</p>
+            </div>
+        </p>
         <p>
             <input type="button" class="addTeg" onclick="AddTag()" value=" + ">
             <input type="button" class="deleteLinkTag" value="-" onclick="DeleteTag()" />
         </p>
         <input type="submit" value="Редактировать Тур" />
-    @{int l = 0;}
-    @foreach (var iteam in Model.RoutePoints)
-    {
-        <input type="hidden" id="item[@l].lat" value="@Html.DisplayFor(m=>iteam.Lat)" name="RoutePoints[@l].Lat" />
-    <input type="hidden" id="item[@l].lng" value="@Html.DisplayFor(m=>iteam.Lng)" name="RoutePoints[@l].Lng" />
-    <input type="hidden" name="RoutePoints[@l].RoutePointID" value="@iteam.RoutePointID" />
-    <input type="hidden" name="RoutePoints[@l].TourId" value="@Model.TourId" />
-        l++;
-    } 
-    @Html.ListBox("SameTours", (MultiSelectList)ViewBag.SameTourId)
-    <input type="button" value="Убрать маркеры" onclick="DeleteAllPoints()" />
-    <div id="map_canvas" style="width:400px; height:400px"></div>
+        @{int l = 0;}
+        @foreach (var iteam in Model.RoutePoints)
+        {
+            <input type="hidden" id="item[@l].lat" value="@Html.DisplayFor(m=>iteam.Lat)" name="RoutePoints[@l].Lat" />
+            <input type="hidden" id="item[@l].lng" value="@Html.DisplayFor(m=>iteam.Lng)" name="RoutePoints[@l].Lng" />
+            <input type="hidden" name="RoutePoints[@l].RoutePointID" value="@iteam.RoutePointID" />
+            <input type="hidden" name="RoutePoints[@l].TourId" value="@Model.TourId" />
+            l++;
+        }
+        @Html.ListBox("SameTours", (MultiSelectList)ViewBag.SameTourId)
+        <input type="button" value="Убрать маркеры" onclick="DeleteAllPoints()" />
+        <div id="map_canvas" style="width:400px; height:400px"></div>
+      </div>
 </form>
 @section scripts
                 {
@@ -161,20 +194,32 @@
             if (document.getElementById('Predop').checked) {
                 document.getElementById('PrePay').style.visibility = 'visible';
             }
+            else { 
+                document.getElementById('PrePay').style.visibility = 'hidden';
+            }
         }
         function reserv() {
             if (document.getElementById('Reserv').checked) {
                 document.getElementById('Reservation').style.visibility = 'visible';
+            }
+            else {
+                document.getElementById('Reservation').style.visibility = 'hidden';
             }
         }
         function valid2() {
             if (document.getElementById('Summa').checked) {
                 document.getElementById('SummaAgent').style.visibility = 'visible';
             }
+            else {
+                document.getElementById('SummaAgent').style.visibility = 'hidden';
+            }
         }
         function valid3() {
             if (document.getElementById('Bonus').checked) {
                 document.getElementById('BonusText').style.visibility = 'visible';
+            }
+            else {
+                document.getElementById('BonusText').style.visibility = 'hidden';
             }
         }
     </script>

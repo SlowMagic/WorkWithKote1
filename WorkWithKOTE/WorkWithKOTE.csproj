@@ -255,6 +255,7 @@
     <Content Include="Content\img\video-preview.jpg" />
     <Content Include="Content\img\yes-btn.png" />
     <Content Include="Content\img\youtube-ico.png" />
+    <Content Include="Content\img\zaglushka.jpg" />
     <Content Include="Content\js\common.js" />
     <Content Include="Content\form.css" />
     <Content Include="Content\js\galleria-1.4.2.js" />
