@@ -15,11 +15,10 @@ namespace WorkWithKOTE.Controllers
 
         public ActionResult CreateGallery()
         {
-            var data = new Gallery();
-            return View(data);
+            return View();
         }
-
-        public ActionResult Index()
+        [HttpPost]
+        public ActionResult CreateGallery(HttpPostedFileBase[] file)
         {
             return View();
         }
