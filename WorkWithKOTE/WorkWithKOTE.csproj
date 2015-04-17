@@ -184,6 +184,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\DropDown.cs" />
+    <Compile Include="Code\UploadImages.cs" />
     <Compile Include="Code\VKontakteAuthenticationClient.cs.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -1168,6 +1169,7 @@
     <Content Include="Views\Home\ForWait.cshtml" />
     <Content Include="Views\Buy\Payment.cshtml" />
     <Content Include="Views\News\AllNewsBlock.cshtml" />
+    <Content Include="Views\Gallery\CreateGallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
