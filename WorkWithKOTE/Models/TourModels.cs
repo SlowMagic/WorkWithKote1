@@ -43,57 +43,57 @@ namespace WorkWithKOTE.Models
         public int TourId { get; set; }
         public Tour Tour { get; set; }
     }
-    [Table ("Tour")]
-   public class Tour
+    [Table("Tour")]
+    public class Tour
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-       public int TourId { get; set; }
-       [Required(ErrorMessage = "Поле Название  должно быть установлено")]
-       public string NameTour {get;set;}
-       [Required(ErrorMessage = "Поле Заголовок  быть установлено")]
-       public string TitleTour { get; set; }
-      [AllowHtml]
-       public string DescriptionTour { get; set; }
+        public int TourId { get; set; }
+        [Required(ErrorMessage = "Поле Название  должно быть установлено")]
+        public string NameTour { get; set; }
+        [Required(ErrorMessage = "Поле Заголовок  быть установлено")]
+        public string TitleTour { get; set; }
+        [AllowHtml]
+        public string DescriptionTour { get; set; }
         [Required(ErrorMessage = "Цена тура не может быть пустой ")]
-       [RegularExpression(@"\-?\d+(\.\d{0,})?", ErrorMessage = "Ошибка поле Стоимость .Не верно введено число.Возможно вы поставили , вместо .")]
-       public decimal? Cost { get; set; }
-       public string Valuta { get; set; }
-       [RegularExpression(@"\-?\d+(\.\d{0,})?", ErrorMessage = "Ошибка поле Стоимость .Не верно введено число.Возможно вы поставили , вместо .")]
-       public decimal? PrePay { get; set; }
-       public string Reservation { get; set; }
-       public bool IsBus { get; set; }
-       public bool IsAriplane { get; set; }
-       public bool IsShip { get; set; }
-       public bool IsTrain { get; set; }
-       public string PlaceOfDeparture { get; set; }
-       public string PlaceOfArrival { get; set; }
-       public int  TourStatusId { get; set; }
-       public TourStatus TourStatus { get; set; }
-       public int   TypeOfTourId { get; set; }
-       public TypeOfTour TypeOfTour { get; set; }
-       public string PodpicePrice { get; set; }
-       public decimal? AukcionPrice { get; set; }
-       public string KommisiaAgent { get; set; } 
-       public string SuppName { get; set; }
-       public string SuppVkontakte { get; set; }
-       public string SuppFoto { get; set; }
-       public string SuppDiscription { get; set; }
-       public string KindOfPay { get; set; }
-       public int? People { get; set; }
-       public int? AllPeople { get; set; }
-       public string TourImg { get; set; }
-       public List<SameTour> SameTour { get; set; }
-       public string Document { get; set; }
-       public float? Bonus { get; set; }
-       public IList<Tag> Tag { get; set; }
-       public IList<RoutePoint> RoutePoints { get; set; }
-       public IList<DateTour> DateTour { get; set; }
-       public IList<DopUslug> DopUslug { get; set; }
-       public int? GalleryID { get; set; }
-       public int LogoId { get; set; }
-       public BigLogo BigLogo { get; set; }
-       public List<Trip> Trips { get; set; }
+        [RegularExpression(@"\-?\d+(\.\d{0,})?", ErrorMessage = "Ошибка поле Стоимость .Не верно введено число.Возможно вы поставили , вместо .")]
+        public decimal? Cost { get; set; }
+        public string Valuta { get; set; }
+        [RegularExpression(@"\-?\d+(\.\d{0,})?", ErrorMessage = "Ошибка поле Стоимость .Не верно введено число.Возможно вы поставили , вместо .")]
+        public decimal? PrePay { get; set; }
+        public string Reservation { get; set; }
+        public bool IsBus { get; set; }
+        public bool IsAriplane { get; set; }
+        public bool IsShip { get; set; }
+        public bool IsTrain { get; set; }
+        public string PlaceOfDeparture { get; set; }
+        public string PlaceOfArrival { get; set; }
+        public int TourStatusId { get; set; }
+        public TourStatus TourStatus { get; set; }
+        public int TypeOfTourId { get; set; }
+        public TypeOfTour TypeOfTour { get; set; }
+        public string PodpicePrice { get; set; }
+        public decimal? AukcionPrice { get; set; }
+        public string KommisiaAgent { get; set; }
+        public string SuppName { get; set; }
+        public string SuppVkontakte { get; set; }
+        public string SuppFoto { get; set; }
+        public string SuppDiscription { get; set; }
+        public string KindOfPay { get; set; }
+        public int? People { get; set; }
+        public int? AllPeople { get; set; }
+        public string TourImg { get; set; }
+        public List<SameTour> SameTour { get; set; }
+        public string Document { get; set; }
+        public float? Bonus { get; set; }
+        public IList<Tag> Tag { get; set; }
+        public IList<RoutePoint> RoutePoints { get; set; }
+        public IList<DateTour> DateTour { get; set; }
+        public IList<DopUslug> DopUslug { get; set; }
+        public int? GalleryID { get; set; }
+        public int LogoId { get; set; }
+        public BigLogo BigLogo { get; set; }
+        public List<Trip> Trips { get; set; }
 
     }
     public class Tag
@@ -111,7 +111,7 @@ namespace WorkWithKOTE.Models
         public double Lat { get; set; }
         public double Lng { get; set; }
     }
-    [Table ("DateTour")]
+    [Table("DateTour")]
     public class DateTour
     {
         [Key]
@@ -120,9 +120,9 @@ namespace WorkWithKOTE.Models
         public int TourId { get; set; }
         public Tour Tour { get; set; }
         [Required(ErrorMessage = "Поле должно быть установлено")]
-        [DataType (DataType.Date)]
-        [DisplayFormat(DataFormatString="{0:dd'.'MM'.'yyyy}",ApplyFormatInEditMode=true)]
-        [Display(Name="Дата отправки")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Дата отправки")]
         public DateTime FirstDate { get; set; }
         [Required(ErrorMessage = "Поле должно быть установлено")]
         [DataType(DataType.Date)]
@@ -131,14 +131,14 @@ namespace WorkWithKOTE.Models
         public DateTime SecondDate { get; set; }
         public List<Trip> Trips { get; set; }
     }
-    [Table ("Gallery")]
+    [Table("Gallery")]
     public class Gallery
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int GalleryId { get; set; }
         public string GalleryName { get; set; }
-        public List<Pic> Pics { get; set; } 
+        public List<Pic> Pics { get; set; }
     }
     [Table("Pic")]
     public class Pic
@@ -153,7 +153,7 @@ namespace WorkWithKOTE.Models
         public int GalleryId { get; set; }
         public Gallery Gallery { get; set; }
     }
-    [Table ("DopUslug")]
+    [Table("DopUslug")]
     public class DopUslug
     {
         [Key]
@@ -173,7 +173,7 @@ namespace WorkWithKOTE.Models
         public List<Tour> TourDown { get; set; }
         public List<Tour> TourMain { get; set; }
     }
-    [Table ("News")]
+    [Table("News")]
     public class News
     {
         [Key]
@@ -189,7 +189,7 @@ namespace WorkWithKOTE.Models
         [Required(ErrorMessage = "Поле должно быть установлено")]
         public DateTime NewsDate { get; set; }
     }
-    [Table ("TourStatus")]
+    [Table("TourStatus")]
     public class TourStatus
     {
         [Key]
@@ -205,7 +205,7 @@ namespace WorkWithKOTE.Models
         public string TypeOfTourName { get; set; }
 
     }
- 
+
     [Table("SameTour")]
     public class SameTour
     {
@@ -226,7 +226,7 @@ namespace WorkWithKOTE.Models
         public string LogoName { get; set; }
         public string UrlImg { get; set; }
     }
-    [Table ("VisitedTour")]
+    [Table("VisitedTour")]
     public class VisitedTour
     {
         [Key]
@@ -243,10 +243,21 @@ namespace WorkWithKOTE.Models
         public DateTime? SecondDate { get; set; }
 
     }
+    public class TripJS
+    {
+        public int version { get; set; }
+        public string public_key { get; set; }
+        public decimal amount { get; set; }
+        public string currency { get; set; }
+        public string description { get; set; }
+        public int order_id { get; set; }
+        public string pay_way { get; set; }
+        public string language { get; set; }
+    }
     public class ProfileTour
     {
         public List<Tour> tours { get; set; }
         public List<Trip> trips { get; set; }
-        public List<DateTour> date { get;set; }
+        public List<DateTour> date { get; set; }
     }
 }

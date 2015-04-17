@@ -176,7 +176,7 @@ input[name="Tag[0].TagName"] {
     margin-left : 35px;
 }
 
-#createTour,#createNews{
+#createTour,#createNews,#editTour{
     margin-left : 35px;
     border-radius : 4px;
     background-color : #ff6f40;

@@ -10,6 +10,7 @@ using System.Data.Entity;
 using WorkWithKOTE.Models;
 using System.Security.Cryptography;
 using System.Text;
+using Newtonsoft.Json;
 namespace WorkWithKOTE.Controllers
 {
 
@@ -57,7 +58,6 @@ namespace WorkWithKOTE.Controllers
         [HttpPost]
         public ActionResult Index(int id,Trip model,string DateTourId , int[] Item)
         {
-            VisitedTour addtour = new VisitedTour();
             var tour = db.Tour.Find(id);
             decimal Price = tour.Cost.Value;
             if(Item != null)
@@ -72,16 +72,10 @@ namespace WorkWithKOTE.Controllers
                 model.DateTourId = int.Parse(DateTourId);
                 if (Request.IsAuthenticated)
                 {
-                    var dateTour = db.DateTours.Find(model.DateTourId);
                     int userID = WebSecurity.GetUserId(User.Identity.Name);
                     UserProfile userprofile = db.UserProfiles.Find(userID);
                     userprofile.Trips = new List<Trip>();
                     userprofile.Trips.Add(model);
-                    addtour.TourName = tour.NameTour;
-                    addtour.FirstDate = dateTour.FirstDate;
-                    addtour.SecondDate = dateTour.SecondDate;
-                    userprofile.VisitedTours = new List<VisitedTour>();
-                    userprofile.VisitedTours.Add(addtour);
                     db.Entry(userprofile).State = EntityState.Modified;
                 }
                 tour.Trips = new List<Trip>();
@@ -108,7 +102,6 @@ namespace WorkWithKOTE.Controllers
             
             return View(data);
         }
-       [ChildActionOnly]
        public ActionResult Payment(int id)
         {
             var data = db.Trip.Find(id);
@@ -121,7 +114,7 @@ namespace WorkWithKOTE.Controllers
                 amount = data.TourPrice,
                 currency = data.Valuta,
                 description = dataTour.NameTour,
-                order_id = data.TripID,
+                order_id = 5,//data.TripID,
                 pay_way = "card,liqpay,delayed,invoice,privat24",
                 language = "ru"
             };
@@ -147,15 +140,32 @@ namespace WorkWithKOTE.Controllers
            string privateKey = "v2Rhrz287rrJtDSHq228gsg70ZkA8omC2mhl7aha";
             byte[] dataByte = Convert.FromBase64String(data);
             string dataStr = Encoding.UTF8.GetString(dataByte);
+            TripJS obj = JsonConvert.DeserializeObject<TripJS>(dataStr);
+            int TripId = obj.order_id;
            data = privateKey + data + privateKey;
            SHA1 sha1 = SHA1.Create();
             byte[] hash = sha1.ComputeHash(System.Text.Encoding.UTF8.GetBytes(data));
              data = System.Convert.ToBase64String(hash);
              if(string.Compare(data,signature) == 0)
              {
-
+                 var Trip = db.Trip.Find(TripId);
+                 var tour = db.Tour.Find(Trip.TourId);
+                 var dateTour = db.DateTours.Find(Trip.DateTourId);
+                 if(Trip.UserId != 1)
+                 Trip.Status = "Оплачена";
+                 VisitedTour addtour = new VisitedTour();
+                 addtour.TourName = tour.NameTour;
+                 addtour.FirstDate = dateTour.FirstDate;
+                 addtour.SecondDate = dateTour.SecondDate;
+                 var userprofile = db.UserProfiles.Find(Trip.UserId);
+                 userprofile.VisitedTours = new List<VisitedTour>();
+                 userprofile.VisitedTours.Add(addtour);
+                 db.Entry(Trip).State = EntityState.Modified;
+                 db.Entry(userprofile).State = EntityState.Modified;
+                 db.SaveChanges();
+                 return RedirectToAction("Index", "TourDisplay", new { id = Trip.TourId});
              }
-           return View();
+           return View("Error","Error");
        }
         
     }
