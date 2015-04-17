@@ -66,7 +66,6 @@ namespace WorkWithKOTE.Controllers
                 var DopUslug = db.DopUslugs.Find(Item[i]);
                 Price += DopUslug.Price;
             }
-            Price = Price * model.AmtPeople;
             if (model.TourPrice == Price)
             {
                 model.Status = "Не оплачена";
