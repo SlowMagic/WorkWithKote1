@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WorkWithKOTE.Models;
+using System.Data.Entity;
 namespace WorkWithKOTE.Controllers
 {
     public class TourSearchController : Controller
@@ -14,7 +15,7 @@ namespace WorkWithKOTE.Controllers
         UsersContext db = new UsersContext();
         public ActionResult Search()
         {
-            return View(db.Tour.ToList());
+            return View(db.Tour.Include(m=>m.DateTour).ToList());
         }
 
         [HttpPost]
@@ -48,7 +49,7 @@ namespace WorkWithKOTE.Controllers
                 decimal price = decimal.Parse(Prices);
                 data = data.Where(m => m.Cost >= price);
             }
-            return View(data);
+            return View(data.Include(m=>m.DateTour));
         }
     }
 }

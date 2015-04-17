@@ -70,7 +70,10 @@
                                  <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m=>c.Valuta)</h3><br/>
                                 <img style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)">
                                 <h4> @Html.DisplayFor(m => c.TitleTour)</h4><br/>
-                                @{ Html.RenderAction("DateForCurrentTour", "Home", new {id = c.TourId}); }
+                                @foreach(var item in c.DateTour)
+                                {
+                                   @Html.DisplayFor(m => item.FirstDate) @: -  @Html.DisplayFor(m => item.SecondDate)
+                                }
                                 <a class=" button " style="float: none; margin-top: 10px" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'>Просмотреть тур</a>
                             </div>
                              index++;
