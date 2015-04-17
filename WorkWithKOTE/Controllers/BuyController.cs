@@ -117,7 +117,7 @@ namespace WorkWithKOTE.Controllers
                 version = 3,
                 public_key ="i69833650669",
                 amount = data.TourPrice,
-                currency = "UAH",
+                currency = data.Valuta,
                 description = dataTour.NameTour,
                 order_id = data.TripID,
                 pay_way = "card,liqpay,delayed,invoice,privat24",
