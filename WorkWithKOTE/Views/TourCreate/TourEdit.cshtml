@@ -7,8 +7,14 @@
 
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+@{ Html.RenderPartial("HeaderPartial_main");}
 
-<h2>Редактирование Туров</h2>
+<div id="small-preview-img" class="clearfix">
+    <hgroup>
+        <h1>Редактирование тура</h1>
+        <h2>@Html.ActionLink("Главная", "Index", "Home", null, null) / Редактирование тура</h2>
+    </hgroup>
+</div>
 
 <form action="@Url.Action("TourEdit")" method="post" enctype="multipart/form-data">
   <div class="layout" id="form_tour">
@@ -70,14 +76,20 @@
             @foreach (var item in Model.DateTour)
             {
                 <div id="dateTour_@i">
-                    Введите дату отправки:<br />
-                    <input type='date' id="myDateFirst+@i" name="DateTour[@i].FirstDate" required />
-                    <br />
-                    Введите дату приезда:<br />
-                    <input type='date' id="myDateSecond+@i" name="DateTour[@i].SecondDate" required />
-                    <input type="hidden" name="DateTour[@i].DateTourId" value="@item.DateTourId" />
-                    <input type="hidden" name="DateTour[@i].TourId" value="@Model.TourId" />
+                    <span class="textbox">
+                        Введите дату отправки:
+                        <input type='date' id="myDateFirst+@i" name="DateTour[@i].FirstDate" required />
+                    </span><br /><br/>
+
+                    <span class="textbox">
+                        Введите дату приезда:
+                        <input style="margin-left:6px;" type='date' id="myDateSecond+@i" name="DateTour[@i].SecondDate" required />
+                    </span><br/>
+
+                      <input type="hidden" name="DateTour[@i].DateTourId" value="@item.DateTourId" />
+                      <input type="hidden" name="DateTour[@i].TourId" value="@Model.TourId" />
                 </div>
+                
                 <script type="text/javascript">
                     function myFunction() {
                         document.getElementById("myDateFirst+@i").value = "@item.FirstDate.ToString("yyyy-MM-dd")";
@@ -87,117 +99,161 @@
                 </script>
                 i++;
             }
-        </div>
-        <p>
-            <input type="button" id="addLink" onclick="AddLink()" value=" + "><input type="button" onclick="DeleteLinkDate()" class="deleteLink" value="-" />
-        </p>
+        </div><br/>
+       
+      <span class="textbox">
+          <input style="display:inline !important" type="button" id="addLink" onclick="AddLink()" value="Добавить дату" />
+          <input style="display:inline !important" type="button" onclick="DeleteLinkDate()" class="deleteLink" value="Удалить дату" />
+      </span><br/><br/><br/>
+          
+          <span class="textbox">
+              Виды Транспорта :
+          </span><br />
+
+          <span class="textbox">
+              <span class="byTransport"> Автобус @Html.CheckBoxFor(m => m.IsBus)       </span>
+              <span class="byTransport"> Самолет @Html.CheckBoxFor(m => m.IsAriplane)  </span>
+              <span class="byTransport"> Лайнер  @Html.CheckBoxFor(m => m.IsShip)      </span>
+              <span class="byTransport"> Поезд   @Html.CheckBoxFor(m => m.IsTrain)     </span>
+          </span><br /><br />
+
+          <span class="textbox">
+              Подпись к цене : @Html.TextBoxFor(m => m.PodpicePrice)
+          </span><br />
+
+          <span class="textbox">
+              Аукционная цена : @Html.TextBoxFor(m => m.AukcionPrice)
+          </span><br />
+
+          <span class="textbox">
+              Сумма Агента: <input type="checkbox" id="Summa" onclick=" valid2() " />
+              @Html.TextBoxFor(m => m.KommisiaAgent, new { style = "visibility:hidden", id = "SummaAgent" })
+          </span><br /><br />
+
+
+          <p>
+              <div id="dopusluga-pannel">
+                  @{int k = 0;}
+                  @foreach (var item in Model.DopUslug)
+                  {
+                      <div id="dopusluga_@k">
+                          Дополнительная услуга :
+                          <input style="margin-left:41px;" type='text' name="DopUslug[@k].Name" value="@Html.DisplayFor(m=>item.Name)" />
+                          <br />
+                          Цена дополнительной услуги :
+                          <input type='text' name="DopUslug[@k].Price" value="@Html.DisplayFor(m=>item.Price)" />
+                          <input type="hidden" name="DopUslug[@k].DopUslugId" value="@item.DopUslugId" />
+                          <input type="hidden" name="DopUslug[@k].TourId" value="@Model.TourId" />
+                      </div>
+                      k++;
+                  }
+              </div>
+          </p><br/>
 
       <span class="textbox">
-          Виды Транспорта :
+          <input style="display:inline !important" type="button" class="addUslug" onclick="AddUslug()" value="Добавить услугу">
+          <input style="display:inline !important" type="button" class="deleteLinkUslugi" onclick="DeleteUslug()" value="Удалить услугу" />
+      </span><br/><br/><br/>
+
+
+      <span class="textbox">
+          Имя Сопровождающего : @Html.TextBoxFor(m => m.SuppName)
       </span><br />
 
       <span class="textbox">
-          <span class="byTransport"> Автобус @Html.CheckBoxFor(m => m.IsBus)       </span>
-          <span class="byTransport"> Самолет @Html.CheckBoxFor(m => m.IsAriplane)  </span>
-          <span class="byTransport"> Лайнер  @Html.CheckBoxFor(m => m.IsShip)      </span>
-          <span class="byTransport"> Поезд   @Html.CheckBoxFor(m => m.IsTrain)     </span>
+          Фото сопровождающего : <input type="file" name="AvatarSupp" />
+      </span><br />
+
+      <span class="textbox">
+          Ссылка на соц. сеть: @Html.TextBoxFor(m => m.SuppVkontakte)
       </span><br /><br />
 
       <span class="textbox">
-          Подпись к цене : @Html.TextBoxFor(m => m.PodpicePrice)
+          Описание сопровождающего : @Html.TextAreaFor(m => m.SuppDiscription)
       </span><br />
 
       <span class="textbox">
-          Аукционная цена : @Html.TextBoxFor(m => m.AukcionPrice)
+          Количество участников : @Html.TextBoxFor(m => m.AllPeople)
+      </span><br />  
+         
+      <span class="textbox">
+          Уже едут : @Html.TextBoxFor(m => m.People)
+      </span><br />
+
+      <span id="payChange"> Cпособ оплаты : </span>
+      <select id="paymentSelect" name="KindOfPay">
+          <option selected>Наличный</option>
+          <option>Безналичный</option>
+          <option>Оба</option>
+      </select><br /><br />
+
+      <span class="textbox">
+          Обложка тура <input type="file" name="TourImg" required />
       </span><br />
 
       <span class="textbox">
-          Сумма Агента: <input type="checkbox" id="Summa" onclick=" valid2() " />
-          @Html.TextBoxFor(m => m.KommisiaAgent, new { style = "visibility:hidden", id = "SummaAgent" })
+          Выберите стиль Логотипа : @Html.DropDownList("LogoId")
+      </span><br />
+
+      <span class="textbox">
+          Галлерея : @Html.DropDownList("GalleryID", String.Empty)
       </span><br /><br />
 
+      <span class="textbox">
+          Загрузить файл : <input type="file" name="Document" />
+      </span><br />
 
-        <p>
-            <div id="dopusluga-pannel">
-                @{int k = 0;}
-                @foreach (var item in Model.DopUslug)
-                {
-                    <div id="dopusluga_@k">
-                        Дополнительная услуга
-                        <input type='text' name="DopUslug[@k].Name" value="@Html.DisplayFor(m=>item.Name)" />
-                        <br />
-                        Цена дополнительной услуги:<br />
-                        <input type='text' name="DopUslug[@k].Price" value="@Html.DisplayFor(m=>item.Price)" />
-                        <input type="hidden" name="DopUslug[@k].DopUslugId" value="@item.DopUslugId" />
-                        <input type="hidden" name="DopUslug[@k].TourId" value="@Model.TourId" />
-                    </div>
-                    k++;
-                }
-            </div>
-        </p>
-        <p>
-            <input type="button" class="addUslug" onclick="AddUslug()" value=" + ">
-            <input type="button" class="deleteLinkUslugi" onclick="DeleteUslug()" value="-" />
-        </p>
-        <p>
-            Имя Сопровождающего :@Html.TextBoxFor(m => m.SuppName)<br />
-        <p>@ViewBag.Message</p>
-        <p>
-            Фото сопровождающего:<input type="file" name="AvatarSupp" />
-            Ссылка на соц. сеть: @Html.TextBoxFor(m => m.SuppVkontakte)<br />
-            Описание сопровождающего :@Html.TextAreaFor(m => m.SuppDiscription)<br />
-        </p>
-        <select name="KindOfPay">
-            <option selected="selected">Способ оплаты</option>
-            <option>Наличный</option>
-            <option>Безналичный</option>
-            <option>Оба</option>
-        </select>
-        <br />
-        Количество участyков :@Html.TextBoxFor(m => m.AllPeople)<br />
-        Уже едут :@Html.TextBoxFor(m => m.People)<br />
-        Выберите стиль Логотипа :@Html.DropDownList("LogoId")<br />
-        Обложка тура - <input type="file" name="TourImg" /><br />
-        Галлерея : @Html.DropDownList("GalleryID", String.Empty)<br />
-        Загрузить файл :<input type="file" name="Document" /><br />
-        Бонус за тур :
-        <input type="checkbox" id="Bonus" onclick="valid3()" />
-        @Html.TextBoxFor(m => m.Bonus, new { style = "visibility:hidden", id = "BonusText" })<br />
-        <div id="route-points"></div>
-        <p>
-            <div id="tag-pannel">
-                @{int j = 0;}
-                @foreach (var item in Model.Tag)
-                {
-                    <div class="tag_@j">
-                        Тэг тура:
-                        <input type='text' name="Tag[@j].TagName" value="@Html.DisplayFor(m=>item.TagName)" />
-                        <input type="hidden" name="Tag[@j].TagId" value="@item.TagId" />
-                        <input type="hidden" name="Tag[@j].TourId" value="@Model.TourId" />
-                        <br />
-                    </div>
-                    j++;
-                }
-            </div>
-        </p>
-        <p>
-            <input type="button" class="addTeg" onclick="AddTag()" value=" + ">
-            <input type="button" class="deleteLinkTag" value="-" onclick="DeleteTag()" />
-        </p>
-        <input type="submit" value="Редактировать Тур" />
-        @{int l = 0;}
-        @foreach (var iteam in Model.RoutePoints)
-        {
-            <input type="hidden" id="item[@l].lat" value="@Html.DisplayFor(m=>iteam.Lat)" name="RoutePoints[@l].Lat" />
-            <input type="hidden" id="item[@l].lng" value="@Html.DisplayFor(m=>iteam.Lng)" name="RoutePoints[@l].Lng" />
-            <input type="hidden" name="RoutePoints[@l].RoutePointID" value="@iteam.RoutePointID" />
-            <input type="hidden" name="RoutePoints[@l].TourId" value="@Model.TourId" />
-            l++;
-        }
-        @Html.ListBox("SameTours", (MultiSelectList)ViewBag.SameTourId)
-        <input type="button" value="Убрать маркеры" onclick="DeleteAllPoints()" />
-        <div id="map_canvas" style="width:400px; height:400px"></div>
-      </div>
+      <span class="textbox">
+          Бонус за тур :
+          <input type="checkbox" id="Bonus" onclick=" valid3() " />
+          @Html.TextBoxFor(m => m.Bonus, new { style = "visibility:hidden", id = "BonusText" })
+      </span><br />
+
+          <div id="route-points"></div>
+          <p>
+              <div id="tag-pannel">
+                  @{int j = 0;}
+                  @foreach (var item in Model.Tag)
+                  {
+                      <div class="tag_@j">
+                          <span class="textbox">
+                              Тег тура :
+                              <input style="margin-left: 52px;" type='text' name="Tag[@j].TagName" value="@Html.DisplayFor(m=>item.TagName)" />
+                           </span>
+                              <input type="hidden" name="Tag[@j].TagId" value="@item.TagId" />
+                              <input type="hidden" name="Tag[@j].TourId" value="@Model.TourId" />
+                              <br />
+                      </div>
+                      j++;
+                  }
+              </div>
+          </p><br/>
+          
+      <span class="textbox">
+          <input style="display:inline !important" type="button" class="addTeg" onclick="AddTag()" value="Добавить тег">
+          <input style="display:inline !important" type="button" class="deleteLinkTag" value="Удалить тег" onclick="DeleteTag()" />
+      </span><br/><br/><br/>
+     
+          @{int l = 0;}
+          @foreach (var iteam in Model.RoutePoints)
+          {
+              <input type="hidden" id="item[@l].lat" value="@Html.DisplayFor(m=>iteam.Lat)" name="RoutePoints[@l].Lat" />
+              <input type="hidden" id="item[@l].lng" value="@Html.DisplayFor(m=>iteam.Lng)" name="RoutePoints[@l].Lng" />
+              <input type="hidden" name="RoutePoints[@l].RoutePointID" value="@iteam.RoutePointID" />
+              <input type="hidden" name="RoutePoints[@l].TourId" value="@Model.TourId" />
+              l++;
+          }
+
+      <span class="textbox">
+          Похожие туры :
+          @Html.ListBox("SameTours", (MultiSelectList)ViewBag.SameTourId)
+      </span><br /><br />
+
+      <div id="map_canvas" style="width:80%; height:400px;margin-left:35px;"></div><br/>
+      <input style="margin-left:35px;" type="button" value="Убрать маркеры" onclick="DeleteAllPoints()" /><br/><br/>
+
+      <input id="editTour" type="submit" value="Редактировать Тур" />
+   </div>
 </form>
 @section scripts
                 {
@@ -241,57 +297,70 @@
             }
         }
     </script>
+
     <script type="text/javascript">
+
         var i = 0;
-        function AddLink() {
-       var html2Add = "<div id='dateTours_" + i + "'>" +
-            " Введите дату отправки" + "(дд/мм/год)" +
-       "<input type='date' name='DT[" + i + "].FirstDate' required /><br/>" +
-       " Введите дату приезда" + "(дд/мм/год)" +
-       "<input type='date' name='DT[" + i + "].SecondDate' required />" +
-       " <input type='hidden' name='DT["+i+"].TourId' value='@Model.TourId' />"+
-   "</div></div>";
-       $('#datetour-pannel').append(html2Add);
-       i++
-   }
-   function DeleteLinkDate() {
+
+        function AddLink()
+        {
+            var html2Add =  "<div style='margin-left:35px;' id='dateTours_" + i + "'><br/>" +
+                                 " Введите дату отправки: " +
+                                 "<input type='date' name='DT[" + i + "].FirstDate' required /><br/><br/>" +
+                                 " Введите дату приезда : " +
+                                 "<input style='margin-left:2px;' type='date' name='DT[" + i + "].SecondDate' required />" +
+                                 "<input type='hidden' name='DT["+i+"].TourId' value='@Model.TourId' />"+
+                             "</div>";
+         $('#datetour-pannel').append(html2Add);
+         i++;
+        }
+
+        function DeleteLinkDate()
+        {
             if (i >=0) {
                 var count = i - 1;
                 $('#dateTours_' + count).remove();
-                i--
+                i--;
             }
         }
 </script>
 
 <script type="text/javascript">
-    var k = 0
-    function AddUslug(){
+
+    var k = 0;
+
+    function AddUslug()
+    {
             var html2Adds = "<div id='dopuslugas_" + k + "'>" +
-         "<h4>Дополнительная услуга тура №" + "</h4>" +
-                 "<input type='text' name='DP[" +k + "].Name' /><br/>" +
-                 "<h4>Цена Дополнительной услуги №" + "</h4>" +
-                 "<input type='text' name='DP[" + k + "].Price' />" +
-                  " <input type='hidden' name='DP[" + k + "].TourId' value='@Model.TourId' />"+
-             "</div>";
+                                  "Дополнительная услуга : " +
+                                  "<input style='margin-left:41px;' type='text' name='DP[" +k + "].Name' /><br/>" +
+                                  "Цена дополнительной услуги : " +
+                                  "<input type='text' name='DP[" + k + "].Price' />" +
+                                  "<input type='hidden' name='DP[" + k + "].TourId' value='@Model.TourId' />"+
+                             "</div>";
             $('#dopusluga-pannel').append(html2Adds);
             k++;
-        }
-      function DeleteUslug() {
+    }
+
+    function DeleteUslug()
+    {
             if (k >= 0) {
                 var count = k - 1;
+
                 $('#dopuslugas_' + count).remove();
-                k--
+                k--;
             }
-        }
+     }
 </script>
+
 <script type="text/javascript">
-    var l = 0
+    var l = 0;
 function AddTag() {
-            var html2Addss = "<div class='tags_" + l + "'>" +
-          "<h4>Тег тура " + "</h4>" +
-                 "<input type='text' name='Ts[" + l + "].TagName' /><br/>" +
-                  "<input type='hidden' name='Ts[" + l + "].TourId' value='@Model.TourId' />" +
-             "</div>";
+            var html2Addss = "<div style='margin-left:35px;' class='tags_" + l + "'>" +
+                                "Тег тура : "+
+                                "<input style='margin-left:52px;' type='text' name='Ts[" + l + "].TagName' />" +
+                                "<input type='hidden' name='Ts[" + l + "].TourId' value='@Model.TourId' />" +
+                             "</div>";
             $('#tag-pannel').append(html2Addss);
             l++;
         }
