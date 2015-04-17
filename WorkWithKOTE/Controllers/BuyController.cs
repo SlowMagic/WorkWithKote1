@@ -114,7 +114,7 @@ namespace WorkWithKOTE.Controllers
                 amount = data.TourPrice,
                 currency = data.Valuta,
                 description = dataTour.NameTour,
-                order_id = data.TripID,
+                order_id = 5,//data.TripID,
                 pay_way = "card,liqpay,delayed,invoice,privat24",
                 language = "ru"
             };
@@ -160,10 +160,12 @@ namespace WorkWithKOTE.Controllers
                  var userprofile = db.UserProfiles.Find(Trip.UserId);
                  userprofile.VisitedTours = new List<VisitedTour>();
                  userprofile.VisitedTours.Add(addtour);
+                 db.Entry(Trip).State = EntityState.Modified;
                  db.Entry(userprofile).State = EntityState.Modified;
-                 
+                 db.SaveChanges();
+                 return RedirectToAction("Index", "TourDisplay", new { id = Trip.TourId});
              }
-           return View();
+           return View("Error","Error");
        }
         
     }
