@@ -460,12 +460,14 @@ footer {
     font-size: 1.57em;
     font-weight: 300;
 }
+.date-select.mini select {
+    
+    font-size: 1em !important;
+    font-weight: 100!important;
+}
 .date-select label{position:relative}
 .date-select label:after {
   content: url("img/calendar-dates.png");
-
-    font-size: 0.7em;
-    color: #ff6f40;
     width: 25px;
     height: 25px;
     position:absolute;

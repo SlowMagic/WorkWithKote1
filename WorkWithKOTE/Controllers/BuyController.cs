@@ -114,7 +114,7 @@ namespace WorkWithKOTE.Controllers
                 amount = data.TourPrice,
                 currency = data.Valuta,
                 description = dataTour.NameTour,
-                order_id = 5,//data.TripID,
+                order_id = data.TripID,
                 pay_way = "card,liqpay,delayed,invoice,privat24",
                 language = "ru"
             };
