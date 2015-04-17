@@ -11,9 +11,8 @@
         <img id="big-logo" src="@Html.DisplayFor(m=>m.TourHightPrev.BigLogo.UrlImg)" />
 
         <p id="wishletter">
-            <span id="textspan">Я хочу...<br /></span>
-            <span id="textspan1">Тур в 
-                 <span id="to">Карпаты</span> из <span id="from">Днепропетровска</span>
+            <span style="display:none;" id="textspan">Я хочу...<br /></span>
+            <span id="textspan1"><span id="to"></span><span id="from"></span>
             </span>
         </p>
 
@@ -416,8 +415,9 @@
             // if tours length. Display 1-st tour
                $('#confirmTour').attr('href', '');
                $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat ');
-               $('#to').text($('#switchTour li').eq(index).attr('data-to'));
-               $('#from').text($('#switchTour li').eq(index).attr('data-from'));
+               $('#textspan').css('display', 'inherit');
+               $('#to').text('Тур в ' + $('#switchTour li').eq(index).attr('data-to'));
+               $('#from').text(' из '+$('#switchTour li').eq(index).attr('data-from'));
                $('#confirmTour').attr('href', confirmHref + '/' + $('#switchTour li').eq(index).attr('data-id'));
                index++;
         }
@@ -428,12 +428,14 @@
             $('#anotherTour').click(function (event) {
                 event.preventDefault();
 
-                $('#big-preview-img').fadeTo(800, 0, function () {
+                $('#big-preview-img').fadeTo(800, 0, function ()
+                {
                     if (index <= $('#switchTour li').length - 1) {
                         $('#confirmTour').attr('href', '');
                         $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat ');
-                        $('#to').text($('#switchTour li').eq(index).attr('data-to'));
-                        $('#from').text($('#switchTour li').eq(index).attr('data-from'));
+                        $('#textspan').css('display', 'inherit');
+                        $('#to').text('Тур в ' + $('#switchTour li').eq(index).attr('data-to'));
+                        $('#from').text(' из ' + $('#switchTour li').eq(index).attr('data-from'));
                         $('#confirmTour').attr('href', confirmHref + '/' + $('#switchTour li').eq(index).attr('data-id'));
                         $('#big-preview-img').fadeTo(1000, 1);
                         index++;
