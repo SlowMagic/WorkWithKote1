@@ -55,11 +55,16 @@
             <input type="radio" name="Valuta" value="EUR" />EUR
         </span><br />
 
-        Предоплата :<input type="checkbox" id="Predop" onclick="valid()" />
-        @Html.TextBoxFor(m => m.PrePay, new { style = "visibility:hidden", id = "PrePay" })<br />
-        <br />
-        Бронь:<input type="checkbox" id="Reserv" onclick="reserv()" />
-        @Html.TextBoxFor(m => m.Reservation, new { style = "visibility:hidden", id = "Reservation" })<br />
+        <span class="textbox">
+            Предоплата :<input type="checkbox" id="Predop" onclick=" valid() " />
+            @Html.TextBoxFor(m => m.PrePay, new { style = "visibility:hidden", id = "PrePay" })
+        </span>
+
+        <span class="armor">
+            Бронь:<input type="checkbox" id="Reserv" onclick=" reserv() " />
+            @Html.TextBoxFor(m => m.Reservation, new { style = "visibility:hidden", id = "Reservation" })
+        </span><br /><br />
+
         <div id="datetour-pannel">
             @{int i = 0;}
             @foreach (var item in Model.DateTour)
@@ -86,19 +91,32 @@
         <p>
             <input type="button" id="addLink" onclick="AddLink()" value=" + "><input type="button" onclick="DeleteLinkDate()" class="deleteLink" value="-" />
         </p>
-        <br />
-        Виды Транспорта :<br />
-        Автобус @Html.CheckBoxFor(m => m.IsBus)<br />
-        Самолет @Html.CheckBoxFor(m => m.IsAriplane)<br />
-        Лайнер  @Html.CheckBoxFor(m => m.IsShip)<br />
-        Поезд @Html.CheckBoxFor(m => m.IsTrain)<br />
-        Подпись к цене
-        @Html.TextBoxFor(m => m.PodpicePrice)
-        <p>Аукционная цена : @Html.TextBoxFor(m => m.AukcionPrice)</p>
-        <p>
-            Сумма Агента:  <input type="checkbox" id="Summa" onclick="valid2()" />
-            @Html.TextBoxFor(m => m.KommisiaAgent, new { style = "visibility:hidden", id = "SummaAgent" })<br />
-        </p>
+
+      <span class="textbox">
+          Виды Транспорта :
+      </span><br />
+
+      <span class="textbox">
+          <span class="byTransport"> Автобус @Html.CheckBoxFor(m => m.IsBus)       </span>
+          <span class="byTransport"> Самолет @Html.CheckBoxFor(m => m.IsAriplane)  </span>
+          <span class="byTransport"> Лайнер  @Html.CheckBoxFor(m => m.IsShip)      </span>
+          <span class="byTransport"> Поезд   @Html.CheckBoxFor(m => m.IsTrain)     </span>
+      </span><br /><br />
+
+      <span class="textbox">
+          Подпись к цене : @Html.TextBoxFor(m => m.PodpicePrice)
+      </span><br />
+
+      <span class="textbox">
+          Аукционная цена : @Html.TextBoxFor(m => m.AukcionPrice)
+      </span><br />
+
+      <span class="textbox">
+          Сумма Агента: <input type="checkbox" id="Summa" onclick=" valid2() " />
+          @Html.TextBoxFor(m => m.KommisiaAgent, new { style = "visibility:hidden", id = "SummaAgent" })
+      </span><br /><br />
+
+
         <p>
             <div id="dopusluga-pannel">
                 @{int k = 0;}
