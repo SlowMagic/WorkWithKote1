@@ -14,7 +14,13 @@
     .orderContent {
         margin-top: 8px;
     }
-
+    #finalPrice {
+        border: none;
+        background: none;
+        display: inline;
+        width: 150px;
+        text-align: right;
+    }
     .layout-right-column {
         /* margin-top: -145px;
          width: 360px !important;
@@ -119,7 +125,7 @@
 
                 <p class="orderContent">Сумма заказа с учетом изменений :<span id="Prices">@Html.DisplayFor(m => m.TourPrice, new { id = "Prices" })</span>&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
 
-                <p class="orderContent" id="toPay">К оплате :<span id="finalPrice">@Html.DisplayFor(m => m.TourPrice, new { id = "Price" })</span>&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
+                <p class="orderContent" id="toPay">К оплате :<input readonly="readonly" id="finalPrice" name="TourPrice" value="@Html.DisplayFor(m => m.TourPrice, new {id = "Price"})" />&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
             </div>
         </div>
         <div class="layout">
@@ -214,7 +220,7 @@
                 sum += parseFloat($(v).attr('data-price'));
             });
             $("#Prices").text(sum);
-            $('#finalPrice').text(sum);
+            $('#finalPrice').val(sum);
         };
         function Check() {
             sumFunction();

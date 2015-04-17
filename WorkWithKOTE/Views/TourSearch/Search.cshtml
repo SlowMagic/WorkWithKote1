@@ -53,12 +53,16 @@
             </div>
             <div class="layout-main-right">
                 <div class="found-tour">
-                    @{ int index = 0; }
+                    @{
+                        int index = 0;
+                        bool flag = true;
+                    }
                     @{ int max = Model.Count(); }
                     @foreach (var c in Model)
                     {
-                        if (index >= max / 2)
+                        if (index >= max / 2 && flag)
                         {
+                            flag = false;
                            @: </div>
                            @:<div class="found-tour">
                         }
