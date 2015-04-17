@@ -127,8 +127,8 @@ namespace WorkWithKOTE.Controllers
                     db.Entry(item).State = EntityState.Modified;
             }
             int i = model.TourId;
-            db.Entry(model).State = EntityState.Modified;
-            if(model.RoutePoints != null) 
+            db.Entry(model).State = EntityState.Modified; 
+            if(model.RoutePoints != null)  
             foreach(var item in model.RoutePoints.ToList())
             {
                 if (item.Lat == 0.0 && item.Lng == 0.0)
