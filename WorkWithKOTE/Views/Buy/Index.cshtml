@@ -122,6 +122,7 @@
                 <h3>Состав вашего заказа</h3><hr class="firstHR" />
 
                 <p class="orderContent">Стоимость тура :@ViewBag.TourPrices&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
+                @Html.HiddenFor(m => m.Valuta);
 
                 <p class="orderContent">Сумма заказа с учетом изменений :<span id="Prices">@Html.DisplayFor(m => m.TourPrice, new { id = "Prices" })</span>&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
 
@@ -169,7 +170,7 @@
             </div>
             <div class="info">
                 <label>Номер телефона</label>
-                <input value="@Model.mobile" name="mobile" placeholder="+38 (___) ___-__-__" type="tel">
+                <input value="@Model.mobile" name="mobile" placeholder="+38 (___) ___-__-__" type="tel" required>
             </div>
             <div class="info">
                 <label>Почта</label>
