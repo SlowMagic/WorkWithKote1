@@ -672,11 +672,10 @@
     -o-background-size: cover;
     background-size: cover;
     width: 100%;
-    height: 100%;
-    min-height: 850px;
+    height: 650px;
     display: block;
     z-index: 97;
-    background: url("img/big-preview-img.jpg") no-repeat center;
+    position: relative;
 }
 
 #small-preview-img5 {

@@ -9,6 +9,7 @@ using WebMatrix.WebData;
 using System.Data.Entity;
 using WorkWithKOTE.Models;
 using System.Security.Cryptography;
+using System.Text;
 namespace WorkWithKOTE.Controllers
 {
 
@@ -108,6 +109,7 @@ namespace WorkWithKOTE.Controllers
             
             return View(data);
         }
+       [ChildActionOnly]
        public ActionResult Payment(int id)
         {
             var data = db.Trip.Find(id);
@@ -118,7 +120,7 @@ namespace WorkWithKOTE.Controllers
                 version = 3,
                 public_key ="i69833650669",
                 amount = data.TourPrice,
-                currency = "UAH",
+                currency = data.Valuta,
                 description = dataTour.NameTour,
                 order_id = data.TripID,
                 pay_way = "card,liqpay,delayed,invoice,privat24",
@@ -144,7 +146,8 @@ namespace WorkWithKOTE.Controllers
        public ActionResult ValidatePay(string data, string signature)
        {
            string privateKey = "v2Rhrz287rrJtDSHq228gsg70ZkA8omC2mhl7aha";
-           byte[] dataByte = Convert.FromBase64String(data);
+            byte[] dataByte = Convert.FromBase64String(data);
+            string dataStr = Encoding.UTF8.GetString(dataByte);
            data = privateKey + data + privateKey;
            SHA1 sha1 = SHA1.Create();
             byte[] hash = sha1.ComputeHash(System.Text.Encoding.UTF8.GetBytes(data));

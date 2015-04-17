@@ -40,13 +40,17 @@ namespace WorkWithKOTE.Controllers
         }
         public ActionResult TourDelete(int id = 0)
         {
-            if(id != 0)
+            try
             {
                 var model = db.Tour.Find(id);
                 db.Tour.Remove(model);
                 db.SaveChanges();
+                return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Index","Home");
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }
