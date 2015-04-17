@@ -1,5 +1,5 @@
 nav, footer, header, section, article, iframe, img {
-    display: block
+    display: block;
 }
 
 header {
@@ -41,15 +41,16 @@ nav {
     clear: none;
 }
 
-nav a {
-    margin-left: 25px;
-    padding-bottom: 44px;
-}
+    nav a {
+        margin-left: 25px;
+        padding-bottom: 44px;
+    }
 
-nav a:hover {
-    padding-bottom: 41px;
-    border-bottom: 3px solid rgba(255, 255, 255, 0.5);
-}
+        nav a:hover {
+            padding-bottom: 41px;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+        }
+
 .nav-other {
     display: inline-block;
     font-size: 1em;
@@ -64,19 +65,19 @@ nav a:hover {
     clear: none;
 }
 
-.nav-other a {
-    margin-left: 25px;
-    padding-bottom: 44px;
-}
+    .nav-other a {
+        margin-left: 25px;
+        padding-bottom: 44px;
+    }
 
-.nav-other a:hover {
-    padding-bottom: 41px;
-    border-bottom: 3px solid #acacac;
-}
+        .nav-other a:hover {
+            padding-bottom: 41px;
+            border-bottom: 3px solid #acacac;
+        }
 
-#second-navigation{
+#second-navigation {
     text-transform: capitalize;
-    display:none;
+    display: none;
     top: 50px;
     padding: 10px;
     border-top: 1px solid #ffffff;
@@ -186,14 +187,14 @@ footer {
     clear: none;
 }
 
-#footer-nav a {
-    float: left;
-    text-decoration: none;
-    width: 25%;
-    color: rgb(255, 111, 64);
-    font-size: 0.875em;
-    font-weight: bold;
-}
+    #footer-nav a {
+        float: left;
+        text-decoration: none;
+        width: 25%;
+        color: rgb(255, 111, 64);
+        font-size: 0.875em;
+        font-weight: bold;
+    }
 
 #address {
     float: left;
@@ -225,13 +226,13 @@ footer {
     margin-right: 0;
 }
 
-#follow-us p {
-    float: left;
-}
+    #follow-us p {
+        float: left;
+    }
 
-#follow-us img {
-    margin-top: -8px;
-}
+    #follow-us img {
+        margin-top: -8px;
+    }
 
 .image-icons {
     float: left;
@@ -247,6 +248,7 @@ footer {
     margin-left: 10%;
     width: 15%;
 }
+
 #contacts {
     float: left;
     font-size: 1em;
@@ -263,13 +265,13 @@ footer {
     margin-right: 0;
 }
 
-#contacts h5 {
-    margin-top: 0;
-    font-weight: lighter;
-    font-size: 1.125em;
-    margin-bottom: 0.7em;
-    color: rgb(254, 254, 254);
-}
+    #contacts h5 {
+        margin-top: 0;
+        font-weight: lighter;
+        font-size: 1.125em;
+        margin-bottom: 0.7em;
+        color: rgb(254, 254, 254);
+    }
 
 .mail {
     font-size: 0.875em;
@@ -335,7 +337,7 @@ footer {
 
 .button,
 .button:hover, .button:focus,
-.button:visited, .button:active{
+.button:visited, .button:active {
     background-color: #ff6f40;
     color: #ffffff;
     text-align: center;
@@ -348,96 +350,129 @@ footer {
 }
 
 #user_name {
-   cursor : pointer;
-   background: no-repeat;
-   background-image: url("/Content/img/user-black.png");
-   padding-right: 3px;
-   padding-left: 25px;
+    cursor: pointer;
+    background: no-repeat;
+    background-image: url("/Content/img/user-black.png");
+    padding-right: 3px;
+    padding-left: 25px;
 }
 
 .user_links {
-    color       : white !important;
-    cursor      : pointer;
-    display     : block;
-    padding-top : 10px;
-    float       : inherit;
-    display     : block;
-    margin-left : 25px;
-    font-size   : 18px;
-    width       : 40px !important;
-    font-weight : 300;
+    color: white !important;
+    cursor: pointer;
+    display: block;
+    padding-top: 10px;
+    float: inherit;
+    display: block;
+    margin-left: 25px;
+    font-size: 18px;
+    width: 40px !important;
+    font-weight: 300;
 }
 
 .user_links_e {
-    color       : white !important;
-    cursor      : pointer;
-    display     : block;
-    padding-top : 3px;
-    float       : inherit;
-    display     : block;
-    margin-left : 10px;
-    font-size   : 15px;
-    font-weight : 300;
-    text-decoration : underline;
+    color: white !important;
+    cursor: pointer;
+    display: block;
+    padding-top: 3px;
+    float: inherit;
+    display: block;
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: 300;
+    text-decoration: underline;
 }
 
 #register {
-    width : 84px;
+    width: 84px;
 }
 
 #amnesia {
-    width : 150px;
+    width: 150px;
 }
 
 .hidden {
-    display:none;
+    display: none;
 }
 
 #block_links {
-    display     : inherit;
-    position    : absolute;
-    margin-left : 10px;
-    height      : 77px;
+    display: inherit;
+    position: absolute;
+    margin-left: 10px;
+    height: 77px;
     background-color: #121212;
-    border-bottom-left-radius : 10px;
+    border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    text-align : left;
+    text-align: left;
 }
 
 #block_enter {
-  display: inherit;
-  position: absolute;
-  margin-left: 9px;
-  width: 220px;
-  height: 165px;
-  background-color: #121212;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  text-align: left;
+    display: inherit;
+    position: absolute;
+    margin-left: 9px;
+    width: 220px;
+    height: 165px;
+    background-color: #121212;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    text-align: left;
 }
 
 .input_log_in {
-    border-radius    : 4px;
-    height           : 30px;
-    padding-left     : 10px;
-    margin-top       : 5px;
-    margin-left      : 9px;
-    width            : 203px;
-    background-color : #424242;
-    border           : 1px solid #424242;
-    color            : white;
-    font-size        : 14px;
+    border-radius: 4px;
+    height: 30px;
+    padding-left: 10px;
+    margin-top: 5px;
+    margin-left: 9px;
+    width: 203px;
+    background-color: #424242;
+    border: 1px solid #424242;
+    color: white;
+    font-size: 14px;
 }
 
 #enter_button {
-    border-radius    : 4px;
-    height           : 30px;
-    padding-left     : 10px;
-    margin-top       : 8px;
-    margin-left      : 9px;
-    width            : 203px;
-    background-color : #ff6f40;
-    border           : 1px solid #ff6f40;
-    color            : white;
-    font-size        : 20px;
+    border-radius: 4px;
+    height: 30px;
+    padding-left: 10px;
+    margin-top: 8px;
+    margin-left: 9px;
+    width: 203px;
+    background-color: #ff6f40;
+    border: 1px solid #ff6f40;
+    color: white;
+    font-size: 20px;
+}
+
+.date-select {
+
+}
+
+.date-select select {
+    padding: 5px 20px;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer; 
+    font-size: 1.57em;
+    font-weight: 300;
+}
+.date-select label{position:relative}
+.date-select label:after {
+  content: url("img/calendar-dates.png");
+
+    font-size: 0.7em;
+    color: #ff6f40;
+    width: 25px;
+    height: 25px;
+    position:absolute;
+    right: -2px;
+    top: -15px;
+    pointer-events:none;
+}
+.date-select select:focus {
+    outline: none !important;
 }
