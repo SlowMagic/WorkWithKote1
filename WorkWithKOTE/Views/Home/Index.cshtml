@@ -5,19 +5,30 @@
 @model WorkWithKOTE.Models.TourForHomePage
 @Styles.Render("~/Content/page")
 @{ Html.RenderPartial("HeaderPartial_main");}
+
 <div id="big-preview-img" class="clearfix">
     <div class="wish">
         <img id="big-logo" src="@Html.DisplayFor(m=>m.TourHightPrev.BigLogo.UrlImg)" />
 
         <p id="wishletter">
-            <span id="textspan">Я хочу...<br /></span><span id="textspan1">Тур в Карпаты из Днепропетровска</span>
+            <span id="textspan">Я хочу...<br /></span>
+            <span id="textspan1">Тур в 
+                 <span id="to">Карпаты</span> из <span id="from">Днепропетровска</span>
+            </span>
         </p>
 
+      <ul id="switchTour">
+        @foreach (var item in Model.TourMain)
+        {
+          <li style="list-style-type: none;" data-id="@item.TourId" data-src="@item.TourImg" data-to="@item.PlaceOfArrival" data-from="@item.PlaceOfDeparture"></li>     
+        }
+      </ul>
+
         <div class="buttons clearfix">
-            <a href="#" class="yes-btn">
+            <a id="confirmTour" href="@Url.Action("Index","TourDisplay")" class="yes-btn">
                 <span id="textspan2">Да,</span> <span> Я хочу&#x21;</span>
             </a>
-            <a href="#" class="no-btn">
+            <a id="anotherTour" href="" class="no-btn">
                 <span id="textspan5">Нет,</span> <span> что-то другое</span>
             </a>
         </div>
@@ -389,3 +400,49 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(function ()
+    {
+        var index = 0;
+        var confirmHref = $('#confirmTour').attr('href');
+
+        // if no tours
+        if (!$('#switchTour li').length) {
+             $('.buttons.clearfix,#wishletter').css('display','none');
+             $('#big-preview-img').css('background', 'img/big-preview-img.jpg');
+        }
+        else {
+               $('#confirmTour').attr('href', '');
+               $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat ');
+               $('#to').text($('#switchTour li').eq(index).attr('data-to'));
+               $('#from').text($('#switchTour li').eq(index).attr('data-from'));
+               $('#confirmTour').attr('href', confirmHref + '/' + $('#switchTour li').eq(index).attr('data-id'));
+               index++;
+        }
+
+        $('#anotherTour').click(function (event)
+        {
+            event.preventDefault();
+
+            $('#big-preview-img').fadeTo(800, 0, function ()
+            {
+                if (index <= $('#switchTour li').length - 1)
+                {
+                    $('#confirmTour').attr('href', '');
+                    $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat ');
+                    $('#to').text($('#switchTour li').eq(index).attr('data-to'));
+                    $('#from').text($('#switchTour li').eq(index).attr('data-from'));
+                    $('#confirmTour').attr('href', confirmHref + '/' + $('#switchTour li').eq(index).attr('data-id'));
+                    $('#big-preview-img').fadeTo(1000, 1);
+                    index++;
+
+                    // if last tour
+                    if (index == $('#switchTour li').length) {
+                        index = 0;
+                    }
+                }
+            });       
+        });
+    });
+</script>
