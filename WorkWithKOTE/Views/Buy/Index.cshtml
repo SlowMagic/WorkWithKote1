@@ -220,7 +220,7 @@
                 sum += parseFloat($(v).attr('data-price'));
             });
             $("#Prices").text(sum);
-            $('#finalPrice').text(sum);
+            $('#finalPrice').val(sum);
         };
         function Check() {
             sumFunction();
