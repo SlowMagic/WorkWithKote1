@@ -20,6 +20,31 @@ namespace WorkWithKOTE.Controllers
         {
             return View();
         }
+        protected List<Tour> TourList(int TourStatusId)
+        {
+            var date = db.Tour.Include(m => m.DateTour)
+               .Where(m => m.TourStatusId == TourStatusId)
+               .SelectMany(m => m.DateTour)
+               .Where(m => m.FirstDate >= DateTime.Now)
+               .OrderBy(m => m.FirstDate).ToList();
+            List<Tour> data = new List<Tour>();
+            foreach (var Item in date)
+            {
+                var dataItem = db.Tour.Where(m => m.DateTour.Any(dt => dt.FirstDate == Item.FirstDate) && m.TourStatusId == TourStatusId).ToList();
+                foreach (var item in dataItem)
+                {
+                    data.Add(item);
+                }
+            }
+            var data1 = data.Select(m => m.TourId).Distinct();
+            data = new List<Tour>();
+            foreach (var item in data1)
+            {
+                var dataItem = db.Tour.Find(item);
+                data.Add(dataItem);
+            }
+            return data;
+        }
         protected Tour TourBlock(int tourStatusId,int typeofTourId)
         {
             var date = db.Tour.Include(m => m.DateTour)
@@ -32,53 +57,29 @@ namespace WorkWithKOTE.Controllers
         }
         protected List<Tour> TourList(int tourStatusId, int typeofTourId)
         {
-            List<DateTour> date = new List<DateTour>();
-            if(typeofTourId == 0){
-               date = db.Tour.Include(m => m.DateTour)
-               .Where(m => m.TourStatusId == tourStatusId)
-               .SelectMany(m => m.DateTour)
-               .Where(m => m.FirstDate >= DateTime.Now)
-               .OrderBy(m=>m.FirstDate).ToList();
-
-            }
-            else
-            {
-                date = db.Tour.Include(m => m.DateTour)
+               var date = db.Tour.Include(m => m.DateTour)
                .Where(m => m.TourStatusId == tourStatusId && m.TypeOfTourId == typeofTourId)
                .SelectMany(m => m.DateTour)
                .Where(m => m.FirstDate >= DateTime.Now)
                .OrderBy(m=>m.FirstDate).ToList();
-            }
-            List<Tour> data = new List<Tour>();
-            List<Tour> data1 = new List<Tour>();
-           if(typeofTourId != 0)
+           List<Tour> data = new List<Tour>();
            foreach(var Item in date)
            {
-               var dataItem = db.Tour.Where(m => m.DateTour.Any(dt => dt.FirstDate == Item.FirstDate) && m.TourStatusId == tourStatusId && m.TypeOfTourId == typeofTourId).First();
-               data.Add(dataItem);
-           }
-           else
-               foreach (var Item in date)
+               var dataItem = db.Tour.Where(m => m.DateTour.Any(dt => dt.FirstDate == Item.FirstDate) && m.TourStatusId == tourStatusId && m.TypeOfTourId == typeofTourId).ToList();
+               foreach(var item in dataItem)
                {
-                   var dataItem = db.Tour.Where(m => m.DateTour.Any(dt => dt.FirstDate == Item.FirstDate) && m.TourStatusId == tourStatusId ).FirstOrDefault();
-                   data.Add(dataItem);
+                   data.Add(item);
                }
+           }
+           var data1 = data.Select(m => m.TourId).Distinct();
+            data = new List<Tour>();
+            foreach(var item in data1)
+            {
+                var dataItem = db.Tour.Find(item);
+                data.Add(dataItem);             
+            }
+            return data;
 
-           if(data.Count != 0)
-           for (int i = 0; i < data.Count; i++ )
-           {
-               int k = data.Last().TourId;
-               if (data[i].TourId != k)
-               {
-                   if (data[i].TourId != data[i+1].TourId)
-                       data1.Add(data[i]);
-               }
-               else if(data[i].TourId != data[0].TourId)
-                   data1.Add(data[i]);
-               else if(i == 0)
-                   data1.Add(data[i]);
-           }
-               return data1;
         }
         public ActionResult Index()
         {
@@ -89,7 +90,7 @@ namespace WorkWithKOTE.Controllers
             data.TourCenter = TourList(1, 2);
             data.TourDownPrev = TourBlock(5, 3);
             data.TourDown = TourList(1, 3);
-            data.TourMain = TourList(4, 0);
+            data.TourMain = TourList(4);
             return View(data);
         }
         public ActionResult DateForCurrentTour(int id)
