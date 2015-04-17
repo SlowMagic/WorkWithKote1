@@ -3,33 +3,21 @@
     Layout = null;
 }
 <div id="options">
+    @{
+        int i = 0;
+    }
     @foreach (var item in Model)
     {
-      if(item.Price != 0) 
-      { <div>
-            @item.Name
-          @*  @Html.CheckBox(iteam.Name, new { price = iteam.Price })*@
-        <input type="checkbox"  name="Item" value="@item.DopUslugId" id="ItemChecked" price="@item.Price" onclick="Check()" />
-        </div>
-      }
+        if (item.Price != 0)
+        {
+            string name = "ItemChecked" + i;
+            <div id="options">
+                @*  @Html.CheckBox(iteam.Name, new { price = iteam.Price })*@
+                <input type="checkbox" class="css-checkbox" name="Item" value="@item.DopUslugId" id="@name" data-price="@item.Price" onclick=" Check() "/>
+                <label for="@name" class="css-label"> @item.Name&nbsp;(@item.Price)</label>
+            </div>
+            i++;
+        }
     }
 </div>
-    <script type="text/javascript">
-        var sum0 = parseFloat($("#Prices").val());
-   function sumFunction() {
-        var sum = sum0;
-        $('#options input[type=checkbox]:checked').each(function (i, v) {
-            sum += parseFloat($(v).attr('price'));
-        });
-        $("#Prices").val(sum);
-        $('#Price').val(sum);
-   };
-   function Check() {
-       if (document.getElementById('ItemChecked').checked) {
-           sumFunction();
-       }
-       else {
-           sumFunction();
-       }
-   }
-    </script>
+

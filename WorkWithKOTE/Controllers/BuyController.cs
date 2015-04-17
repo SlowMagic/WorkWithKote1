@@ -27,6 +27,7 @@ namespace WorkWithKOTE.Controllers
                 ViewBag.TourPrices = tour.Cost;
                 data .TourId = id;
                 data.TourPrice = tour.Cost;
+                data.Valuta = tour.Valuta;
                 ViewBag.DateTourId = new SelectList(db.DateTours.Where(m => m.TourId == id)
                 .AsEnumerable()
                 .Select(m => new
