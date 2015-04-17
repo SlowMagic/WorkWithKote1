@@ -413,6 +413,7 @@
              $('#big-preview-img').css('background', 'img/big-preview-img.jpg');
         }
         else {
+            // if tours length. Display 1-st tour
                $('#confirmTour').attr('href', '');
                $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat ');
                $('#to').text($('#switchTour li').eq(index).attr('data-to'));
@@ -421,28 +422,29 @@
                index++;
         }
 
-        $('#anotherTour').click(function (event)
+        // if  many tours. Switch tours
+        if ($('#switchTour li').length > 1)
         {
-            event.preventDefault();
+            $('#anotherTour').click(function (event) {
+                event.preventDefault();
 
-            $('#big-preview-img').fadeTo(800, 0, function ()
-            {
-                if (index <= $('#switchTour li').length - 1)
-                {
-                    $('#confirmTour').attr('href', '');
-                    $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat ');
-                    $('#to').text($('#switchTour li').eq(index).attr('data-to'));
-                    $('#from').text($('#switchTour li').eq(index).attr('data-from'));
-                    $('#confirmTour').attr('href', confirmHref + '/' + $('#switchTour li').eq(index).attr('data-id'));
-                    $('#big-preview-img').fadeTo(1000, 1);
-                    index++;
+                $('#big-preview-img').fadeTo(800, 0, function () {
+                    if (index <= $('#switchTour li').length - 1) {
+                        $('#confirmTour').attr('href', '');
+                        $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat ');
+                        $('#to').text($('#switchTour li').eq(index).attr('data-to'));
+                        $('#from').text($('#switchTour li').eq(index).attr('data-from'));
+                        $('#confirmTour').attr('href', confirmHref + '/' + $('#switchTour li').eq(index).attr('data-id'));
+                        $('#big-preview-img').fadeTo(1000, 1);
+                        index++;
 
-                    // if last tour
-                    if (index == $('#switchTour li').length) {
-                        index = 0;
+                        // if last tour
+                        if (index >= $('#switchTour li').length) {
+                            index = 0;
+                        }
                     }
-                }
-            });       
-        });
+                });
+            });
+        }
     });
 </script>
