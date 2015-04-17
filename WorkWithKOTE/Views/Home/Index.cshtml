@@ -409,12 +409,12 @@
         // if no tours
         if (!$('#switchTour li').length) {
              $('.buttons.clearfix,#wishletter').css('display','none');
-             $('#big-preview-img').css('background', 'img/big-preview-img.jpg');
+             $('#big-preview-img').css('background','url(/Content/img/big-preview-img.jpg) no-repeat 50% 100% ');
         }
         else {
             // if tours length. Display 1-st tour
                $('#confirmTour').attr('href', '');
-               $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat ');
+               $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat 50% 100% ');
                $('#textspan').css('display', 'inherit');
                $('#to').text('Тур в ' + $('#switchTour li').eq(index).attr('data-to'));
                $('#from').text(' из '+$('#switchTour li').eq(index).attr('data-from'));
@@ -425,14 +425,15 @@
         // if  many tours. Switch tours
         if ($('#switchTour li').length > 1)
         {
-            $('#anotherTour').click(function (event) {
+            $('#anotherTour').click(function (event)
+            {
                 event.preventDefault();
 
                 $('#big-preview-img').fadeTo(800, 0, function ()
                 {
                     if (index <= $('#switchTour li').length - 1) {
                         $('#confirmTour').attr('href', '');
-                        $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat ');
+                        $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat 50% 100% ');
                         $('#textspan').css('display', 'inherit');
                         $('#to').text('Тур в ' + $('#switchTour li').eq(index).attr('data-to'));
                         $('#from').text(' из ' + $('#switchTour li').eq(index).attr('data-from'));
