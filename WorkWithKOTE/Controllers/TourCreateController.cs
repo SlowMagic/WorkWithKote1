@@ -61,12 +61,12 @@ namespace WorkWithKOTE.Controllers
         }
         public ActionResult TourEdit(int id = 0)
         {
-            ViewBag.TourStatusId = new SelectList(db.TourStatus, "TourStatusId", "TourStatusName");
+            var data = db.Tour.Include(m=>m.Trips).Include(m => m.DopUslug).Include(m => m.DateTour).Include(m => m.RoutePoints).Include(m=>m.Tag).Where(m => m.TourId == id).FirstOrDefault();
+            ViewBag.TourStatusId = new SelectList(db.TourStatus, "TourStatusId", "TourStatusName",data.TourStatusId);
             ViewBag.GalleryID = new SelectList(db.Gallery, "GalleryId", "GalleryName");
-            ViewBag.TypeOfTourId = new SelectList(db.TypeOfTours, "TypeOfTourId", "TypeOfTourName");
+            ViewBag.TypeOfTourId = new SelectList(db.TypeOfTours, "TypeOfTourId", "TypeOfTourName",data.TypeOfTourId);
             ViewBag.SameTourId = new MultiSelectList(db.Tour, "TourId", "NameTour");
             ViewBag.LogoId = new SelectList(db.BigLogos, "LogoId", "LogoName");
-            var data = db.Tour.Include(m=>m.Trips).Include(m => m.DopUslug).Include(m => m.DateTour).Include(m => m.RoutePoints).Include(m=>m.Tag).Where(m => m.TourId == id).FirstOrDefault();
             ViewBag.Id = id;
             return View(data);
         }
