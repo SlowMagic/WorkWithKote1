@@ -1178,7 +1178,7 @@
     <Content Include="Views\Buy\Payment.cshtml" />
     <Content Include="Views\News\AllNewsBlock.cshtml" />
     <Content Include="Views\Gallery\CreateGallery.cshtml" />
-    <Content Include="Views\Profile\UserProfile.cshtml" />
+    <Content Include="Views\Profile\UserProfileTag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

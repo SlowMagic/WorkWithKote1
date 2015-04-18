@@ -1,57 +1,143 @@
-﻿@using WorkWithKOTE.Controllers
-@model WorkWithKOTE.Models.LoginModel
-
+﻿@model WorkWithKOTE.Models.LoginModel
 @{
     ViewBag.Title = "Log in";
     Layout = "../Shared/_Layout.cshtml";
-}
+ }
+@Styles.Render("~/Content/form")
+@Styles.Render("~/Content/order")
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
+<style>
+    #login,#password,#rememberME{
+        clear:both; text-align:right;
+    }
 
-<section id="loginForm">
-<h2>Вход</h2>
-@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    label,#form_tour{
+        float : left;
+    }
+
+    label{
+        margin-top : 12px;
+        cursor : pointer;
+    }
+
+    #form_tour{
+        margin-left : 35px;
+    }
+
+    input[type=text]{
+        padding-left : 5px;
+         margin-left : 10px;
+    }
+
+    input[type=password]{
+        text-align : left !important;
+        margin-left : 10px;
+        padding-left : 5px;
+    }
+
+    input[type=checkbox] {
+        float : left;
+        margin-top : 14px !important;
+        margin-left : 0px !important;
+    }
+
+      input[type=checkbox] {
+         margin-left: 10px !important;
+         margin-top: 16px !important;
+    }
+
+    .loginEl{
+        margin : 5px;
+    }
+
+    #logination,.alternateBnt{
+      border-radius : 4px;
+      background-color : #ff6f40;
+      border : 1px solid #ff6f40;
+      color : white;
+      height : 25px;
+      cursor : pointer;
+    }
+
+    #loginBox{
+        display: flex;
+        margin-left: 0px;
+        margin-top : 50px;
+    }
+
+    #alternate{
+        margin-top : 20px;
+    }
+
+    .links{
+        padding-left : 10px;
+        margin-top : 8px;
+        text-decoration : underline;
+
+    }
+
+    #socialLoginList{
+        margin-bottom : 15px;
+        margin-top : 5px;
+    }
+
+    #alternateText{
+        font-size : 19px;
+    }
+</style>
+
+@{ Html.RenderPartial("HeaderPartial_main");}
+
+<div id="small-preview-img" class="clearfix">
+    <hgroup>
+        <h1>Вход</h1>
+        <h2>@Html.ActionLink("Главная", "Index", "Home", null, null) / Вход </h2>
+    </hgroup>
+</div>
+
+<div class="container">
+ <section id="loginForm">
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) 
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    
+    <div id="form_tour">
+        
+        <div class="loginEl" id="login">
+          @Html.Label("E-mail : ", new { @for = "Email" })
+          @Html.TextBoxFor(m => m.Email)
+          @Html.ValidationMessageFor(m => m.Email)
+        </div>
+        
+        <div class="loginEl" id="password">
+            @Html.Label("Пароль : ", new { @for = "Password" })
+            @Html.PasswordFor(m => m.Password)
+            @Html.ValidationMessageFor(m => m.Password)
+        </div> 
 
-    <fieldset>
-        <legend>Log in Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.Email)
-                @Html.TextBoxFor(m => m.Email)
-                @Html.ValidationMessageFor(m => m.Email)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-                @Html.ValidationMessageFor(m => m.Password)
-            </li>
-            <li>
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
-            </li>
-        </ol>
-        <input type="submit" value="Log in" />
-    </fieldset>
-    if (User.IsInRole("Admin"))
-    {   
-        <p>
-        @Html.ActionLink("Register", "Register") if you don't have an account.
-    </p>
-    <p>
-        @Html.ActionLink("Забыл пароль?","ForgotPassword","Profile")
-    </p>   
-    }
+        <div class="loginEl" id="rememberME">
+            @Html.Label("Запомнить меня : ", new { @for = "RememberMe" })
+            @Html.CheckBoxFor(m => m.RememberMe)
+        </div>
+
+        <div id="loginBox" class="loginEl" >
+            <input id="logination" class="loginEl" type="submit" value="Войти" />
+            <span class="links">@Html.ActionLink("Register", "Register")</span>
+            <span class="links">@Html.ActionLink("Забыл пароль?!", "ForgotPassword", "Profile")</span>
+        </div>
+
+        <div id="alternate">
+            <section class="social" id="socialLoginForm">
+                <span id="alternateText">Использовать другой сервис для входа</span>
+                @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>
+    </div>           
 }
-</section>
-
-<section class="social" id="socialLoginForm">
-    <h2>Use another service to log in.</h2>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>
+ </section>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

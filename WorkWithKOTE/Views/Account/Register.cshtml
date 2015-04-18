@@ -3,36 +3,89 @@
     ViewBag.Title = "Register";
 }
 @Styles.Render("~/Content/form")
+@Styles.Render("~/Content/order")
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>Регистрация</h2>
-</hgroup>
+<style>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
+    #login,#password,#confirm{
+        clear:both; text-align:right;
+    }
 
-    <fieldset id="form_tour">
-        <legend>Registration Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.Email)
+    label,#form_tour{
+        float : left;
+    }
+
+    label{
+        margin-top : 12px;
+        cursor : pointer;
+    }
+
+     #form_tour{
+        margin-left : 35px;
+    }
+
+    input[type=text]{
+        padding-left : 5px;
+         margin-left : 10px;
+    }
+
+      input[type=password]{
+        padding-left : 5px;
+         margin-left : 10px;
+    }
+
+    #registerBtn{
+      border-radius : 4px;
+      background-color : #ff6f40;
+      border : 1px solid #ff6f40;
+      color : white;
+      height : 25px;
+      cursor : pointer;
+      margin-top : 10px;
+      margin-bottom : 10px;
+    }
+
+</style>
+
+@{ Html.RenderPartial("HeaderPartial_main");}
+
+<div id="small-preview-img" class="clearfix">
+    <hgroup>
+        <h1>Регистрация</h1>
+        <h2>@Html.ActionLink("Главная", "Index", "Home", null, null) / Регистрация </h2>
+    </hgroup>
+</div>
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+
+        <div id="form_tour">
+            <div class="loginEl" id="login">
+                @Html.Label("E-mail : ", new { @for = "Email" })
                 @Html.TextBoxFor(m => m.Email)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.ConfirmPassword)
-                @Html.PasswordFor(m => m.ConfirmPassword)
-            </li>
-        </ol>
-        <input type="submit" value="Register" />
-    </fieldset>
-}
+            </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+            <div class="loginEl" id="password">
+                @Html.Label("Пароль : ", new { @for = "Password" })
+                @Html.PasswordFor(m => m.Password)
+            </div>
+
+            <div class="loginEl" id="confirm">
+                @Html.Label("Подтвердить пароль : ", new { @for = "ConfirmPassword" })
+                @Html.PasswordFor(m => m.ConfirmPassword)
+            </div>
+
+            <div id="loginBox" class="loginEl">
+                <input id="registerBtn" type="submit" value="Зарегистрировать" />
+            </div>
+
+        </div>
+    }
+</div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

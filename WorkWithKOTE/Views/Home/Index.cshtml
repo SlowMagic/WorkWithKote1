@@ -11,9 +11,10 @@
         
         <img style="display:none;" id="big-logo" />
 
-        <p id="wishletter">
-            <span style="display:none;" id="textspan">Я хочу...<br /></span>
-            <span id="textspan1"><span id="to"></span><span id="from"></span>
+        <p style="display:none;" id="wishletter">
+            <span id="textspan">Я хочу...<br /></span>
+            <span id="textspan1">
+                <span id="to"></span><span id="from"></span>
             </span>
         </p>
 
@@ -24,7 +25,7 @@
         }
       </ul>
 
-        <div class="buttons clearfix">
+        <div style="display:none;" class="buttons clearfix">
             <a id="confirmTour" href="@Url.Action("Index","TourDisplay")" class="yes-btn">
                 <span id="textspan2">Да,</span> <span> Я хочу&#x21;</span>
             </a>
@@ -52,9 +53,9 @@
     </div>
     <div class="centerbox clearfix">
         <p class="consultLinks">
-            Вы можете обратиться к нашему консультанту для
-            <a href="#" class="link-btn"> подбора&nbsp;тура </a> или воспользоваться
-            @Html.ActionLink("поиском", "Search", "TourSearch", null, new { @class = "link-btn" })
+            Используйте сервис
+            @Html.ActionLink("поиска", "Search", "TourSearch", null, new { @class = "link-btn" })
+            для подбора тура
         </p>
     </div>
 </div>
@@ -409,11 +410,11 @@
 
         // if no tours
         if (!$('#switchTour li').length) {
-             $('.buttons.clearfix,#wishletter').css('display','none');
              $('#big-preview-img').css('background','url(/Content/img/zaglushka.jpg) no-repeat 50% 100% ');
         }
         else {
             // if tours length. Display 1-st tour
+               $('.buttons.clearfix,#wishletter').css('display', 'inherit');
                $('#confirmTour').attr('href', '');
                $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat 50% 100% ');
                $('#textspan').css('display', 'inherit');
@@ -433,7 +434,9 @@
 
                 $('#big-preview-img').fadeTo(800, 0, function ()
                 {
-                    if (index <= $('#switchTour li').length - 1) {
+                    if (index <= $('#switchTour li').length - 1)
+                    {
+                        $('.buttons.clearfix,#wishletter').css('display', 'inherit');
                         $('#confirmTour').attr('href', '');
                         $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat 50% 100% ');
                         $('#textspan').css('display', 'inherit');

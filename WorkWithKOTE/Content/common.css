@@ -478,3 +478,9 @@ footer {
 .date-select select:focus {
     outline: none !important;
 }
+
+img{
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -ms-user-drag: none;
+}
