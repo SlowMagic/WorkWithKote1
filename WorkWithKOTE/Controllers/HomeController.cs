@@ -30,7 +30,7 @@ namespace WorkWithKOTE.Controllers
             List<Tour> data = new List<Tour>();
             foreach (var Item in date)
             {
-                var dataItem = db.Tour.Where(m => m.DateTour.Any(dt => dt.FirstDate == Item.FirstDate) && m.TourStatusId == TourStatusId).ToList();
+                var dataItem = db.Tour.Include(m => m.BigLogo).Where(m => m.DateTour.Any(dt => dt.FirstDate == Item.FirstDate) && m.TourStatusId == TourStatusId).ToList();
                 foreach (var item in dataItem)
                 {
                     data.Add(item);
