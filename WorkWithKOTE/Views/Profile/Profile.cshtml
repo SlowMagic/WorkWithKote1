@@ -4,6 +4,18 @@
 }
 @Styles.Render("~/Content/order")
 @{ Html.RenderPartial("HeaderPartial_main");}
+
+<style>
+    .bonuses {
+        max-width : 55px;
+        display : inline-block;
+    }
+
+    #change-profile{
+        margin-top : 19px;
+    }
+
+</style>
 <div id="small-preview-img" class="clearfix">
 
     <hgroup>
@@ -44,10 +56,9 @@
                     Бонусы: <span id="user-bonuses">@Html.DisplayFor(m => m.Bonus)</span>&nbsp;грн.
                     @using (Ajax.BeginForm("BonusForUser", "Admin", new AjaxOptions { UpdateTargetId = "user-bonuses" }))
                     {
-                        <input type="text" id="bonus" name="UserBonus" />
+                        <input class="bonuses" type="text" id="bonus" name="UserBonus" />
                         <input type="hidden" name="UserId" value="@Model.UserId" />
-                        <input type="submit" value="Отправить бонусы" />
-
+                        <input class="bonuses" type="submit" value="Ok" />
                     }
                 </p>
             </div>
