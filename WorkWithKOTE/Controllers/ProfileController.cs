@@ -27,19 +27,13 @@ namespace WorkWithKOTE.Controllers
         [Authorize]
         public ActionResult Profile(int? id)
         {
-            if (id == null)
-            {
-                    int i = WebSecurity.GetUserId(User.Identity.Name);
-                    UserProfile user = db.UserProfiles.Include(m => m.VisitedTours).First(m => m.UserId == i);
-                    ViewBag.UserRole = Roles.GetRolesForUser(User.Identity.Name);
-                    return View(user);
-            }
-            else
+            if (id != null)
             {
                 if (User.IsInRole("Admin"))
                 {
                     UserProfile user = db.UserProfiles.Include(m => m.VisitedTours).First(m => m.UserId == id);
                     ViewBag.UserRole = Roles.GetRolesForUser(user.Email);
+                    ViewBag.TripsId = new SelectList(db.Trip.Where(m => m.UserId == id), "TripID", "TripID");
                     return View(user);
                 }
                 else
@@ -47,8 +41,17 @@ namespace WorkWithKOTE.Controllers
                     int i = WebSecurity.GetUserId(User.Identity.Name);
                     UserProfile user = db.UserProfiles.Include(m => m.VisitedTours).First(m => m.UserId == i);
                     ViewBag.UserRole = Roles.GetRolesForUser(User.Identity.Name);
+                    ViewBag.TripsId = new SelectList(db.Trip.Where(m => m.UserId == i), "TripID", "TripID");
                     return View(user);
                 }
+            }
+            else
+            {
+                    int i = WebSecurity.GetUserId(User.Identity.Name);
+                    UserProfile user = db.UserProfiles.Include(m => m.VisitedTours).First(m => m.UserId == i);
+                    ViewBag.UserRole = Roles.GetRolesForUser(User.Identity.Name);
+                    ViewBag.Id = new SelectList(db.Trip.Where(m => m.UserId == i && m.Status == "Не оплачена"), "TripID", "TripID");  
+                    return View(user);
             }
            
         }
@@ -58,20 +61,8 @@ namespace WorkWithKOTE.Controllers
 
             int i = WebSecurity.GetUserId(User.Identity.Name);
             UserProfile user = db.UserProfiles.Find(i);
-
             return View(user);
-
         }
-        
-        /*[Authorize(Roles = "Admin")]
-        [ActionName("UserProfile")]
-        public ActionResult Profile(int id)
-        {
-            var user = db.UserProfiles.Find(id);
-            ViewBag.UserRole  = Roles.GetRolesForUser(user.Email);
-            return View(user);
-
-        }*/
         public ActionResult UserProfileBonus(int UserId)
         {
             var user = db.UserProfiles.Find(UserId);

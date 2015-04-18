@@ -58,8 +58,9 @@ namespace WorkWithKOTE.Controllers
             return RedirectToAction("SearchAllUsers", "Admin");
         }
         [HttpPost]
-        public ActionResult BonusForUser(int UserId, int UserBonus)
+        public ActionResult BonusForUser(int UserId, int? UserBonus)
         {
+            
             var user = db.UserProfiles.Find(UserId);
             if (user.Bonus != null)
                 user.Bonus = user.Bonus.Value + UserBonus;
