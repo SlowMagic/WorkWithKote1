@@ -9,7 +9,7 @@
     Введите Фамилию пользователя @Html.TextBox("surname")<br />
     Введите возраст пользователя @Html.TextBox("age")<br />
     Выберите пол пользователя @Html.DropDownList("sex", new List<SelectListItem> { new SelectListItem { Text = "Мужской" }, new SelectListItem { Text = "Женский" } }, "Любой пол")<br />
-    @{int i = 0; }
+    @{int i = 1; }
     @foreach (var item in Model)
     {
         @Html.DisplayFor(m => item.Email) @: Имя : @Html.DisplayFor(m => item.RuFirstName)  Фамилия : @Html.DisplayFor(m => item.RuSecondName) Дата рождения @Html.DisplayFor(m => item.Birthday) Бонусы :@Html.DisplayFor(m => item.Bonus)

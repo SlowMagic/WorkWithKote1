@@ -160,6 +160,7 @@ namespace WorkWithKOTE.Controllers
                  var userprofile = db.UserProfiles.Find(Trip.UserId);
                  userprofile.VisitedTours = new List<VisitedTour>();
                  userprofile.VisitedTours.Add(addtour);
+                 userprofile.Bonus = userprofile.Bonus.Value + tour.Bonus;
                  db.Entry(Trip).State = EntityState.Modified;
                  db.Entry(userprofile).State = EntityState.Modified;
                  db.SaveChanges();

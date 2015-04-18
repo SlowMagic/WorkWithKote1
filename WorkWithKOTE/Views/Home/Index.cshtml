@@ -8,7 +8,7 @@
 
 <div id="big-preview-img" class="clearfix">
     <div class="wish">
-        <!-- <img id="big-logo" src="@Html.DisplayFor(m=>m.TourHightPrev.BigLogo.UrlImg)" /> -->
+        <img id="big-logo" src="@Html.DisplayFor(m=>m.TourHightPrev.BigLogo.UrlImg)" />
 
         <p id="wishletter">
             <span style="display:none;" id="textspan">Я хочу...<br /></span>
@@ -19,7 +19,7 @@
       <ul id="switchTour">
         @foreach (var item in Model.TourMain)
         {
-          <li style="list-style-type: none;" data-id="@item.TourId" data-src="@item.TourImg" data-baf="@Html.DisplayFor(m=>item.BigLogo.UrlImg)" data-to="@item.PlaceOfArrival" data-from="@item.PlaceOfDeparture">SDF</li>     
+          <li style="list-style-type: none;" data-id="@item.TourId" data-src="@item.TourImg" data-baf="@item.BigLogo.UrlImg" data-to="@item.PlaceOfArrival" data-from="@item.PlaceOfDeparture"></li>     
         }
       </ul>
 
@@ -417,8 +417,7 @@
                $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat 50% 100% ');
                $('#textspan').css('display', 'inherit');
                $('#to').text('Тур в ' + $('#switchTour li').eq(index).attr('data-to'));
-               $('#from').text(' из ' + $('#switchTour li').eq(index).attr('data-from'));
-               $('#wishletter').before('<img src=""' + $('#switchTour li').eq(index).attr('data-baf') + '/>')
+               $('#from').text(' из '+$('#switchTour li').eq(index).attr('data-from'));
                $('#confirmTour').attr('href', confirmHref + '/' + $('#switchTour li').eq(index).attr('data-id'));
                index++;
         }
@@ -439,8 +438,7 @@
                         $('#to').text('Тур в ' + $('#switchTour li').eq(index).attr('data-to'));
                         $('#from').text(' из ' + $('#switchTour li').eq(index).attr('data-from'));
                         $('#confirmTour').attr('href', confirmHref + '/' + $('#switchTour li').eq(index).attr('data-id'));
-                        $('#wishletter').before('<img src=""'+$('#switchTour li').eq(index).attr('data-baf')+ '/>')
-                        $('#big-preview-img').fadeTo(800, 1);
+                        $('#big-preview-img').fadeTo(1000, 1);
                         index++;
 
                         // if last tour

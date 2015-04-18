@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.WebPages.Html;
 using System.Web.Mvc;
 using WorkWithKOTE.Models;
 
@@ -37,5 +36,16 @@ namespace WorkWithKOTE.Code
             List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>() { new System.Web.Mvc.SelectListItem { Text = "1000" }, new System.Web.Mvc.SelectListItem { Text = "2000" }, new System.Web.Mvc.SelectListItem { Text = "3000" }, new System.Web.Mvc.SelectListItem { Text = "4000" } };
             return list;
         }
+        public static List<SelectListItem> SelectlistForTag()
+         {
+             UsersContext db = new UsersContext();
+             List<SelectListItem> list = new List<SelectListItem>();
+             var Tags = db.Teg.Select(m => m.TagName).Distinct();
+            foreach(var item in Tags)
+            {
+                list.Add(new SelectListItem { Text = item });
+            }
+            return list;
+         }
     }
 }
