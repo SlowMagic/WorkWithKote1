@@ -8,7 +8,8 @@
 
 <div id="big-preview-img" class="clearfix">
     <div class="wish">
-        <img id="big-logo" src="@Html.DisplayFor(m=>m.TourHightPrev.BigLogo.UrlImg)" />
+        
+        <img style="display:none;" id="big-logo" />
 
         <p id="wishletter">
             <span style="display:none;" id="textspan">Я хочу...<br /></span>
@@ -417,7 +418,8 @@
                $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat 50% 100% ');
                $('#textspan').css('display', 'inherit');
                $('#to').text('Тур в ' + $('#switchTour li').eq(index).attr('data-to'));
-               $('#from').text(' из '+$('#switchTour li').eq(index).attr('data-from'));
+               $('#from').text(' из ' + $('#switchTour li').eq(index).attr('data-from'));
+               $('#wishletter').before('<img id="big-logo" src="' + $('#switchTour li').eq(index).attr('data-baf') + '" />');
                $('#confirmTour').attr('href', confirmHref + '/' + $('#switchTour li').eq(index).attr('data-id'));
                index++;
         }
@@ -437,6 +439,7 @@
                         $('#textspan').css('display', 'inherit');
                         $('#to').text('Тур в ' + $('#switchTour li').eq(index).attr('data-to'));
                         $('#from').text(' из ' + $('#switchTour li').eq(index).attr('data-from'));
+                        $('#wishletter').before('<img id="big-logo" src="' + $('#switchTour li').eq(index).attr('data-baf') + '" />');
                         $('#confirmTour').attr('href', confirmHref + '/' + $('#switchTour li').eq(index).attr('data-id'));
                         $('#big-preview-img').fadeTo(1000, 1);
                         index++;
