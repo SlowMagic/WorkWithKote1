@@ -36,8 +36,12 @@ function switchLogo(pos)
     }
     else 
     {
+        $('nav').removeClass('nav-other');
         $('#user_name').css({ 'color': 'white' ,'background-image':'url("/Content/img/user.png")'});
 
+        $('#Searching').attr('src', '/Content/img/Searching.png');
+        $('.separator').attr('src', '/Content/img/separator.png');
+        $('#small-logo').attr('src', '/Content/img/small-logo.png');
         if ( pos >= $('#big-logo').height() || pos > 200 )
         {
             $('#small-logo').css('opacity','1');

@@ -9,7 +9,7 @@
 <div id="big-preview-img" class="clearfix">
     <div class="wish">
         
-        <img style="display:none;" id="big-logo" />
+@*        <img  id="big-logo" />*@
 
         <p style="display:none;" id="wishletter">
             <span id="textspan">Я хочу...<br /></span>
@@ -410,10 +410,12 @@
 
         // if no tours
         if (!$('#switchTour li').length) {
-             $('#big-preview-img').css('background','url(/Content/img/zaglushka.jpg) no-repeat 50% 100% ');
+            $('#big-preview-img').css('background', 'url(/Content/img/zaglushka.jpg) no-repeat 50% 100% ');
+            $('#big-logo').remove();
         }
         else {
             // if tours length. Display 1-st tour
+//               $('#big-logo').show();
                $('.buttons.clearfix,#wishletter').css('display', 'inherit');
                $('#confirmTour').attr('href', '');
                $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat 50% 100% ');
@@ -442,7 +444,12 @@
                         $('#textspan').css('display', 'inherit');
                         $('#to').text('Тур в ' + $('#switchTour li').eq(index).attr('data-to'));
                         $('#from').text(' из ' + $('#switchTour li').eq(index).attr('data-from'));
-                        $('#wishletter').before('<img id="big-logo" src="' + $('#switchTour li').eq(index).attr('data-baf') + '" />');
+//                        if ($('#big-logo')) {
+//                            console.log($('#big-logo'), $('#switchTour li').eq(index).attr('data-baf'));
+                            $('#big-logo').attr('src', $('#switchTour li').eq(index).attr('data-baf'));
+//                                                    } 
+//                        else { $('#wishletter').before('<img id="big-logo" src="' + $('#switchTour li').eq(index).attr('data-baf') + '" />'); }
+//                        $('#wishletter').before('<img id="big-logo" src="' + $('#switchTour li').eq(index).attr('data-baf') + '" />');
                         $('#confirmTour').attr('href', confirmHref + '/' + $('#switchTour li').eq(index).attr('data-id'));
                         $('#big-preview-img').fadeTo(1000, 1);
                         index++;
@@ -455,5 +462,6 @@
                 });
             });
         }
+        switchLogo(0);
     });
 </script>
