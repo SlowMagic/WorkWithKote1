@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Gallery";
+}
+@model IEnumerable< WorkWithKOTE.Models.Gallery>
+<h2>Gallery</h2>
+@foreach(var item in Model)
+{
+  @Html.ActionLink(item.GalleryName, "Gallery", "Gallery",new {id = item.GalleryId },null)
+  <input type="button" value="Удалить" onclick="location.href='@Url.Action("GalleryDelete","Gallery",new{id = item.GalleryId})'" />
+}

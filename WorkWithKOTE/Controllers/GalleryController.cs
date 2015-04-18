@@ -32,7 +32,7 @@ namespace WorkWithKOTE.Controllers
             }
             db.Entry(model).State = EntityState.Added;
             db.SaveChanges();
-            return RedirectToAction("Gallery");
+            return RedirectToAction("GalleryList");
         }
         public ActionResult GalleryList()
         {
@@ -41,6 +41,13 @@ namespace WorkWithKOTE.Controllers
         public ActionResult Gallery(int id)
         {
             return View(db.Gallery.Include(m => m.Pics).Where(m => m.GalleryId == id).Single());
+        }
+        public ActionResult GalleryDelete(int id)
+        {
+            var gallery = db.Gallery.Find(id);
+            db.Gallery.Remove(gallery);
+            db.SaveChanges();
+            return RedirectToAction("GalleryList");
         }
     }
 }
