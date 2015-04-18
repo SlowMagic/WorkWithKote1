@@ -18,7 +18,7 @@ namespace WorkWithKOTE.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateGallery(HttpPostedFileBase[] file)
+        public ActionResult CreateGallery(Gallery model, HttpPostedFileBase[] file)
         {
             
             return View();

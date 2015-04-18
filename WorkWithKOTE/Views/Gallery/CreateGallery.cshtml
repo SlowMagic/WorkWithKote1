@@ -1,4 +1,109 @@
 ﻿@{
     ViewBag.Title = "CreateGallery";
 }
-<h2>CreateGallery</h2>
+@model WorkWithKOTE.Models.Gallery
+@Styles.Render("~/Content/order")
+
+@{ Html.RenderPartial("HeaderPartial_main");}
+<div id="small-preview-img" class="clearfix">
+    <hgroup>
+        <h1>Создание Галереи</h1>
+        <h2>
+            <a href="@Url.Action("Index", "Home")">Главная</a> / Галерея
+        </h2>
+    </hgroup>
+</div>
+<div class="container">
+    <form id="form_tour" action="@Url.Action("CreateGallery","Gallery")" method="post" enctype="multipart/form-data">
+
+        <span class="textbox">
+            Название галереи: @Html.TextBoxFor(m => m.GalleryName)
+        </span><br />
+@*        <span class="textbox">*@
+@*            Тип файла:  <br />*@
+@*            <input style="display: inline" type="radio" name="Pics[0].PicType" value="Image" id="chimg" checked onchange="checkType()"/>*@
+@*            <label for="chimg">Image</label>*@
+@*            <input style="display: inline" type="radio" name="Pics[0].PicType" value="Video" id="chvid" onchange="checkType()" />*@
+@*            <label for="chvid">Video</label>*@
+@*        </span><br /><br />*@
+@*        <div class="PicForm">*@
+@*            <span class="textbox">*@
+@*                Имя файла:  <input type="text" name="Pics[0].PicName" />*@
+@*            </span><br />*@
+@*            <span class="textbox">*@
+@*                Описание файла:   <input type="textarea" name="Pics[0].PicDescription" />*@
+@*            </span>*@
+@*            <span class="textbox" id="inpvid">*@
+@*                Ссылка на видео:   <input type="text" name="Pics[0].PicLink" />*@
+@*            </span><br />*@
+@*            <span class="textbox" id="inpimg">*@
+@*                Изображение: <input type="file" name="file[0]" />*@
+@*            </span><br />*@
+        @*        </div>*@
+        <input id="addFile" type="button" value="more" onclick="incPic()"/>
+        <input id="createNews" type="submit" value="Создать Галерею" /><br /><br />
+
+    </form>
+</div>
+<script>
+    $(function() {
+        addPic(0);
+        checkType(0);
+    });
+    function checkType(count) {
+        if ($('#chimg'+count).is(':checked')) {
+            $('#inpvid' + count).hide(); $('#inpimg' + count).show()
+        }
+        if ($('#chvid' + count).is(':checked')) {
+            $('#inpimg' + count).hide(); $('#inpvid' + count).show()
+        }
+    }
+    function addPic(count, get) {
+        if (typeof (get) === 'undefined') get = false;
+     var bigdiv =   '<div id="' + count + '" class="PicForm">' +
+           ' <span class="textbox">'+
+            'Тип файла:  <br />'+
+            '<input style="display: inline" type="radio" name="Pics[' + count + '].PicType" value="Image" id="chimg' + count + '" checked onchange="checkType(' + count + ')"/>' +
+            '<label for="chimg' + count + '">Image</label>' +
+            '<input style="display: inline" type="radio" name="Pics[' + count + '].PicType" value="Video" id="chvid' + count + '" onchange="checkType(' + count + ')" />' +
+            '<label for="chvid' + count + '">Video</label>' +
+        '</span><br /><br />'+
+                '<span class="textbox">'+
+                    'Имя файла:  <input type="text" name="Pics['+count+'].PicName" />'+
+                '</span><br />'+
+                '<span class="textbox">'+
+                    'Описание файла:   <input type="textarea" name="Pics[' + count + '].PicDescription" />' +
+                '</span>'+
+                '<span class="textbox" id="inpvid' + count + '">' +
+                    'Ссылка на видео:   <input type="text" name="Pics[' + count + '].PicLink" />' +
+                '</span><br />'+
+                '<span class="textbox" id="inpimg' + count + '">' +
+                'Изображение: <input type="file" name="file[' + count + ']" />' +
+            '</span><br />' +
+            '<input type="button" value="delete" onclick="delPic('+count+')"/>'+
+        '</div>';
+        if(!get) $("#form_tour").find('#addFile').before(bigdiv);
+        return bigdiv;
+    }
+    function incPic() {
+        var i = $("#form_tour .PicForm:last").attr('id');
+        if (i) i++;
+        else i = '0';
+        addPic(i);
+        checkType(i);
+    }
+    function delPic(count) {
+        $("#form_tour #" + count).remove();
+        count++;
+        setIndex(count);
+    }
+    function setIndex(i) {
+        var last = $("#form_tour .PicForm:last").attr('id') || '0';
+        var temp = null;
+        if (last<i) return;
+        for (;i <= last; i++) {
+            temp = addPic(i-1, true);
+            $("#form_tour #" + i).replaceWith(temp);
+        }
+    }
+</script>
