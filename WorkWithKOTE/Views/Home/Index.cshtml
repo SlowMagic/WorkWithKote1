@@ -19,7 +19,7 @@
       <ul id="switchTour">
         @foreach (var item in Model.TourMain)
         {
-          <li style="list-style-type: none;" data-id="@item.TourId" data-src="@item.TourImg" data-baf="@Html.DisplayFor(m=>item.BigLogo.UrlImg)" data-to="@item.PlaceOfArrival" data-from="@item.PlaceOfDeparture"></li>     
+          <li style="list-style-type: none;" data-id="@item.TourId" data-src="@item.TourImg" data-baf="@item.BigLogo.UrlImg" data-to="@item.PlaceOfArrival" data-from="@item.PlaceOfDeparture"></li>     
         }
       </ul>
 

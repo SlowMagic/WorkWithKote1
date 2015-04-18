@@ -56,12 +56,12 @@
             </span><br/>
 
             <span class="textbox">
-               Предоплата :<input type="checkbox" id="Predop" onclick=" valid() " />
+               Предоплата :<input type="checkbox" id="Predop" onclick="showHide('#Predop', '#PrePay');" />
                @Html.TextBoxFor(m => m.PrePay, new { style = "visibility:hidden", id = "PrePay" })
             </span>
 
             <span class="armor">
-              Бронь:<input type="checkbox" id="Reserv" onclick=" reserv() " />
+              Бронь:<input type="checkbox" id="Reserv" onclick="showHide('#Reserv', '#Reservation');" />
               @Html.TextBoxFor(m => m.Reservation, new { style = "visibility:hidden", id = "Reservation" })
             </span><br/><br/>
 
@@ -88,7 +88,7 @@
           </span><br/>
 
           <span class="textbox">
-              Сумма Агента: <input type="checkbox" id="Summa" onclick=" valid2() " />
+              Сумма Агента: <input type="checkbox" id="Summa" onclick="showHide('#Summa', '#SummaAgent');" />
               @Html.TextBoxFor(m => m.KommisiaAgent, new { style = "visibility:hidden", id = "SummaAgent" })
           </span><br /><br/>
 
@@ -144,7 +144,7 @@
 
           <span class="textbox">
               Бонус за тур :
-              <input type="checkbox" id="Bonus" onclick=" valid3() " />
+              <input type="checkbox" id="Bonus" onclick="showHide('#Bonus', '#BonusText');" />
               @Html.TextBoxFor(m => m.Bonus, new { style = "visibility:hidden", id = "BonusText" })
           </span><br />
 
@@ -173,37 +173,15 @@
     </script>
 
     <script type="text/javascript">
-        function valid() {
-            if (document.getElementById('Predop').checked) {
-                document.getElementById('PrePay').style.visibility = 'visible';
+
+        function showHide(checkbox,input)
+        {
+            if ( $(checkbox).is(':checked') ) {
+                 $(input).css('visibility', 'visible');
             }
             else {
-                document.getElementById('PrePay').style.visibility = 'hidden';
+                $(input).css('visibility', 'hidden');
             }
-        }
-        function reserv() {
-            if (document.getElementById('Reserv').checked) {
-                document.getElementById('Reservation').style.visibility = 'visible';
-            }
-            else {
-                document.getElementById('Reservation').style.visibility = 'hidden';
-            }
-        }
-        function valid2() {
-            if (document.getElementById('Summa').checked) {
-                document.getElementById('SummaAgent').style.visibility = 'visible';
-            }
-            else {
-                document.getElementById('SummaAgent').style.visibility = 'hidden';
-            }
-        }
-        function valid3() {
-            if (document.getElementById('Bonus').checked) {
-                document.getElementById('BonusText').style.visibility = 'visible';
-            }
-            else {
-                document.getElementById('BonusText').style.visibility = 'hidden';
-            }
-        }
+        } 
     </script>
 }
