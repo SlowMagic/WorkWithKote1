@@ -26,7 +26,8 @@
                 @Html.DropDownList("TypeOfTour", DropDown.SelectlistForTypeTour(), "Все туры")
                 <p>Путешествие в</p>
                 @Html.DropDownList("ArrivePlace", DropDown.SelectlistForArrive(), "Все направления")
-                @Html.DropDownList("Tag", DropDown.SelectlistForTag(), "All Tags");
+                <p>Теги</p>
+                    <input name="Tag" style="width:96%"/>
                 <p>Цена от</p>
                 @Html.DropDownList("Prices", DropDown.Price(), "Любая цена")
                 @*                <p>Тип тура</p>*@

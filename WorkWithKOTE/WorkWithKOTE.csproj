@@ -214,19 +214,24 @@
     <Content Include="Content\img\10942586.jpg" />
     <Content Include="Content\img\arr.png" />
     <Content Include="Content\img\arrow.png" />
+    <Content Include="Content\img\arrow_small.png" />
     <Content Include="Content\img\big-logo.png" />
     <Content Include="Content\img\big-preview-img.jpg" />
+    <Content Include="Content\img\calendar-dates.png" />
+    <Content Include="Content\img\calendar.png" />
     <Content Include="Content\img\facebook.png" />
     <Content Include="Content\img\fb.png" />
     <Content Include="Content\img\footer-bg.jpg" />
     <Content Include="Content\img\google.png" />
     <Content Include="Content\img\group-border.png" />
     <Content Include="Content\img\groups-bg.png" />
+    <Content Include="Content\img\guys-count.png" />
     <Content Include="Content\img\img.png" />
     <Content Include="Content\img\instagram-ico.png" />
     <Content Include="Content\img\mailme-bg.jpg" />
     <Content Include="Content\img\main-preview-image.jpg" />
     <Content Include="Content\img\media-bg.jpg" />
+    <Content Include="Content\img\megafon.png" />
     <Content Include="Content\img\no-btn.png" />
     <Content Include="Content\img\parked.jpg" />
     <Content Include="Content\img\photo1.jpg" />
@@ -376,6 +381,7 @@
     <Content Include="Scripts\Filemanager-master\utils\generate-lang.py" />
     <Content Include="Scripts\Filemanager-master\utils\minify.py" />
     <Content Include="Content\js\LICENSE" />
+    <Content Include="Content\img\calendar-dates.psd" />
     <None Include="Properties\PublishProfiles\kote-pub.pubxml" />
     <None Include="Properties\PublishProfiles\kote-pub2.pubxml" />
     <None Include="Properties\PublishProfiles\kote-pub3.pubxml" />
@@ -1172,6 +1178,7 @@
     <Content Include="Views\Buy\Payment.cshtml" />
     <Content Include="Views\News\AllNewsBlock.cshtml" />
     <Content Include="Views\Gallery\CreateGallery.cshtml" />
+    <Content Include="Views\Profile\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

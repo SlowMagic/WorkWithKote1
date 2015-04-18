@@ -43,6 +43,14 @@ namespace WorkWithKOTE.Controllers
             return View(user);
 
         }
+        [Authorize(Roles = "Admin")]
+        public ActionResult UserProfile(int id)
+        {
+            var user = db.UserProfiles.Find(id);
+            ViewBag.UserRole = Roles.GetRolesForUser(user.Email);
+            return View(user);
+
+        }
         [Authorize]
         [HttpPost]
         public ActionResult EditProfile(UserProfile model, HttpPostedFileBase file)

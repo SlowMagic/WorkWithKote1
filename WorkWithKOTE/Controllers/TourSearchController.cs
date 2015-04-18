@@ -19,7 +19,7 @@ namespace WorkWithKOTE.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search(String Date = null, String TypeOfTour = null, String ArrivePlace = null, bool IsCar = false, bool IsShip = false, bool IsTrain = false, bool IsPlane = false, string Prices = null)
+        public ActionResult Search(String Tag,String Date = null, String TypeOfTour = null, String ArrivePlace = null, bool IsCar = false, bool IsShip = false, bool IsTrain = false, bool IsPlane = false, string Prices = null)
         {
             IQueryable<Tour> data = db.Tour;
             if(!String.IsNullOrEmpty(Date))
@@ -35,6 +35,14 @@ namespace WorkWithKOTE.Controllers
             if(!String.IsNullOrEmpty(ArrivePlace))
             {
                 data = data.Where(m=>m.PlaceOfArrival == ArrivePlace);
+            }
+            if (!String.IsNullOrEmpty(Tag))
+            {
+                string[] separator = { ",",".",";" };
+                string[] TagMass = Tag.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var item in TagMass) {
+                    data = data.Where(m => m.Tag.Any(t => t.TagName == item));
+                }
             }
             if (IsCar == true)
                 data = data.Where(m => m.IsBus == true);

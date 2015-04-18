@@ -2,29 +2,64 @@
     ViewBag.Title = "SearchAllUsers";
 }
 @model IEnumerable<WorkWithKOTE.Models.UserProfile>
-<h2>SearchAllUsers</h2>
-<form method="post" action="@Url.Action("SearchAllUsers")">
-    Введите Email пользователя @Html.TextBox("mail") <br />
-    Введите Имя пользователя @Html.TextBox("name")<br />
-    Введите Фамилию пользователя @Html.TextBox("surname")<br />
-    Введите возраст пользователя @Html.TextBox("age")<br />
-    Выберите пол пользователя @Html.DropDownList("sex", new List<SelectListItem> { new SelectListItem { Text = "Мужской" }, new SelectListItem { Text = "Женский" } }, "Любой пол")<br />
-    @{int i = 1; }
-    @foreach (var item in Model)
-    {
-        @Html.DisplayFor(m => item.Email) @: Имя : @Html.DisplayFor(m => item.RuFirstName)  Фамилия : @Html.DisplayFor(m => item.RuSecondName) Дата рождения @Html.DisplayFor(m => item.Birthday) Бонусы :@Html.DisplayFor(m => item.Bonus)
-        <input type="button" value="Назначить мадоретором" onclick="location.href='@Url.Action("RolesForUser", "Admin", new { moder = @item.Email })'" />
-        @:Введите количество бонусов
-        <input type="text" id="BonusAmt+@i" name="BonusAmt" />
-        <input type="button" value="Отправить бонусы" id="Bonus" />
-        <script type="text/javascript">
-            $('#Bonus').click(function () {
-                var amtBonus = document.getElementById("BonusAmt+" + "@i").value;
-                location.href = '@Url.Action("BonusForUser", "Admin", new {id= item.UserId})' + "?amtBonus=" + amtBonus;
-            });
-        </script>
-        i++;
-        <hr />
-    }
-    <input type="submit" value="Поиск" />
-</form>
+@Styles.Render("~/Content/order")
+
+@{ Html.RenderPartial("HeaderPartial_main");}
+<div id="small-preview-img" class="clearfix">
+    <hgroup>
+        <h1>Поиск пользователей</h1>
+        <h2>
+            <a href="@Url.Action("Index", "Home")">Главная</a> / Поиск
+        </h2>
+    </hgroup>
+</div>
+<div class="container">
+    <div class="layout">
+        <form method="post" action="@Url.Action("SearchAllUsers")">
+
+            <div class="layout-left-column">
+                <p>Email </p>
+                <input style="width:96%" name="mail" />
+                <p>Имя</p>
+                <input style="width:96%" name="name" />
+                <p>Фамилия</p>
+                <input style="width:96%" name="surname" />
+                <p>Возраст</p>
+                <input style="width:96%" name="age" />
+                <p>Пол</p>
+                @Html.DropDownList("sex", new List<SelectListItem> { new SelectListItem { Text = "Мужской" }, new SelectListItem { Text = "Женский" } }, "Любой пол")<br />
+                <a href="#" class="button" onclick=" $(this).closest('form').submit(); return false;">Поиск</a>
+            </div>
+            <div class="layout-main-right">
+                <div class="found-tour">
+                    @{
+                        int index = 0;
+                        bool flag = true;
+                    }
+                    @{ int max = Model.Count(); }
+                    @foreach (var item in Model)
+                    {
+                        if (index >= max / 2 && flag)
+                        {
+                            flag = false;
+                            @:</div>
+                        @:<div class="found-tour">
+                        }
+                        <div style="margin-bottom: 15px; width: 250px; border: 1px solid #ccc; padding: 5px">
+                            <h4>
+                                @Html.DisplayFor(m => item.Email)
+                            </h4>
+                            <img style="height: 150px; width: 150px;  left: 0; right: 0; margin: auto; border-radius: 50%; padding: 5px" src="@Html.DisplayFor(m => item.Avatar)">
+                            <p>  Имя : @Html.DisplayFor(m => item.RuFirstName)  </p>
+                            <p>Фамилия : @Html.DisplayFor(m => item.RuSecondName)</p>
+                            <p> Дата рождения: @Html.DisplayFor(m => item.Birthday)</p>
+                            <p>Бонусы :@Html.DisplayFor(m => item.Bonus)</p>
+                            @*                            <a class=" button " style="float: none; margin-top: 10px" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'>Просмотреть тур</a>*@
+                        </div>
+                        index++;
+                    }
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "UserProfile";
+}
+@model WorkWithKOTE.Models.UserProfile
+<h2>UserProfile</h2>
+@Html.DisplayFor(m=>m.Email)<br/>
+@Html.DisplayFor(m=>m.RuFirstName)<br/>
+<p>@ViewBag.UserRole</p>
+<input type="text" id="bonus" name="UserBonus"/>
+<input type="button" id="#GiveBonus" value="Отправить бонусы" />
+<script type="text/javascript">
+    $(function () {
+        $('#GiveBonus').click(function () {
+            var i = @Model.UserId 
+            $.post('url', { 'UserBonus': $('#bonus').val(), "UserId": i });
+        });
+    });
+    </script>
+
+});
