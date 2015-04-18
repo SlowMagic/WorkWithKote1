@@ -33,7 +33,7 @@ namespace WorkWithKOTE.Controllers
                 {
                     UserProfile user = db.UserProfiles.Include(m => m.VisitedTours).First(m => m.UserId == id);
                     ViewBag.UserRole = Roles.GetRolesForUser(user.Email);
-                    ViewBag.TripsId = new SelectList(db.Trip.Where(m => m.UserId == id), "TripID", "TripID");
+                    ViewBag.Id = new SelectList(db.Trip.Where(m => m.UserId == id), "TripID", "TripID");
                     return View(user);
                 }
                 else
@@ -41,7 +41,7 @@ namespace WorkWithKOTE.Controllers
                     int i = WebSecurity.GetUserId(User.Identity.Name);
                     UserProfile user = db.UserProfiles.Include(m => m.VisitedTours).First(m => m.UserId == i);
                     ViewBag.UserRole = Roles.GetRolesForUser(User.Identity.Name);
-                    ViewBag.TripsId = new SelectList(db.Trip.Where(m => m.UserId == i), "TripID", "TripID");
+                    ViewBag.Id = new SelectList(db.Trip.Where(m => m.UserId == i), "TripID", "TripID");
                     return View(user);
                 }
             }

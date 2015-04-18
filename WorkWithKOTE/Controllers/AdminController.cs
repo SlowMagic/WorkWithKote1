@@ -72,5 +72,6 @@ namespace WorkWithKOTE.Controllers
             db.SaveChanges();
             return RedirectToAction("Profile","Profile", new { id = UserId });
         }
+
     }
 }

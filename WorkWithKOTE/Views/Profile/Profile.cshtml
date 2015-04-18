@@ -7,14 +7,13 @@
 
 <style>
     .bonuses {
-        max-width : 55px;
-        display : inline-block;
+        max-width: 55px;
+        display: inline-block;
     }
 
-    #change-profile{
-        margin-top : 19px;
+    #change-profile {
+        margin-top: 19px;
     }
-
 </style>
 <div id="small-preview-img" class="clearfix">
 
@@ -32,7 +31,7 @@
             <a href="@Url.Action("CreateNews", "News")">Создать&nbsp;новость&nbsp;</a>
             @*        <a href="#">Пользователи</a>*@
             <a href="@Url.Action("TourCreate", "TourCreate")">Создать&nbsp;тур&nbsp;</a>
-    <a href="@Url.Action("LogOff", "Account")">Выход</a>
+            <a href="@Url.Action("LogOff", "Account")">Выход</a>
             @*        <a href="#">Бронь тура для агента</a>*@
             @*        <a href="#">Управление заявками</a>*@
         }
@@ -45,20 +44,23 @@
                 <p>
                     Группа:
                 </p>
-                    @if (ViewBag.UserRole != null)
+                @if (ViewBag.UserRole != null)
+                {
+                    foreach (var item in ViewBag.UserRole)
                     {
-                        foreach (var item in ViewBag.UserRole)
-                        {
-                            <span id="user-position">@item</span>
-                        }
+                        <span id="user-position">@item</span>
                     }
+                }
                 <p>
                     Бонусы: <span id="user-bonuses">@Html.DisplayFor(m => m.Bonus)</span>&nbsp;грн.
-                    @using (Ajax.BeginForm("BonusForUser", "Admin", new AjaxOptions { UpdateTargetId = "user-bonuses" }))
+                    @if (User.IsInRole("Admin"))
                     {
-                        <input class="bonuses" type="text" id="bonus" name="UserBonus" />
-                        <input type="hidden" name="UserId" value="@Model.UserId" />
-                        <input class="bonuses" type="submit" value="Ok" />
+                        using (Ajax.BeginForm("BonusForUser", "Admin", new AjaxOptions { UpdateTargetId = "user-bonuses" }))
+                        {
+                            <input class="bonuses" type="text" id="bonus" name="UserBonus" />
+                            <input type="hidden" name="UserId" value="@Model.UserId" />
+                            <input class="bonuses" type="submit" value="Ok" />
+                        }
                     }
                 </p>
             </div>
@@ -88,22 +90,37 @@
                     <th>Название тура</th>
                     <th>Даты</th>
                 </tr>
-                @if (Model.VisitedTours != null) { 
-                foreach (var item in Model.VisitedTours)
+                @if (Model.VisitedTours != null)
                 {
-                    if (item.FirstDate < DateTime.Now)
+                    foreach (var item in Model.VisitedTours)
                     {
-                        <tr>
-                            <td>@Html.DisplayFor(m => item.TourName)</td>
-                            <td>@Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)</td>
-                        </tr>
+                        if (item.FirstDate < DateTime.Now)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(m => item.TourName)</td>
+                                <td>@Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)</td>
+                            </tr>
+                        }
                     }
-                }
                 }
             </table>
 
 
         </div>
-    </div> 
-    @{Html.RenderAction("UsersTour", new { id = Model.UserId });}
+    </div>
+    <div id="TripTable">
+        @{Html.RenderAction("UsersTour", new { id = Model.UserId });}
+    </div>
+    @using (Ajax.BeginForm("Payment", "Buy", new AjaxOptions { UpdateTargetId = "TripTable" }))
+    {
+        @Html.DropDownList("Id") 
+        <input type="submit" value="Оплатить" />
+    }
+    @if (User.IsInRole("Admin"))
+    {
+        using (Ajax.BeginForm("Pay", "Admin", new AjaxOptions { UpdateTargetId = "TripTable" }))
+        {
+             @Html.DropDownList("Id") 
+        }
+    }
 </div>

@@ -1185,11 +1185,14 @@
     <Content Include="Views\Profile\UserProfileTag.cshtml" />
     <Content Include="UpLoad\Documents\agentsky_KOTE.docx" />
     <Content Include="UpLoad\Documents\nadannya_poslug.doc" />
+    <Content Include="Views\Gallery\GalleryList.cshtml" />
+    <Content Include="Views\Gallery\Gallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UpLoad\Avatar\" />
     <Folder Include="UpLoad\ContentImg\" />
+    <Folder Include="UpLoad\Gallery\" />
     <Folder Include="UpLoad\SuppFoto\" />
     <Folder Include="UpLoad\TourDescription\" />
     <Folder Include="UpLoad\TourDocument\" />
