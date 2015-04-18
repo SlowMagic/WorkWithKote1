@@ -38,7 +38,7 @@ namespace WorkWithKOTE.Controllers
             }
             if (!String.IsNullOrEmpty(Tag))
             {
-                string[] separator = { ",",".",";" };
+                string[] separator = { ",",".",";"," "};
                 string[] TagMass = Tag.Split(separator, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var item in TagMass) {
                     data = data.Where(m => m.Tag.Any(t => t.TagName == item));

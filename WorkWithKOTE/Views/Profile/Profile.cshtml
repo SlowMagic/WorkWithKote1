@@ -28,12 +28,27 @@
     <div class="layout">
         <div class="layout-right-column">
             <div id="user-profile">
-                <img src="@Html.DisplayFor(m => m.Avatar)" class="tourist">
-
-                <p>Группа: <span id="user-position">Администратор</span></p>
+                <img style="margin-left:20px;" src="@Html.DisplayFor(m => m.Avatar)" class="tourist">
 
                 <p>
+                    Группа:
+                </p>
+                    @if (ViewBag.UserRole != null)
+                    {
+                        foreach (var item in ViewBag.UserRole)
+                        {
+                            <span id="user-position">@item</span>
+                        }
+                    }
+                <p>
                     Бонусы: <span id="user-bonuses">@Html.DisplayFor(m => m.Bonus)</span>&nbsp;грн.
+                    @using (Ajax.BeginForm("BonusForUser", "Admin", new AjaxOptions { UpdateTargetId = "user-bonuses" }))
+                    {
+                        <input type="text" id="bonus" name="UserBonus" />
+                        <input type="hidden" name="UserId" value="@Model.UserId" />
+                        <input type="submit" value="Отправить бонусы" />
+
+                    }
                 </p>
             </div>
             <p>Фамилия: <span id="user-surname">@Html.DisplayFor(m => m.RuSecondName)</span></p>
@@ -62,7 +77,8 @@
                     <th>Название тура</th>
                     <th>Даты</th>
                 </tr>
-                @foreach (var item in Model.VisitedTours)
+                @if (Model.VisitedTours != null) { 
+                foreach (var item in Model.VisitedTours)
                 {
                     if (item.FirstDate < DateTime.Now)
                     {
@@ -71,6 +87,7 @@
                             <td>@Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)</td>
                         </tr>
                     }
+                }
                 }
             </table>
 

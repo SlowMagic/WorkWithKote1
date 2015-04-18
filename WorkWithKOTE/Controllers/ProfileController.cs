@@ -25,13 +25,32 @@ namespace WorkWithKOTE.Controllers
         // GET: /Account/Logi
 
         [Authorize]
-        public ActionResult Profile()
+        public ActionResult Profile(int? id)
         {
-
-            int i = WebSecurity.GetUserId(User.Identity.Name);
-            UserProfile user = db.UserProfiles.Include(m => m.VisitedTours).First(m => m.UserId == i);
-            ViewBag.UserRole = Roles.GetRolesForUser(User.Identity.Name);
-            return View(user);
+            if (id == null)
+            {
+                    int i = WebSecurity.GetUserId(User.Identity.Name);
+                    UserProfile user = db.UserProfiles.Include(m => m.VisitedTours).First(m => m.UserId == i);
+                    ViewBag.UserRole = Roles.GetRolesForUser(User.Identity.Name);
+                    return View(user);
+            }
+            else
+            {
+                if (User.IsInRole("Admin"))
+                {
+                    UserProfile user = db.UserProfiles.Include(m => m.VisitedTours).First(m => m.UserId == id);
+                    ViewBag.UserRole = Roles.GetRolesForUser(user.Email);
+                    return View(user);
+                }
+                else
+                {
+                    int i = WebSecurity.GetUserId(User.Identity.Name);
+                    UserProfile user = db.UserProfiles.Include(m => m.VisitedTours).First(m => m.UserId == i);
+                    ViewBag.UserRole = Roles.GetRolesForUser(User.Identity.Name);
+                    return View(user);
+                }
+            }
+           
         }
         [Authorize]
         public ActionResult EditProfile()
@@ -43,13 +62,20 @@ namespace WorkWithKOTE.Controllers
             return View(user);
 
         }
-        [Authorize(Roles = "Admin")]
-        public ActionResult UserProfile(int id)
+        
+        /*[Authorize(Roles = "Admin")]
+        [ActionName("UserProfile")]
+        public ActionResult Profile(int id)
         {
             var user = db.UserProfiles.Find(id);
-            ViewBag.UserRole = Roles.GetRolesForUser(user.Email);
+            ViewBag.UserRole  = Roles.GetRolesForUser(user.Email);
             return View(user);
 
+        }*/
+        public ActionResult UserProfileBonus(int UserId)
+        {
+            var user = db.UserProfiles.Find(UserId);
+            return PartialView(user);
         }
         [Authorize]
         [HttpPost]
