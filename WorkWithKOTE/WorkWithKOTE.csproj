@@ -1110,6 +1110,10 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="UpLoad\Documents\1.jpg" />
+    <Content Include="UpLoad\Documents\2.jpg" />
+    <Content Include="UpLoad\Documents\3.jpg" />
+    <Content Include="UpLoad\Documents\4.jpg" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1179,6 +1183,8 @@
     <Content Include="Views\News\AllNewsBlock.cshtml" />
     <Content Include="Views\Gallery\CreateGallery.cshtml" />
     <Content Include="Views\Profile\UserProfileTag.cshtml" />
+    <Content Include="UpLoad\Documents\agentsky_KOTE.docx" />
+    <Content Include="UpLoad\Documents\nadannya_poslug.doc" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
