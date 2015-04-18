@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Gallery";
+}
+@model WorkWithKOTE.Models.Gallery
+<h2>@Model.GalleryName</h2>
+@foreach (var item in Model.Pics)
+{
+    if (item.PicType == "Image")
+    {
+        <img src="@Html.DisplayFor(m=>item.PicLink)" title="@item.PicName" />
+    }
+    if (item.PicType == "Video")
+    {
+        @Html.DisplayFor(m => item.PicLink);
+    }
+}
