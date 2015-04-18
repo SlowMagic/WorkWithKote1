@@ -4,6 +4,18 @@
 }
 @Styles.Render("~/Content/order")
 @{ Html.RenderPartial("HeaderPartial_main");}
+
+<style>
+    .bonuses {
+        max-width : 55px;
+        display : inline-block;
+    }
+
+    #change-profile{
+        margin-top : 19px;
+    }
+
+</style>
 <div id="small-preview-img" class="clearfix">
 
     <hgroup>
@@ -20,7 +32,7 @@
             <a href="@Url.Action("CreateNews", "News")">Создать&nbsp;новость&nbsp;</a>
             @*        <a href="#">Пользователи</a>*@
             <a href="@Url.Action("TourCreate", "TourCreate")">Создать&nbsp;тур&nbsp;</a>
-            <a href="@Url.Action("LogOff", "Account")">Выход</a>
+    <a href="@Url.Action("LogOff", "Account")">Выход</a>
             @*        <a href="#">Бронь тура для агента</a>*@
             @*        <a href="#">Управление заявками</a>*@
         }
@@ -33,27 +45,23 @@
                 <p>
                     Группа:
                 </p>
-                @if (ViewBag.UserRole != null)
-                {
-                    foreach (var item in ViewBag.UserRole)
+                    @if (ViewBag.UserRole != null)
                     {
-                        <span id="user-position">@item</span>
+                        foreach (var item in ViewBag.UserRole)
+                        {
+                            <span id="user-position">@item</span>
+                        }
                     }
-                }
                 <p>
                     Бонусы: <span id="user-bonuses">@Html.DisplayFor(m => m.Bonus)</span>&nbsp;грн.
+                    @using (Ajax.BeginForm("BonusForUser", "Admin", new AjaxOptions { UpdateTargetId = "user-bonuses" }))
+                    {
+                        <input class="bonuses" type="text" id="bonus" name="UserBonus" />
+                        <input type="hidden" name="UserId" value="@Model.UserId" />
+                        <input class="bonuses" type="submit" value="Ok" />
+                    }
                 </p>
             </div>
-            @if (User.IsInRole("Admin"))
-            {
-                using (Ajax.BeginForm("BonusForUser", "Admin", new AjaxOptions { UpdateTargetId = "user-bonuses" }))
-                {
-                    <input type="text" id="bonus" name="UserBonus" />
-                    <input type="hidden" name="UserId" value="@Model.UserId" />
-                    <input type="submit" value="Отправить бонусы" />
-
-                }
-            }
             <p>Фамилия: <span id="user-surname">@Html.DisplayFor(m => m.RuSecondName)</span></p>
 
             <p>Имя: <span id="user-name">@Html.DisplayFor(m => m.RuFirstName)</span></p>
@@ -80,30 +88,22 @@
                     <th>Название тура</th>
                     <th>Даты</th>
                 </tr>
-                @if (Model.VisitedTours != null)
+                @if (Model.VisitedTours != null) { 
+                foreach (var item in Model.VisitedTours)
                 {
-                    foreach (var item in Model.VisitedTours)
+                    if (item.FirstDate < DateTime.Now)
                     {
-                        if (item.FirstDate < DateTime.Now)
-                        {
-                            <tr>
-                                <td>@Html.DisplayFor(m => item.TourName)</td>
-                                <td>@Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)</td>
-                            </tr>
-                        }
+                        <tr>
+                            <td>@Html.DisplayFor(m => item.TourName)</td>
+                            <td>@Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)</td>
+                        </tr>
                     }
+                }
                 }
             </table>
 
 
         </div>
-    </div>
+    </div> 
     @{Html.RenderAction("UsersTour", new { id = Model.UserId });}
-   
-     @Html.DropDownList("Id")
-   @using (Ajax.BeginForm("BonusForUser", "Admin", new AjaxOptions { UpdateTargetId = "user-bonuses" }))
-    {
-      @Html.DropDownList("Id")
-      <input type="submit" value="Оплатить" />
-    }
 </div>
