@@ -54,6 +54,7 @@
                             <p>Фамилия : @Html.DisplayFor(m => item.RuSecondName)</p>
                             <p> Дата рождения: @Html.DisplayFor(m => item.Birthday)</p>
                             <p>Бонусы :@Html.DisplayFor(m => item.Bonus)</p>
+                             <input type="button" value="Перейти к профилю" onclick="location.href='@Url.Action("Profile", "Profile", new {id = item.UserId})'" />
                             @*                            <a class=" button " style="float: none; margin-top: 10px" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'>Просмотреть тур</a>*@
                         </div>
                         index++;

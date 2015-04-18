@@ -57,16 +57,17 @@ namespace WorkWithKOTE.Controllers
                 roles.AddUsersToRoles(new[] { moder }, new[] { "Moderator" });
             return RedirectToAction("SearchAllUsers", "Admin");
         }
-        public ActionResult BonusForUser(int id, int amtBonus)
+        [HttpPost]
+        public ActionResult BonusForUser(int UserId, int UserBonus)
         {
-            var user = db.UserProfiles.Find(id);
+            var user = db.UserProfiles.Find(UserId);
             if (user.Bonus != null)
-                user.Bonus = user.Bonus.Value + amtBonus;
+                user.Bonus = user.Bonus.Value + UserBonus;
             else
-                user.Bonus = amtBonus;
+                user.Bonus = UserBonus;
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("SearchAllUsers", "Admin");
+            return RedirectToAction("Profile","Profile", new { id = UserId });
         }
     }
 }
