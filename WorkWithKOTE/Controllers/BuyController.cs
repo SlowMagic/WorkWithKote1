@@ -18,16 +18,16 @@ namespace WorkWithKOTE.Controllers
     {
         //
         // GET: /Buy/
-      //  TourContext db = new TourContext();
+        //  TourContext db = new TourContext();
         UsersContext db = new UsersContext();
-        public ActionResult Index(int id )
+        public ActionResult Index(int id)
         {
             Trip data = new Trip();
             Tour tour = db.Tour.Find(id);
             if (tour != null)
             {
                 ViewBag.TourPrices = tour.Cost;
-                data .TourId = id;
+                data.TourId = id;
                 data.TourPrice = tour.Cost;
                 data.Valuta = tour.Valuta;
                 ViewBag.DateTourId = new SelectList(db.DateTours.Where(m => m.TourId == id)
@@ -56,16 +56,16 @@ namespace WorkWithKOTE.Controllers
             return View(data);
         }
         [HttpPost]
-        public ActionResult Index(int id,Trip model,string DateTourId , int[] Item)
+        public ActionResult Index(int id, Trip model, string DateTourId, int[] Item)
         {
             var tour = db.Tour.Find(id);
             decimal Price = tour.Cost.Value;
-            if(Item != null)
-            for (int i = 0; i < Item.Length; i++)
-            {
-                var DopUslug = db.DopUslugs.Find(Item[i]);
-                Price += DopUslug.Price;
-            }
+            if (Item != null)
+                for (int i = 0; i < Item.Length; i++)
+                {
+                    var DopUslug = db.DopUslugs.Find(Item[i]);
+                    Price += DopUslug.Price;
+                }
             if (model.TourPrice == Price)
             {
                 model.Status = "Не оплачена";
@@ -91,26 +91,25 @@ namespace WorkWithKOTE.Controllers
                 db.Entry(tour).State = EntityState.Modified;
                 db.Entry(model).State = EntityState.Added;
                 db.SaveChanges();
-                return RedirectToAction("Payment", new { id = model.TripID});
+                return RedirectToAction("Payment", new { id = model.TripID });
             }
             else
-                return RedirectToAction("Error","Error");
+                return RedirectToAction("Error", "Error");
         }
         public ActionResult DopPricePartial(int id = 0)
         {
-            var data = db.DopUslugs.Where(m=>m.TourId == id);
-            
+            var data = db.DopUslugs.Where(m => m.TourId == id);
+
             return View(data);
         }
-       public ActionResult Payment(int id)
+        public ActionResult Payment(int id)
         {
             var data = db.Trip.Find(id);
             var dataTour = db.Tour.Find(data.TourId);
-
             var dataObj = new
             {
                 version = 3,
-                public_key ="i69833650669",
+                public_key = "i69833650669",
                 amount = data.TourPrice,
                 currency = data.Valuta,
                 description = dataTour.NameTour,
@@ -132,42 +131,42 @@ namespace WorkWithKOTE.Controllers
             ViewBag.Data = dataStr;
             ViewBag.Signature = System.Convert.ToBase64String(hash);
 
-            return View();
+            return View(db.Trip.Where(m => m.TripID == id).Include(m => m.DateTour).Single());
         }
-         [HttpPost]
-       public ActionResult ValidatePay(string data, string signature)
-       {
-           string privateKey = "v2Rhrz287rrJtDSHq228gsg70ZkA8omC2mhl7aha";
+        [HttpPost]
+        public ActionResult ValidatePay(string data, string signature)
+        {
+            string privateKey = "v2Rhrz287rrJtDSHq228gsg70ZkA8omC2mhl7aha";
             byte[] dataByte = Convert.FromBase64String(data);
             string dataStr = Encoding.UTF8.GetString(dataByte);
             TripJS obj = JsonConvert.DeserializeObject<TripJS>(dataStr);
             int TripId = obj.order_id;
-           data = privateKey + data + privateKey;
-           SHA1 sha1 = SHA1.Create();
+            data = privateKey + data + privateKey;
+            SHA1 sha1 = SHA1.Create();
             byte[] hash = sha1.ComputeHash(System.Text.Encoding.UTF8.GetBytes(data));
-             data = System.Convert.ToBase64String(hash);
-             if(string.Compare(data,signature) == 0)
-             {
-                 var Trip = db.Trip.Find(TripId);
-                 var tour = db.Tour.Find(Trip.TourId);
-                 var dateTour = db.DateTours.Find(Trip.DateTourId);
-                 if(Trip.UserId != 1)
-                 Trip.Status = "Оплачена";
-                 VisitedTour addtour = new VisitedTour();
-                 addtour.TourName = tour.NameTour;
-                 addtour.FirstDate = dateTour.FirstDate;
-                 addtour.SecondDate = dateTour.SecondDate;
-                 var userprofile = db.UserProfiles.Find(Trip.UserId);
-                 userprofile.VisitedTours = new List<VisitedTour>();
-                 userprofile.VisitedTours.Add(addtour);
-                 userprofile.Bonus = userprofile.Bonus.Value + tour.Bonus;
-                 db.Entry(Trip).State = EntityState.Modified;
-                 db.Entry(userprofile).State = EntityState.Modified;
-                 db.SaveChanges();
-                 return RedirectToAction("Index", "TourDisplay", new { id = Trip.TourId});
-             }
-           return View("Error","Error");
-       }
-        
+            data = System.Convert.ToBase64String(hash);
+            if (string.Compare(data, signature) == 0)
+            {
+                var Trip = db.Trip.Find(TripId);
+                var tour = db.Tour.Find(Trip.TourId);
+                var dateTour = db.DateTours.Find(Trip.DateTourId);
+                if (Trip.UserId != 1)
+                    Trip.Status = "Оплачена";
+                VisitedTour addtour = new VisitedTour();
+                addtour.TourName = tour.NameTour;
+                addtour.FirstDate = dateTour.FirstDate;
+                addtour.SecondDate = dateTour.SecondDate;
+                var userprofile = db.UserProfiles.Find(Trip.UserId);
+                userprofile.VisitedTours = new List<VisitedTour>();
+                userprofile.VisitedTours.Add(addtour);
+                userprofile.Bonus = userprofile.Bonus.Value + tour.Bonus;
+                db.Entry(Trip).State = EntityState.Modified;
+                db.Entry(userprofile).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "TourDisplay", new { id = Trip.TourId });
+            }
+            return View("Error", "Error");
+        }
+
     }
 }

@@ -1,8 +1,11 @@
 ﻿@{
     ViewBag.Title = "Payment";
 }
-
+@model WorkWithKOTE.Models.Trip
+  Даты:  @Html.DisplayFor(m=>m.DateTour.FirstDate)  
+  @Html.DisplayFor(m=>m.FatherName)
 <form method="POST" accept-charset="utf-8" action="https://www.liqpay.com/api/checkout">
+
     <input type="hidden" name="data" value="@ViewBag.Data" />
     <input type="hidden" name="signature" value="@ViewBag.Signature" />
     <input type="image" src="//static.liqpay.com/buttons/p1ru.radius.png" name="btn_text" />
