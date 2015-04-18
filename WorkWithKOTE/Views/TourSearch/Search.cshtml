@@ -64,21 +64,29 @@
                         if (index >= max / 2 && flag)
                         {
                             flag = false;
-                           @: </div>
-                           @:<div class="found-tour">
+                            @:</div>
+                            @:<div class="found-tour">
                         }
-                            <div style="margin-bottom: 15px">
-                                 <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m=>c.Valuta)</h3><br/>
-                                <img style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)">
-                                <h4> @Html.DisplayFor(m => c.TitleTour)</h4><br/>
-                                @foreach(var item in c.DateTour)
-                                {
-                                   @Html.DisplayFor(m => item.FirstDate) @: -  @Html.DisplayFor(m => item.SecondDate)
-                                }
-                                <a class=" button " style="float: none; margin-top: 10px" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'>Просмотреть тур</a>
+                        <div style="margin-bottom: 15px">
+                            <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m=>c.Valuta)</h3><br />
+                            <img style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)">
+                            <h4> @Html.DisplayFor(m => c.NameTour)</h4><br />
+                            <div class="date-select mini">
+                                <label>
+                                    <select>
+                                        @foreach (var item in c.DateTour)
+                                        {
+                                            <option>
+                                                @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
+                                            </option>
+                                        }
+                                    </select>
+                                </label>
                             </div>
-                             index++;
-                    }
+                            <a class=" button " style="float: none; margin-top: 10px" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'>Просмотреть тур</a>
+                        </div>
+                            index++;
+                            }
                 </div>
             </div>
         </form>
