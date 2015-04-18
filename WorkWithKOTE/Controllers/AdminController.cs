@@ -57,7 +57,7 @@ namespace WorkWithKOTE.Controllers
                 roles.AddUsersToRoles(new[] { moder }, new[] { "Moderator" });
             return RedirectToAction("SearchAllUsers", "Admin");
         }
-        public ActionResult BonusForUser(int id)
+        public ActionResult BonusForUser(int id, int amtBonus)
         {
             var user = db.UserProfiles.Find(id);
             if (user.Bonus != null)
