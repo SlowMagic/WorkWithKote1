@@ -27,7 +27,7 @@
                 <p>Возраст</p>
                 <input style="width:96%" name="age" />
                 <p>Пол</p>
-                    @Html.DropDownList("sex", new List<SelectListItem> { new SelectListItem { Text = "Мужской" }, new SelectListItem { Text = "Женский" } }, "Любой пол")<br />
+                @Html.DropDownList("sex", new List<SelectListItem> { new SelectListItem { Text = "Мужской" }, new SelectListItem { Text = "Женский" } }, "Любой пол")<br />
                 <a href="#" class="button" onclick=" $(this).closest('form').submit(); return false;">Поиск</a>
             </div>
             <div class="layout-main-right">
@@ -50,13 +50,13 @@
                                 @Html.DisplayFor(m => item.Email)
                             </h4>
                             <img style="height: 150px; width: 150px;  left: 0; right: 0; margin: auto; border-radius: 50%; padding: 5px" src="@Html.DisplayFor(m => item.Avatar)">
-                            <p>  Имя : @Html.DisplayFor(m => item.RuFirstName)  </p> 
+                            <p>  Имя : @Html.DisplayFor(m => item.RuFirstName)  </p>
                             <p>Фамилия : @Html.DisplayFor(m => item.RuSecondName)</p>
                             <p> Дата рождения: @Html.DisplayFor(m => item.Birthday)</p>
                             <p>Бонусы :@Html.DisplayFor(m => item.Bonus)</p>
-                                @*                            <a class=" button " style="float: none; margin-top: 10px" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'>Просмотреть тур</a>*@
-</div>
-                                        index++;
+                            @*                            <a class=" button " style="float: none; margin-top: 10px" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'>Просмотреть тур</a>*@
+                        </div>
+                        index++;
                     }
                 </div>
             </div>
