@@ -52,10 +52,12 @@
     });
     function checkType(count) {
         if ($('#chimg'+count).is(':checked')) {
-            $('#inpvid' + count).hide(); $('#inpimg' + count).show()
+            $('#inpvid' + count).hide();
+            $('#inpimg' + count).show();
         }
         if ($('#chvid' + count).is(':checked')) {
-            $('#inpimg' + count).hide(); $('#inpvid' + count).show()
+            $('#inpimg' + count).hide();
+            $('#inpvid' + count).show();
         }
     }
     function addPic(count, get) {
