@@ -28,8 +28,15 @@ namespace WorkWithKOTE.Controllers
             {
                 ViewBag.TourPrices = tour.Cost;
                 data.TourId = id;
-                data.TourPrice = tour.Cost;
-                data.Valuta = tour.Valuta;
+                if (tour.AukcionPrice != null)
+                {
+                    data.TourPrice = tour.AukcionPrice;
+                }
+                else
+                {
+                    data.TourPrice = tour.Cost;
+                    data.Valuta = tour.Valuta;
+                }
                 ViewBag.DateTourId = new SelectList(db.DateTours.Where(m => m.TourId == id)
                 .AsEnumerable()
                 .Select(m => new
@@ -58,14 +65,22 @@ namespace WorkWithKOTE.Controllers
         [HttpPost]
         public ActionResult Index(int id, Trip model, string DateTourId, int[] Item)
         {
+            var selectedDop = new List<SelectedDopUslug>();
             var tour = db.Tour.Find(id);
             decimal Price = tour.Cost.Value;
             if (Item != null)
                 for (int i = 0; i < Item.Length; i++)
                 {
                     var DopUslug = db.DopUslugs.Find(Item[i]);
+                    selectedDop.Add(new SelectedDopUslug { SelectedDopUslugName = DopUslug.Name, SelectedDopPrice = DopUslug.Price });
                     Price += DopUslug.Price;
+
                 }
+            model.SelectedDopUslug = new List<SelectedDopUslug>();
+            foreach (var item in selectedDop)
+            {
+                model.SelectedDopUslug.Add(item);
+            }
             if (model.TourPrice == Price)
             {
                 model.Status = "Не оплачена";
@@ -115,7 +130,9 @@ namespace WorkWithKOTE.Controllers
                 description = dataTour.NameTour,
                 order_id = data.TripID,
                 pay_way = "card,liqpay,delayed,invoice,privat24",
-                language = "ru"
+                language = "ru",
+                server_url = Url.Action("ValValidatePay","Buy"),
+                result_url = Url.Action("Profile","Profile")
             };
 
             System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
@@ -131,7 +148,7 @@ namespace WorkWithKOTE.Controllers
             ViewBag.Data = dataStr;
             ViewBag.Signature = System.Convert.ToBase64String(hash);
 
-            return View(db.Trip.Where(m => m.TripID == id).Include(m => m.DateTour).Single());
+            return View(db.Trip.Where(m => m.TripID == id).Include(m => m.DateTour).Include(m=>m.SelectedDopUslug).Single());
         }
         [HttpPost]
         public ActionResult ValidatePay(string data, string signature)
@@ -167,6 +184,63 @@ namespace WorkWithKOTE.Controllers
             }
             return View("Error", "Error");
         }
-
+        public ActionResult TripEdit(int IdTrip)
+        {
+            var data = db.Trip.Find(IdTrip);
+            var tour = db.Tour.Find(data.TourId);
+            ViewBag.DateTourId = new SelectList(db.DateTours.Where(m => m.TourId == data.TourId)
+                  .AsEnumerable()
+                .Select(m => new
+                {
+                    Date = m.FirstDate.ToString("dd.MM.yyyy"),
+                    ID = m.DateTourId
+                }), "ID", "Date", data.DateTourId);
+            if (tour.AukcionPrice != null)
+            {
+                data.TourPrice = tour.AukcionPrice;
+                ViewBag.TourPrices = tour.AukcionPrice;
+            }
+            else
+            {
+                data.TourPrice = tour.Cost;
+                ViewBag.TourPrices = tour.Cost;
+            }
+            data.TourPrice = tour.Cost;
+            data.Valuta = tour.Valuta;
+            return View(data);
+        }
+        [HttpPost]
+        public ActionResult TripEdit(Trip model, string DateTourId, int[] Item)
+        {
+            List<SelectedDopUslug> selectedDop = new List<SelectedDopUslug>();
+            var tour = db.Tour.Find(model.TourId);
+            decimal Price = tour.Cost.Value;
+            if (Item != null)
+                for (int i = 0; i < Item.Length; i++)
+                {
+                    var DopUslug = db.DopUslugs.Find(Item[i]);
+                    Price += DopUslug.Price;
+                }
+            var oldDopUslug = db.SelectedDopUslugs.Where(m => m.TripID == model.TripID);
+            foreach(var item in oldDopUslug)
+            {
+                db.Entry(item).State = EntityState.Deleted;
+            }
+            model.SelectedDopUslug = new List<SelectedDopUslug>();
+            foreach (var item in selectedDop)
+            {
+                model.SelectedDopUslug.Add(item);
+            }
+            if (model.TourPrice == Price)
+            {
+                model.Status = "Не оплачена";
+                model.DateTourId = int.Parse(DateTourId);
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Payment", new { id = model.TripID });
+            }
+            else
+                return RedirectToAction("Error", "Error");
+        }
     }
 }

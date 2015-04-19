@@ -72,6 +72,28 @@ namespace WorkWithKOTE.Controllers
             db.SaveChanges();
             return RedirectToAction("Profile","Profile", new { id = UserId });
         }
-
+        public ActionResult SubmitTrip(int id)
+        {
+            var trip = db.Trip.Find(id);
+            trip.Status = "Оплачена";
+            db.Entry(trip).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Profile", "Profile", new {id = trip.UserId });
+        }
+        public ActionResult CancleTrip(int id)
+        {
+            var trip = db.Trip.Find(id);
+            trip.Status = "Отклонена";
+            db.Entry(trip).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Profile", "Profile", new { id = trip.UserId });
+        }
+        public ActionResult DeleteTrip(int id)
+        {
+            var trip = db.Trip.Find(id);
+            db.Entry(trip).State = EntityState.Deleted;
+            db.SaveChanges();
+            return RedirectToAction("Profile", "Profile", new { id = trip.UserId });
+        }
     }
 }
