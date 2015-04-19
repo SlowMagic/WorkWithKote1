@@ -83,6 +83,7 @@ namespace WorkWithKOTE.Models
         public string KindOfPay { get; set; }
         public int? People { get; set; }
         public int? AllPeople { get; set; }
+        public int? AllPeolpeFake { get; set; }
         public string TourImg { get; set; }
         public List<SameTour> SameTour { get; set; }
         public string Document { get; set; }

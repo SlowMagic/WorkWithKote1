@@ -41,6 +41,7 @@ namespace WorkWithKOTE.Controllers
                     model.SameTour.Add(new SameTour { SameTourID = d.TourId, SameTourName = d.NameTour });
                 }
             }
+            model.AllPeolpeFake = model.People.Value;
             string check = UploadImages.UploadImg(TourImg, "/UpLoad/TourImg/");
 
             if (check != null)
@@ -83,6 +84,7 @@ namespace WorkWithKOTE.Controllers
                     model.SameTour.Add(new SameTour { SameTourID = d.TourId, SameTourName = d.NameTour });
                 }
             }
+            model.AllPeolpeFake = model.People.Value;
             string check = UploadImages.UploadImg(TourImg, "/UpLoad/TourImg/"); 
             if (check != null)
                 model.TourImg = check;

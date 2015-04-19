@@ -81,35 +81,46 @@ namespace WorkWithKOTE.Controllers
             {
                 model.SelectedDopUslug.Add(item);
             }
-            if (model.TourPrice == Price)
+            if (tour.People <= tour.AllPeople && tour.AllPeolpeFake != 0)
             {
-                model.Status = "Не оплачена";
-                model.DateTourId = int.Parse(DateTourId);
-                if (Request.IsAuthenticated)
+                tour.AllPeople  = tour.People - tour.AllPeolpeFake;
+                tour.AllPeolpeFake  = 0;
+            }
+            if(tour.People <= tour.AllPeople)
+            {
+                if (model.TourPrice == Price)
                 {
-                    int userID = WebSecurity.GetUserId(User.Identity.Name);
-                    UserProfile userprofile = db.UserProfiles.Find(userID);
-                    userprofile.Trips = new List<Trip>();
-                    userprofile.Trips.Add(model);
-                    db.Entry(userprofile).State = EntityState.Modified;
+                    model.Status = "Не оплачена";
+                    model.DateTourId = int.Parse(DateTourId);
+                    if (Request.IsAuthenticated)
+                    {
+                        int userID = WebSecurity.GetUserId(User.Identity.Name);
+                        UserProfile userprofile = db.UserProfiles.Find(userID);
+                        userprofile.Trips = new List<Trip>();
+                        userprofile.Trips.Add(model);
+                        db.Entry(userprofile).State = EntityState.Modified;
+                    }
+                    tour.Trips = new List<Trip>();
+                    tour.Trips.Add(model);
+                    if (!Request.IsAuthenticated)
+                    {
+                        int anonimusID = WebSecurity.GetUserId("Anonimus@mail.com");
+                        UserProfile anonimus = db.UserProfiles.Find(anonimusID);
+                        anonimus.Trips = new List<Trip>();
+                        anonimus.Trips.Add(model);
+                        db.Entry(anonimus).State = EntityState.Added;
+                    }
+                    tour.People = tour.People.Value + 1;
+                    db.Entry(tour).State = EntityState.Modified;
+                    db.Entry(model).State = EntityState.Added;
+                    db.SaveChanges();
+                    return RedirectToAction("Payment", new { id = model.TripID });
                 }
-                tour.Trips = new List<Trip>();
-                tour.Trips.Add(model);
-                if (!Request.IsAuthenticated)
-                {
-                    int anonimusID = WebSecurity.GetUserId("Anonimus@mail.com");
-                    UserProfile anonimus = db.UserProfiles.Find(anonimusID);
-                    anonimus.Trips = new List<Trip>();
-                    anonimus.Trips.Add(model);
-                    db.Entry(anonimus).State = EntityState.Added;
-                }
-                db.Entry(tour).State = EntityState.Modified;
-                db.Entry(model).State = EntityState.Added;
-                db.SaveChanges();
-                return RedirectToAction("Payment", new { id = model.TripID });
+                else
+                    return RedirectToAction("Error", "Error");
             }
             else
-                return RedirectToAction("Error", "Error");
+                return RedirectToAction("Максимальное количество людей");
         }
         public ActionResult DopPricePartial(int id = 0)
         {
