@@ -26,11 +26,11 @@ namespace WorkWithKOTE.Controllers
             Tour tour = db.Tour.Find(id);
             if (tour != null)
             {
-                ViewBag.TourPrices = tour.Cost;
                 data.TourId = id;
                 if (tour.AukcionPrice != null)
                 {
                     data.TourPrice = tour.AukcionPrice;
+                    ViewBag.TourPrices = tour.AukcionPrice;     
                 }
                 else
                 {
@@ -67,7 +67,11 @@ namespace WorkWithKOTE.Controllers
         {
             var selectedDop = new List<SelectedDopUslug>();
             var tour = db.Tour.Find(id);
-            decimal Price = tour.Cost.Value;
+            decimal Price = 0;
+            if(tour.AukcionPrice != null)
+               Price = tour.AukcionPrice.Value;
+            else
+               Price = tour.Cost.Value;
             if (Item != null)
                 for (int i = 0; i < Item.Length; i++)
                 {
@@ -197,6 +201,7 @@ namespace WorkWithKOTE.Controllers
         }
         public ActionResult TripEdit(int IdTrip)
         {
+
             var data = db.Trip.Find(IdTrip);
             var tour = db.Tour.Find(data.TourId);
             ViewBag.DateTourId = new SelectList(db.DateTours.Where(m => m.TourId == data.TourId)
@@ -216,7 +221,12 @@ namespace WorkWithKOTE.Controllers
                 data.TourPrice = tour.Cost;
                 ViewBag.TourPrices = tour.Cost;
             }
-            data.TourPrice = tour.Cost;
+            var oldDopUslug = db.SelectedDopUslugs.Where(m => m.TripID == IdTrip);
+            foreach (var item in oldDopUslug)
+            {
+                db.Entry(item).State = EntityState.Deleted;
+            }
+            db.SaveChanges();
             data.Valuta = tour.Valuta;
             return View(data);
         }
@@ -225,18 +235,17 @@ namespace WorkWithKOTE.Controllers
         {
             List<SelectedDopUslug> selectedDop = new List<SelectedDopUslug>();
             var tour = db.Tour.Find(model.TourId);
-            decimal Price = tour.Cost.Value;
+            decimal Price = 0;
+            if (tour.AukcionPrice != null)
+                Price = tour.AukcionPrice.Value;
+            else
+                Price = tour.Cost.Value;
             if (Item != null)
                 for (int i = 0; i < Item.Length; i++)
                 {
                     var DopUslug = db.DopUslugs.Find(Item[i]);
                     Price += DopUslug.Price;
                 }
-            var oldDopUslug = db.SelectedDopUslugs.Where(m => m.TripID == model.TripID);
-            foreach(var item in oldDopUslug)
-            {
-                db.Entry(item).State = EntityState.Deleted;
-            }
             model.SelectedDopUslug = new List<SelectedDopUslug>();
             foreach (var item in selectedDop)
             {

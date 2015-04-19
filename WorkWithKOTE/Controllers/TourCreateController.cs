@@ -41,7 +41,8 @@ namespace WorkWithKOTE.Controllers
                     model.SameTour.Add(new SameTour { SameTourID = d.TourId, SameTourName = d.NameTour });
                 }
             }
-            if(model.People != null)
+            if (model.People == null)
+                model.People = 0;
             model.AllPeolpeFake = model.People.Value;
             string check = UploadImages.UploadImg(TourImg, "/UpLoad/TourImg/");
 
