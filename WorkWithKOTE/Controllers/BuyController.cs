@@ -244,17 +244,16 @@ namespace WorkWithKOTE.Controllers
                 for (int i = 0; i < Item.Length; i++)
                 {
                     var DopUslug = db.DopUslugs.Find(Item[i]);
+                    selectedDop.Add(new SelectedDopUslug { SelectedDopUslugName = DopUslug.Name, SelectedDopPrice = DopUslug.Price, TripID = model.TripID});
                     Price += DopUslug.Price;
                 }
-            model.SelectedDopUslug = new List<SelectedDopUslug>();
-            foreach (var item in selectedDop)
-            {
-                model.SelectedDopUslug.Add(item);
-            }
             if (model.TourPrice == Price)
             {
                 model.Status = "Не оплачена";
                 model.DateTourId = int.Parse(DateTourId);
+                foreach(var item in selectedDop){
+                    db.Entry(item).State = EntityState.Added; 
+                }
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Payment", new { id = model.TripID });
