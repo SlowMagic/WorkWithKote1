@@ -81,9 +81,9 @@ namespace WorkWithKOTE.Controllers
             {
                 model.SelectedDopUslug.Add(item);
             }
-            if (tour.People <= tour.AllPeople && tour.AllPeolpeFake != 0)
+            if (tour.People >= tour.AllPeople && tour.AllPeolpeFake != 0)
             {
-                tour.AllPeople  = tour.People - tour.AllPeolpeFake;
+                tour.People  = tour.People.Value - tour.AllPeolpeFake.Value;
                 tour.AllPeolpeFake  = 0;
             }
             if(tour.People <= tour.AllPeople)

@@ -93,6 +93,9 @@ namespace WorkWithKOTE.Controllers
             data.TourMain = TourList(4);
             data.Galleries = db.Gallery.Include(m => m.Pics).ToList();
             data.Galleries.Reverse();
+            data.TourRecomendHight = TourList(3, 1);
+            data.TourRecomendCenter = TourList(3, 2);
+            data.TourRecomendDown = TourList(3, 3);
             return View(data);
         }
         public ActionResult DateForCurrentTour(int id)

@@ -94,6 +94,7 @@ namespace WorkWithKOTE.Models
         public IList<DopUslug> DopUslug { get; set; }
         public int? GalleryID { get; set; }
         public Gallery Gallery { get; set; }
+        public DateTime? DateTrip { get; set; }
         public int LogoId { get; set; }
         public BigLogo BigLogo { get; set; }
         public List<Trip> Trips { get; set; }
@@ -175,7 +176,10 @@ namespace WorkWithKOTE.Models
         public Tour TourDownPrev { get; set; }
         public List<Tour> TourDown { get; set; }
         public List<Tour> TourMain { get; set; }
-        public List<Gallery> Galleries { get; set; } 
+        public List<Gallery> Galleries { get; set; }
+        public List<Tour> TourRecomendHight { get; set; }
+        public List<Tour> TourRecomendCenter { get; set; }
+        public List<Tour> TourRecomendDown { get; set; }
     }
     [Table("News")]
     public class News

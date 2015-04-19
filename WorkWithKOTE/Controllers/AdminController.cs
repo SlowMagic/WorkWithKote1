@@ -84,14 +84,20 @@ namespace WorkWithKOTE.Controllers
         {
             var trip = db.Trip.Find(id);
             trip.Status = "Отклонена";
+            var tour = db.Tour.Find(trip.TourId);
+            tour.People = tour.People.Value - 1;
             db.Entry(trip).State = EntityState.Modified;
+            db.Entry(tour).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Profile", "Profile", new { id = trip.UserId });
         }
         public ActionResult DeleteTrip(int id)
         {
             var trip = db.Trip.Find(id);
+            var tour = db.Tour.Find(trip.TourId);
+            tour.People = tour.People.Value - 1;
             db.Entry(trip).State = EntityState.Deleted;
+            db.Entry(tour).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Profile", "Profile", new { id = trip.UserId });
         }
