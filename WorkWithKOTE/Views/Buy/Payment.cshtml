@@ -2,10 +2,11 @@
     ViewBag.Title = "Payment";
 }
 @model WorkWithKOTE.Models.Trip
+  <h6>ПОЗДРАВЛЯЕМ, ПИДРИЛА,ТЫ ЗАБРОНИРОВАЛ ТУР!!!! МОЖЕШЬ ЕГО ОПЛАТИТЬ СРАЗУ ИЛИ ОПЛАТИТЬ ПОЗЖЕ!!! ПРИЯТНОГО ОТСОСА.ВАШ МУРЧИК </h6>
   Даты:  @Html.DisplayFor(m=>m.DateTour.FirstDate)  
   @Html.DisplayFor(m=>m.FatherName)
-<input type="button" value="Изменить" onclick="location.href='@Url.Action("TripEdit", "Buy", new { IdTrip = Model.TripID })'" />
-<input type="button" value="Забронировать" onclick="location.href='@Url.Action("Profile","Profile",null)'" />
+<input type="button" value="Изменить Информацию" onclick="location.href='@Url.Action("TripEdit", "Buy", new { IdTrip = Model.TripID })'" />
+<input type="button" value="Вернуться в Профиль" onclick="location.href='@Url.Action("Profile","Profile",null)'" />
 @foreach(var item in Model.SelectedDopUslug)
 {
     @Html.DisplayFor(m=>item.SelectedDopUslugName) @:( @Html.DisplayFor(m=>item.SelectedDopPrice))

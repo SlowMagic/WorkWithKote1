@@ -177,13 +177,13 @@
                 <input value="@Model.email" name="email" placeholder="user000@mail.com">
             </div>
         </div>
-
+        <input type="hidden" name="DateTrip" value="@DateTime.Now" />
         <div class="layout">
             <div id="i-agree">
                 <input id="agree" type="checkbox">
                 <label id="agreeLabel" for="agree">Cогласен с условиями соглашения</label>
             </div>
-            <input type="submit" disabled value="Перейти к оплате" id="orderTour" class="notActive" />
+            <input type="submit" disabled value="Забронировать и Перейти к оплате" id="orderTour" class="notActive" />
         </div>
         <br />
     </form>

@@ -42,6 +42,7 @@ namespace WorkWithKOTE.Models
         public UserProfile User { get; set; }
         public int TourId { get; set; }
         public Tour Tour { get; set; }
+        public DateTime? DateTrip { get; set; }
         public List<SelectedDopUslug> SelectedDopUslug { get; set; }
     }
     [Table("Tour")]
