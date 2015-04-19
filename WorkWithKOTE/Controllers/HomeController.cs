@@ -91,6 +91,8 @@ namespace WorkWithKOTE.Controllers
             data.TourDownPrev = TourBlock(5, 3);
             data.TourDown = TourList(1, 3);
             data.TourMain = TourList(4);
+            data.Galleries = db.Gallery.Include(m => m.Pics).ToList();
+            data.Galleries.Reverse();
             return View(data);
         }
         public ActionResult DateForCurrentTour(int id)
@@ -103,6 +105,7 @@ namespace WorkWithKOTE.Controllers
         public ActionResult NewsBlock()
         {
             var data = db.News.Where(m => m.NewsDate.Month >= DateTime.Now.Month).OrderBy(m => m.NewsDate).ToList();
+            data.Reverse();
             return PartialView(data);
         }
         public ActionResult About()

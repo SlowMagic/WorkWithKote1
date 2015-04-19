@@ -14,9 +14,8 @@ namespace WorkWithKOTE.Controllers
     {
         //
         // GET: /Gallery/
-        [Authorize(Roles = "Admin, Moderator")]
         UsersContext db = new UsersContext();
-
+        [Authorize(Roles = "Admin, Moderator")]
         public ActionResult CreateGallery()
         {
             return View();
@@ -37,7 +36,7 @@ namespace WorkWithKOTE.Controllers
         }
         public ActionResult GalleryList()
         {
-            return View(db.Gallery);
+            return View(db.Gallery.Include(m=>m.Pics));
         }
         public ActionResult Gallery(int id)
         {

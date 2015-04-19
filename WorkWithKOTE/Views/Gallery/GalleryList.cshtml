@@ -1,10 +1,55 @@
 ﻿@{
     ViewBag.Title = "Gallery";
 }
-@model IEnumerable< WorkWithKOTE.Models.Gallery>
-<h2>Gallery</h2>
-@foreach(var item in Model)
-{
-  @Html.ActionLink(item.GalleryName, "Gallery", "Gallery",new {id = item.GalleryId },null)
-  <input type="button" value="Удалить" onclick="location.href='@Url.Action("GalleryDelete","Gallery",new{id = item.GalleryId})'" />
-}
+@model IEnumerable<WorkWithKOTE.Models.Gallery>
+@Styles.Render("~/Content/order")
+@{ Html.RenderPartial("HeaderPartial_main");}
+
+<div id="small-preview-img" class="clearfix">
+
+    <hgroup>
+        <h1>Список галерей</h1>
+
+        <h2>
+            <a href="@Url.Action("Index", "Home")">Главная </a>/ Галерея
+        </h2>
+    </hgroup>
+
+</div>
+<div class="container">
+    <div class="layout" style="padding-left: 10px;">
+        @foreach (var item in Model)
+        {
+            <div class="found-tour">
+                <h3>@item.GalleryName</h3>
+                @foreach (var pic in item.Pics)
+                {
+                    if (pic.PicType == "Image")
+                    {
+                        <a href="@Url.Action("Gallery", "Gallery", new {id = item.GalleryId})">
+                            <div class="gal-img" style="background: url('@pic.PicLink') no-repeat center">
+                                @*<img style="max-height: 150px; max-width: 250px" src="@pic.PicLink"/>*@
+                            </div>
+                        </a>
+                        break;
+
+                    }
+                }
+                <a class="button" style="float: none; margin-top: 10px; margin-bottom: 50px" href='@Url.Action("GalleryDelete", "Gallery", new {id = item.GalleryId})'>Удалить</a><br/>
+            </div>
+        }
+    </div>
+</div>
+<style>
+   .gal-img {
+     text-align: center;
+     width: 250px;
+     height: 250px;
+     border: 1px solid #ccc;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+   } 
+     
+</style>

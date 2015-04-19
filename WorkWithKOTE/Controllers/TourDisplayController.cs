@@ -17,7 +17,7 @@ namespace WorkWithKOTE.Controllers
         {
             if (id != 0)
             {
-                var data = db.Tour.Include(m=>m.DopUslug).Include(m => m.DateTour).Include(m => m.RoutePoints).Include(m => m.Tag).Include(m => m.Trips).Include(m=>m.SameTour).Where(m => m.TourId == id).FirstOrDefault();
+                var data = db.Tour.Include(m=>m.DopUslug).Include(m => m.DateTour).Include(m => m.RoutePoints).Include(m => m.Tag).Include(m => m.Trips).Include(m=>m.SameTour).Include(m=>m.Gallery.Pics).Where(m => m.TourId == id).FirstOrDefault();
                     return View(data);
             }
             return View();//Добавить страницу ошибки

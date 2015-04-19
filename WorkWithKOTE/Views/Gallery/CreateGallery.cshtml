@@ -3,8 +3,18 @@
 }
 @model WorkWithKOTE.Models.Gallery
 @Styles.Render("~/Content/order")
-
+@Styles.Render("~/Content/form")
 @{ Html.RenderPartial("HeaderPartial_main");}
+<style>
+    .textbox input[type=radio] {
+        margin-left: 10px;
+    }
+    .delbut {
+        margin-left: 35px;
+        margin-bottom: 10px;
+    }
+     
+</style>
 <div id="small-preview-img" class="clearfix">
     <hgroup>
         <h1>Создание Галереи</h1>
@@ -40,7 +50,7 @@
 @*                Изображение: <input type="file" name="file[0]" />*@
 @*            </span><br />*@
         @*        </div>*@
-        <input id="addFile" type="button" value="more" onclick="incPic()"/>
+        <input id="addFile" class="delbut" type="button" value="more" onclick="incPic()"/><br/>
         <input id="createNews" type="submit" value="Создать Галерею" /><br /><br />
 
     </form>
@@ -64,7 +74,7 @@
         if (typeof (get) === 'undefined') get = false;
      var bigdiv =   '<div id="' + count + '" class="PicForm">' +
            ' <span class="textbox">'+
-            'Тип файла:  <br />'+
+            'Тип файла:  '+
             '<input style="display: inline" type="radio" name="Pics[' + count + '].PicType" value="Image" id="chimg' + count + '" checked onchange="checkType(' + count + ')"/>' +
             '<label for="chimg' + count + '">Image</label>' +
             '<input style="display: inline" type="radio" name="Pics[' + count + '].PicType" value="Video" id="chvid' + count + '" onchange="checkType(' + count + ')" />' +
@@ -74,15 +84,15 @@
                     'Имя файла:  <input type="text" name="Pics['+count+'].PicName" />'+
                 '</span><br />'+
                 '<span class="textbox">'+
-                    'Описание файла:   <input type="textarea" name="Pics[' + count + '].PicDescription" />' +
-                '</span>'+
+                    'Описание файла:   <input type="text" name="Pics[' + count + '].PicDescription" />' +
+                '</span><br/>'+
                 '<span class="textbox" id="inpvid' + count + '">' +
                     'Ссылка на видео:   <input type="text" name="Pics[' + count + '].PicLink" />' +
                 '</span><br />'+
                 '<span class="textbox" id="inpimg' + count + '">' +
                 'Изображение: <input type="file" name="file[' + count + ']" />' +
             '</span><br />' +
-            '<input type="button" value="delete" onclick="delPic('+count+')"/>'+
+            '<input type="button" class="delbut" value="delete" onclick="delPic('+count+')"/>'+
         '</div>';
         if(!get) $("#form_tour").find('#addFile').before(bigdiv);
         return bigdiv;
