@@ -1,0 +1,236 @@
+﻿@{
+    ViewBag.Title = "TripEdit";
+}
+
+@Styles.Render("~/Content/order")
+
+@model WorkWithKOTE.Models.Trip
+@{ Html.RenderPartial("HeaderPartial_main");}
+
+<style>
+    #toPay {
+        margin-top: 20px;
+    }
+
+    .orderContent {
+        margin-top: 8px;
+    }
+
+    #finalPrice {
+        border: none;
+        background: none;
+        display: inline;
+        width: 150px;
+        text-align: right;
+    }
+
+    .layout-right-column {
+        /* margin-top: -145px;
+         width: 360px !important;
+        margin-right: 15%;*/
+    }
+
+    .layout-main {
+        /*margin-left: 10%;
+        margin-top: 40px;*/
+    }
+
+    .enterData {
+        margin-top: 170px;
+        /*margin-left: 10%;*/
+    }
+
+    .contactData {
+        /*margin-left: 10%;*/
+    }
+
+    .firstHR {
+        width: 50%;
+    }
+
+    .secondHR {
+        width: 93%;
+    }
+
+    .active {
+        margin-left: 35px;
+        border-radius: 4px;
+        background-color: #ff6f40;
+        border: 1px solid #ff6f40;
+        color: white;
+        height: 35px;
+    }
+
+    .notActive {
+        cursor: default !important;
+        background-color: #cccccc;
+        border: 1px solid #cccccc;
+        color: white;
+        height: 35px;
+        margin-left: 35px;
+        border-radius: 4px;
+    }
+
+    #agree {
+        display: inline;
+    }
+
+    #agreeLabel {
+        color: #ff6f40;
+        text-decoration: underline;
+    }
+</style>
+
+<div id="small-preview-img" class="clearfix">
+    <hgroup>
+        <h1>@ViewBag.Titleof</h1>
+        <h2>
+            <a href="@Url.Action("Index", "Home")">Главная</a> / Бронь и Оплата
+        </h2>
+    </hgroup>
+</div>
+<div class="container">
+    <form class="buyTour" action="@Url.Action("TripEdit")" method="post" enctype="multipart/form-data">
+        @Html.ValidationSummary()
+
+
+
+
+        <div class="layout">
+            <div class="layout-right-column">
+                <h4>Дополнительные услуги:</h4>
+                <p>
+                    @*                     Кол-во человек <input value="@Model.AmtPeople" name="AmtPeople" id="user_num" type="number" min="1" max="100" step="1" />*@
+                    Дата :@Html.DropDownList("DateTourId")
+                </p><br />
+
+                @*        <input type="checkbox" id="meal1" class="css-checkbox" style="margin-top: 4px;" />*@
+                @*           <label for="meal1" class="css-label">Питание 2 раза в день (+250 грн.)</label>*@
+                @*        <input type="checkbox" id="meal2" class="css-checkbox" style="margin-top: 4px;" />*@
+                @*           <label for="meal2" class="css-label">Экскурсия по городу (+500 грн.)</label>*@
+                @*        <input type="checkbox" id="meal3" class="css-checkbox" style="margin-top: 4px;" />*@
+                @*           <label for="meal3" class="css-label">Без питания (-100 грн.)</label>*@
+                @{Html.RenderAction("DopPricePartial", new { id = Model.TourId });}
+                @*      <div>*@
+                @*         <select>*@
+                @*            <option>Хостел</option>*@
+                @*            <option>Гостинница</option>*@
+                @*         </select>*@
+                @*         <select id="transport">*@
+                @*             <option>Автобус</option>*@
+                @*         </select>*@
+                @*      </div>*@
+            </div>
+            <div class="layout-main">
+                <h3>Состав вашего заказа</h3><hr class="firstHR" />
+
+                <p class="orderContent">Стоимость тура :@ViewBag.TourPrices&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
+                @Html.HiddenFor(m => m.Valuta);
+
+                <p class="orderContent">Сумма заказа с учетом изменений :<span id="Prices">@Html.DisplayFor(m => m.TourPrice, new { id = "Prices" })</span>&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
+
+                <p class="orderContent" id="toPay">К оплате :<input readonly="readonly" id="finalPrice" name="TourPrice" value="@Html.DisplayFor(m => m.TourPrice, new {id = "Price"})" />&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
+            </div>
+        </div>
+        <div class="layout">
+            <h3> Введите свои данные</h3><hr class="secondHR" />
+
+            <div class="info">
+                <label>Ваш пол</label>
+                <select name="Trips.Sex">
+                    <option>Муж</option>
+                    <option>Жен</option>
+                </select>
+            </div>
+            <div class="info">
+                <label>ФИО</label>
+                <input placeholder="Фамилия" name="Surname" value="@Model.Surname" id="surname">
+                <input placeholder="Имя" name="Name" value="@Model.Name" id="name">
+                <input placeholder="Отчество" name="FatherName" value="@Model.FatherName" id="second-name">
+            </div>
+            <div class="info">
+                <label>Дата рождения</label>
+                <input name="BirthDay" value="@String.Format("{0:dd.MM.yyyy}", Model.BirthDay)" id="date-of-birth" placeholder="__ . __ . ____" maxlength="10">
+            </div>
+
+        </div>
+        <div class="layout">
+            <div class="info">
+                <label>Гражданство</label>
+                <input value="@Model.Citizenship" name="Citizenship" id="nationality">
+            </div>
+            <div class="info">
+                <label>Паспорт</label>
+                <input value="@Model.Pasport" name="Pasport" id="passport" placeholder="АН 000000" maxlength="9">
+            </div>
+            <div class="info" style=" float: right">
+                <p style="width: 350px; text-align: left; color:gray">  Ваша личная информация никогда не будет разглашена или передана третьим лицам без Вашего на то прямого согласия.</p>
+            </div>
+        </div>
+        <div class="layout">
+            <div class="info">
+                <p>Контактные данные:</p>
+            </div>
+            <div class="info">
+                <label>Номер телефона</label>
+                <input value="@Model.mobile" name="mobile" placeholder="+38 (___) ___-__-__" type="tel" required>
+            </div>
+            <div class="info">
+                <label>Почта</label>
+                <input value="@Model.email" name="email" placeholder="user000@mail.com">
+            </div>
+        </div>
+
+        <div class="layout">
+            <div id="i-agree">
+                <input id="agree" type="checkbox">
+                <label id="agreeLabel" for="agree">Cогласен с условиями соглашения</label>
+            </div>
+            <input type="submit" disabled value="Перейти к оплате" id="orderTour" class="notActive" />
+        </div>
+        <br />
+        @Html.HiddenFor(m=>m.TripID)
+        @Html.HiddenFor(m=>m.TourId)
+        @Html.HiddenFor(m=>m.UserId)
+    </form>
+
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        //        function Changes() {
+        //            var AmtPeople = parseFloat($('#AmtPeople').val());
+        //            var price = parseFloat($("#Prices").val());
+        //            var sum = price * AmtPeople;
+        //            $("#Prices").val(sum);
+        //            $('#FinalPrice').val(sum);
+        //        }
+
+        $(function () {
+            $('#agree').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#orderTour').removeClass('notActive').addClass('active').prop('disabled', false);
+                } else {
+                    $('#orderTour').removeClass('active').addClass('notActive').prop('disabled', true);
+                }
+            });
+        });
+
+    </script>
+    <script type="text/javascript">
+        var sum0 = $("#Prices").text();
+        sum0 = parseFloat(sum0);
+        function sumFunction() {
+            var sum = sum0;
+            $('#options input[type=checkbox]:checked').each(function (i, v) {
+                sum += parseFloat($(v).attr('data-price'));
+            });
+            $("#Prices").text(sum);
+            $('#finalPrice').val(sum);
+        };
+        function Check() {
+            sumFunction();
+        }
+    </script>
+}

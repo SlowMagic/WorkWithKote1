@@ -1187,6 +1187,7 @@
     <Content Include="UpLoad\Documents\nadannya_poslug.doc" />
     <Content Include="Views\Gallery\GalleryList.cshtml" />
     <Content Include="Views\Gallery\Gallery.cshtml" />
+    <Content Include="Views\Buy\TripEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

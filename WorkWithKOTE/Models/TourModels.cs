@@ -42,6 +42,7 @@ namespace WorkWithKOTE.Models
         public UserProfile User { get; set; }
         public int TourId { get; set; }
         public Tour Tour { get; set; }
+        public List<SelectedDopUslug> SelectedDopUslug { get; set; }
     }
     [Table("Tour")]
     public class Tour
@@ -242,6 +243,17 @@ namespace WorkWithKOTE.Models
         [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? SecondDate { get; set; }
 
+    }
+    [Table("SelectedDopUslug")]
+    public class SelectedDopUslug
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int SelectedDopUslugID { get; set; }
+        public decimal? SelectedDopPrice { get; set; }
+        public string SelectedDopUslugName { get; set; }
+        public int TripID { get; set; }
+        public Trip Trip { get; set; }
     }
     public class TripJS
     {

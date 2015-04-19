@@ -34,7 +34,9 @@ namespace WorkWithKOTE.Controllers
         }
         public ActionResult AllNewsBlock( )
         {
-            return View(db.News.ToList());
+            List<News> news = db.News.ToList();
+            news.Reverse();
+            return View(news);
         }
         public ActionResult NewsDelete(int id = 0)
         {
