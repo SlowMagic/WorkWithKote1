@@ -61,14 +61,14 @@ namespace WorkWithKOTE.Filters
                     roles.CreateRole("Admin");
 
                 // Если нет в системе пользователя admin, создаём его(в этом месте ошибка)
-                if (membership.GetUser("LevitskiyOrange@gmail.com", false) == null)
+                if (membership.GetUser("kote.travel@gmail.com", false) == null)
                 {
-                    membership.CreateUserAndAccount("LevitskiyOrange@gmail.com", "123654789");
+                    membership.CreateUserAndAccount("kote.travel@gmail.com", "koteadmintravel");
                 }
 
                 // Если у пользователя admin нет роли admin, присваиваем ему эту роль
-                if (!roles.IsUserInRole("LevitskiyOrange@gmail.com", "Admin"))
-                    roles.AddUsersToRoles(new[] { "LevitskiyOrange@gmail.com" }, new[] { "Admin" });
+                if (!roles.IsUserInRole("kote.travel@gmail.com", "Admin"))
+                    roles.AddUsersToRoles(new[] { "kote.travel@gmail.com" }, new[] { "Admin" });
             }
 
         }
