@@ -20,7 +20,7 @@
     <hgroup>
         <h1>Личный кабинет</h1>
 
-        <h2>Главная / Личный кабинет</h2>
+        <h2><a href="@Url.Action("Index","Home")">Главная </a> / Личный кабинет</h2>
     </hgroup>
 
 </div>
@@ -31,6 +31,8 @@
             <a href="@Url.Action("CreateNews", "News")">Создать&nbsp;новость&nbsp;</a>
             @*        <a href="#">Пользователи</a>*@
             <a href="@Url.Action("TourCreate", "TourCreate")">Создать&nbsp;тур&nbsp;</a>
+            
+            <a href="@Url.Action("CreateGallery", "Gallery")">Создать&nbsp;галерею&nbsp;</a>
             <a href="@Url.Action("LogOff", "Account")">Выход</a>
             @*        <a href="#">Бронь тура для агента</a>*@
             @*        <a href="#">Управление заявками</a>*@
@@ -115,12 +117,5 @@
     {
         @Html.DropDownList("Id") 
         <input type="submit" value="Оплатить" />
-    }
-    @if (User.IsInRole("Admin"))
-    {
-        using (Ajax.BeginForm("Pay", "Admin", new AjaxOptions { UpdateTargetId = "TripTable" }))
-        {
-             @Html.DropDownList("Id") 
-        }
     }
 </div>

@@ -2,15 +2,50 @@
     ViewBag.Title = "Gallery";
 }
 @model WorkWithKOTE.Models.Gallery
-<h2>@Model.GalleryName</h2>
-@foreach (var item in Model.Pics)
-{
-    if (item.PicType == "Image")
-    {
-        <img src="@Html.DisplayFor(m=>item.PicLink)" title="@item.PicName" />
+@Styles.Render("~/Content/order")
+@{ Html.RenderPartial("HeaderPartial_main");}
+<style>
+    .galleria {
+        width: 700px;
+        height: 400px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background: #000;
     }
-    if (item.PicType == "Video")
-    {
-        @Html.DisplayFor(m => item.PicLink);
-    }
-}
+</style>
+<div id="small-preview-img" class="clearfix">
+
+    <hgroup>
+        <h1>@Model.GalleryName</h1>
+
+        <h2>
+            <a href="@Url.Action("Index", "Home")">Главная </a>/ Галерея
+        </h2>
+    </hgroup>
+
+</div>
+<div class="container">
+    <div class="galleria">
+        @foreach (var item in Model.Pics)
+        {
+            if (item.PicType == "Image")
+            {
+                <img src="@Html.DisplayFor(m => item.PicLink)" data-title="@item.PicName" data-description="@item.PicDescription"/>
+            }
+            if (item.PicType == "Video")
+            {
+                <a href="@Html.DisplayFor(m => item.PicLink)"><img src="/Content/img/play-btn.png" data-title="@item.PicName" data-description="@item.PicDescription"></a>
+            }
+        }
+    </div>
+</div>
+
+<script>
+    Galleria.loadTheme('/Content/js/themes/classic/galleria.classic.min.js');
+    Galleria.configure({
+        lightbox: true,
+        transition: 'fade'
+    });
+    Galleria.run('.galleria');
+</script>
