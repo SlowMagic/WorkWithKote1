@@ -63,6 +63,7 @@
                             <input type="hidden" name="UserId" value="@Model.UserId" />
                             <input class="bonuses" type="submit" value="Ok" />
                         }
+                        <input type="button" value="Назначить модератором" onclick="location.href='@Url.Action("RolesForUser","Admin",new {moder = Model.Email})'" />
                     }
                 </p>
             </div>
@@ -103,6 +104,7 @@
                                 <td>@Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)</td>
                             </tr>
                         }
+                        <input type="button" value="Назначить модератором" onclick="location.href='@Url.Action("RolesForUser","Admin",new {moder = Model.Email})'" />
                     }
                 }
             </table>
@@ -113,9 +115,25 @@
     <div id="TripTable">
         @{Html.RenderAction("UsersTour", new { id = Model.UserId });}
     </div>
+
     @using (Ajax.BeginForm("Payment", "Buy", new AjaxOptions { UpdateTargetId = "TripTable" }))
     {
-        @Html.DropDownList("Id") 
-        <input type="submit" value="Оплатить" />
+        @Html.DropDownList("Id")
+        if (!User.IsInRole("Admin"))
+        {
+            <input type="submit" value="Оплатить" />
+        }
+        if (User.IsInRole("Admin"))
+        {
+            <input type="button" value="Отколнить" onclick="runAction('/Admin/CancleTrip/')" />
+            <input type="button" value="Принять" onclick="runAction('/Admin/SubmitTrip/')" />
+            <input type="button" value="Удалить" onclick="runAction('/Admin/DeleteTrip/')" />
+        }
     }
 </div>
+<script type="text/javascript">
+    function runAction(string) {
+        var id = $('#Id option:selected').text();
+        window.location.href = string + id;
+    }
+</script>
