@@ -14,6 +14,7 @@ namespace WorkWithKOTE.Controllers
     {
         //
         // GET: /Gallery/
+        [Authorize(Roles = "Admin, Moderator")]
         UsersContext db = new UsersContext();
 
         public ActionResult CreateGallery()
