@@ -409,23 +409,26 @@
         </div>
         <div id="box22">
             @{ int countergal = 0;}
-            @foreach (var item in Model.Galleries)
+            @if (Model.Galleries != null)
             {
-                if (countergal > 3) { break; }
-                <div class="galleria">
-                    @foreach (var pics in item.Pics)
-                    { 
-                        if (pics.PicType == "Image")
+                foreach (var item in Model.Galleries)
+                {
+                    if (countergal > 3) { break; }
+                    <div class="galleria">
+                        @foreach (var pics in item.Pics)
                         {
-                            <img src="@Html.DisplayFor(m => pics.PicLink)" data-title="@pics.PicName" data-description="@pics.PicDescription" />
+                            if (pics.PicType == "Image")
+                            {
+                                <img src="@Html.DisplayFor(m => pics.PicLink)" data-title="@pics.PicName" data-description="@pics.PicDescription" />
+                            }
+                            if (pics.PicType == "Video")
+                            {
+                                <a href="@Html.DisplayFor(m => pics.PicLink)"><img src="/Content/img/play-btn.jpg" data-title="@pics.PicName" data-description="@pics.PicDescription"></a>
+                            }
                         }
-                        if (pics.PicType == "Video")
-                        {
-                            <a href="@Html.DisplayFor(m => pics.PicLink)"><img src="/Content/img/play-btn.png" data-title="@pics.PicName" data-description="@pics.PicDescription"></a>
-                        }
-                    }
-                </div>
-                    countergal++;
+                    </div>
+                        countergal++;
+                }
             }
         </div>
 
@@ -437,7 +440,10 @@
         lightbox: true,
         transition: 'fade'
     });
-    Galleria.run('.galleria');
+
+    if ($('.galleria').length >= 1) {
+        Galleria.run('.galleria');
+    }
 </script>
 <script>
     $(function () {
