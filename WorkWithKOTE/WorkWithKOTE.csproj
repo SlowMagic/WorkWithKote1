@@ -239,6 +239,7 @@
     <Content Include="Content\img\photo3.jpg" />
     <Content Include="Content\img\photo4.jpg" />
     <Content Include="Content\img\plane.png" />
+    <Content Include="Content\img\play-btn.jpg" />
     <Content Include="Content\img\play-btn.png" />
     <Content Include="Content\img\scroll.png" />
     <Content Include="Content\img\Searching-black.png" />

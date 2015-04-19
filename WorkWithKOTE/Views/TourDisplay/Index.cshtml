@@ -191,7 +191,7 @@
                             }
                             if (item.PicType == "Video")
                             {
-                                <a href="@Html.DisplayFor(m => item.PicLink)"><img src="/Content/img/play-btn.png" data-title="@item.PicName" data-description="@item.PicDescription"></a>
+                                <a href="@Html.DisplayFor(m => item.PicLink)"><img src="/Content/img/play-btn.jpg" data-title="@item.PicName" data-description="@item.PicDescription"></a>
                             }
                         }
                     </div>
@@ -213,5 +213,7 @@
         lightbox: true,
         transition: 'fade'
     });
-    Galleria.run('.galleria');
+    if ($('.galleria').length>=1) {
+        Galleria.run('.galleria');
+    }
 </script>
