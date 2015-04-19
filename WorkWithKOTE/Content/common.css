@@ -1,7 +1,11 @@
 nav, footer, header, section, article, iframe, img {
     display: block;
 }
-
+@font-face {
+ /*  font-family: HelveticaNeueCyr;
+  src: url(fonts/);
+  font-weight, font-style ==> по умолчанию normal */
+}
 header {
     position: fixed;
     text-align: center;

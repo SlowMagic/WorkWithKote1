@@ -122,7 +122,7 @@
                 <h3>Состав вашего заказа</h3><hr class="firstHR" />
 
                 <p class="orderContent">Стоимость тура :@ViewBag.TourPrices&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
-                @Html.HiddenFor(m => m.Valuta);
+                @Html.HiddenFor(m => m.Valuta)
 
                 <p class="orderContent">Сумма заказа с учетом изменений :<span id="Prices">@Html.DisplayFor(m => m.TourPrice, new { id = "Prices" })</span>&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
 
