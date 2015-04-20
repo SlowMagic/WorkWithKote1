@@ -2,7 +2,7 @@
     ViewBag.Title = "Payment";
 }
 @model WorkWithKOTE.Models.Trip
-  <h6>ПОЗДРАВЛЯЕМ, ПИДРИЛА,ТЫ ЗАБРОНИРОВАЛ ТУР!!!! МОЖЕШЬ ЕГО ОПЛАТИТЬ СРАЗУ ИЛИ ОПЛАТИТЬ ПОЗЖЕ!!! ПРИЯТНОГО ОТСОСА.ВАШ МУРЧИК </h6>
+  <h6>ПОЗДРАВЛЯЕМ, ВЫ ЗАБРОНИРОВАЛ ТУР!!!! МОЖЕШЬ ЕГО ОПЛАТИТЬ СРАЗУ ИЛИ ОПЛАТИТЬ ПОЗЖЕ!!! ПРИЯТНОГО ОТСОСА.ВАШ МУРЧИК </h6>
   Даты:  @Html.DisplayFor(m=>m.DateTour.FirstDate)  
   @Html.DisplayFor(m=>m.FatherName)
 <input type="button" value="Изменить Информацию" onclick="location.href='@Url.Action("TripEdit", "Buy", new { IdTrip = Model.TripID })'" />

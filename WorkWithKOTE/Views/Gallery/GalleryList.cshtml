@@ -22,6 +22,7 @@
         {
             <div class="found-tour">
                 <h3>@item.GalleryName</h3>
+                @{bool flag=false;}
                 @foreach (var pic in item.Pics)
                 {
                     if (pic.PicType == "Image")
@@ -31,9 +32,18 @@
                                 @*<img style="max-height: 150px; max-width: 250px" src="@pic.PicLink"/>*@
                             </div>
                         </a>
+                        flag = true;
                         break;
 
                     }
+                }
+                @if (!flag)
+                {
+                    <a href="@Url.Action("Gallery", "Gallery", new {id = item.GalleryId})">
+                        <div class="gal-img" style="background: url('/Content/img/big-logo.png') no-repeat center">
+                            @*<img style="max-height: 150px; max-width: 250px" src="@pic.PicLink"/>*@
+                        </div>
+                    </a>
                 }
                 <a class="button" style="float: none; margin-top: 10px; margin-bottom: 50px" href='@Url.Action("GalleryDelete", "Gallery", new {id = item.GalleryId})'>Удалить</a><br/>
             </div>
