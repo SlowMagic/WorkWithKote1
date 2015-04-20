@@ -14,6 +14,7 @@ namespace WorkWithKOTE.Controllers
         //
         // GET: /News/
         UsersContext db = new UsersContext();
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult CreateNews()
         {
             var data = new News();
