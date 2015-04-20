@@ -2,65 +2,141 @@
     ViewBag.Title = "EditProfile";
 }
 @model WorkWithKOTE.Models.UserProfile
-<h2>Редактирование Личного Кабинета</h2>
+@Styles.Render("~/Content/form")
+@Styles.Render("~/Content/order")
+
+<style>
+     #avatar,#Name,#secname,#thirdname,#e_name,#e_secname,#e_thirdname,#birthDate,#Nationality,
+     #pasport,#pasportDate,#pasportDateExp,#mobilePhone{
+        clear:both; text-align:right;
+    }
+
+    #form_tour input[type=text],#form_tour input[type=file]{
+        margin-left : 5px;
+    }
+
+    .labels,label,#form_tour{
+        float : left;
+    }
+
+    #form_tour input[type=date] {
+     margin-top : 6px;
+    }
+
+    .labels{
+        margin-top : 8px;
+    }
+
+    label{
+        margin-top : 12px;
+        cursor : pointer;
+    }
+
+     #form_tour{
+        margin-left : 35px;
+    }
+
+     #accept{
+      border-radius : 4px;
+      background-color : #ff6f40;
+      border : 1px solid #ff6f40;
+      color : white;
+      height : 25px;
+      cursor : pointer;
+      margin-top : 10px;
+      margin-bottom : 10px;
+    }
+
+</style>
+
+@{ Html.RenderPartial("HeaderPartial_main");}
+
+<div id="small-preview-img" class="clearfix">
+    <hgroup>
+        <h1>Редактирование личного кабинета</h1>
+        <h2>@Html.ActionLink("Главная", "Index", "Home", null, null) / Редактирование личного кабинета </h2>
+    </hgroup>
+</div>
+
+<div class="container">
+    <form method="post" action="@Url.Action("EditProfile","Profile")" enctype="multipart/form-data">
+        @Html.ValidationSummary()
+
+        <div id="form_tour">
+
+            <div class="loginEl" id="Name">
+                <span class="labels">Введите имя :</span>
+                <input type="text" name="RuFirstName" value="@Model.RuFirstName" required />
+            </div>
+
+            <div class="loginEl" id="secname">
+                <span class="labels">Введите фамилию :</span>
+                <input type="text" name="RuSecondName" value="@Model.RuSecondName" required />
+            </div>
+
+            <div class="loginEl" id="thirdname">
+                <span class="labels">Введите отчество :</span>
+                <input type="text" name="RuThirdName" value="@Model.RuThirdName" required />
+            </div>
+
+            <div class="loginEl" id="e_name">
+                <span class="labels"> Enter Name :</span>
+                @Html.EditorFor(m => m.EngFirstName)
+            </div>
 
 
-  <form method="post" action="@Url.Action("EditProfile","Profile")" enctype="multipart/form-data">
-      @Html.ValidationSummary()
-      <p>  Аватар - <input type="file" name="file" /></p>
-    <p>
-        @Html.Label("Введите ваше имя")
-@*        @Html.TextBoxFor(m => m.RuFirstName)*@
-        <input type="text" name="RuFirstName" value="@Model.RuFirstName"  required />
-    </p>
-    <p>
-        Введите Вашу Фамилию:
-        <input type="text" name="RuSecondName" value="@Model.RuSecondName" required />
-    </p>
-    <p>
-        Отчество:
-        <input type="text" name="RuThirdName" value="@Model.RuThirdName" required />
-    </p>
-    <p>
-        Enter your Name
-        @Html.EditorFor(m => m.EngFirstName)
-    </p>
-    <p>
-        Enter your Surname
-        @Html.EditorFor(m => m.EngSecondName)
-    </p>
-    <p>
-        Enter your Patronymic:
-        @Html.EditorFor(m => m.EngThirdName)
-    </p>
-    <p>
-        Дата рождения
-        @Html.EditorFor(m => m.Birthday)
-    </p>
-    <p>
-        Введите ваше гражданство:
-        @Html.EditorFor(m => m.Nationality)
-    </p>
-    <p>
-        Введите серию и номер паспорта :
-        @Html.EditorFor(m => m.PasportData)
-    </p>
-    <p>
-        Введите дату выдачи паспорта:
-        @Html.EditorFor(m => m.DatePasport)
-    </p>
-    <p>
-        Введите дату, до которой действителен ваш загран паспорт <br />
-        @Html.EditorFor(m => m.DateZagran)
-    </p>
-    <p>
-        Ваш мобильный телефон
-        @Html.EditorFor(m => m.Mobile)
-        @Html.ValidationMessageFor(m=>m.Mobile)
-    </p>
-      @Html.HiddenFor(m => m.Avatar)
-    <input type="submit" value="Подтвердить" />
-</form>
-@section scripts{
-    @Scripts.Render("~/bundles/jqueryval")
-}
+            <div class="loginEl" id="e_secname">
+                <span class="labels"> Enter Surname :</span>
+                @Html.EditorFor(m => m.EngSecondName)
+            </div>
+
+            <div class="loginEl" id="e_thirdname">
+                <span class="labels"> Enter Patronymic :</span>
+                @Html.EditorFor(m => m.EngThirdName)
+            </div>
+
+            <div class="loginEl" id="birthDate">
+                <span class="labels"> Дата рождения :</span>
+                @Html.EditorFor(m => m.Birthday)
+            </div>
+
+            <div class="loginEl" id="Nationality">
+                <span class="labels"> Введите гражданство :</span>
+                @Html.EditorFor(m => m.Nationality)
+            </div>
+
+            <div class="loginEl" id="pasport">
+                <span class="labels"> Введите серию и номер паспорта :</span>
+                @Html.EditorFor(m => m.PasportData)
+            </div>
+
+            <div class="loginEl" id="pasportDate">
+                <span class="labels">Введите дату выдачи паспорта :</span>
+                @Html.EditorFor(m => m.DatePasport)
+            </div>
+
+            <div class="loginEl" id="pasportDateExp">
+                <span class="labels">Паспорт действителен до :</span>
+                @Html.EditorFor(m => m.DateZagran)
+            </div>
+
+            <div class="loginEl" id="mobilePhone">
+                <span class="labels"> Ваш мобильный телефон :</span>
+                @Html.EditorFor(m => m.Mobile)
+                @Html.ValidationMessageFor(m => m.Mobile)
+            </div>
+
+            <div class="loginEl" id="avatar">
+                <span class="labels">Выберите фото для аватара :</span>
+                <input type="file" name="file" />
+                @Html.HiddenFor(m => m.Avatar)
+            </div> 
+
+            <input id="accept" type="submit" value="Подтвердить" />
+
+        </div>
+    </form>
+</div>
+    @section scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+    }

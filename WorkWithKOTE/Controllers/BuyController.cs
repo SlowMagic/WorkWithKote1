@@ -31,10 +31,12 @@ namespace WorkWithKOTE.Controllers
                 if (tour.AukcionPrice != null)
                 {
                     data.TourPrice = tour.AukcionPrice;
-                    ViewBag.TourPrices = tour.AukcionPrice;     
+                    ViewBag.TourPrices = tour.AukcionPrice;
+                    data.Valuta = tour.Valuta;
                 }
                 else
                 {
+                    ViewBag.TourPrices = tour.Cost;
                     data.TourPrice = tour.Cost;
                     data.Valuta = tour.Valuta;
                 }
@@ -148,8 +150,8 @@ namespace WorkWithKOTE.Controllers
                 order_id = data.TripID,
                 pay_way = "card,liqpay,delayed,invoice,privat24",
                 language = "ru",
-                server_url = Url.Action("ValValidatePay","Buy"),
-                result_url = Url.Action("Profile","Profile")
+                server_url = "http://kote.travel/Buy/ValValidatePay",
+                result_url = "http://kote.travel/Profile/Profile"
             };
 
             System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
@@ -218,11 +220,13 @@ namespace WorkWithKOTE.Controllers
             {
                 data.TourPrice = tour.AukcionPrice;
                 ViewBag.TourPrices = tour.AukcionPrice;
+                data.Valuta = tour.Valuta;
             }
             else
             {
                 data.TourPrice = tour.Cost;
                 ViewBag.TourPrices = tour.Cost;
+                data.Valuta = tour.Valuta;
             }
             var oldDopUslug = db.SelectedDopUslugs.Where(m => m.TripID == IdTrip);
             foreach (var item in oldDopUslug)

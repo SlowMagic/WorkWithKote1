@@ -3,29 +3,129 @@
     ViewBag.Title = "Manage Account";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
+@Styles.Render("~/Content/form")
+@Styles.Render("~/Content/order")
 
-<p class="message-success">@ViewBag.StatusMessage</p>
+<style>
+    #logged{
+        margin-left : -15px;
+        font-size : 18px;
+    }
 
-<p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
+    #alt_enter{
+        margin-bottom : 10px;
+        margin-top : 10px;
+        font-size : 18px;
+        font-weight : 600;
+        text-decoration : underline;
+    }
 
-@if (ViewBag.HasLocalPassword)
-{
-    @Html.Partial("_ChangePasswordPartial")
-}
-else
-{ 
-    @Html.Partial("_SetPasswordPartial")
-}
+    #login, #password, #confirm {
+        clear: both;
+        text-align: right;
+    }
 
-<section id="externalLogins">
-    @Html.Action("RemoveExternalLogins")
+    label, #form_tour {
+        float: left;
+    }
+    
+    #alt_enterText{
+        margin-top: 20px;
+    }
 
-    <h3>Add an external login</h3>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>
+    #form_tour{
+        margin-left: -50px;
+    }
+
+    label {
+        margin-top: 12px;
+        cursor: pointer;
+    }
+
+    input[type=text] {
+        padding-left: 5px;
+        margin-left: 10px;
+    }
+
+    input[type=password] {
+        text-align: left !important;
+        margin-left: 10px;
+        padding-left: 5px;
+    }
+
+    .loginEl {
+        margin: 5px;
+    }
+
+    .field-validation-error > span {
+        display: block;
+    }
+
+    #changePassword,.alternateBnt{
+      border-radius : 4px;
+      background-color : #ff6f40;
+      border : 1px solid #ff6f40;
+      color : white;
+      height : 25px;
+      cursor : pointer;
+      margin-top : 10px;
+      margin-bottom : 20px;
+    }
+
+    #removeAlt{
+      border-radius : 4px;
+      background-color : #ff6f40;
+      border : 1px solid #ff6f40;
+      color : white;
+      height : 25px;
+      cursor : pointer;
+      margin-left : 6px;
+    }
+    .message-success{
+        font-size : 18px;
+        margin-left : -17px;
+        font-weight : 600;
+        margin-bottom: 10px;
+    }
+</style>
+
+@{ Html.RenderPartial("HeaderPartial_main");}
+
+<div id="small-preview-img" class="clearfix">
+    <hgroup>
+        <h1>Изменение пароля</h1>
+        <h2>@Html.ActionLink("Главная", "Index", "Home", null, null) / Изменение пароля </h2>
+    </hgroup>
+</div>
+
+
+<div class="container">
+    <div id="form_tour">
+
+        <div class="message-success">@ViewBag.StatusMessage</div>
+
+        <div id="logged">
+            Вы зарегистрированы как
+            <strong>@User.Identity.Name</strong>
+        </div>
+
+        @if (ViewBag.HasLocalPassword)
+        {
+            @Html.Partial("_ChangePasswordPartial")
+        }
+        else
+        {
+            @Html.Partial("_SetPasswordPartial")
+        }
+
+        <div id="externalLogins">
+            @Html.Action("RemoveExternalLogins")
+
+            <div id="alt_enterText">Используйте альтернативный вход</div>
+            @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+        </div>
+     </div>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

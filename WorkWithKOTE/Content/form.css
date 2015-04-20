@@ -133,7 +133,7 @@ input[name="Tag[0].TagName"] {
     margin-left : 35px;
 }
 
-#form_tour input[type=file] {
+#form_tour input[type=file]{
     display : inline-block;
     margin-top: 6px;
 }
