@@ -14,7 +14,7 @@ namespace WorkWithKOTE.Controllers
         //
         // GET: /Admin/
         UsersContext db = new UsersContext();
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult SearchAllUsers()
         {
             return View(db.UserProfiles.ToList());

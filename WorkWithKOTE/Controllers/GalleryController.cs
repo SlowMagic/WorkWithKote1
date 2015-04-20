@@ -34,14 +34,17 @@ namespace WorkWithKOTE.Controllers
             db.SaveChanges();
             return RedirectToAction("GalleryList");
         }
+        [Authorize(Roles = "Admin, Moderator")]
         public ActionResult GalleryList()
         {
             return View(db.Gallery.Include(m=>m.Pics));
         }
+        [Authorize(Roles = "Admin, Moderator")]
         public ActionResult Gallery(int id)
         {
             return View(db.Gallery.Include(m => m.Pics).Where(m => m.GalleryId == id).Single());
         }
+        [Authorize(Roles = "Admin, Moderator")]
         public ActionResult GalleryDelete(int id)
         {
             var gallery = db.Gallery.Find(id);

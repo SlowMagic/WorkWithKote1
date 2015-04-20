@@ -20,6 +20,7 @@ namespace WorkWithKOTE.Controllers
         // GET: /Buy/
         //  TourContext db = new TourContext();
         UsersContext db = new UsersContext();
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Index(int id)
         {
             Trip data = new Trip();
@@ -132,6 +133,7 @@ namespace WorkWithKOTE.Controllers
 
             return View(data);
         }
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Payment(int id)
         {
             var data = db.Trip.Find(id);
@@ -199,6 +201,7 @@ namespace WorkWithKOTE.Controllers
             }
             return View("Error", "Error");
         }
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult TripEdit(int IdTrip)
         {
 
