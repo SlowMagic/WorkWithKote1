@@ -2,18 +2,78 @@
     ViewBag.Title = "Payment";
 }
 @model WorkWithKOTE.Models.Trip
-  <h6>ПОЗДРАВЛЯЕМ, ВЫ ЗАБРОНИРОВАЛ ТУР!!!! МОЖЕШЬ ЕГО ОПЛАТИТЬ СРАЗУ ИЛИ ОПЛАТИТЬ ПОЗЖЕ!!! ПРИЯТНОГО ОТСОСА.ВАШ МУРЧИК </h6>
-  Даты:  @Html.DisplayFor(m=>m.DateTour.FirstDate)  
-  @Html.DisplayFor(m=>m.FatherName)
-<input type="button" value="Изменить Информацию" onclick="location.href='@Url.Action("TripEdit", "Buy", new { IdTrip = Model.TripID })'" />
-<input type="button" value="Вернуться в Профиль" onclick="location.href='@Url.Action("Profile","Profile",null)'" />
-@foreach(var item in Model.SelectedDopUslug)
-{
-    @Html.DisplayFor(m=>item.SelectedDopUslugName) @:( @Html.DisplayFor(m=>item.SelectedDopPrice))
-}
-<form method="POST" accept-charset="utf-8" action="https://www.liqpay.com/api/checkout">
+@Styles.Render("~/Content/form")
+@Styles.Render("~/Content/order")
+           
+<style>
+    .payBtn{
+      border-radius : 4px !important;
+      background-color : #ff6f40 !important;
+      border : 1px solid #ff6f40 !important;
+      color : white !important;
+      height : 25px !important;
+      cursor : pointer !important;
+      margin-top : 10px !important;
+      margin-bottom : 10px !important;
+      display : inline !important;
+    }
 
-    <input type="hidden" name="data" value="@ViewBag.Data" />
-    <input type="hidden" name="signature" value="@ViewBag.Signature" />
-    <input type="image" src="//static.liqpay.com/buttons/p1ru.radius.png" name="btn_text" />
-</form>
+    input[name=btn_text]{
+        margin-bottom : 20px;
+        margin-top : 10px;
+        cursor : pointer;
+        margin-left : 134px;
+    }
+
+    .infos{
+        font-size : 18px;
+        margin-top : 6px;
+        display : block;
+    }
+
+    #orderText{
+      font-weight: 600;
+      font-size: 20px;
+      margin-left: -20px;
+      text-decoration: underline;
+    }
+</style>
+
+@{ Html.RenderPartial("HeaderPartial_main");}
+
+<div id="small-preview-img" class="clearfix">
+    <hgroup>
+        <h1>Оплата</h1>
+        <h2>@Html.ActionLink("Главная", "Index", "Home", null, null) / Оплата </h2>
+    </hgroup>
+</div>
+
+<div class="container">
+
+  <span id="orderText"> Информация о Вашем туре : </span>
+
+    <div class="infos">Название тура : "@Html.DisplayFor(m => m.Tour.NameTour)"</div>
+    <div class="infos">Дата тура : @Html.DisplayFor(m => m.DateTour.FirstDate) - @Html.DisplayFor(m => m.DateTour.SecondDate)</div>
+    <div class="infos">Стоимость поездки : @Html.DisplayFor(m => m.Tour.Cost)  @Html.DisplayFor(m => m.Valuta) </div>
+
+    @foreach (var item in Model.SelectedDopUslug)
+    {
+        <div class="infos">
+            @Html.DisplayFor(m => item.SelectedDopUslugName) ( стоимость : @Html.DisplayFor(m => item.SelectedDopPrice) @Html.DisplayFor(m => m.Valuta) )
+        </div>
+    }
+    <div class="infos">Стоимость с учётом дополнительных услуг : <strong> @Html.DisplayFor(m => m.TourPrice)  @Html.DisplayFor(m => m.Valuta) </strong></div>
+
+ 
+      
+    <input class="payBtn" type="button" value="Изменить информацию" onclick="location.href='@Url.Action("TripEdit", "Buy", new { IdTrip = Model.TripID })'" />
+    <input class="payBtn" type="button" value="Вернуться в Профиль" onclick="location.href='@Url.Action("Profile","Profile",null)'" />
+</div>
+
+
+    <form method="POST" accept-charset="utf-8" action="https://www.liqpay.com/api/checkout">
+
+        <input type="hidden" name="data" value="@ViewBag.Data" />
+        <input type="hidden" name="signature" value="@ViewBag.Signature" />
+        <input type="image" src="//static.liqpay.com/buttons/p1ru.radius.png" name="btn_text" />
+    </form>
