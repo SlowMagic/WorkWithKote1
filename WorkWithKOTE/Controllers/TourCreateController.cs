@@ -63,6 +63,7 @@ namespace WorkWithKOTE.Controllers
             db.SaveChanges();
             return RedirectToAction("Search", "TourSearch");
         }
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult TourEdit(int id = 0)
         {
             var data = db.Tour.Include(m=>m.Trips).Include(m => m.DopUslug).Include(m => m.DateTour).Include(m => m.RoutePoints).Include(m=>m.Tag).Where(m => m.TourId == id).FirstOrDefault();
