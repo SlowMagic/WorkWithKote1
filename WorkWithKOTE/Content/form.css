@@ -1,10 +1,10 @@
 #form_tour input[type=text],#form_tour input[type=password],#form_tour input[type=email] {
-    width: 230px !important;
+    width: 60% !important;
     height: 30px;
     border-radius: 4px;
     border: 1px solid gainsboro;
     display: inline-block;
-    margin-top: 6px;
+    margin-top: 2%;
 }
 
 .textbox {

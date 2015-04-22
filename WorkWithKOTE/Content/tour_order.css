@@ -14,7 +14,7 @@
 .container, hgroup {
     margin: 0 auto;
     width: 80%;
-    min-width: 930px;
+   /*min-width: 930px;*/ 
     font-family: HelveticaNeueCyr;
     font-weight: 300;
 }
@@ -24,6 +24,7 @@
 }
 hgroup {
     margin-top: 6%;
+    margin-left: 15%;
 }
 
 #small-preview-img h1 {

@@ -13,10 +13,7 @@
 </head>
 <body>
     <div class="primaryContainer clearfix">
-        @*        @RenderSection("featured", required: false)*@
-        @*        <section class="content-wrapper main-content clear-fix">*@
         @RenderBody()
-        @*        </section>*@
     </div>
     <footer>
         <div class="cont">
@@ -34,12 +31,6 @@
                     @Html.ActionLink("Туры", "Search", "TourSearch", null, null)
                     @Html.ActionLink("Галерея", "GalleryList", "Gallery", null, null)
                     @Html.ActionLink("О Нас", "Contact", "Home", null, null)
-                </div>
-
-                <div id="address">
-                    @*                <p>Будем рады видеть вас по адресу&#x3a;</p>*@
-                    @**@
-                    @*                <p>Украина, г. Днепропетровск ул. Красная, 17</p>*@
                 </div>
 
                 <div id="follow-us">
@@ -83,3 +74,30 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+
+<script>
+    $(function () {
+        if ($('footer').width() <= 800) {
+            $('#column1,#follow-us').hide();
+            $('#footer-nav a').css({ 'float': 'none', 'display': 'block', 'width': 'auto' });
+            $('#footer-nav a').not(':first').css('margin-top', '20px');
+        }
+
+        $(window).resize(function ()
+        {
+            if ($('footer').width() <= 800)
+            {
+                $('#column1,#follow-us').hide();
+                $('#footer-nav a').css({ 'float': 'none', 'display': 'block', 'width': 'auto' });
+                $('#footer-nav a').not(':first').css('margin-top', '25px');
+            }
+            else {
+                $('#column1,#follow-us').show();
+                $('#footer-nav a').css({ 'float': 'left', 'display': 'inline', 'width': '25%' });
+                $('#footer-nav a').not(':first').css('margin-top', '0px');
+            }
+        });
+    });
+</script>
+

@@ -4,7 +4,9 @@
 @using WorkWithKOTE.Controllers
 @model WorkWithKOTE.Models.TourForHomePage
 @Styles.Render("~/Content/page")
+
 @{ Html.RenderPartial("HeaderPartial_main");}
+
 <style>
     .galleria {
         float: left;
@@ -23,11 +25,9 @@
         padding-right: 5px;
     }
 </style>
+
 <div id="big-preview-img" class="clearfix">
     <div class="wish">
-
-        @*        <img  id="big-logo" />*@
-
         <p style="display:none;" id="wishletter">
             <span id="textspan">Я хочу...<br /></span>
             <span id="textspan1">
@@ -51,12 +51,14 @@
             </a>
         </div>
     </div>
+
     <div class="scroll clearfix">
         <p class="scroll-text">
             Скроль<br />вниз
         </p>
     </div>
 </div>
+
 @{Html.RenderAction("NewsBlock");}
 <div class="groups-bg clearfix">
     <div class="groups clearfix" id="second-nav">
@@ -141,8 +143,7 @@
         @{int counter = 0;}
         @foreach (var item in Model.TourHight)
         {
-            if (counter > 1)
-            {
+            if (counter > 1){
                 break;
             }
             counter++;
@@ -154,7 +155,6 @@
                 <div class="tourInfo">
                     <p class="tourDescription">
                         Тур&#x3a; &nbsp;Автобусный<br />
-                        @*                Дни&#x3a; &nbsp;4<br />*@
                         @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }<br /><br />
                         @Html.DisplayFor(m => item.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />&nbsp;@Html.DisplayFor(m => item.PlaceOfArrival)
                     </p>
@@ -166,9 +166,9 @@
                 </div>
             </div>
         }
-        @*  @{ Html.RenderAction("SubTour", new { id = 1 });}*@
     </div>
 </div>
+
 <div class="groups-bg clearfix">
     <p class="consultLinks">
         <span class="subscribe-title">Подпишитесь на нашу рассылку<br /></span>будьте в курсе интересных предложений
@@ -182,6 +182,7 @@
         </div>
     </form>
 </div>
+
 <div class="tourGroup clearfix">
     <h1 class="groupTitle" id="second">
         Туры в Грузию
@@ -199,7 +200,6 @@
                 <div class="tourInfo">
                     <p class="tourDescription">
                         Тур&#x3a; &nbsp;Автобусный<br />
-                        @*                            Дни&#x3a; &nbsp;4<br />*@
                         @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourCenterPrev.TourId }); }<br /><br />
                         @Html.DisplayFor(item => item.TourCenterPrev.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />@Html.DisplayFor(item => item.TourCenterPrev.PlaceOfArrival)
                     </p>
@@ -243,12 +243,12 @@
             </div>
         </div>
     }
+    
     <div class="subTours">
         @{int counter1 = 0;}
         @foreach (var item in Model.TourCenter)
         {
-            if (counter1 > 1)
-            {
+            if (counter1 > 1){
                 break;
             }
             counter1++;
@@ -260,7 +260,6 @@
                 <div class="tourInfo">
                     <p class="tourDescription">
                         Тур&#x3a; &nbsp;Автобусный<br />
-                        @*                Дни&#x3a; &nbsp;4<br />*@
                         @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }<br /><br />
                         @Html.DisplayFor(m => item.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />&nbsp;@Html.DisplayFor(m => item.PlaceOfArrival)
                     </p>
@@ -272,9 +271,9 @@
                 </div>
             </div>
         }
-        @* @{ Html.RenderAction("SubTour", new {id = 2});}*@
     </div>
 </div>
+
 <div class="groups-bg clearfix">
     <p class="consultLinks">
         <span class="subscribe-title">Подпишитесь на нашу рассылку<br /></span>будьте в курсе интересных предложений
@@ -288,6 +287,7 @@
         </div>
     </form>
 </div>
+
 <div class="tourGroup clearfix">
     <h1 class="groupTitle" id="third">
         Приключенческие туры
@@ -305,7 +305,6 @@
                 <div class="tourInfo">
                     <p class="tourDescription">
                         Тур&#x3a; &nbsp;Автобусный<br />
-                        @*                            Дни&#x3a; &nbsp;4<br />*@
                         @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourDownPrev.TourId }); }<br /><br />
                         @Html.DisplayFor(item => item.TourDownPrev.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />@Html.DisplayFor(item => item.TourDownPrev.PlaceOfArrival)
                     </p>
@@ -354,8 +353,7 @@
         @{int counter2 = 0;}
         @foreach (var item in Model.TourDown)
         {
-            if (counter2 > 1)
-            {
+            if (counter2 > 1){
                 break;
             }
             counter2++;
@@ -367,7 +365,6 @@
                 <div class="tourInfo">
                     <p class="tourDescription">
                         Тур&#x3a; &nbsp;Автобусный<br />
-                        @*                Дни&#x3a; &nbsp;4<br />*@
                         @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }<br /><br />
                         @Html.DisplayFor(m => item.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />&nbsp;@Html.DisplayFor(m => item.PlaceOfArrival)
                     </p>
@@ -380,8 +377,8 @@
             </div>
         }
     </div>
-
 </div>
+
 <div id="media-bg" class="clearfix">
     <p class="consultLinks">
         <span class="subscribe-title"><a href="@Url.Action("GalleryList","Gallery")">Галерея</a><br /></span>фото, видео. Cамые красивые места в мире
@@ -390,12 +387,10 @@
     <div class="cont">
         <div id="box21">
             <div id="video-preview">
-                <iframe width="100%" height="250px" src="https://www.youtube.com/embed/NmugSMBh_iI" frameborder="0"
-                        allowfullscreen></iframe>
+                <iframe width="100%" height="250px" src="https://www.youtube.com/embed/NmugSMBh_iI" frameborder="0" allowfullscreen></iframe>
             </div>
             <div id="video-title" class="clearfix">
                 <p id="video-title-date">27.04.2015</p>
-
                 <p id="video-title-name">Видеоотчет германия - италия</p>
             </div>
 
@@ -413,6 +408,7 @@
                 </div>
             </div>
         </div>
+
         <div id="box22">
             @{ int countergal = 0;}
             @if (Model.Galleries != null)
@@ -423,23 +419,21 @@
                     <div class="galleria">
                         @foreach (var pics in item.Pics)
                         {
-                            if (pics.PicType == "Image")
-                            {
+                            if (pics.PicType == "Image"){
                                 <img src="@Html.DisplayFor(m => pics.PicLink)" data-title="@pics.PicName" data-description="@pics.PicDescription" />
                             }
-                            if (pics.PicType == "Video")
-                            {
+                            if (pics.PicType == "Video"){
                                 <a href="@Html.DisplayFor(m => pics.PicLink)"><img src="/Content/img/play-btn.jpg" data-title="@pics.PicName" data-description="@pics.PicDescription"></a>
                             }
                         }
                     </div>
-                        countergal++;
+                    countergal++;
                 }
             }
         </div>
-
     </div>
 </div>
+
 <script>
     Galleria.loadTheme('/Content/js/themes/classic/galleria.classic.min.js');
     Galleria.configure({
@@ -451,8 +445,10 @@
         Galleria.run('.galleria');
     }
 </script>
+
 <script>
-    $(function () {
+    $(function ()
+    {
         var index = 0;
         var confirmHref = $('#confirmTour').attr('href');
 
@@ -463,7 +459,6 @@
         }
         else {
             // if tours length. Display 1-st tour
-            //               $('#big-logo').show();
             $('.buttons.clearfix,#wishletter').css('display', 'inherit');
             $('#confirmTour').attr('href', '');
             $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat 50% 100% ');
@@ -480,20 +475,17 @@
             $('#anotherTour').click(function (event) {
                 event.preventDefault();
 
-                $('#big-preview-img').fadeTo(800, 0, function () {
-                    if (index <= $('#switchTour li').length - 1) {
+                $('#big-preview-img').fadeTo(800, 0, function ()
+                {
+                    if (index <= $('#switchTour li').length - 1)
+                    {
                         $('.buttons.clearfix,#wishletter').css('display', 'inherit');
                         $('#confirmTour').attr('href', '');
                         $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat 50% 100% ');
                         $('#textspan').css('display', 'inherit');
                         $('#to').text('Тур в ' + $('#switchTour li').eq(index).attr('data-to'));
                         $('#from').text(' из ' + $('#switchTour li').eq(index).attr('data-from'));
-                        //                        if ($('#big-logo')) {
-                        //                            console.log($('#big-logo'), $('#switchTour li').eq(index).attr('data-baf'));
                         $('#big-logo').attr('src', $('#switchTour li').eq(index).attr('data-baf'));
-                        //                                                    }
-                        //                        else { $('#wishletter').before('<img id="big-logo" src="' + $('#switchTour li').eq(index).attr('data-baf') + '" />'); }
-                        //                        $('#wishletter').before('<img id="big-logo" src="' + $('#switchTour li').eq(index).attr('data-baf') + '" />');
                         $('#confirmTour').attr('href', confirmHref + '/' + $('#switchTour li').eq(index).attr('data-id'));
                         $('#big-preview-img').fadeTo(1000, 1);
                         index++;

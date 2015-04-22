@@ -3,8 +3,8 @@ nav, footer, header, section, article, iframe, img {
 }
 @font-face {
  /*  font-family: HelveticaNeueCyr;
-  src: url(fonts/);
-  font-weight, font-style ==> по умолчанию normal */
+     src: url(fonts/);
+     font-weight, font-style ==> по умолчанию normal */
 }
 header {
     position: fixed;
@@ -19,7 +19,7 @@ header {
 }
 
 #bar {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    /*border-bottom: 1px solid rgba(0, 0, 0, 0.1);*/
     padding-bottom: 28px;
 }
 
@@ -137,7 +137,7 @@ nav {
     margin: 0 auto;
     padding-top: 40px;
     width: 80%;
-    min-width: 930px;
+   /* min-width: 930px;*/
 }
 
 footer {
@@ -157,6 +157,7 @@ footer {
 }
 
 #about {
+    margin-left: 19%;
     float: left;
     font-size: 0.75em;
     text-align: left;
@@ -249,7 +250,7 @@ footer {
 #column3 {
     float: left;
     height: auto;
-    margin-left: 10%;
+    /*margin-left: 10%;*/
     width: 15%;
 }
 
@@ -278,7 +279,8 @@ footer {
     }
 
 .mail {
-    font-size: 0.875em;
+    font-size: 16px;
+    text-decoration: underline;
     color: rgb(255, 255, 255);
 }
 
@@ -413,8 +415,8 @@ footer {
 #block_enter {
     display: inherit;
     position: absolute;
-    margin-left: 9px;
-    width: 220px;
+    margin-left: 11px;
+    width: 219px;
     height: 165px;
     background-color: #121212;
     border-bottom-left-radius: 10px;
