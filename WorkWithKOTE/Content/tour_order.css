@@ -204,7 +204,7 @@ tbody {
     float: left;
 }
 .history tr > td:first-child {
-    width: 60%;
+    width: 46%;
     text-align: left;
 }
 .request tr > td:first-child {
