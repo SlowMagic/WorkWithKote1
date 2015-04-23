@@ -3,21 +3,12 @@
 }
 
 <style>
-    #enterAdmin{
-        font-size : 40px;
-        margin-top : 15px;
-    }
-
-    .start,.fb,.kote{
-        font-size : 40px;
+    #enterAdmin,.start,.fb,.kote{
+        font-size : 45px;
     }
 
     .fb {
         color : white;
-    }
-
-    .links{
-        margin-top : 30px;
     }
 
     #enterAdmin a:link {
@@ -30,6 +21,10 @@
 
     #enterAdmin a:hover {
         color: #284f86;
+    }
+
+    #linkBox{
+        margin-top : 50px;
     }
 </style>
 
@@ -70,17 +65,18 @@
                 Встречайте! Уже совсем скоро!
             </div>
 
-            <div class="links">
-                <a class="fb" href="https://www.facebook.com/kotetravel"><img style="width:70px;" src="~/Content/img/fb.png"></a>
-                <a class="fb">kote.travel@gmail.com</a>
+            <div id="linkBox">
+                <div class="links">
+                    <a class="fb" href="https://www.facebook.com/kotetravel"><img style="width:70px;" src="~/Content/img/fb.png"></a>
+                    <a class="fb">kote.travel@gmail.com</a>
+                </div>
+
+                <div id="enterAdmin">
+                    @Html.ActionLink("Вход", "Login", "Account") для Админа
+                </div>
             </div>
 
-            <div id="enterAdmin">
-                @Html.ActionLink("Вход", "Login", "Account") для Админа
-            </div>
         </div>
-
-
     </div>
 </body>
 </html>
