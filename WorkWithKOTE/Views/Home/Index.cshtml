@@ -37,6 +37,7 @@
     .groupLinks a{
         margin : 3px;
     }
+
 </style>
 
 <div id="big-preview-img" class="clearfix">
@@ -184,8 +185,8 @@
 
 <div class="groups-bg clearfix">
     <p class="consultLinks">
-        <span class="subscribe-title">Подпишитесь на нашу рассылку<br /></span>будьте в курсе интересных предложений
-        и горящих туров
+        <span class="subscribe-title">Подпишитесь на нашу рассылку<br /></span><br/>
+        будьте в курсе интересных предложений и горящих туров
     </p>
 
     <form class="mailform">
@@ -511,8 +512,9 @@
         {
             $('h1.groupTitle').addClass('smallTitle');
             $('.groupLinks a').css({ 'dispalay': 'block !important' });
-            $('.groupLinks').css('font-size', '16px');
+            $('.groupLinks').css('font-size', '15px');
             $('#tourSearch_text').hide();
+            $('#third').text('Приключенческие');
         }
 
         $(window).resize(function ()
@@ -520,14 +522,16 @@
             if ($('#bar').width() <= 800) {
                 $('h1.groupTitle').addClass('smallTitle');
                 $('.groupLinks a').css({ 'dispalay': 'block !important' });
-                $('.groupLinks').css('font-size', '16px');
+                $('.groupLinks').css('font-size', '15px');
                 $('#tourSearch_text').hide();
+                $('#third').text('Приключенческие');
             }
             else {
                 $('h1.groupTitle').removeClass('smallTitle');
                 $('.groupLinks a').css({ 'dispalay': 'inline-block !important' });
                 $('.groupLinks').css('font-size', '20px');
                 $('#tourSearch_text').show();
+                $('#third').text('Приключенческие туры');
             }
         });
     });
