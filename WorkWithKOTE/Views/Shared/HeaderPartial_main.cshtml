@@ -62,10 +62,10 @@
                       </div>
                 }
                 <img src="~/Content/img/separator.png" class="separator" />
+                <img style="width:15px;height:10px;display:none;" src="~/Content/img/menuicon.png" id="forMenu" />
             </div>
         </div>
 
-        <nav id="forMenu"></nav>
         <div id="tiny_menu">
             <p class="menuLink_first"> @Html.ActionLink("Главная", "Index", "Home", null, null)          </p>
             <p class="menuLink">       @Html.ActionLink("Туры", "Search", "TourSearch", null, null)      </p>
@@ -98,7 +98,8 @@
         if ($('#bar').width() <= 800)
         {
             $('.nav-other a,#Searching').hide();
-            $('#forMenu').text('М');
+            $('.profile').css('margin-top', '25px');
+            $('#forMenu').show().css('display','inline');
         }
 
         if ($('#bar').width() <= 450) {
@@ -111,11 +112,13 @@
 
             if ($('#bar').width() <= 800) {
                 $('.nav-other a,#Searching').hide();
-                $('#forMenu').text('М');
+                $('.profile').css('margin-top', '25px');
+                $('#forMenu').show().css('display', 'inline');
             }
             else {
                 $('.nav-other a,#Searching').show();
-                $('#forMenu').text('');
+                $('#forMenu').hide();
+                $('.profile').css('margin-top', '0px');
                 $('#tiny_menu').hide(500);
             }
 

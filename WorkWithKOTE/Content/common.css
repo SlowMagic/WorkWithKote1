@@ -394,7 +394,7 @@ footer {
 }
 
 #amnesia {
-    width: 150px;
+    width: 111px;
 }
 
 .hidden {
@@ -415,7 +415,7 @@ footer {
 #block_enter {
     display: inherit;
     position: absolute;
-    margin-left: 11px;
+    margin-left: 10px;
     width: 219px;
     height: 165px;
     background-color: #121212;
@@ -430,7 +430,7 @@ footer {
     padding-left: 10px;
     margin-top: 5px;
     margin-left: 9px;
-    width: 203px;
+    width: 201px;
     background-color: #424242;
     border: 1px solid #424242;
     color: white;
