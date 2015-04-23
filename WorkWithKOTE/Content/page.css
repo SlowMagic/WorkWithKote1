@@ -351,6 +351,9 @@
     font-weight: normal;
     line-height: 1em;
     margin-top: 31px;
+
+    float: right;
+    margin-right: -75px;
 }
 
 .news-title h3 {
@@ -398,7 +401,7 @@
 {
     position: relative;
     z-index: 1;
-    right: -50%;
+    /*right: -50%;*/
 }
 #sub-nav {
     float: left;
@@ -952,7 +955,7 @@ span.arr {
 .tourGroup {
     margin-left: 10%;
     margin-right: 10%;
-    min-width: 800px;
+    /*min-width: 800px;*/
     width: 80%;
 }
 
@@ -1465,13 +1468,13 @@ input.mail-input {
       outline: none;
       -webkit-appearance: none;
       width: 60%;
-      margin: 5px 0 5px 15px;
+      margin: 5px 0 5px 5px;
       height: 40px;
       vertical-align: middle
 }
 
 input.mail-submit {
-    display : flex;
+    display : inline;
     padding-top: 45px;
     padding-right: 30px;
     float: right;

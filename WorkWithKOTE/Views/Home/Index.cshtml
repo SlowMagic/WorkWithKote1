@@ -512,8 +512,8 @@
         {
             $('h1.groupTitle').addClass('smallTitle');
             $('.groupLinks a').css({ 'dispalay': 'block !important' });
-            $('.groupLinks').css('font-size', '15px');
-            $('#tourSearch_text').hide();
+            $('.groupLinks').css('font-size', '14px');
+            $('#tourSearch_text,#subscribe').hide();
             $('#third').text('Приключенческие');
         }
 
@@ -522,15 +522,15 @@
             if ($('#bar').width() <= 800) {
                 $('h1.groupTitle').addClass('smallTitle');
                 $('.groupLinks a').css({ 'dispalay': 'block !important' });
-                $('.groupLinks').css('font-size', '15px');
-                $('#tourSearch_text').hide();
+                $('.groupLinks').css('font-size', '14px');
+                $('#tourSearch_text,#subscribe').hide();
                 $('#third').text('Приключенческие');
             }
             else {
                 $('h1.groupTitle').removeClass('smallTitle');
                 $('.groupLinks a').css({ 'dispalay': 'inline-block !important' });
                 $('.groupLinks').css('font-size', '20px');
-                $('#tourSearch_text').show();
+                $('#tourSearch_text,#subscribe').show();
                 $('#third').text('Приключенческие туры');
             }
         });
