@@ -87,7 +87,7 @@
         <p class="consultLinks">
             Используйте сервис
             @Html.ActionLink("поиска", "Search", "TourSearch", null, new { @class = "link-btn" })
-            для подбора тура
+           <span id="tourSearch_text">для подбора тура</span>
         </p>
     </div>
 </div>
@@ -512,6 +512,7 @@
             $('h1.groupTitle').addClass('smallTitle');
             $('.groupLinks a').css({ 'dispalay': 'block !important' });
             $('.groupLinks').css('font-size', '16px');
+            $('#tourSearch_text').hide();
         }
 
         $(window).resize(function ()
@@ -520,11 +521,13 @@
                 $('h1.groupTitle').addClass('smallTitle');
                 $('.groupLinks a').css({ 'dispalay': 'block !important' });
                 $('.groupLinks').css('font-size', '16px');
+                $('#tourSearch_text').hide();
             }
             else {
                 $('h1.groupTitle').removeClass('smallTitle');
                 $('.groupLinks a').css({ 'dispalay': 'inline-block !important' });
-                $('.groupLinks').css('font-size', '16px');
+                $('.groupLinks').css('font-size', '20px');
+                $('#tourSearch_text').show();
             }
         });
     });
