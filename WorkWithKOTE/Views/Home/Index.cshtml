@@ -24,6 +24,18 @@
         padding-left: 5px;
         padding-right: 5px;
     }
+
+    .smallTitle{
+        font-size : 29px !important;
+    }
+
+    .groupLinks {
+        margin-top : 17px;
+    }
+
+    .groupLinks a{
+        margin : 3px;
+    }
 </style>
 
 <div id="big-preview-img" class="clearfix">
@@ -274,19 +286,8 @@
     </div>
 </div>
 
-<div class="groups-bg clearfix">
-    <p class="consultLinks">
-        <span class="subscribe-title">Подпишитесь на нашу рассылку<br /></span>будьте в курсе интересных предложений
-        и горящих туров
-    </p>
+<div class="groups-bg clearfix"></div>
 
-    <form class="mailform">
-        <div class="mailsender">
-            <input class="mail-input" type="text" name="mail-input" placeholder="Почта" />
-            <input class="mail-submit" type="submit" value="" />
-        </div>
-    </form>
-</div>
 
 <div class="tourGroup clearfix">
     <h1 class="groupTitle" id="third">
@@ -499,5 +500,28 @@
             });
         }
         switchLogo(0);
+    });
+</script>
+
+<script>
+    $(function ()
+    {
+        if ($('#bar').width() <= 800)
+        {
+            $('h1.groupTitle').addClass('smallTitle');
+            $('.groupLinks a').css({ 'dispalay': 'block' });
+        }
+
+        $(window).resize(function ()
+        {
+            if ($('#bar').width() <= 800) {
+                $('h1.groupTitle').addClass('smallTitle');
+                $('.groupLinks a').css({ 'dispalay': 'block' });
+            }
+            else {
+                $('h1.groupTitle').removeClass('smallTitle');
+                $('.groupLinks a').css({ 'dispalay': 'inline-block' });
+            }
+        });
     });
 </script>

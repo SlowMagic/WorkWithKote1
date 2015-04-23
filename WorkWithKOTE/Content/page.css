@@ -551,14 +551,14 @@
     text-align: center;
     margin-top: 50px;
     clear: both;
-    width: 50%;
-    height: 60px;
+    width: 54%;
+    min-height : 60px;
     border: 3px solid rgba(255, 255, 255, 0.1);
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 23%;
+    margin-right: 23%;
 }
 
 #wishletter {
