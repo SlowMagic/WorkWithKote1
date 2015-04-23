@@ -1482,6 +1482,7 @@ input.mail-submit {
     height: 30px;
     border: none;
     background: url('img/plane.png') no-repeat center center;
+    background-size: 68%;
 }
 
 form.mailform {
