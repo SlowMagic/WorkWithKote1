@@ -6,7 +6,8 @@
 }
 
 .buttons {
-    width: 510px;
+    /*width: 510px;*/
+    width : 35%;
     margin: 50px auto 0 auto;
     font-family: georgia;
     font-style: italic;
@@ -22,8 +23,8 @@
 }
 
 .yes-btn {
-    width: 220px;
-    float: left;
+    margin-top : 10px;
+    display : inline-block;
     text-align: center;
     text-shadow: rgba(0, 0, 0, 0.74902) 1px 1px 2px;
     padding: 15px;
@@ -38,16 +39,16 @@
 }
 
 .yes-btn:hover, .no-btn:hover {
-    margin-top: 2px;
-    margin-bottom: -2px;
+    /*margin-top: 2px;
+    margin-bottom: -2px;*/
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
 }
 
 .no-btn {
-    float: right;
-    width: 220px;
+    display : inline-block;
+    margin-top : 10px;
     height: auto;
     text-align: center;
     text-shadow: rgba(0, 0, 0, 0.74902) 1px 1px 2px;
@@ -266,6 +267,7 @@
 
 #big-logo {
     width: auto;
+    width:90px;
     max-width: 100%;
     height: auto;
     position: relative;
