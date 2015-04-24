@@ -1482,7 +1482,7 @@ input.mail-input {
 
 input.mail-submit {
     display: inline-block;
-    padding-top: 45px;
+    margin-top: 6px;
     padding-right: 30px;
     float: right;
     width: 30px;
