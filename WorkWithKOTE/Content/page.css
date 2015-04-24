@@ -23,6 +23,8 @@
 }
 
 .yes-btn {
+    min-width : 85px;
+    margin : 13px;
     margin-top : 10px;
     display : inline-block;
     text-align: center;
@@ -47,6 +49,7 @@
 }
 
 .no-btn {
+    margin : 13px;
     display : inline-block;
     margin-top : 10px;
     height: auto;
@@ -105,6 +108,7 @@
 }
 
 #box21 {
+    margin-left : 6%;
     float: left;
     width: 40%;
     height: auto;
@@ -856,6 +860,7 @@ a.recLink:hover {
 }
 
 h1.groupTitle {
+    margin-left : 14%;
     font-size: 3em;
     text-align: left;
     font-weight: normal;
@@ -1080,7 +1085,7 @@ span.arr {
 
 .boldPrice {
     float: none;
-    font-size: 1.5em;
+    font-size: 20px;
     line-height: 16px;
     color: rgb(18, 18, 18);
     font-style: normal;
@@ -1106,7 +1111,7 @@ span.arr {
     line-height: 16px;
     color: rgb(18, 18, 18);
     font-weight: normal;
-    margin-top: 15px;
+    margin-top: 6px;
     font-family: HelveticaNeueCyr;
 }
 
@@ -1417,17 +1422,20 @@ a.link-btn:hover {
 }
 
 div.mainTours {
+    display: inline-block;
     float: left;
     height: auto;
     clear: none;
-    width: 60%;
+    width: 40%;
+    margin-left:14%;
 }
 
 div.subTours {
-    float: right;
+    display: inline-block;
+    margin-left : 15px;
     height: auto;
     clear: none;
-    width: 39%;
+    width: 33%;
 }
 
 div.tourInfo {
@@ -1435,21 +1443,19 @@ div.tourInfo {
     margin-left: 15px;
     display: block;
     float: left;
-    width: 50%;
+    width: 60%;
 }
 
 div.tourPrice {
     margin-top: 15px;
-    margin-right: 15px;
     display: block;
     float: right;
     text-align: left;
-    width: 40%;
+    width: 34%;
 }
 
 div.recommendedTours {
     display: block;
-    margin-top: 100px;
 }
 
 div.mailsender {
@@ -1475,7 +1481,7 @@ input.mail-input {
 }
 
 input.mail-submit {
-    display : inline;
+    display: inline-block;
     padding-top: 45px;
     padding-right: 30px;
     float: right;
@@ -1483,7 +1489,7 @@ input.mail-submit {
     height: 30px;
     border: none;
     background: url('img/plane.png') no-repeat center center;
-    background-size: 68%;
+    background-size: 66%;
 }
 
 form.mailform {
