@@ -29,6 +29,8 @@ header {
     float: left;
     margin: 15px;
     margin-left: 15%;
+    width: 60px;
+    margin-top: 18px;
 }
 
 nav {
