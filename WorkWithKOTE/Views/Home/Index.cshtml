@@ -150,7 +150,7 @@
                     </div>
                 </div>
             </div>
-            <a id="allTours" href="@Url.Action("Search", "TourSearch")">Просмотреть все туры</a>
+            <a id="allTours" href="@Url.Action("Search", "TourSearch")">Просмотреть туры</a>
         </div>
     }
     <div class="subTours">
@@ -167,13 +167,11 @@
                       <div class="titleHref">
                           <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})" class="tourTitle">@Html.DisplayFor(m => item.TitleTour)</a>
                       </div>
-                    </div>
-                
+                </div>   
                 <div class="price">
                     От&nbsp;<span class="boldPrice">@Html.DisplayFor(m => item.Cost)</span>
                       &nbsp;@Html.DisplayFor(m => item.Valuta)
                 </div>
-
                 <div class="tourInfo">
                     <p class="tourDescription">
                         Тур&#x3a; &nbsp;Автобусный
@@ -526,6 +524,18 @@
             $('#to,#from').css('font-size', '16px');
         }
 
+        if ($('#bar').width() <= 900) {
+            $('.mainTours,.subTours').css({ 'display': 'block', 'width': '100%', 'float': 'none', 'margin-left': '0px' });
+            $('.subTours:first').css('margin-top', '30px');
+            $('h1.groupTitle').css('margin-left', '0px');
+        }
+        else {
+            $('.mainTours,.subTours').css('display', 'inline-block');
+            $('.mainTours').css({ 'float': 'left', 'width': '40%', 'margin-left': '14%' });
+            $('.subTours').css({ 'margin-left': '15px', 'width': '33%', 'margin-top': '0px' });
+            $('h1.groupTitle').css('margin-left', '14%');
+        }
+
         $(window).resize(function ()
         {
             if ($('#bar').width() <= 800) {
@@ -545,6 +555,18 @@
                 $('#wishletter').css('margin-top', '-100px');
                 $('#third').text('Приключенческие туры');
                 $('#textspan1').css('font-size', '3em');
+            }
+
+            if ($('#bar').width() <= 900) {
+                $('.mainTours,.subTours').css({ 'display': 'block', 'width': '100%', 'float': 'none', 'margin-left': '0px' });
+                $('.subTours:first').css('margin-top', '30px');
+                $('h1.groupTitle').css('margin-left', '0px');
+            }
+            else {
+                $('.mainTours,.subTours').css('display', 'inline-block');
+                $('.mainTours').css({'float':'left','width':'40%','margin-left':'14%'});
+                $('.subTours').css({ 'margin-left': '15px', 'width': '33%', 'margin-top': '0px' });
+                $('h1.groupTitle').css('margin-left', '14%');
             }
         });
     });
