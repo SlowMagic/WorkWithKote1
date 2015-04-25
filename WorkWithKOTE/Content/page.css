@@ -1437,6 +1437,7 @@ div.subTours {
 div.tourInfo {
     margin-top: 15px;
     margin-left: 15px;
+    margin-bottom : 10px;
     display: block;
     float: left;
     width: 93%;

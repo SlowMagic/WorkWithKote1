@@ -42,8 +42,9 @@
       background : #ff6f40;
       border: 1px solid #ff6f40;
       border-radius: 4px;
-      padding: 5px;
-      color : white;
+      padding: 7px;
+      color : white !important;
+      
     }
 
     .allToursClone{
@@ -57,6 +58,7 @@
 
     .price{
         margin-left: 15px;
+        margin-top : 5px;
     }
 
 </style>
@@ -143,8 +145,8 @@
                         Тур&#x3a; &nbsp;Автобусный
                              @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourHightPrev.TourId }); }
                              @Html.DisplayFor(item => item.TourHightPrev.PlaceOfDeparture)
-                             <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
-                        @Html.DisplayFor(item => item.TourHightPrev.PlaceOfArrival)
+                                 <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                             @Html.DisplayFor(item => item.TourHightPrev.PlaceOfArrival)
                     </p>    
                 </div>
                 <div class="tourPrice">    
@@ -180,13 +182,15 @@
                     <p class="tourDescription">
                         Тур&#x3a; &nbsp;Автобусный
                         @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }
-                        @Html.DisplayFor(m => item.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />&nbsp;@Html.DisplayFor(m => item.PlaceOfArrival)
+                        @Html.DisplayFor(m => item.PlaceOfDeparture)
+                            <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                        @Html.DisplayFor(m => item.PlaceOfArrival)
                     </p>
                 </div>
             </div>
+           <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>         
         }
     </div>
-    <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
 </div>
 
 <div class="groups-bg clearfix">
@@ -215,27 +219,29 @@
                     <a href="@Url.Action( "Index","TourDisplay", new {id=Model.TourCenterPrev.TourId})">
                         <img src="@Html.DisplayFor(item => item.TourCenterPrev.TourImg)" class="groupMainPreview image">
                     </a>
-                    <h2 class="tourTitle">@Html.DisplayFor(item => item.TourCenterPrev.TitleTour)</h2>
+                    <div class="titleHref">
+                        <a href="@Url.Action( "Index","TourDisplay", new {id=Model.TourCenterPrev.TourId})" class="tourTitle">
+                            @Html.DisplayFor(item => item.TourCenterPrev.TitleTour)
+                        </a>
+                    </div>
+                </div>
+                <div class="price">
+                    От
+                    <span class="boldPrice">@Html.DisplayFor(item => item.TourCenterPrev.Cost)</span>
+                    @Html.DisplayFor(item => item.TourCenterPrev.Valuta)
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
                         Тур&#x3a; &nbsp;Автобусный<br />
-                        @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourCenterPrev.TourId }); }<br /><br />
+                        @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourCenterPrev.TourId }); }
                         @Html.DisplayFor(item => item.TourCenterPrev.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />@Html.DisplayFor(item => item.TourCenterPrev.PlaceOfArrival)
                     </p>
                 </div>
                 <div class="tourPrice">
-                    <div>
-                        От <span class="boldPrice">@Html.DisplayFor(item => item.TourCenterPrev.Cost)</span> @Html.DisplayFor(item => item.TourCenterPrev.Valuta).
-                        <p class="smallDescription">
+                        <div class="smallDescription">
                             Актуальная стоимость тура формируется в&nbsp;корзине услуг
-                            после
-                            нажатия &#x27;Купить&#x27;.
-                        </p>
-                    </div>
-                    <div class="more clearfix">
-                        <a href="@Url.Action("Index", "TourDisplay", new { id = Model.TourCenterPrev.TourId })" class="biglink-btn">Подробнее</a>
-                    </div>
+                            после нажатия &#x27;Купить&#x27;.
+                        </div>
                 </div>
             </div>
             <a class="allTours" href="@Url.Action("Search", "TourSearch")">Все туры</a>
@@ -253,21 +259,27 @@
             <div class="tour clearfix">
                 <div class="tourName">
                     <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})"><img src="@Html.DisplayFor(m => item.TourImg)" class="groupSubPreview image"></a>
-                    <h2 class="tourTitle">@Html.DisplayFor(m => item.TitleTour)</h2>
+                    <div class="titleHref">
+                        <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})" class="tourTitle">
+                           @Html.DisplayFor(m => item.TitleTour)
+                        </a>
+                    </div>
+                </div>
+                <div class="price">
+                    От&nbsp;<span class="boldPrice">@Html.DisplayFor(m => item.Cost)</span>
+                    &nbsp;@Html.DisplayFor(m => item.Valuta)
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
-                        Тур&#x3a; &nbsp;Автобусный<br />
-                        @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }<br /><br />
-                        @Html.DisplayFor(m => item.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />&nbsp;@Html.DisplayFor(m => item.PlaceOfArrival)
-                    </p>
-                </div>
-                <div class="tourPrice">
-                    <p class="tourDescription">
-                        От&nbsp;<span class="boldPrice">@Html.DisplayFor(m => item.Cost)</span>&nbsp;@Html.DisplayFor(m => item.Valuta).<br />
+                        Тур&#x3a; &nbsp;Автобусный
+                        @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }
+                        @Html.DisplayFor(m => item.PlaceOfDeparture)
+                           <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                        @Html.DisplayFor(m => item.PlaceOfArrival)
                     </p>
                 </div>
             </div>
+        <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
         }
     </div>
 </div>
@@ -287,26 +299,30 @@
                     <a href="@Url.Action("Index", "TourDisplay", new { id = Model.TourDownPrev.TourId })">
                         <img src="@Html.DisplayFor(item => item.TourDownPrev.TourImg)" class="groupMainPreview image">
                     </a>
-                    <h2 class="tourTitle">@Html.DisplayFor(item => item.TourDownPrev.TitleTour)</h2>
+                     <div class="titleHref">
+                         <a href="@Url.Action("Index", "TourDisplay", new { id = Model.TourDownPrev.TourId })" class="tourTitle">
+                             @Html.DisplayFor(item => item.TourDownPrev.TitleTour)
+                         </a>
+                     </div>
+                </div>
+                <div class="price">
+                    От
+                    <span class="boldPrice">@Html.DisplayFor(item => item.TourDownPrev.Cost)</span>
+                    @Html.DisplayFor(item => item.TourDownPrev.Valuta)
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
-                        Тур&#x3a; &nbsp;Автобусный<br />
-                        @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourDownPrev.TourId }); }<br /><br />
-                        @Html.DisplayFor(item => item.TourDownPrev.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />@Html.DisplayFor(item => item.TourDownPrev.PlaceOfArrival)
+                        Тур&#x3a; &nbsp;Автобусный
+                        @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourDownPrev.TourId }); }
+                        @Html.DisplayFor(item => item.TourDownPrev.PlaceOfDeparture)
+                             <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                        @Html.DisplayFor(item => item.TourDownPrev.PlaceOfArrival)
                     </p>
                 </div>
                 <div class="tourPrice">
-                    <div>
-                        От <span class="boldPrice">@Html.DisplayFor(item => item.TourDownPrev.Cost)</span> @Html.DisplayFor(item => item.TourDownPrev.Valuta).
-                        <p class="smallDescription">
-                            Актуальная стоимость тура формируется в&nbsp;корзине услуг
-                            после
-                            нажатия &#x27;Купить&#x27;.
-                        </p>
-                    </div>
-                    <div class="more clearfix">
-                        <a href="@Url.Action("Index", "TourDisplay", new { id = Model.TourDownPrev.TourId })" class="biglink-btn">Подробнее</a>
+                    <div class="smallDescription">
+                          Актуальная стоимость тура формируется в&nbsp;корзине услуг
+                          после нажатия &#x27;Купить&#x27;.
                     </div>
                 </div>
             </div>
@@ -325,13 +341,19 @@
             <div class="tour clearfix">
                 <div class="tourName">
                     <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})"><img src="@Html.DisplayFor(m => item.TourImg)" class="groupSubPreview image"></a>
-                    <h2 class="tourTitle">@Html.DisplayFor(m => item.TitleTour)</h2>
+                    <div class="titleHref">
+                        <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})" class="tourTitle">
+                            @Html.DisplayFor(m => item.TitleTour)
+                        </a>
+                    </div>
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
-                        Тур&#x3a; &nbsp;Автобусный<br />
-                        @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }<br /><br />
-                        @Html.DisplayFor(m => item.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />&nbsp;@Html.DisplayFor(m => item.PlaceOfArrival)
+                        Тур&#x3a; &nbsp;Автобусный
+                        @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }
+                        @Html.DisplayFor(m => item.PlaceOfDeparture)
+                           <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                        @Html.DisplayFor(m => item.PlaceOfArrival)
                     </p>
                 </div>
                 <div class="tourPrice">
@@ -340,6 +362,7 @@
                     </p>
                 </div>
             </div>
+            <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
         }
     </div>
 </div>
