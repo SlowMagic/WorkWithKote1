@@ -38,12 +38,16 @@
         margin : 3px;
     }
 
-    #allTours{
+    .allTours,.allToursClone{
       background : #ff6f40;
       border: 1px solid #ff6f40;
       border-radius: 4px;
       padding: 5px;
       color : white;
+    }
+
+    .allToursClone{
+        display : none;
     }
 
     .titleHref{
@@ -150,7 +154,7 @@
                     </div>
                 </div>
             </div>
-            <a id="allTours" href="@Url.Action("Search", "TourSearch")">Просмотреть туры</a>
+            <a class="allTours" href="@Url.Action("Search", "TourSearch")">Все туры</a>
         </div>
     }
     <div class="subTours">
@@ -182,6 +186,7 @@
             </div>
         }
     </div>
+    <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
 </div>
 
 <div class="groups-bg clearfix">
@@ -233,29 +238,7 @@
                     </div>
                 </div>
             </div>
-            <div class="recommendedTours clearfix">
-                <p class="recommendedTitle">
-                    Мы рекомендуем&#x3a;
-                </p>
-                <div class="recommendedTour">
-                    <p class="recommendedLink">
-                        <a href="#" class="new-title">Вегетарианское кафе во Львове.</a><br />
-                        <span class="where">Украина, Львов</span>
-                    </p>
-                </div>
-                <div class="recommendedTour">
-                    <p class="recommendedLink">
-                        <a href="#" class="new-title">Вегетарианское кафе во Львове.</a><br />
-                        <span class="where">Украина, Львов</span>
-                    </p>
-                </div>
-                <div class="recommendedTour">
-                    <p class="recommendedLink">
-                        <a href="#" class="new-title">Вегетарианское кафе во Львове.</a><br />
-                        <span class="where">Украина, Львов</span>
-                    </p>
-                </div>
-            </div>
+            <a class="allTours" href="@Url.Action("Search", "TourSearch")">Все туры</a>
         </div>
     }
     
@@ -327,29 +310,7 @@
                     </div>
                 </div>
             </div>
-            <div class="recommendedTours clearfix">
-                <p class="recommendedTitle">
-                    Мы рекомендуем&#x3a;
-                </p>
-                <div class="recommendedTour">
-                    <p class="recommendedLink">
-                        <a href="#" class="new-title">Вегетарианское кафе во Львове.</a><br />
-                        <span class="where">Украина, Львов</span>
-                    </p>
-                </div>
-                <div class="recommendedTour">
-                    <p class="recommendedLink">
-                        <a href="#" class="new-title">Вегетарианское кафе во Львове.</a><br />
-                        <span class="where">Украина, Львов</span>
-                    </p>
-                </div>
-                <div class="recommendedTour">
-                    <p class="recommendedLink">
-                        <a href="#" class="new-title">Вегетарианское кафе во Львове.</a><br />
-                        <span class="where">Украина, Львов</span>
-                    </p>
-                </div>
-            </div>
+            <a class="allTours" href="@Url.Action("Search", "TourSearch")">Все туры</a>
         </div>
 
     }
@@ -393,28 +354,6 @@
             <div id="video-preview">
                 <iframe width="100%" height="300px" src="https://www.youtube.com/embed/NmugSMBh_iI" frameborder="0" allowfullscreen></iframe>
             </div>
-
-            <!--
-            <div id="video-title" class="clearfix">
-                <p id="video-title-date">27.04.2015</p>
-                <p id="video-title-name">Видеоотчет германия - италия</p>
-            </div>
-            -->
-
-           <!-- <div id="subscribe">
-                <div class="align_center_to_left">
-                    <div class="align_center_to_right">
-                        <dl id="sub-nav">
-                            <dt>Следите за нами&#x3a;</dt>
-                            <dd><img id="youtube-ico" src="~/Content/img/youtube-ico.png" /></dd>
-                            <dt>14&nbsp;579</dt>
-                            <dd><img id="instagram-ico" src="~/Content/img/instagram-ico.png" /></dd>
-                            <dt>6&nbsp;945</dt>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-             -->
         </div>
 
         <div id="box22">
@@ -513,6 +452,13 @@
 <script>
     $(function ()
     {
+        if ($('#bar').width() <= 700) {
+            $('#box21,#box22').hide();
+        }
+        else {
+            $('#box21,#box22').show();
+        }
+
         if ($('#bar').width() <= 800)
         {
             $('h1.groupTitle').addClass('smallTitle');
@@ -528,16 +474,34 @@
             $('.mainTours,.subTours').css({ 'display': 'block', 'width': '100%', 'float': 'none', 'margin-left': '0px' });
             $('.subTours:first').css('margin-top', '30px');
             $('h1.groupTitle').css('margin-left', '0px');
+            $('.allToursClone').css('display', 'table');
+            $('.allTours').css('display', 'none');
+            $('.news-block').css('display', 'block');
+            $('.news-block article').css('margin-top', '20px');
+            $('.news-title').css('margin-bottom', '20px');
         }
         else {
             $('.mainTours,.subTours').css('display', 'inline-block');
             $('.mainTours').css({ 'float': 'left', 'width': '40%', 'margin-left': '14%' });
             $('.subTours').css({ 'margin-left': '15px', 'width': '33%', 'margin-top': '0px' });
             $('h1.groupTitle').css('margin-left', '14%');
+            $('.allToursClone').css('display', 'none');
+            $('.allTours').css('display', 'table');
+            $('.news-block').css('display', 'inline-flex');
+            $('.news-block article').css('margin-top', '0px');
+            $('.news-title').css('margin-bottom', '0px');
         }
 
         $(window).resize(function ()
         {
+
+            if ($('#bar').width() <= 700) {
+                $('#box21,#box22').hide();
+            }
+            else {
+                $('#box21,#box22').show();
+            }
+
             if ($('#bar').width() <= 800) {
                 $('h1.groupTitle').addClass('smallTitle');
                 $('.groupLinks a').css({ 'dispalay': 'block !important' });
@@ -561,12 +525,23 @@
                 $('.mainTours,.subTours').css({ 'display': 'block', 'width': '100%', 'float': 'none', 'margin-left': '0px' });
                 $('.subTours:first').css('margin-top', '30px');
                 $('h1.groupTitle').css('margin-left', '0px');
+                $('.allToursClone').css('display', 'table');
+                $('.allTours').css('display', 'none');
+                $('.news-block').css('display', 'block');
+                $('.news-block article').css('margin-top', '20px');
+                $('.news-title').css('margin-bottom', '20px');
+
             }
             else {
                 $('.mainTours,.subTours').css('display', 'inline-block');
                 $('.mainTours').css({'float':'left','width':'40%','margin-left':'14%'});
                 $('.subTours').css({ 'margin-left': '15px', 'width': '33%', 'margin-top': '0px' });
                 $('h1.groupTitle').css('margin-left', '14%');
+                $('.allToursClone').css('display', 'none');
+                $('.allTours').css('display', 'table');
+                $('.news-block').css('display', 'inline-flex');
+                $('.news-block article').css('margin-top', '0px');
+                $('.news-title').css('margin-bottom', '0px');
             }
         });
     });
