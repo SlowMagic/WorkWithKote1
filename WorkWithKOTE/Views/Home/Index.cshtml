@@ -189,7 +189,7 @@
                 </div>
             </div>     
         }
-        @if(counter){
+        @if(counter > 0){
            <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>   
         }    
     </div>
@@ -282,7 +282,7 @@
                 </div>
             </div>
         }
-        @if(counter1){
+        @if(counter1 > 0){
           <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
         } 
     </div>
@@ -367,7 +367,7 @@
                 </div>
             </div>
         }
-        @if(counter2){
+        @if(counter2 > 0){
           <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
         } 
     </div>
