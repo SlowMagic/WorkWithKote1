@@ -189,7 +189,9 @@
                 </div>
             </div>     
         }
-        <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>    
+        if(counter){
+           <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>   
+        }    
     </div>
 </div>
 
@@ -280,7 +282,9 @@
                 </div>
             </div>
         }
-        <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
+        if(counter){
+          <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
+        } 
     </div>
 </div>
 
@@ -363,7 +367,9 @@
                 </div>
             </div>
         }
-        <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
+        if(counter){
+          <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
+        } 
     </div>
 </div>
 
