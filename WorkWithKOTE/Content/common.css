@@ -71,15 +71,15 @@ nav {
     clear: none;
 }
 
-    .nav-other a {
-        margin-left: 25px;
-        padding-bottom: 44px;
-    }
+.nav-other a {
+   margin-left: 25px;
+   padding-bottom: 44px;
+}
 
-        .nav-other a:hover {
-            padding-bottom: 41px;
-            border-bottom: 3px solid #acacac;
-        }
+.nav-other a:hover {
+   padding-bottom: 43px;
+   border-bottom: 3px solid #acacac;
+}
 
 #second-navigation {
     text-transform: capitalize;

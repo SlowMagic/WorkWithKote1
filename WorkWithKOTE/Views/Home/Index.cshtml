@@ -473,8 +473,10 @@
 </script>
 
 <script>
-    $(function ()
+
+    function MobileVersion()
     {
+        
         if ($('#bar').width() <= 700) {
             $('#box21,#box22').hide();
         }
@@ -482,8 +484,7 @@
             $('#box21,#box22').show();
         }
 
-        if ($('#bar').width() <= 800)
-        {
+        if ($('#bar').width() <= 800) {
             $('h1.groupTitle').addClass('smallTitle');
             $('.groupLinks a').css({ 'dispalay': 'block !important' });
             $('.groupLinks').css('font-size', '14px');
@@ -507,65 +508,27 @@
             $('.mainTours,.subTours').css('display', 'inline-block');
             $('.mainTours').css({ 'float': 'left', 'width': '40%', 'margin-left': '14%' });
             $('.subTours').css({ 'margin-left': '15px', 'width': '33%', 'margin-top': '0px' });
-            $('h1.groupTitle').css('margin-left', '14%');
+            $('h1.groupTitle').css('margin-left', '14%').removeClass('smallTitle');
             $('.allToursClone').css('display', 'none');
             $('.allTours').css('display', 'table');
             $('.news-block').css('display', 'inline-flex');
             $('.news-block article').css('margin-top', '0px');
             $('.news-title').css('margin-bottom', '0px');
+
+            $('.subTours').each(function () {
+                if (!$(this).prev().hasClass('mainTours')) {
+                    $(this).css('margin-left', '56%');
+                }
+            });
         }
+    }
 
-        $(window).resize(function ()
-        {
+    $(function ()
+    {
+        MobileVersion();
 
-            if ($('#bar').width() <= 700) {
-                $('#box21,#box22').hide();
-            }
-            else {
-                $('#box21,#box22').show();
-            }
-
-            if ($('#bar').width() <= 800) {
-                $('h1.groupTitle').addClass('smallTitle');
-                $('.groupLinks a').css({ 'dispalay': 'block !important' });
-                $('.groupLinks').css('font-size', '14px');
-                $('#tourSearch_text,#subscribe,#big-logo').hide();
-                $('#wishletter').css('margin-top', '100px');
-                $('#third').text('Приключенческие');
-                $('#textspan1').css('font-size', '25px');
-            }
-            else {
-                $('h1.groupTitle').removeClass('smallTitle');
-                $('.groupLinks a').css({ 'dispalay': 'inline-block !important' });
-                $('.groupLinks').css('font-size', '20px');
-                $('#tourSearch_text,#subscribe,#big-logo').show();
-                $('#wishletter').css('margin-top', '-100px');
-                $('#third').text('Приключенческие туры');
-                $('#textspan1').css('font-size', '3em');
-            }
-
-            if ($('#bar').width() <= 900) {
-                $('.mainTours,.subTours').css({ 'display': 'block', 'width': '100%', 'float': 'none', 'margin-left': '0px' });
-                $('.subTours:first').css('margin-top', '30px');
-                $('h1.groupTitle').css('margin-left', '0px');
-                $('.allToursClone').css('display', 'table');
-                $('.allTours').css('display', 'none');
-                $('.news-block').css('display', 'block');
-                $('.news-block article').css('margin-top', '20px');
-                $('.news-title').css('margin-bottom', '20px');
-
-            }
-            else {
-                $('.mainTours,.subTours').css('display', 'inline-block');
-                $('.mainTours').css({'float':'left','width':'40%','margin-left':'14%'});
-                $('.subTours').css({ 'margin-left': '15px', 'width': '33%', 'margin-top': '0px' });
-                $('h1.groupTitle').css('margin-left', '14%');
-                $('.allToursClone').css('display', 'none');
-                $('.allTours').css('display', 'table');
-                $('.news-block').css('display', 'inline-flex');
-                $('.news-block article').css('margin-top', '0px');
-                $('.news-title').css('margin-bottom', '0px');
-            }
+        $(window).resize(function () {
+            MobileVersion();
         });
     });
 </script>
