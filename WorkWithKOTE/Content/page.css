@@ -6,7 +6,8 @@
 }
 
 .buttons {
-    width: 510px;
+    /*width: 510px;*/
+    width : 35%;
     margin: 50px auto 0 auto;
     font-family: georgia;
     font-style: italic;
@@ -22,11 +23,13 @@
 }
 
 .yes-btn {
-    width: 220px;
-    float: left;
+    min-width : 85px;
+    margin : 13px;
+    margin-top : 10px;
+    display : inline-block;
     text-align: center;
     text-shadow: rgba(0, 0, 0, 0.74902) 1px 1px 2px;
-    padding: 15px;
+    padding: 13px;
     background-color: #ff6f40;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
@@ -38,20 +41,21 @@
 }
 
 .yes-btn:hover, .no-btn:hover {
-    margin-top: 2px;
-    margin-bottom: -2px;
+    /*margin-top: 2px;
+    margin-bottom: -2px;*/
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
 }
 
 .no-btn {
-    float: right;
-    width: 220px;
+    margin : 13px;
+    display : inline-block;
+    margin-top : 10px;
     height: auto;
     text-align: center;
     text-shadow: rgba(0, 0, 0, 0.74902) 1px 1px 2px;
-    padding: 15px;
+    padding: 13px;
     background-color: #121212;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
@@ -104,13 +108,14 @@
 }
 
 #box21 {
+    margin-left : 14%;
     float: left;
-    width: 40%;
+    width: 35%;
     height: auto;
 }
 
 #media-bg {
-    height: 605px;
+    height: auto;
     background-image: url("img/media-bg.jpg");
     -webkit-background-size: 100%;
     background-size: 100%;
@@ -266,6 +271,7 @@
 
 #big-logo {
     width: auto;
+    width:90px;
     max-width: 100%;
     height: auto;
     position: relative;
@@ -350,7 +356,9 @@
     text-align: center;
     font-weight: normal;
     line-height: 1em;
-    margin-top: 31px;
+    margin-top: 15px;
+    float: right;
+    margin-right: -83px;
 }
 
 .news-title h3 {
@@ -398,7 +406,7 @@
 {
     position: relative;
     z-index: 1;
-    right: -50%;
+    /*right: -50%;*/
 }
 #sub-nav {
     float: left;
@@ -504,7 +512,7 @@
     font-size: 0.875em;
     position : absolute;
     bottom : 30px;
-    left : 47%;
+    left : 48%;
     width: 90px;
     height: 50px;
     text-align: center;
@@ -551,14 +559,14 @@
     text-align: center;
     margin-top: 50px;
     clear: both;
-    width: 50%;
-    height: 60px;
+    width: 54%;
+    min-height : 70px;
     border: 3px solid rgba(255, 255, 255, 0.1);
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 23%;
+    margin-right: 23%;
 }
 
 #wishletter {
@@ -852,6 +860,7 @@ a.recLink:hover {
 }
 
 h1.groupTitle {
+    margin-left : 14%;
     font-size: 3em;
     text-align: left;
     font-weight: normal;
@@ -952,7 +961,7 @@ span.arr {
 .tourGroup {
     margin-left: 10%;
     margin-right: 10%;
-    min-width: 800px;
+    /*min-width: 800px;*/
     width: 80%;
 }
 
@@ -1076,7 +1085,7 @@ span.arr {
 
 .boldPrice {
     float: none;
-    font-size: 1.5em;
+    font-size: 20px;
     line-height: 16px;
     color: rgb(18, 18, 18);
     font-style: normal;
@@ -1102,7 +1111,7 @@ span.arr {
     line-height: 16px;
     color: rgb(18, 18, 18);
     font-weight: normal;
-    margin-top: 15px;
+    margin-top: 6px;
     font-family: HelveticaNeueCyr;
 }
 
@@ -1331,19 +1340,15 @@ div.tour {
 }
 
 .news-block {
-    min-width: 800px;
-    max-width: 1000px;
+    display: inline-flex;
 }
 
 .news-block article {
-    float: left;
     font-size: 1em;
-    width: 21%;
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 0 2%;
+    margin: 15px;
     clear: none;
+    max-width:250px;
 }
 
 .scroll {
@@ -1413,45 +1418,46 @@ a.link-btn:hover {
 }
 
 div.mainTours {
+    display: inline-block;
     float: left;
     height: auto;
     clear: none;
-    width: 60%;
+    width: 40%;
+    margin-left:14%;
 }
 
 div.subTours {
-    float: right;
+    display: inline-block;
+    margin-left : 40px;
     height: auto;
     clear: none;
-    width: 39%;
+    width: 23%;
 }
 
 div.tourInfo {
     margin-top: 15px;
     margin-left: 15px;
+    margin-bottom : 10px;
     display: block;
     float: left;
-    width: 50%;
+    width: 93%;
 }
 
 div.tourPrice {
     margin-top: 15px;
-    margin-right: 15px;
     display: block;
-    float: right;
+    margin-left: 15px;
     text-align: left;
-    width: 40%;
+    width: 93%;
 }
 
 div.recommendedTours {
     display: block;
-    margin-top: 100px;
 }
 
 div.mailsender {
-    width: 400px;
     height: 50px;
-    /*min-height: 20px;*/
+    min-width : 150px;
     border: 3px solid rgba(255, 255, 255, 0.1);
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
@@ -1459,29 +1465,32 @@ div.mailsender {
 }
 
 input.mail-input {
-    color: #ffffff;
-    float: left;
-    border: none;
-    background: none;
-    outline: none;
-    -webkit-appearance: none;
-    width: 255px;
-    margin: 5px 0 5px 15px;
-    height: 40px;
-    vertical-align: middle;
+      display : inline;
+      color: #ffffff;
+      border: none;
+      background: none;
+      outline: none;
+      -webkit-appearance: none;
+      width: 60%;
+      margin: 5px 0 5px 5px;
+      height: 40px;
+      vertical-align: middle
 }
 
 input.mail-submit {
-    margin: 7px 15px 7px 3px;
+    display: inline-block;
+    margin-top: 6px;
+    padding-right: 30px;
     float: right;
     width: 30px;
     height: 30px;
     border: none;
     background: url('img/plane.png') no-repeat center center;
+    background-size: 66%;
 }
 
 form.mailform {
-    margin: 30px 35% 0 35%;
+    margin: 30px 26% 0 24%;
 }
 
 /*

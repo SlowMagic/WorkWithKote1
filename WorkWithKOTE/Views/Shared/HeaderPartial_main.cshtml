@@ -1,9 +1,36 @@
-﻿
+﻿<style>
+
+    #forMenu{
+        cursor : pointer;
+    }
+    
+    #tiny_menu{
+        display : none;
+        margin-top: 5px;
+        right: 15%;
+        background: white;
+        box-shadow: 1px 1px 3px 0px #ccc;
+        position: absolute;
+        width: 120px;
+        height: 240px;
+    }
+
+    .menuLink,.menuLink_first {
+        font-size : 20px;
+        padding-top:20px;
+    }
+
+    #second-navigation{
+        width:100%;
+    }
+
+</style>
+
 <header>
     <div id="bar">
         <a href="@Url.Action("Index","Home")"><img id="small-logo" src="~/Content/img/small-logo.png" /></a>
 
-        <nav>
+        <nav id="navigation">
             @Html.ActionLink("Главная", "Index", "Home", null, null)
             @Html.ActionLink("Туры", "Search", "TourSearch", null, null)
             @Html.ActionLink("Галерея", "GalleryList", "Gallery", null, null)
@@ -39,7 +66,19 @@
                       </div>
                 }
                 <img src="~/Content/img/separator.png" class="separator" />
+                <img style="width:15px;height:10px;display:none;" src="~/Content/img/menuicon.png" id="forMenu" />
             </div>
+        </div>
+
+        <div id="tiny_menu">
+            <p class="menuLink_first"> @Html.ActionLink("Главная", "Index", "Home", null, null)          </p>
+            <p class="menuLink">       @Html.ActionLink("Туры", "Search", "TourSearch", null, null)      </p>
+            <p class="menuLink">       @Html.ActionLink("Галерея", "GalleryList", "Gallery", null, null) </p>
+            <p class="menuLink">       @Html.ActionLink("О нас", "Contact", "Home", null, null)          </p>
+
+            <p class="menuLink">
+                <a href="@Url.Action("Search", "TourSearch")">Поиск</a>
+            </p>
         </div>
     
         <a href="@Url.Action("Search", "TourSearch")"><img id="Searching" src="~/Content/img/Searching.png" /></a>
@@ -53,3 +92,52 @@
     </div>
 </div>
 </header>
+
+
+
+
+<script>
+    $(function ()
+    {   
+        if ($('#bar').width() <= 800)
+        {
+            $('.nav-other a,#Searching,#navigation').hide();
+            $('.profile').css('margin-top', '25px');
+            $('#forMenu').show().css('display','inline');
+        }
+
+        if ($('#bar').width() <= 450) {
+            $('#small-logo').hide();
+        }
+
+        $(window).resize(function ()
+        {
+            $('#tiny_menu').hide(500);
+
+            if ($('#bar').width() <= 800) {
+                $('.nav-other a,#Searching,#navigation').hide();
+                $('.profile').css('margin-top', '25px');
+                $('#forMenu').show().css('display', 'inline');
+            }
+            else {
+                $('.nav-other a,#Searching,#navigation').show();
+                $('#forMenu').hide();
+                $('.profile').css('margin-top', '0px');
+                $('#tiny_menu').hide(500);
+            }
+
+            if ($('#bar').width() <= 450) {
+                $('#small-logo').hide();
+            }
+            else {
+                $('#small-logo').show();
+            }
+        });
+    });
+
+    $(function () {
+        $('#forMenu').click(function () {
+            $('#tiny_menu').toggle(500);
+        });
+    });
+</script>

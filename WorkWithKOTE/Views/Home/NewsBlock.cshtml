@@ -3,10 +3,12 @@
     <div class="align_center_to_left">
         <div class="align_center_to_right">
             <div class="news-title">
-                <h3>@Html.ActionLink("Новости","AllNewsBlock","News")</h3>
+                <h3 id="news">@Html.ActionLink("Новости","AllNewsBlock","News")</h3>
                 <h4>будь в курсе всех событий</h4>
-            </div>
-            <div class="news-block clearfix">
+            </div><br/>
+
+            <div style="width:100%; text-align:center; margin-left:50%;">
+             <div class="news-block clearfix">
                 @{int i = 0;}
                 @foreach (var item in Model)
                 {
@@ -18,7 +20,15 @@
                     </article>
                     i++;
                 }
+             </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    #news a:hover{
+        color : #807979;
+        text-decoration : underline;
+    }
+</style>

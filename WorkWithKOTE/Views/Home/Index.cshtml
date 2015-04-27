@@ -1,19 +1,21 @@
-﻿@{
+@{
     ViewBag.Title = "Home Page";
 }
 @using WorkWithKOTE.Controllers
 @model WorkWithKOTE.Models.TourForHomePage
 @Styles.Render("~/Content/page")
+
 @{ Html.RenderPartial("HeaderPartial_main");}
+
 <style>
     .galleria {
         float: left;
-        width: 250px;
+        width: 40%;
         max-width: 100%;
-        height: 200px;
+        height: 190px;
         top: 0;
         left: 0;
-        margin: 0 1.45% 1.45% 1.45%;
+        margin: 0 0.1% 1.45% 1.45%;
         clear: none;
     }
 
@@ -22,12 +24,56 @@
         padding-left: 5px;
         padding-right: 5px;
     }
+
+    .smallTitle{
+        font-size : 22px !important;
+    }
+
+    .groupLinks {
+        font-size : 20px;
+        margin-top : 18px;
+    }
+
+    .groupLinks a{
+        margin : 3px;
+    }
+
+    .allTours,.allToursClone{
+      background : #ff6f40;
+      border: 1px solid #ff6f40;
+      border-radius: 4px;
+      padding: 7px;
+      color : white !important;
+      
+    }
+
+    .allToursClone{
+        display : none;
+    }
+
+    .titleHref{
+        margin-top: 10px;
+        margin-left: 15px;
+    }
+
+    .price{
+        margin-left: 15px;
+        margin-top : 5px;
+    }
+
+    .tour.clearfix:hover{
+        transition : 0.15s;
+        box-shadow: #ccc 1px 0px 8px 2px;
+    }
+
+     .tour.clearfix{
+        transition : 0.7s;
+    }
+
 </style>
+
 <div id="big-preview-img" class="clearfix">
     <div class="wish">
-
-        @*        <img  id="big-logo" />*@
-
         <p style="display:none;" id="wishletter">
             <span id="textspan">Я хочу...<br /></span>
             <span id="textspan1">
@@ -51,12 +97,14 @@
             </a>
         </div>
     </div>
+
     <div class="scroll clearfix">
         <p class="scroll-text">
             Скроль<br />вниз
         </p>
     </div>
 </div>
+
 @{Html.RenderAction("NewsBlock");}
 <div class="groups-bg clearfix">
     <div class="groups clearfix" id="second-nav">
@@ -72,7 +120,7 @@
         <p class="consultLinks">
             Используйте сервис
             @Html.ActionLink("поиска", "Search", "TourSearch", null, new { @class = "link-btn" })
-            для подбора тура
+           <span id="tourSearch_text">для подбора тура</span>
         </p>
     </div>
 </div>
@@ -89,92 +137,79 @@
                     <a href="@Url.Action("Index", "TourDisplay", new {id = Model.TourHightPrev.TourId})">
                         <img src="@Html.DisplayFor(item => item.TourHightPrev.TourImg)" class="groupMainPreview image">
                     </a>
-                    <h2 class="tourTitle">@Html.DisplayFor(item => item.TourHightPrev.TitleTour)</h2>
+                    <div class="titleHref">
+                        <a href="@Url.Action("Index", "TourDisplay", new {id=Model.TourHightPrev.TourId })" class="tourTitle">
+                           @Html.DisplayFor(item => item.TourHightPrev.TitleTour)
+                        </a>
+                    </div>
                 </div>
+                <div class="price">
+                    От
+                    <span class="boldPrice">@Html.DisplayFor(item => item.TourHightPrev.Cost)</span>
+                    @Html.DisplayFor(item => item.TourHightPrev.Valuta)
+                </div>
+
                 <div class="tourInfo">
                     <p class="tourDescription">
-                        Тур&#x3a; &nbsp;Автобусный<br />
-                        @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourHightPrev.TourId }); }<br /><br />
-                        @Html.DisplayFor(item => item.TourHightPrev.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />@Html.DisplayFor(item => item.TourHightPrev.PlaceOfArrival)
-                    </p>
+                        Тур&#x3a; &nbsp;Автобусный
+                             @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourHightPrev.TourId }); }
+                             @Html.DisplayFor(item => item.TourHightPrev.PlaceOfDeparture)
+                                 <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                             @Html.DisplayFor(item => item.TourHightPrev.PlaceOfArrival)
+                    </p>    
                 </div>
-                <div class="tourPrice">
-                    <div>
-                        От <span class="boldPrice">@Html.DisplayFor(item => item.TourHightPrev.Cost)</span> @Html.DisplayFor(item => item.TourHightPrev.Valuta).
-                        <p class="smallDescription">
-                            Актуальная стоимость тура формируется в&nbsp;корзине услуг
-                            после
-                            нажатия &#x27;Купить&#x27;.
-                        </p>
-                    </div>
-                    <div class="more clearfix">
-                        <a href="@Url.Action("Index", "TourDisplay", new {id = Model.TourHightPrev.TourId})" class="biglink-btn">Подробнее</a>
+                <div class="tourPrice">    
+                    <div class="smallDescription">
+                        Актуальная стоимость тура формируется в&nbsp;корзине услуг после
+                        нажатия &#x27;Купить&#x27;.
                     </div>
                 </div>
             </div>
-            @if (Model.TourRecomendHight.Count > 0)
-            {
-                <div class="recommendedTours clearfix">
-                    <p class="recommendedTitle">
-                        Мы рекомендуем&#x3a;
-                    </p>
-                    @{ int count = 0;}
-                    @foreach (var rec in Model.TourRecomendHight)
-                    {
-                        if (count > 2)
-                        {
-                            break;
-                        }
-                        <div class="recommendedTour">
-                            <p class="recommendedLink">
-                                <a href="@Url.Action("Index", "TourDisplay", new {id = rec.TourId})" class="new-title">@rec.NameTour</a><br/>
-                                <span class="where">В&nbsp;@rec.PlaceOfArrival</span>
-                            </p>
-                        </div>
-                        count++;
-                    }
-                </div>
-            }
+            <a class="allTours" href="@Url.Action("Search", "TourSearch")">Все туры</a>
         </div>
     }
     <div class="subTours">
         @{int counter = 0;}
         @foreach (var item in Model.TourHight)
         {
-            if (counter > 1)
-            {
+            if (counter > 1){
                 break;
             }
             counter++;
             <div class="tour clearfix">
                 <div class="tourName">
                     <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})"><img src="@Html.DisplayFor(m => item.TourImg)" class="groupSubPreview image"></a>
-                    <h2 class="tourTitle">@Html.DisplayFor(m => item.TitleTour)</h2>
+                      <div class="titleHref">
+                          <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})" class="tourTitle">@Html.DisplayFor(m => item.TitleTour)</a>
+                      </div>
+                </div>   
+                <div class="price">
+                    От&nbsp;<span class="boldPrice">@Html.DisplayFor(m => item.Cost)</span>
+                      &nbsp;@Html.DisplayFor(m => item.Valuta)
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
-@*                        Тур&#x3a; &nbsp;@item.<br />*@
-                        @*                Дни&#x3a; &nbsp;4<br />*@
-                        @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }<br /><br />
-                       из&nbsp;@Html.DisplayFor(m => item.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />&nbsp;@Html.DisplayFor(m => item.PlaceOfArrival)
+                        Тур&#x3a; &nbsp;Автобусный
+                        @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }
+                        @Html.DisplayFor(m => item.PlaceOfDeparture)
+                            <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                        @Html.DisplayFor(m => item.PlaceOfArrival)
                     </p>
                 </div>
-                <div class="tourPrice">
-                    <p class="tourDescription">
-                        От&nbsp;<span class="boldPrice">@Html.DisplayFor(m => item.Cost)</span>&nbsp;@Html.DisplayFor(m => item.Valuta).<br />
-                    </p>
-                </div>
-            </div>
+            </div>     
         }
-        @*  @{ Html.RenderAction("SubTour", new { id = 1 });}*@
+        @if(counter > 0){
+           <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>   
+        }    
     </div>
 </div>
+
 <div class="groups-bg clearfix">
     <p class="consultLinks">
-        <span class="subscribe-title">Подпишитесь на нашу рассылку<br /></span>будьте в курсе интересных предложений
-        и горящих туров
+        <span class="subscribe-title">Подпишитесь на нашу рассылку<br /></span><br/>
+        будьте в курсе интересных предложений и горящих туров
+     
     </p>
-
     <form class="mailform">
         <div class="mailsender">
             <input class="mail-input" type="text" name="mail-input" placeholder="Почта" />
@@ -182,6 +217,7 @@
         </div>
     </form>
 </div>
+
 <div class="tourGroup clearfix">
     <h1 class="groupTitle" id="second">
         Туры в Грузию
@@ -194,100 +230,77 @@
                     <a href="@Url.Action( "Index","TourDisplay", new {id=Model.TourCenterPrev.TourId})">
                         <img src="@Html.DisplayFor(item => item.TourCenterPrev.TourImg)" class="groupMainPreview image">
                     </a>
-                    <h2 class="tourTitle">@Html.DisplayFor(item => item.TourCenterPrev.TitleTour)</h2>
+                    <div class="titleHref">
+                        <a href="@Url.Action( "Index","TourDisplay", new {id=Model.TourCenterPrev.TourId})" class="tourTitle">
+                            @Html.DisplayFor(item => item.TourCenterPrev.TitleTour)
+                        </a>
+                    </div>
+                </div>
+                <div class="price">
+                    От
+                    <span class="boldPrice">@Html.DisplayFor(item => item.TourCenterPrev.Cost)</span>
+                    @Html.DisplayFor(item => item.TourCenterPrev.Valuta)
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
                         Тур&#x3a; &nbsp;Автобусный<br />
-                        @*                            Дни&#x3a; &nbsp;4<br />*@
-                        @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourCenterPrev.TourId }); }<br /><br />
+                        @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourCenterPrev.TourId }); }
                         @Html.DisplayFor(item => item.TourCenterPrev.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />@Html.DisplayFor(item => item.TourCenterPrev.PlaceOfArrival)
                     </p>
                 </div>
                 <div class="tourPrice">
-                    <div>
-                        От <span class="boldPrice">@Html.DisplayFor(item => item.TourCenterPrev.Cost)</span> @Html.DisplayFor(item => item.TourCenterPrev.Valuta).
-                        <p class="smallDescription">
+                        <div class="smallDescription">
                             Актуальная стоимость тура формируется в&nbsp;корзине услуг
-                            после
-                            нажатия &#x27;Купить&#x27;.
-                        </p>
-                    </div>
-                    <div class="more clearfix">
-                        <a href="@Url.Action("Index", "TourDisplay", new { id = Model.TourCenterPrev.TourId })" class="biglink-btn">Подробнее</a>
-                    </div>
+
+                            после нажатия &#x27;Купить&#x27;.
+                        </div>
                 </div>
             </div>
-            @if (Model.TourRecomendCenter.Count > 0)
-            {
-                <div class="recommendedTours clearfix">
-                    <p class="recommendedTitle">
-                        Мы рекомендуем&#x3a;
-                    </p>
-                    @{ int count = 0;}
-                    @foreach (var rec in Model.TourRecomendCenter)
-                    {
-                        if (count > 2)
-                        {
-                            break;
-                        }
-                        <div class="recommendedTour">
-                            <p class="recommendedLink">
-                                <a href="@Url.Action("Index", "TourDisplay", new {id = rec.TourId})" class="new-title">@rec.NameTour</a><br />
-                                <span class="where">В&nbsp;@rec.PlaceOfArrival</span>
-                            </p>
-                        </div>
-                        count++;
-                    }
-                </div>
-            }
+            <a class="allTours" href="@Url.Action("Search", "TourSearch")">Все туры</a>
         </div>
     }
+    
     <div class="subTours">
         @{int counter1 = 0;}
         @foreach (var item in Model.TourCenter)
         {
-            if (counter1 > 1)
-            {
+            if (counter1 > 1){
                 break;
             }
             counter1++;
             <div class="tour clearfix">
                 <div class="tourName">
                     <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})"><img src="@Html.DisplayFor(m => item.TourImg)" class="groupSubPreview image"></a>
-                    <h2 class="tourTitle">@Html.DisplayFor(m => item.TitleTour)</h2>
+                    <div class="titleHref">
+                        <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})" class="tourTitle">
+                           @Html.DisplayFor(m => item.TitleTour)
+                        </a>
+                    </div>
+                </div>
+                <div class="price">
+                    От&nbsp;<span class="boldPrice">@Html.DisplayFor(m => item.Cost)</span>
+                    &nbsp;@Html.DisplayFor(m => item.Valuta)
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
-                        Тур&#x3a; &nbsp;Автобусный<br />
-                        @*                Дни&#x3a; &nbsp;4<br />*@
-                        @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }<br /><br />
-                        @Html.DisplayFor(m => item.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />&nbsp;@Html.DisplayFor(m => item.PlaceOfArrival)
-                    </p>
-                </div>
-                <div class="tourPrice">
-                    <p class="tourDescription">
-                        От&nbsp;<span class="boldPrice">@Html.DisplayFor(m => item.Cost)</span>&nbsp;@Html.DisplayFor(m => item.Valuta).<br />
+                        Тур&#x3a; &nbsp;Автобусный
+                        @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }
+                        @Html.DisplayFor(m => item.PlaceOfDeparture)
+                           <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                        @Html.DisplayFor(m => item.PlaceOfArrival)
                     </p>
                 </div>
             </div>
         }
-        @* @{ Html.RenderAction("SubTour", new {id = 2});}*@
+        @if(counter1 > 0){
+          <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
+        } 
     </div>
 </div>
-<div class="groups-bg clearfix">
-    <p class="consultLinks">
-        <span class="subscribe-title">Подпишитесь на нашу рассылку<br /></span>будьте в курсе интересных предложений
-        и горящих туров
-    </p>
 
-    <form class="mailform">
-        <div class="mailsender">
-            <input class="mail-input" type="text" name="mail-input" placeholder="Почта" />
-            <input class="mail-submit" type="submit" value="" />
-        </div>
-    </form>
-</div>
+<div class="groups-bg clearfix"></div>
+
+
 <div class="tourGroup clearfix">
     <h1 class="groupTitle" id="third">
         Приключенческие туры
@@ -300,53 +313,34 @@
                     <a href="@Url.Action("Index", "TourDisplay", new { id = Model.TourDownPrev.TourId })">
                         <img src="@Html.DisplayFor(item => item.TourDownPrev.TourImg)" class="groupMainPreview image">
                     </a>
-                    <h2 class="tourTitle">@Html.DisplayFor(item => item.TourDownPrev.TitleTour)</h2>
+                     <div class="titleHref">
+                         <a href="@Url.Action("Index", "TourDisplay", new { id = Model.TourDownPrev.TourId })" class="tourTitle">
+                             @Html.DisplayFor(item => item.TourDownPrev.TitleTour)
+                         </a>
+                     </div>
+                </div>
+                <div class="price">
+                    От
+                    <span class="boldPrice">@Html.DisplayFor(item => item.TourDownPrev.Cost)</span>
+                    @Html.DisplayFor(item => item.TourDownPrev.Valuta)
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
-                        Тур&#x3a; &nbsp;Автобусный<br />
-                        @*                            Дни&#x3a; &nbsp;4<br />*@
-                        @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourDownPrev.TourId }); }<br /><br />
-                        @Html.DisplayFor(item => item.TourDownPrev.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />@Html.DisplayFor(item => item.TourDownPrev.PlaceOfArrival)
+                        Тур&#x3a; &nbsp;Автобусный
+                        @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourDownPrev.TourId }); }
+                        @Html.DisplayFor(item => item.TourDownPrev.PlaceOfDeparture)
+                             <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                        @Html.DisplayFor(item => item.TourDownPrev.PlaceOfArrival)
                     </p>
                 </div>
                 <div class="tourPrice">
-                    <div>
-                        От <span class="boldPrice">@Html.DisplayFor(item => item.TourDownPrev.Cost)</span> @Html.DisplayFor(item => item.TourDownPrev.Valuta).
-                        <p class="smallDescription">
-                            Актуальная стоимость тура формируется в&nbsp;корзине услуг
-                            после
-                            нажатия &#x27;Купить&#x27;.
-                        </p>
-                    </div>
-                    <div class="more clearfix">
-                        <a href="@Url.Action("Index", "TourDisplay", new { id = Model.TourDownPrev.TourId })" class="biglink-btn">Подробнее</a>
+                    <div class="smallDescription">
+                          Актуальная стоимость тура формируется в&nbsp;корзине услуг
+                          после нажатия &#x27;Купить&#x27;.
                     </div>
                 </div>
             </div>
-            @if (Model.TourRecomendDown.Count > 0)
-            {
-                <div class="recommendedTours clearfix">
-                    <p class="recommendedTitle">
-                        Мы рекомендуем&#x3a;
-                    </p>
-                    @{ int count = 0;}
-                    @foreach (var rec in Model.TourRecomendDown)
-                    {
-                        if (count > 2)
-                        {
-                            break;
-                        }
-                        <div class="recommendedTour">
-                            <p class="recommendedLink">
-                                <a href="@Url.Action("Index", "TourDisplay", new {id = rec.TourId})" class="new-title">@rec.NameTour</a><br />
-                                <span class="where">В&nbsp;@rec.PlaceOfArrival</span>
-                            </p>
-                        </div>
-                        count++;
-                    }
-                </div>
-            }
+            <a class="allTours" href="@Url.Action("Search", "TourSearch")">Все туры</a>
         </div>
 
     }
@@ -354,22 +348,26 @@
         @{int counter2 = 0;}
         @foreach (var item in Model.TourDown)
         {
-            if (counter2 > 1)
-            {
+            if (counter2 > 1){
                 break;
             }
             counter2++;
             <div class="tour clearfix">
                 <div class="tourName">
                     <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})"><img src="@Html.DisplayFor(m => item.TourImg)" class="groupSubPreview image"></a>
-                    <h2 class="tourTitle">@Html.DisplayFor(m => item.TitleTour)</h2>
+                    <div class="titleHref">
+                        <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})" class="tourTitle">
+                            @Html.DisplayFor(m => item.TitleTour)
+                        </a>
+                    </div>
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
-                        Тур&#x3a; &nbsp;Автобусный<br />
-                        @*                Дни&#x3a; &nbsp;4<br />*@
-                        @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }<br /><br />
-                        @Html.DisplayFor(m => item.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />&nbsp;@Html.DisplayFor(m => item.PlaceOfArrival)
+                        Тур&#x3a; &nbsp;Автобусный
+                        @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }
+                        @Html.DisplayFor(m => item.PlaceOfDeparture)
+                           <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                        @Html.DisplayFor(m => item.PlaceOfArrival)
                     </p>
                 </div>
                 <div class="tourPrice">
@@ -379,9 +377,12 @@
                 </div>
             </div>
         }
+        @if(counter2 > 0){
+          <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
+        } 
     </div>
-
 </div>
+
 <div id="media-bg" class="clearfix">
     <p class="consultLinks">
         <span class="subscribe-title"><a href="@Url.Action("GalleryList","Gallery")">Галерея</a><br /></span>фото, видео. Cамые красивые места в мире
@@ -390,9 +391,10 @@
     <div class="cont">
         <div id="box21">
             <div id="video-preview">
-                <iframe width="100%" height="250px" src="https://www.youtube.com/embed/bhjUXNy1PiE" frameborder="0"
+                <iframe width="100%" height="300px" src="https://www.youtube.com/embed/bhjUXNy1PiE" frameborder="0"
                         allowfullscreen></iframe>
             </div>
+<!--
             <div id="video-title" class="clearfix">
                 @*                <p id="video-title-date">27.04.2015</p>*@
 
@@ -412,7 +414,9 @@
                     </div>
                 </div>
             </div>
+-->
         </div>
+
         <div id="box22">
             @{ int countergal = 0;}
             @if (Model.Galleries != null)
@@ -423,23 +427,21 @@
                     <div class="galleria">
                         @foreach (var pics in item.Pics)
                         {
-                            if (pics.PicType == "Image")
-                            {
+                            if (pics.PicType == "Image"){
                                 <img src="@Html.DisplayFor(m => pics.PicLink)" data-title="@pics.PicName" data-description="@pics.PicDescription" />
                             }
-                            if (pics.PicType == "Video")
-                            {
+                            if (pics.PicType == "Video"){
                                 <a href="@Html.DisplayFor(m => pics.PicLink)"><img src="/Content/img/play-btn.jpg" data-title="@pics.PicName" data-description="@pics.PicDescription"></a>
                             }
                         }
                     </div>
-                        countergal++;
+                    countergal++;
                 }
             }
         </div>
-
     </div>
 </div>
+
 <script>
     Galleria.loadTheme('/Content/js/themes/classic/galleria.classic.min.js');
     Galleria.configure({
@@ -451,8 +453,10 @@
         Galleria.run('.galleria');
     }
 </script>
+
 <script>
-    $(function () {
+    $(function ()
+    {
         var index = 0;
         var confirmHref = $('#confirmTour').attr('href');
 
@@ -463,7 +467,6 @@
         }
         else {
             // if tours length. Display 1-st tour
-            //               $('#big-logo').show();
             $('.buttons.clearfix,#wishletter').css('display', 'inherit');
             $('#confirmTour').attr('href', '');
             $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat 50% 100% ');
@@ -480,20 +483,17 @@
             $('#anotherTour').click(function (event) {
                 event.preventDefault();
 
-                $('#big-preview-img').fadeTo(800, 0, function () {
-                    if (index <= $('#switchTour li').length - 1) {
+                $('#big-preview-img').fadeTo(800, 0, function ()
+                {
+                    if (index <= $('#switchTour li').length - 1)
+                    {
                         $('.buttons.clearfix,#wishletter').css('display', 'inherit');
                         $('#confirmTour').attr('href', '');
                         $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat 50% 100% ');
                         $('#textspan').css('display', 'inherit');
                         $('#to').text('Тур в ' + $('#switchTour li').eq(index).attr('data-to'));
                         $('#from').text(' из ' + $('#switchTour li').eq(index).attr('data-from'));
-                        //                        if ($('#big-logo')) {
-                        //                            console.log($('#big-logo'), $('#switchTour li').eq(index).attr('data-baf'));
                         $('#big-logo').attr('src', $('#switchTour li').eq(index).attr('data-baf'));
-                        //                                                    }
-                        //                        else { $('#wishletter').before('<img id="big-logo" src="' + $('#switchTour li').eq(index).attr('data-baf') + '" />'); }
-                        //                        $('#wishletter').before('<img id="big-logo" src="' + $('#switchTour li').eq(index).attr('data-baf') + '" />');
                         $('#confirmTour').attr('href', confirmHref + '/' + $('#switchTour li').eq(index).attr('data-id'));
                         $('#big-preview-img').fadeTo(1000, 1);
                         index++;
@@ -507,5 +507,74 @@
             });
         }
         switchLogo(0);
+    });
+</script>
+
+<script>
+
+    function MobileVersion()
+    {
+        
+        if ($('#bar').width() <= 700) {
+            $('#box21,#box22').hide();
+        }
+        else {
+            $('#box21,#box22').show();
+        }
+
+        if ($('#bar').width() <= 800) {
+            $('h1.groupTitle').addClass('smallTitle');
+            $('.groupLinks a').css({ 'dispalay': 'block !important' });
+            $('.groupLinks').css('font-size', '14px');
+            $('#tourSearch_text,#subscribe,#big-logo').hide();
+            $('#wishletter').css('margin-top', '100px');
+            $('#third').text('Приключенческие');
+            $('#to,#from').css('font-size', '16px');
+            $('#small-logo').css('margin-left', '10%');
+        }
+        else {
+            $('#tourSearch_text,#subscribe,#big-logo').show();
+            $('#third').text('Приключенческие туры');
+            $('#to,#from').css('font-size', '3em');
+            $('.groupLinks').css('font-size', '20px');
+        }
+        
+        if ($('#bar').width() <= 900) {
+            $('.mainTours,.subTours').css({ 'display': 'block', 'width': '100%', 'float': 'none', 'margin-left': '0px' });
+            $('.subTours:first').css('margin-top', '30px');
+            $('h1.groupTitle').css('margin-left', '0px');
+            $('.allToursClone').css('display', 'table');
+            $('.allTours').css('display', 'none');
+            $('.news-block').css('display', 'block');
+            $('.news-block article').css('margin-top', '20px');
+            $('.news-title').css('margin-bottom', '20px');
+        }
+        else {
+            $('.mainTours,.subTours').css('display', 'inline-block');
+            $('.mainTours').css({ 'float': 'left', 'width': '40%', 'margin-left': '14%' });
+            $('.subTours').css({ 'margin-left': '40px', 'width': '23%', 'margin-top': '0px' });
+            $('h1.groupTitle').css('margin-left', '14%').removeClass('smallTitle');
+            $('.allToursClone').css('display', 'none');
+            $('.allTours').css('display', 'table');
+            $('.news-block').css('display', 'inline-flex');
+            $('.news-block article').css('margin-top', '0px');
+            $('.news-title').css('margin-bottom', '0px');
+            $('#small-logo').css('margin-left', '21.2%');
+
+            $('.subTours').each(function () {
+                if (!$(this).prev().hasClass('mainTours')) {
+                    $(this).css('margin-left', '56%');
+                }
+            });
+        }
+    }
+
+    $(function ()
+    {
+        MobileVersion();
+
+        $(window).resize(function () {
+            MobileVersion();
+        });
     });
 </script>

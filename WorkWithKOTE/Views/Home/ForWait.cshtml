@@ -2,30 +2,65 @@
     Layout = null;
 }
 
+<style>
+    #enterAdmin,.start,.fb,.kote{
+        font-size : 44px;
+    }
+
+    .fb {
+        color : white;
+    }
+
+    #enterAdmin{
+        margin-top : 10px;
+    }
+
+    #enterAdmin a:link {
+        color: #7497b2;
+    }
+
+    #enterAdmin a:visited {
+        color: #7497b2;
+    }
+
+    #enterAdmin a:hover {
+        color: #284f86;
+    }
+
+    #linkBox{
+        margin-top : 50px;
+    }
+</style>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "xhtml11.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-    <title>KOTE Traver. Look soon.</title>
+    <title>KOTE Travel. Look soon.</title>
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="~/Content/parked.css" type="text/css" />
 </head>
+
 <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
     <script>
-    $(function() {
-        var curr = new Date();
-        var estim = 18;
-        var res = estim - curr.getDate();
-        var day = 'дней';
-        if ($.inArray(res, [2,3,4])!='-1'){
-            day = 'дня';
-        }else if(res == 1){
-            day = 'день';
-        }
-        document.getElementById('day').innerHTML = res+ "&nbsp;"+ day;
-    });
+        $(function ()
+        {
+            var curr = new Date();
+            var estim = 18;
+            var res = estim - curr.getDate();
+            var day = 'дней';
+
+            if ($.inArray(res, [2,3,4])!='-1'){
+                day = 'дня';
+            }else if(res == 1){
+                day = 'день';
+            }
+            document.getElementById('day').innerHTML = res+ "&nbsp;"+ day;
+         });
     </script>
+
     <div class="container">
         <img src="~/Content/img/parked.jpg" class="bg">
 
@@ -33,16 +68,19 @@
             <div class="start">
                 Встречайте! Уже совсем скоро!
             </div>
-            <div class="links">
-                <a class="fb" href="https://www.facebook.com/kotetravel"><img src="~/Content/img/fb.png"></a>
-                <a class="kote">kote.travel@gmail.com</a>
+
+            <div id="linkBox">
+                <div class="links">
+                    <a class="fb" href="https://www.facebook.com/kotetravel"><img style="width:70px;" src="~/Content/img/fb.png"></a>
+                    <a class="fb">kote.travel@gmail.com</a>
+                </div>
+
+                <div id="enterAdmin">
+                    @Html.ActionLink("Вход", "Login", "Account") для Админа
+                </div>
             </div>
-            <div style="font-size: 10pt">
-                @Html.ActionLink("Вход", "Login", "Account") для Админа
-            </div>
+
         </div>
-
-
     </div>
 </body>
 </html>

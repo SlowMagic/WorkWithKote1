@@ -232,6 +232,7 @@
     <Content Include="Content\img\main-preview-image.jpg" />
     <Content Include="Content\img\media-bg.jpg" />
     <Content Include="Content\img\megafon.png" />
+    <Content Include="Content\img\menuicon.png" />
     <Content Include="Content\img\no-btn.png" />
     <Content Include="Content\img\parked.jpg" />
     <Content Include="Content\img\photo1.jpg" />

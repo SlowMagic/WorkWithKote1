@@ -16,12 +16,13 @@
     }
 
     label{
+        font-size : 17px;
         margin-top : 12px;
         cursor : pointer;
     }
 
     #form_tour{
-        margin-left : 35px;
+        margin-left : 11.7%;
     }
 
     input[type=text]{
@@ -46,17 +47,16 @@
          margin-top: 16px !important;
     }
 
-    .loginEl{
-        margin : 5px;
-    }
-
     #logination,.alternateBnt{
+      padding: 6px;
+      color: white !important;
       border-radius : 4px;
       background-color : #ff6f40;
       border : 1px solid #ff6f40;
       color : white;
-      height : 25px;
+      height : 30px;
       cursor : pointer;
+      min-width : 70px;
     }
 
     #loginBox{
@@ -70,10 +70,9 @@
     }
 
     .links{
-        padding-left : 10px;
-        margin-top : 8px;
+        font-size : 18px;
         text-decoration : underline;
-
+        margin-top: 12px;
     }
 
     #socialLoginList{
@@ -127,10 +126,11 @@
         </div>
 
         <div id="loginBox" class="loginEl" >
-            <input id="logination" class="loginEl" type="submit" value="Войти" />
-            <span class="links">@Html.ActionLink("Register", "Register")</span>
-            <span class="links">@Html.ActionLink("Забыл пароль?!", "ForgotPassword", "Profile")</span>
+            <input id="logination" class="loginEl" type="submit" value="Войти" /><br/><br/>
         </div>
+
+        <p class="links">@Html.ActionLink("Регистрация", "Register")</p>
+        <p class="links">@Html.ActionLink("Забыли пароль?!", "ForgotPassword", "Profile")</p>
 
         <div id="alternate">
             <section class="social" id="socialLoginForm">

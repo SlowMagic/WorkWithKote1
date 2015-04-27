@@ -6,11 +6,15 @@
     <div id="alt_enter">Выполнен альтернативный вход</div>
     <table>
         <tbody>
+            <tr>
+                <th>Сервис</th>
+                <th>Действие</th>
+            </tr>     
         @foreach (WorkWithKOTE.Models.ExternalLogin externalLogin in Model)
         {
             <tr>
-                <td>@externalLogin.ProviderDisplayName</td>
-                <td>
+                <td align="center" id="servise">@externalLogin.ProviderDisplayName</td>
+                <td align="center">
                     @if (ViewBag.ShowRemoveButton)
                     {
                         using (Html.BeginForm("Disassociate", "Account"))
@@ -19,7 +23,7 @@
                             <div>
                                 @Html.Hidden("provider", externalLogin.Provider)
                                 @Html.Hidden("providerUserId", externalLogin.ProviderUserId)
-                                <input type="submit" id="removeAlt" value="Удалить данные" title="Удалить данные из @externalLogin.ProviderDisplayName для Вашего аккаунта" />
+                                <input type="submit" id="removeAlt" value="Удалить" title="Удалить данные из @externalLogin.ProviderDisplayName для Вашего аккаунта" />
                             </div>
                         }
                     }
