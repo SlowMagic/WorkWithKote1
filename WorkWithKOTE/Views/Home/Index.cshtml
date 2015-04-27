@@ -17,7 +17,7 @@
         clear: none;
     }
 
-    .destination_arrow{
+    .destination_arrow {
         display: inline;
         padding-left: 5px;
         padding-right: 5px;
@@ -86,7 +86,7 @@
         <div class="mainTours">
             <div class="tour clearfix">
                 <div class="tourName">
-                    <a href="@Url.Action("Index", "TourDisplay", new { id = Model.TourHightPrev.TourId })">
+                    <a href="@Url.Action("Index", "TourDisplay", new {id = Model.TourHightPrev.TourId})">
                         <img src="@Html.DisplayFor(item => item.TourHightPrev.TourImg)" class="groupMainPreview image">
                     </a>
                     <h2 class="tourTitle">@Html.DisplayFor(item => item.TourHightPrev.TitleTour)</h2>
@@ -108,33 +108,33 @@
                         </p>
                     </div>
                     <div class="more clearfix">
-                        <a href="@Url.Action("Index", "TourDisplay", new {id=Model.TourHightPrev.TourId })" class="biglink-btn">Подробнее</a>
+                        <a href="@Url.Action("Index", "TourDisplay", new {id = Model.TourHightPrev.TourId})" class="biglink-btn">Подробнее</a>
                     </div>
                 </div>
             </div>
-            <div class="recommendedTours clearfix">
-                <p class="recommendedTitle">
-                    Мы рекомендуем&#x3a;
-                </p>
-                <div class="recommendedTour">
-                    <p class="recommendedLink">
-                        <a href="#" class="new-title">Вегетарианское кафе во Львове.</a><br />
-                        <span class="where">Украина, Львов</span>
+            @if (Model.TourRecomendHight.Count > 0)
+            {
+                <div class="recommendedTours clearfix">
+                    <p class="recommendedTitle">
+                        Мы рекомендуем&#x3a;
                     </p>
+                    @{ int count = 0;}
+                    @foreach (var rec in Model.TourRecomendHight)
+                    {
+                        if (count > 2)
+                        {
+                            break;
+                        }
+                        <div class="recommendedTour">
+                            <p class="recommendedLink">
+                                <a href="@Url.Action("Index", "TourDisplay", new {id = rec.TourId})" class="new-title">@rec.NameTour</a><br/>
+                                <span class="where">В&nbsp;@rec.PlaceOfArrival</span>
+                            </p>
+                        </div>
+                        count++;
+                    }
                 </div>
-                <div class="recommendedTour">
-                    <p class="recommendedLink">
-                        <a href="#" class="new-title">Вегетарианское кафе во Львове.</a><br />
-                        <span class="where">Украина, Львов</span>
-                    </p>
-                </div>
-                <div class="recommendedTour">
-                    <p class="recommendedLink">
-                        <a href="#" class="new-title">Вегетарианское кафе во Львове.</a><br />
-                        <span class="where">Украина, Львов</span>
-                    </p>
-                </div>
-            </div>
+            }
         </div>
     }
     <div class="subTours">
@@ -153,10 +153,10 @@
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
-                        Тур&#x3a; &nbsp;Автобусный<br />
+@*                        Тур&#x3a; &nbsp;@item.<br />*@
                         @*                Дни&#x3a; &nbsp;4<br />*@
                         @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }<br /><br />
-                        @Html.DisplayFor(m => item.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />&nbsp;@Html.DisplayFor(m => item.PlaceOfArrival)
+                       из&nbsp;@Html.DisplayFor(m => item.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />&nbsp;@Html.DisplayFor(m => item.PlaceOfArrival)
                     </p>
                 </div>
                 <div class="tourPrice">
@@ -218,29 +218,29 @@
                     </div>
                 </div>
             </div>
-            <div class="recommendedTours clearfix">
-                <p class="recommendedTitle">
-                    Мы рекомендуем&#x3a;
-                </p>
-                <div class="recommendedTour">
-                    <p class="recommendedLink">
-                        <a href="#" class="new-title">Вегетарианское кафе во Львове.</a><br />
-                        <span class="where">Украина, Львов</span>
+            @if (Model.TourRecomendCenter.Count > 0)
+            {
+                <div class="recommendedTours clearfix">
+                    <p class="recommendedTitle">
+                        Мы рекомендуем&#x3a;
                     </p>
+                    @{ int count = 0;}
+                    @foreach (var rec in Model.TourRecomendCenter)
+                    {
+                        if (count > 2)
+                        {
+                            break;
+                        }
+                        <div class="recommendedTour">
+                            <p class="recommendedLink">
+                                <a href="@Url.Action("Index", "TourDisplay", new {id = rec.TourId})" class="new-title">@rec.NameTour</a><br />
+                                <span class="where">В&nbsp;@rec.PlaceOfArrival</span>
+                            </p>
+                        </div>
+                        count++;
+                    }
                 </div>
-                <div class="recommendedTour">
-                    <p class="recommendedLink">
-                        <a href="#" class="new-title">Вегетарианское кафе во Львове.</a><br />
-                        <span class="where">Украина, Львов</span>
-                    </p>
-                </div>
-                <div class="recommendedTour">
-                    <p class="recommendedLink">
-                        <a href="#" class="new-title">Вегетарианское кафе во Львове.</a><br />
-                        <span class="where">Украина, Львов</span>
-                    </p>
-                </div>
-            </div>
+            }
         </div>
     }
     <div class="subTours">
@@ -324,29 +324,29 @@
                     </div>
                 </div>
             </div>
-            <div class="recommendedTours clearfix">
-                <p class="recommendedTitle">
-                    Мы рекомендуем&#x3a;
-                </p>
-                <div class="recommendedTour">
-                    <p class="recommendedLink">
-                        <a href="#" class="new-title">Вегетарианское кафе во Львове.</a><br />
-                        <span class="where">Украина, Львов</span>
+            @if (Model.TourRecomendDown.Count > 0)
+            {
+                <div class="recommendedTours clearfix">
+                    <p class="recommendedTitle">
+                        Мы рекомендуем&#x3a;
                     </p>
+                    @{ int count = 0;}
+                    @foreach (var rec in Model.TourRecomendDown)
+                    {
+                        if (count > 2)
+                        {
+                            break;
+                        }
+                        <div class="recommendedTour">
+                            <p class="recommendedLink">
+                                <a href="@Url.Action("Index", "TourDisplay", new {id = rec.TourId})" class="new-title">@rec.NameTour</a><br />
+                                <span class="where">В&nbsp;@rec.PlaceOfArrival</span>
+                            </p>
+                        </div>
+                        count++;
+                    }
                 </div>
-                <div class="recommendedTour">
-                    <p class="recommendedLink">
-                        <a href="#" class="new-title">Вегетарианское кафе во Львове.</a><br />
-                        <span class="where">Украина, Львов</span>
-                    </p>
-                </div>
-                <div class="recommendedTour">
-                    <p class="recommendedLink">
-                        <a href="#" class="new-title">Вегетарианское кафе во Львове.</a><br />
-                        <span class="where">Украина, Львов</span>
-                    </p>
-                </div>
-            </div>
+            }
         </div>
 
     }
@@ -394,7 +394,7 @@
                         allowfullscreen></iframe>
             </div>
             <div id="video-title" class="clearfix">
-@*                <p id="video-title-date">27.04.2015</p>*@
+                @*                <p id="video-title-date">27.04.2015</p>*@
 
                 <p id="video-title-name">Автобус для КОТЭшествий</p>
             </div>
