@@ -61,6 +61,15 @@
         margin-top : 5px;
     }
 
+    .tour.clearfix:hover{
+        transition : 0.1s;
+        box-shadow: #ccc 1px 0px 8px 2px;
+    }
+
+     .tour.clearfix{
+        transition : 0.1s;
+    }
+
 </style>
 
 <div id="big-preview-img" class="clearfix">
@@ -513,7 +522,7 @@
         else {
             $('.mainTours,.subTours').css('display', 'inline-block');
             $('.mainTours').css({ 'float': 'left', 'width': '40%', 'margin-left': '14%' });
-            $('.subTours').css({ 'margin-left': '15px', 'width': '33%', 'margin-top': '0px' });
+            $('.subTours').css({ 'margin-left': '40px', 'width': '23%', 'margin-top': '0px' });
             $('h1.groupTitle').css('margin-left', '14%').removeClass('smallTitle');
             $('.allToursClone').css('display', 'none');
             $('.allTours').css('display', 'table');

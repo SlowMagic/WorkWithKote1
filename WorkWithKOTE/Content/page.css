@@ -1428,10 +1428,10 @@ div.mainTours {
 
 div.subTours {
     display: inline-block;
-    margin-left : 15px;
+    margin-left : 40px;
     height: auto;
     clear: none;
-    width: 33%;
+    width: 23%;
 }
 
 div.tourInfo {
@@ -1490,7 +1490,7 @@ input.mail-submit {
 }
 
 form.mailform {
-    margin: 30px 25% 0 25%;
+    margin: 30px 30% 0 30%;
 }
 
 /*
