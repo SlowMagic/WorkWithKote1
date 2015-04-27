@@ -31,6 +31,7 @@
 
     .groupLinks {
         font-size : 20px;
+        margin-top : 18px;
     }
 
     .groupLinks a{
@@ -207,8 +208,8 @@
     <p class="consultLinks">
         <span class="subscribe-title">Подпишитесь на нашу рассылку<br /></span><br/>
         будьте в курсе интересных предложений и горящих туров
+     
     </p>
-
     <form class="mailform">
         <div class="mailsender">
             <input class="mail-input" type="text" name="mail-input" placeholder="Почта" />
@@ -508,7 +509,13 @@
             $('#to,#from').css('font-size', '16px');
             $('#small-logo').css('margin-left', '10%');
         }
-
+        else {
+            $('#tourSearch_text,#subscribe,#big-logo').show();
+            $('#third').text('Приключенческие туры');
+            $('#to,#from').css('font-size', '3em');
+            $('.groupLinks').css('font-size', '20px');
+        }
+        
         if ($('#bar').width() <= 900) {
             $('.mainTours,.subTours').css({ 'display': 'block', 'width': '100%', 'float': 'none', 'margin-left': '0px' });
             $('.subTours:first').css('margin-top', '30px');

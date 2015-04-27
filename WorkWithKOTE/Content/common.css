@@ -46,15 +46,15 @@ nav {
     clear: none;
 }
 
-    nav a {
-        margin-left: 25px;
-        padding-bottom: 44px;
-    }
+nav a {
+    margin-left: 25px;
+    padding-bottom: 44px;
+}
 
-        nav a:hover {
-            padding-bottom: 41px;
-            border-bottom: 3px solid rgba(255, 255, 255, 0.5);
-        }
+nav a:hover {
+   padding-bottom: 47px;
+   border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+}
 
 .nav-other {
     display: inline-block;
@@ -76,7 +76,7 @@ nav {
 }
 
 .nav-other a:hover {
-   padding-bottom: 43px;
+   padding-bottom: 47px;
    border-bottom: 3px solid #acacac;
 }
 
@@ -430,7 +430,7 @@ footer {
     border-radius: 4px;
     height: 30px;
     padding-left: 10px;
-    margin-top: 5px;
+    margin-top: 9px;
     margin-left: 9px;
     width: 92%;
     background-color: #424242;
