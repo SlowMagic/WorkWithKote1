@@ -28,7 +28,7 @@ header {
     filter: alpha(opacity=0);
     float: left;
     margin: 15px;
-    margin-left: 15%;
+    margin-left: 21.2%;
     width: 60px;
     margin-top: 18px;
 }
@@ -156,6 +156,7 @@ footer {
     float: left;
     height: auto;
     width: 33%;
+    margin-left : 8%;
 }
 
 #about {
