@@ -29,7 +29,7 @@ hgroup {
 
 #small-preview-img h1 {
     /*font-size: 2.25em;*/
-    line-height: 18px;
+    line-height: 24px;
     color: rgb(255, 255, 255);
     font-style: normal;
     font-weight: 300;
@@ -82,7 +82,7 @@ h4 {
 .layout-right-column {
     float: right;
     width: 40%;
-    padding: 1.5%;
+    padding: 1%;
     border: solid rgb(220, 220, 220) 1px;
     background-color: rgb(245, 245, 240);
     color: rgb(18, 18, 18);
