@@ -465,12 +465,12 @@ footer {
     -webkit-appearance: none;
     -moz-appearance: none;
     cursor: pointer; 
-    font-size: 1.57em;
+    /*font-size: 1.57em;*/
     font-weight: 300;
 }
 .date-select.mini select {
     
-    font-size: 1em !important;
+   /* font-size: 1em !important;*/
     font-weight: 100!important;
 }
 .date-select label{position:relative}

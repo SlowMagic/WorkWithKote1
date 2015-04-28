@@ -10,6 +10,28 @@
     .layout{
         margin-left: 11.6%;
     }
+
+    .date-select label.hide:after {
+        display : none;
+    }
+
+    .transport p {
+        margin-top : 10px;
+    }
+
+    .searchBtn{
+      padding: 6px;
+      color: white !important;
+      border-radius : 4px;
+      background-color : #ff6f40;
+      border : 1px solid #ff6f40;
+      color : white;
+      height : 30px;
+      cursor : pointer;
+      min-width : 70px;
+    }
+  
+
 </style>
 
 <div id="small-preview-img" class="clearfix">
@@ -45,17 +67,17 @@
 
                 <p>Транспорт</p>
                 <div class="transport">
-                    <p>@Html.CheckBox("IsCar")&nbsp;Автобус</p>
-                    <p>@Html.CheckBox("IsTrain")&nbsp;Поезд</p>
-                    <p>@Html.CheckBox("IsShip")&nbsp;Лайнер</p>
-                    <p>@Html.CheckBox("IsPlane")&nbsp;Самолет</p>
+                    <p>@Html.CheckBox("IsCar")&nbsp;<label for="IsCar">Автобус</label></p>
+                    <p>@Html.CheckBox("IsTrain")&nbsp;<label for="IsTrain">Поезд</label></p>
+                    <p>@Html.CheckBox("IsShip")&nbsp;<label for="IsShip">Лайнер</label></p>
+                    <p>@Html.CheckBox("IsPlane")&nbsp;<label for="IsPlane">Самолет</label></p>
                 </div>
 
-                <p style="margin-top: 10px">
-                    <a href="#" onclick=" $(this).closest('form').submit(); return false" class="button">Поиск</a>
+                <p style="margin-top: 20px">
+                    <a class="searchBtn" href="#" onclick=" $(this).closest('form').submit(); return false" class="button">Поиск</a>
                     @if (User.IsInRole("Admin"))
                     {
-                        <a style="margin-left: 10px" class="button" href='@Url.Action("SearchAllUsers", "Admin")'>Поиск людей</a>
+                        <a class="searchBtn" style="margin-left: 10px" class="button" href='@Url.Action("SearchAllUsers", "Admin")'>Поиск людей</a>
                     }
                 </p>
             </div>
@@ -78,9 +100,9 @@
                         <div style="margin-bottom: 15px">
                             <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m=>c.Valuta)</h3><br />
                             <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
-                            <h4> @Html.DisplayFor(m => c.NameTour)</h4><br />
+                            <h4> @Html.DisplayFor(m => c.NameTour)</h4>
                             <div class="date-select mini">
-                                <label>
+                                <label style="margin-left: -23px;">
                                     <select>
                                         @foreach (var item in c.DateTour)
                                         {
@@ -90,7 +112,7 @@
                                         }
                                     </select>
                                 </label>
-                            </div>
+                            </div><br/>
                         </div>
                      index++;
                      }
@@ -109,12 +131,16 @@
             $('.layout-main-right').css({ 'margin-left': '3%', 'width': '100%', 'margin-top': '20px' });
             $('.tourImg').css({ 'max-width': '100%', 'max-height': '100%' });
             $('.found-tour').css({ 'width': 'auto', 'margin-top': '20px' });
+            $('.date-select label').addClass('hide');
+            $('.date-select.mini select').css({ 'font-size': '14px !important', 'text-decoration': 'underline' });
         }
         else {
             $('.layout-left-column').css({ 'float': 'left', 'width': '30%' });
             $('.layout-main-right').css({ 'margin-left': '33%', 'width': '67%','margin-top':'0px' });
             $('.tourImg').css({ 'max-width': '250px', 'max-height': '150px' });
-            $('.found-tour').css({ 'width': '250px','margin-top':'0px' });
+            $('.found-tour').css({ 'width': '250px', 'margin-top': '0px' });
+            $('.date-select label').removeClass('hide');
+            $('.date-select.mini select').css({ 'font-size': '1em !important', 'text-decoration': 'none' });
         }
     }
 
