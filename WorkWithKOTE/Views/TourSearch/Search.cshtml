@@ -73,8 +73,8 @@
                     <p>@Html.CheckBox("IsPlane")&nbsp;<label for="IsPlane">Самолет</label></p>
                 </div>
 
-                <p style="margin-top: 20px">
-                    <a class="searchBtn" href="#" onclick=" $(this).closest('form').submit(); return false" class="button">Поиск</a>
+                <p style="margin-top: 20px;margin-bottom:10px;">
+                    <a style="margin-left: 8px;" class="searchBtn" href="#" onclick=" $(this).closest('form').submit(); return false" class="button">Поиск</a>
                     @if (User.IsInRole("Admin"))
                     {
                         <a class="searchBtn" style="margin-left: 10px" class="button" href='@Url.Action("SearchAllUsers", "Admin")'>Поиск людей</a>
