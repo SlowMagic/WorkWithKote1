@@ -1,5 +1,5 @@
 #form_tour input[type=text],#form_tour input[type=password],#form_tour input[type=email] {
-    width: 60% !important;
+    width: 56% !important;
     max-width : 222px;
     height: 30px;
     border-radius: 4px;
