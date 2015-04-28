@@ -6,6 +6,12 @@
 @Styles.Render("~/Content/order")
 @{ Html.RenderPartial("HeaderPartial_main");}
 
+<style>
+    .layout{
+        margin-left: 11.6%;
+    }
+</style>
+
 <div id="small-preview-img" class="clearfix">
     <hgroup>
         <h1>Поиск</h1>
@@ -71,7 +77,7 @@
                         }
                         <div style="margin-bottom: 15px">
                             <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m=>c.Valuta)</h3><br />
-                            <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
+                            <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
                             <h4> @Html.DisplayFor(m => c.NameTour)</h4><br />
                             <div class="date-select mini">
                                 <label>
@@ -94,3 +100,29 @@
     </div>
 
 </div>
+
+<script>
+    function TourSearch()
+    {
+        if ($('#bar').width() <= 1100) {
+            $('.layout-left-column').css({ 'float': 'auto', 'width': '100%' });
+            $('.layout-main-right').css({ 'margin-left': '3%', 'width': '100%', 'margin-top': '20px' });
+            $('.tourImg').css({ 'max-width': '100%', 'max-height': '100%' });
+            $('.found-tour').css({ 'width': 'auto', 'margin-top': '20px' });
+        }
+        else {
+            $('.layout-left-column').css({ 'float': 'left', 'width': '30%' });
+            $('.layout-main-right').css({ 'margin-left': '33%', 'width': '67%','margin-top':'0px' });
+            $('.tourImg').css({ 'max-width': '250px', 'max-height': '150px' });
+            $('.found-tour').css({ 'width': '250px','margin-top':'0px' });
+        }
+    }
+
+        $(function () {
+            TourSearch();
+
+            $(window).resize(function(){
+                TourSearch();
+            });
+        });
+</script>
