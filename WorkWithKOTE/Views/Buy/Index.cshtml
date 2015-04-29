@@ -177,6 +177,9 @@
                 <label>Почта</label>
                 <input style="width:100%;" value="@Model.email" name="email" placeholder="user000@mail.com">
             </div>
+            <div id="Clone" class="info" style=" float: right;display:none">
+                <p id="" style="width: 100%; text-align: left; color:gray">  Ваша личная информация никогда не будет разглашена или передана третьим лицам без Вашего на то прямого согласия.</p>
+            </div>
         </div>
         <input type="hidden" name="DateTrip" value="@DateTime.Now" />
         <div class="layout">
@@ -251,9 +254,13 @@
                 $('#gender').css({ 'min-width': '190px', 'margin-bottom': '-15px' });
                 $('#date-of-birth,#nationality,#passport').css({ 'min-width': '190px' });
                 $('#dateB').css('margin-top', '10px');
-                $('#finalPrice').css({ 'width': '45px' });
+                $('#finalPrice').css({ 'width': '70px' });
+                $('#stupidText').hide();
+                $('#Clone').show();
             }
-            else{
+            else {
+                $('#Clone').hide();
+                $('#stupidText').show();
                 $('.layout-right-column').css({ 'float': 'right', 'width': 'auto' });
                 $('#uslugaText').text('Дополнительные услуги:');
                 $('#orderText').css('margin-top', '0px');
