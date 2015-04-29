@@ -84,7 +84,7 @@ nav a:hover {
     text-transform: capitalize;
     display: none;
     top: 50px;
-    padding: 10px;
+    padding: 2px;
     border-top: 1px solid #ffffff;
     background-color: rgba(0,0,0,0.6);
 }

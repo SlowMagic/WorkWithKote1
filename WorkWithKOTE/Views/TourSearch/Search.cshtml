@@ -29,6 +29,20 @@
       height : 30px;
       cursor : pointer;
     }
+
+    .tourImg:hover{
+        transition : 0.15s;
+        box-shadow: #ccc 1px 0px 8px 2px;
+    }
+
+     .tourImg{
+        transition : 0.7s;
+    }
+
+     .titleTour{
+       color : #ff6f40 !important;
+       font-size : 19px;
+     }
   
 
 </style>
@@ -98,7 +112,7 @@
                         }
                             <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m=>c.Valuta)</h3><br />
                             <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
-                            <h4> @Html.DisplayFor(m => c.NameTour)</h4>
+                            <a class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
                             <div class="date-select mini">
                                 <label style="margin-left: -23px;">
                                     <select id="selectDate">
