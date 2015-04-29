@@ -18,8 +18,8 @@
         border: none;
         background: none;
         display: inline;
-        width: 150px;
-        text-align: right;
+        width: 202px;
+        text-align: right !important;
     }
     .layout-right-column {
         /* margin-top: -145px;
@@ -235,7 +235,7 @@
         {
             if ($('#bar').width() <= 700)
             {
-                $('.layout-right-column').css({ 'float': 'none', 'width': '80%' });
+                $('.layout-right-column').css({ 'float': 'none', 'width': '100%' });
                 $('#uslugaText').text('Доп. услуги:');
                 $('#orderText').css('margin-top', '20px');
                 $('#surname,#name,#second-name').css({ 'display': 'block', 'float': 'none', 'min-width': '190px', 'margin-top': '19px' });
@@ -251,6 +251,7 @@
                 $('#gender').css({ 'min-width': '190px', 'margin-bottom': '-15px' });
                 $('#date-of-birth,#nationality,#passport').css({ 'min-width': '190px' });
                 $('#dateB').css('margin-top', '10px');
+                $('#finalPrice').css({ 'width': '45px' });
             }
             else{
                 $('.layout-right-column').css({ 'float': 'right', 'width': 'auto' });
@@ -269,6 +270,7 @@
                 $('#gender').css({ 'min-width': 'auto', 'margin-bottom': '0px' });
                 $('#date-of-birth,#nationality,#passport').css({ 'min-width': '120px' });
                 $('#dateB').css('margin-top', '0px');
+                $('#finalPrice').css({ 'width': '202px' });
             }
 
             if ($('#bar').width() <= 1200) {
