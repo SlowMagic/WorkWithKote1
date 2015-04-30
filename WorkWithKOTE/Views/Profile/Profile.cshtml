@@ -14,6 +14,10 @@
     #change-profile {
         margin-top: 19px;
     }
+
+    .container{
+        margin-left : 21%;
+    }
 </style>
 <div id="small-preview-img" class="clearfix">
 
@@ -136,4 +140,26 @@
         var id = $('#Id option:selected').text();
         window.location.href = string + id;
     }
+</script>
+
+<script>
+    $(function ()
+    {
+        if ($('#bar').width() <= 800) {
+            $('.additional-nav').hide();
+        }
+        else {
+            $('.additional-nav').show();
+        }
+
+        $(window).resize(function ()
+        {
+            if ($('#bar').width() <= 800) {
+                $('.additional-nav').hide();
+            }
+            else {
+                $('.additional-nav').show();
+            }
+        });
+    });
 </script>

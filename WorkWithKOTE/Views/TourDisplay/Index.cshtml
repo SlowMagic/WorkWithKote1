@@ -197,7 +197,7 @@
                     </div>
                 }
 @*                <div id="map_canvas" style="width: 90%; height: 300px; margin-bottom: 15px; margin-top: 15px">*@
-                    <h1>Карта путешествия:</h1>
+                    <h1 class="Map">Карта путешествия:</h1>
                     @{Html.RenderAction("MapForDisplay", new {id = Model.TourId});}
 @*                </div>*@
             </div>
@@ -216,4 +216,24 @@
     if ($('.galleria').length>=1) {
         Galleria.run('.galleria');
     }
+</script>
+
+<script>
+    $(function () {
+        if ($('#bar').width() <= 800) {
+            $('.Map').hide();
+        }
+        else {
+            $('.Map').show();
+        }
+
+        $(window).resize(function () {
+            if ($('#bar').width() <= 800) {
+                $('.Map').hide();
+            }
+            else {
+                $('.Map').show();
+            }
+        });
+    });
 </script>
