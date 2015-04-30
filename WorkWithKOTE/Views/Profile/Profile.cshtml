@@ -288,19 +288,26 @@
 
         if ($('#bar').width() <= 1200) {
             $('.layout-right-column').css({ 'float': 'none', 'width': '200px' });
-            $('#rightCol').css({ 'float': 'none' });
+            $('#rightCol').css({ 'float': 'none','margin-left': '15px' });
             $('#bbbonus').css({ 'margin-left': '0px' });
             $('#change-profile').css({ 'margin-left': '0px', 'margin-top': '5px' });
             $('#leftCol').hide();
             $('.layout-main').css({ 'width': '100%' });
+            $('.profileBtn').css({'font-size':'13px','margin-left':'5px'});
+            $('.adminBtn').css({ 'margin-left': '0px', 'margin-top': '5px', 'display': 'block' });
+            $('h3').css({ 'margin-top': '20px','margin-bottom': '-10px' });
         }
         else {
             $('.layout-right-column').css({ 'float': 'right', 'width': '40%' });
-            $('#rightCol').css({ 'float': 'right' });
+            $('#rightCol').css({ 'float': 'right', 'margin-left': '0px' });
             $('#bbbonus').css({ 'margin-left': '-22px' });
             $('#change-profile').css({ 'margin-left': '15px', 'margin-top': '19px' });
             $('#leftCol').show();
             $('.layout-main').css({ 'width': '57%' });
+            $('.profileBtn').css({'font-size':'16px','margin-left':'0px'});
+            $('.adminBtn').css({ 'margin-left': '20px', 'margin-top': '0px', 'display': 'inline' });
+            $('h3').css({ 'margin-top': '0px', 'margin-bottom': '0px' });
+            $('#change-profile').css('margin-left', '12px');
         }
 
         $(window).resize(function ()
@@ -314,19 +321,26 @@
 
             if ($('#bar').width() <= 1200) {
                 $('.layout-right-column').css({ 'float': 'none', 'width': '200px' });
-                $('#rightCol').css({ 'float': 'none' });
+                $('#rightCol').css({ 'float': 'none', 'margin-left': '15px' });
                 $('#bbbonus').css({ 'margin-left': '0px' });
                 $('#change-profile').css({ 'margin-left': '0px', 'margin-top': '5px' });
                 $('#leftCol').hide();
                 $('.layout-main').css({ 'width': '100%' });
+                $('.profileBtn').css({ 'font-size': '13px', 'margin-left': '5px' });
+                $('.adminBtn').css({ 'margin-left': '0px', 'margin-top': '5px', 'display': 'block' });
+                $('h3').css({ 'margin-top': '20px', 'margin-bottom': '-10px' });
             }
             else {
                 $('.layout-right-column').css({ 'float': 'right', 'width': '40%' });
-                $('#rightCol').css({ 'float': 'right' });
+                $('#rightCol').css({ 'float': 'right', 'margin-left': '0px' });
                 $('#bbbonus').css({ 'margin-left': '-22px' });
                 $('#change-profile').css({ 'margin-left': '15px', 'margin-top': '19px' });
                 $('#leftCol').show();
                 $('.layout-main').css({ 'width': '57%' });
+                $('.profileBtn').css({ 'font-size': '16px', 'margin-left': '0px' });
+                $('.adminBtn').css({ 'margin-left': '20px', 'margin-top': '0px', 'display': 'inline' });
+                $('h3').css({ 'margin-top': '0px', 'margin-bottom': '0px' });
+                $('#change-profile').css('margin-left', '12px');
             }
         });
     });
