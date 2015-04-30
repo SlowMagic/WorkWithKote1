@@ -90,6 +90,7 @@
 
    .orangan{
        color :  #ff6f40;
+       display : block;
    }
 
 /* top-left border-radius */
@@ -131,8 +132,8 @@
    #bbbonus:before{
     content: '';
     position: absolute;
-    left: 65.1%;
     margin-top: 25px;
+    margin-left : -5px;
     border: 6px solid transparent;
     border-top: 6px solid #00C853;
     border-right: 6px solid #00C853;
@@ -195,7 +196,8 @@
                     }
                 </p>
             </div>
-<div style="width:80%">
+
+        <div style="width:80%">
             <div id="leftCol">
               <span class="orangan">Фамилия:</span>
               <span class="orangan">Имя:</span> 
@@ -212,7 +214,7 @@
               <span id="user-tel">@Html.DisplayFor(m => m.Mobile)</span>
               <span id="user-mail">@Html.DisplayFor(m => m.Email)</span>
             </div>
-</div>
+         </div>
 
             @if (User.IsInRole("Admin"))
             {
@@ -284,6 +286,23 @@
             $('.additional-nav').show();
         }
 
+        if ($('#bar').width() <= 1200) {
+            $('.layout-right-column').css({ 'float': 'none', 'width': '200px' });
+            $('#rightCol').css({ 'float': 'none' });
+            $('#bbbonus').css({ 'margin-left': '0px' });
+            $('#change-profile').css({ 'margin-left': '0px', 'margin-top': '5px' });
+            $('#leftCol').hide();
+            $('.layout-main').css({ 'width': '100%' });
+        }
+        else {
+            $('.layout-right-column').css({ 'float': 'right', 'width': '40%' });
+            $('#rightCol').css({ 'float': 'right' });
+            $('#bbbonus').css({ 'margin-left': '-22px' });
+            $('#change-profile').css({ 'margin-left': '15px', 'margin-top': '19px' });
+            $('#leftCol').show();
+            $('.layout-main').css({ 'width': '57%' });
+        }
+
         $(window).resize(function ()
         {
             if ($('#bar').width() <= 800) {
@@ -291,6 +310,23 @@
             }
             else {
                 $('.additional-nav').show();
+            }
+
+            if ($('#bar').width() <= 1200) {
+                $('.layout-right-column').css({ 'float': 'none', 'width': '200px' });
+                $('#rightCol').css({ 'float': 'none' });
+                $('#bbbonus').css({ 'margin-left': '0px' });
+                $('#change-profile').css({ 'margin-left': '0px', 'margin-top': '5px' });
+                $('#leftCol').hide();
+                $('.layout-main').css({ 'width': '100%' });
+            }
+            else {
+                $('.layout-right-column').css({ 'float': 'right', 'width': '40%' });
+                $('#rightCol').css({ 'float': 'right' });
+                $('#bbbonus').css({ 'margin-left': '-22px' });
+                $('#change-profile').css({ 'margin-left': '15px', 'margin-top': '19px' });
+                $('#leftCol').show();
+                $('.layout-main').css({ 'width': '57%' });
             }
         });
     });
