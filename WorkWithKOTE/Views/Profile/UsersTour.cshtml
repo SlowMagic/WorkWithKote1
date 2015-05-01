@@ -1,4 +1,14 @@
 ﻿@model IEnumerable< WorkWithKOTE.Models.Trip>
+
+<style>
+    #smallTable{
+        width : 100%;
+        text-align : left;
+        font-size : 13px;
+        display : none;
+    }
+</style>
+
 <div class="layout">
     <h3> Заявки</h3>
     <hr />
@@ -23,5 +33,25 @@
     </tr>
 }
     </table>
+
+    <table id="smallTable">
+        <tr>
+            <th>#</th>
+            <th>Информация</th>
+        </tr>
+        @foreach (var Item in Model)
+        {
+            <tr>
+                <td>@Item.TripID</td>
+                <td>
+                    ФИО : @Item.Name @Item.Surname @Item.FatherName <br/>
+                    Название : @Item.Tour.NameTour <br/>
+                    Дата : @Item.DateTour.FirstDate.ToString("dd.MM.yyyy") - @Item.DateTour.SecondDate.ToString("dd.MM.yyyy") <br/>
+                    Цена : @Item.TourPrice <br/>
+                    Статус : @Item.Status          
+                 </td>
+            </tr>
+        }
+     </table>
 
 </div>
