@@ -4,8 +4,12 @@
     #smallTable{
         width : 100%;
         text-align : left;
-        font-size : 13px;
+        font-size : 14px;
         display : none;
+    }
+
+    .headr{
+        font-weight : 700;
     }
 </style>
 
@@ -36,19 +40,18 @@
 
     <table id="smallTable">
         <tr>
-            <th>#</th>
-            <th>Информация</th>
+            <th>Ваши заявки</th>
         </tr>
         @foreach (var Item in Model)
         {
             <tr>
-                <td>@Item.TripID</td>
                 <td>
-                    ФИО : @Item.Name @Item.Surname @Item.FatherName <br/>
-                    Название : @Item.Tour.NameTour <br/>
-                    Дата : @Item.DateTour.FirstDate.ToString("dd.MM.yyyy") - @Item.DateTour.SecondDate.ToString("dd.MM.yyyy") <br/>
-                    Цена : @Item.TourPrice <br/>
-                    Статус : @Item.Status          
+                    <span style="color:#ff6a00" class="headr">Заявка #@Item.TripID</span><br/>
+                    <span class="headr">ФИО</span> : @Item.Name @Item.Surname @Item.FatherName <br/>
+                    <span class="headr">Название</span> : @Item.Tour.NameTour <br/>
+                    <span class="headr">Дата</span> : @Item.DateTour.FirstDate.ToString("dd.MM.yyyy") - @Item.DateTour.SecondDate.ToString("dd.MM.yyyy") <br/>
+                    <span class="headr">Цена</span> : @Item.TourPrice <br/>
+                    <span class="headr">Статус</span> : @Item.Status          
                  </td>
             </tr>
         }
