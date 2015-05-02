@@ -11,152 +11,195 @@
         margin-bottom: 15px;margin-top: 15px;
         background: #000;
     }
+
+    .container{
+        margin-left : 21.2%;
+        width: 77%;
+        min-width: 77%;
+    }
+
+    .upperText{
+        color : gray;
+        font-size : 16px;
+        margin-bottom : 10px;
+    }
+
+    .telephone{
+        font-weight : 800;
+    }
+    
+    .telephone:last-child{
+        margin-left : 20px;
+    }
+
+    .tour-destination{
+        text-align : center;
+        font-size : 17px;
+    }
+
+    .orangan{
+        color : #ff6a00;
+        margin-left : 15px;
+    }
+
+   .orange_li:before {
+    content: "• ";
+    color: #ff6a00;
+    }
+
+    .rightDef{
+    
+    }
+
+    hr{
+      width: 94%;
+      margin: 0 auto;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .greenBtn{
+        width : 78%;
+        height : 40px;
+        color:white !important;
+        border-radius : 4px;
+        background : #00C853;
+        display : block;
+        padding : 9px;
+        font-size : 16px;
+        margin-top : 10px;
+        margin-bottom : 10px;
+    }
+
+    .adminBtn{
+        width : 78%;
+        height : 40px;
+        color:white !important;
+        border-radius : 4px;
+        background : #ff6a00;
+        display : block;
+        padding : 9px;
+        font-size : 16px;
+        margin-top : 10px;
+        margin-bottom : 10px;
+    }
+
 </style>
+@{ Html.RenderPartial("HeaderPartial_main");}
+
 <div class="primaryContainer clearfix">
-    @{ Html.RenderPartial("HeaderPartial_main");}
+   
     <div id="big-preview-img" class="clearfix" style="background: url('@Html.DisplayFor(m => m.TourImg)') no-repeat center 100%; background-size: 100% 850px;">
         <div class="tour-name">@Html.DisplayFor(m => m.NameTour)</div>
+    </div>
 
-        <div class="bottom">
-            <div class="align_center_to_left">
-                <div class="align_center_to_right">
-                    <div class="short-description">
-                        <div class="date-select">
-                            <label>
-                                <select>
-                                    @foreach (var item in Model.DateTour)
-                                    {
-                                        <option class="tour-date">
-                                            @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
+    <div class="container">
+        <div style="text-align:center;display:inline-block;width : 30%;border-left : 1px solid #ccc;border-bottom : 1px solid #ccc;margin-right:-4px;">
+             <span class="upperText">Даты</span> <br />
+                <select style="margin-top:5px;margin-bottom:2px;">
+                    @foreach (var item in Model.DateTour)
+                    {
+                        <option class="tour-date">
+                            @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
+                        </option>
+                    }
+                </select>
+        </div>
 
-                                        </option>
-                                    }
-                                </select>
-                            </label>
-                            @*                            <img id="tour_calendar" src="~/Content/img/calendar.png" />*@
-                        </div>
-                        <p class="tour-destination">
-                            <span>Из @Html.DisplayFor(m => m.PlaceOfDeparture)</span>
-                            <img class="destination_arrow" src="~/Content/img/arrow_small.png"/>
-                            <span> @Html.DisplayFor(m => m.PlaceOfArrival)</span>
-                        </p>
-                    </div>
-                </div>
+        <div style="text-align:center;display:inline-block;width : 30%;border-left : 1px solid #ccc;border-bottom : 1px solid #ccc;margin-right:-4px;">
+            <span class="upperText">Продолжительность</span> <br />
+            <span style="font-size: 1.55em;">8 дней</span>
+        </div>
+
+        <div style="text-align:center;display:inline-block;width : 30%;border-left : 1px solid #ccc;border-right : 1px solid #ccc;border-bottom : 1px solid #ccc">
+           <span class="upperText">Цена</span> <br /> от
+            @if (Model.AukcionPrice != null)
+            {
+                <span class="old-price">@Model.Cost @Model.Valuta</span>
+                <span class="new-price">@Model.AukcionPrice @Model.Valuta</span>
+                @Html.DisplayFor(m => m.PodpicePrice)
+            }
+            @if (Model.AukcionPrice == null)
+            {
+                <span class="new-price">@Html.DisplayFor(m => m.Cost)  @Model.Valuta</span>
+            }
+        </div>
+
+        <div style="width:53%; margin-top : 15px; box-shadow : 1px 1px 1px 1px #ccc; float : left;">
+            <div class="tour-destination">
+                <span>@Html.DisplayFor(m => m.PlaceOfDeparture)</span>
+                    <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                <span> @Html.DisplayFor(m => m.PlaceOfArrival)</span>
+                    <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                <span>@Html.DisplayFor(m => m.PlaceOfDeparture)</span>
+            </div><hr/>
+
+            <span class="orangan">Тип тура : </span> <span class="rightDef">Семейный отдых</span> <br/><br/>
+            <span class="orangan">Транспорт :</span> <span class="rightDef">Автобус</span>
+
+            <div style="margin-bottom : -15px;">
+                <span class="orangan">Дополнительные услги :</span>
+
+                <ul style="display : inline-table;list-style : none;">
+                    @foreach (var item in Model.DopUslug)
+                    {
+                        <li class="orange_li">@Html.DisplayFor(m => item.Name)</li>
+                    }
+                </ul>
+            </div><hr />
+       
+            <p style="text-align:center">Если у Вас есть вопросы, обратитесь к нашему консультанту:</p>
+
+            <div style="text-align:center">
+                <span class="telephone">+38 097-815-68-38</span>
+                <span class="telephone">+38 050-774-99-18</span>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="booking">
-            <div id="description">
-                <p>Описание</p>
+
+        <div style="width : 35%;float : right;margin-top:15px; box-shadow : 1px 1px 1px 1px #ccc;margin-right : 10.1%;">
+            <div style="text-align : center; font-size:19px;margin-top : 15px;">
+               Тур в <span> @Html.DisplayFor(m => m.PlaceOfArrival)</span>
+                  из <span> @Html.DisplayFor(m => m.PlaceOfDeparture)</span>
+            </div><br/>
+
+            <div>
+                <span style="font-size : 17px;margin-left : 25px;">Количество участников: @Html.DisplayFor(m => m.AllPeople) ( Уже едут:<span id="places"> @Html.DisplayFor(m => m.People)</span> )</span> 
             </div>
 
-            <div class="left-column">
-                <p>Стоимость:</p>
+            @if (Model.Bonus != null)
+            {
+                <div style="font-size : 17px;margin-left : 25px;">
+                    Бонусные баллы : <span style="color:green;font-size:19px;">@Html.DisplayFor(m => m.Bonus)</span>
+                </div>
+            }
+            
+            <hr/>
 
-                <p>
-                    @if (Model.AukcionPrice != null)
-                    {
-                        <span class="old-price">@Model.Cost @Model.Valuta</span>
-                        <span class="new-price">@Model.AukcionPrice @Model.Valuta</span>
-                        @Html.DisplayFor(m => m.PodpicePrice)
-                        ;
-                    }
-                    @if (Model.AukcionPrice == null)
-                    {
-                        <span class="new-price">  @Html.DisplayFor(m => m.Cost)  @Model.Valuta</span>
-                    }
-                </p>
-
-                @*                <p>Тип тура: <a href="">Семейный отдых</a>, <a href="">бизнес отдых</a></p>*@
-                @if (Model.Bonus != null)
-                {
-                    <p>
-                        Бонус за тур :@Html.DisplayFor(m => m.Bonus)
-                    </p>
-                }
-                <p>
-                    Транспорт:
-                    @if (Model.IsTrain)
-                    {
-                        <img src="~/Content/img/t-train.png" style="display: inline-block; width: 25px; height: 25px;">
-                    }
-                    @if (Model.IsShip)
-                    {
-                        <img src="~/Content/img/t-ship.png" style="display: inline-block; width: 25px; height: 25px;">
-                    }
-                    @if (Model.IsBus)
-                    {
-                        <img src="~/Content/img/t-bus.png" style="display: inline-block; width: 25px; height: 25px;">
-                    }
-                    @if (Model.IsAriplane)
-                    {
-                        <img src="~/Content/img/t-plane.png" style="display: inline-block; width: 25px; height: 25px;">
-                    }
-                </p>
-
-                <p>
-                    @{
-                        int index = 0;
-                        int count = Model.DopUslug.Count();
-                    }
-                    Дополнительные услги: @foreach (var item in Model.DopUslug)
-                                          {
-                                              @Html.DisplayFor(m => item.Name)
-                                              if (index < count - 1)
-                                              {
-                                                  @:,
-                                              }
-                                              index++;
-                                          }
-                </p>
-                <img id="people_count" src="~/Content/img/guys-count.png"/>
-                <span>Количество участников:  @Html.DisplayFor(m => m.AllPeople) ( Уже едут:<span id="places"> @Html.DisplayFor(m => m.People)</span> )</span>
-            </div>
-            <div class="right-column">
-                <p>Если у Вас есть вопросы,обратитесь к нашему консультанту:</p>
-
-                <p>
-                    <img class="phone_icon" src="~/Content/img/megafon.png"/><span class="telephone">+38 097-815-68-38</span>
-                    <img class="phone_icon" src="~/Content/img/megafon.png"/><span class="telephone">+38 050-774-99-18</span>
-                </p>
-
-                @*                <p><a href="#">Обратный звонок</a></p>*@
-            </div>
-            <div class="buttons">
-                <a href="@Url.Action("Index", "Buy", new {id = Model.TourId})" id="book-and-pay" class="button">Бронь и оплата</a>
-                @*                <a href="#" id="book-tour">Предварительная бронь</a>*@
+            <div style="text-align:-webkit-center;">
                 @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                 {
-                    <a href='@Url.Action("TourEdit", "TourCreate", new {id = Model.TourId})' id="book-tour" class="button">Редактировать тур</a>
-                    <a href='@Url.Action("TourDelete", "TourDisplay", new {id = Model.TourId})' id="book-tour" class="button">Удалить тур</a>
+                    <a href='@Url.Action("TourEdit", "TourCreate", new {id = Model.TourId})' id="book-tour" class="adminBtn">Редактировать тур</a>
+                    <a href='@Url.Action("TourDelete", "TourDisplay", new {id = Model.TourId})' id="book-tour" class="adminBtn">Удалить тур</a>
                 }
+                <a href="@Url.Action("Index", "Buy", new {id = Model.TourId})" id="book-and-pay" class="greenBtn">Бронь и оплата</a>
             </div>
+            
         </div>
+
         <div class="description">
             <div class="right-panel">
-
                 <div class="guide">
                     <h4>Сопровождающий</h4>
                     <img src="@Html.DisplayFor(m => m.SuppFoto)" class="img-photo guide-photo">
 
                     <div class="person-name"><a href="@Html.DisplayFor(m => m.SuppVkontakte)">@Html.DisplayFor(m => m.SuppName)</a>
                     </div>
-                    @*                    <div class="position">Директор туристического оператора КОТЕ</div>*@
                     <div class="about-person">
                         @Html.DisplayFor(m => m.SuppDiscription)
                     </div>
                 </div>
 
                 <div class="social">
-                    @*                    <div class="tourists">*@
-                    @*                        <p>Уже едут:</p>*@
-                    @*                        <a href="#"><img src="~/Content/img/10942586.jpg" class="tourist"></a>*@
-                    @*                        <a href="#"><img src="~/Content/img/10942586.jpg" class="tourist"></a>*@
-                    @*                        <a href="#"><img src="~/Content/img/10942586.jpg" class="tourist"></a>*@
-                    @*                        <a href="#"><img src="~/Content/img/10942586.jpg" class="tourist"></a>*@
-                    @*                        <a href="#"><img src="~/Content/img/10942586.jpg" class="tourist"></a>*@
-                    @*                    </div>*@
                     @if (Model.SameTour != null)
                     {
                         <div class="similar-tour">
@@ -167,9 +210,7 @@
                             }
                         </div>
                     }
-@*                    <div class="">*@
-@*                        <p>Поделиться:</p>*@
-@*                    </div>*@<ul>
+                    <ul>
                         @foreach (var item in Model.Tag)
                         {
                             <li>@Html.DisplayFor(m => item.TagName)</li>
@@ -196,16 +237,12 @@
                         }
                     </div>
                 }
-@*                <div id="map_canvas" style="width: 90%; height: 300px; margin-bottom: 15px; margin-top: 15px">*@
                     <h1 class="Map">Карта путешествия:</h1>
                     @{Html.RenderAction("MapForDisplay", new {id = Model.TourId});}
-@*                </div>*@
             </div>
         </div>
-        @section scripts{
-        }
-    </div>
-</div>
+   </div> 
+</div> 
 
 <script>
     Galleria.loadTheme('/Content/js/themes/classic/galleria.classic.min.js');
