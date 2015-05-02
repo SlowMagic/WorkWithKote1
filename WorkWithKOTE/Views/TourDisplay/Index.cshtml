@@ -16,11 +16,12 @@
         margin-left : 21.2%;
         width: 77%;
         min-width: 77%;
+        margin-top : -2px;
     }
 
     .upperText{
         color : gray;
-        font-size : 16px;
+        font-size : 18px;
         margin-bottom : 10px;
     }
 
@@ -84,6 +85,14 @@
         margin-bottom : 10px;
     }
 
+    td{
+        border : 1px solid #ccc;
+    }
+
+    .description{
+        float:left;
+    }
+
 </style>
 @{ Html.RenderPartial("HeaderPartial_main");}
 
@@ -94,37 +103,43 @@
     </div>
 
     <div class="container">
-        <div style="text-align:center;display:inline-block;width : 30%;border-left : 1px solid #ccc;border-bottom : 1px solid #ccc;margin-right:-4px;">
-             <span class="upperText">Даты</span> <br />
-                <select style="margin-top:5px;margin-bottom:2px;">
-                    @foreach (var item in Model.DateTour)
+        <table style="width: 90.2%;min-height:70px;">
+            <tr>
+                <td style="text-align:center;width : 30%;">
+                    <span class="upperText">Даты</span> <br />
+                    <select style="margin-top:5px;height: 30px; border-radius: 4px;width:83%;font-size:15px;">
+                        @foreach (var item in Model.DateTour)
+                        {
+                            <option class="tour-date">
+                                @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
+                            </option>
+                        }
+                    </select>
+                </td>
+
+                <td style="text-align:center;width : 30%;">
+                    <span class="upperText">Продолжительность</span> <br />
+                    <div style="font-size: 1.5em;">8 дней</div>
+                </td>
+
+                <td style="text-align:center;width : 30%;">
+                    <span class="upperText">Цена</span> <br />
+                    @if (Model.AukcionPrice != null)
                     {
-                        <option class="tour-date">
-                            @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
-                        </option>
+                        <div>
+                          <span style="font-size:20px;">от</span> <span class="old-price">@Model.Cost @Model.Valuta</span>
+                             <span class="new-price">@Model.AukcionPrice @Model.Valuta</span>
+                        </div>
                     }
-                </select>
-        </div>
+                    @if (Model.AukcionPrice == null)
+                    {
+                        <span class="new-price">@Html.DisplayFor(m => m.Cost)  @Model.Valuta</span>
+                    }
+                </td>
 
-        <div style="text-align:center;display:inline-block;width : 30%;border-left : 1px solid #ccc;border-bottom : 1px solid #ccc;margin-right:-4px;">
-            <span class="upperText">Продолжительность</span> <br />
-            <span style="font-size: 1.55em;">8 дней</span>
-        </div>
-
-        <div style="text-align:center;display:inline-block;width : 30%;border-left : 1px solid #ccc;border-right : 1px solid #ccc;border-bottom : 1px solid #ccc">
-           <span class="upperText">Цена</span> <br /> от
-            @if (Model.AukcionPrice != null)
-            {
-                <span class="old-price">@Model.Cost @Model.Valuta</span>
-                <span class="new-price">@Model.AukcionPrice @Model.Valuta</span>
-                @Html.DisplayFor(m => m.PodpicePrice)
-            }
-            @if (Model.AukcionPrice == null)
-            {
-                <span class="new-price">@Html.DisplayFor(m => m.Cost)  @Model.Valuta</span>
-            }
-        </div>
-
+            </tr>
+        </table>
+       
         <div style="width:53%; margin-top : 15px; box-shadow : 1px 1px 1px 1px #ccc; float : left;">
             <div class="tour-destination">
                 <span>@Html.DisplayFor(m => m.PlaceOfDeparture)</span>
@@ -162,8 +177,9 @@
                   из <span> @Html.DisplayFor(m => m.PlaceOfDeparture)</span>
             </div><br/>
 
-            <div>
-                <span style="font-size : 17px;margin-left : 25px;">Количество участников: @Html.DisplayFor(m => m.AllPeople) ( Уже едут:<span id="places"> @Html.DisplayFor(m => m.People)</span> )</span> 
+            <div style="margin-left : 25px;">
+                <span style="font-size : 17px;">Количество участников: @Html.DisplayFor(m => m.AllPeople)</span> 
+                <span style="font-size:16px;">( Уже едут:<span id="places">@Html.DisplayFor(m => m.People)</span> )</span>
             </div>
 
             @if (Model.Bonus != null)
