@@ -72,6 +72,13 @@
         </div>
     </div>
     @RenderSection("scripts", required: false)
+    <!-- BEGIN JIVOSITE CODE {literal} -->
+    <script type='text/javascript'>
+        (function () {
+            var widget_id = 'i1bSpOH4ty';
+            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/' + widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);
+        })();</script>
+    <!-- {/literal} END JIVOSITE CODE -->
 </body>
 </html>
 
@@ -80,6 +87,7 @@
     $(function () {
         if ($('footer').width() <= 800) {
             $('#column1,#follow-us').hide();
+            $('#column2').css('margin-left', '15%');
             $('#footer-nav a').css({ 'float': 'none', 'display': 'block', 'width': 'auto' });
             $('#footer-nav a').not(':first').css('margin-top', '20px');
         }
@@ -89,6 +97,7 @@
             if ($('footer').width() <= 800)
             {
                 $('#column1,#follow-us').hide();
+                $('#column2').css('margin-left', '15%');
                 $('#footer-nav a').css({ 'float': 'none', 'display': 'block', 'width': 'auto' });
                 $('#footer-nav a').not(':first').css('margin-top', '25px');
             }
@@ -96,6 +105,7 @@
                 $('#column1,#follow-us').show();
                 $('#footer-nav a').css({ 'float': 'left', 'display': 'inline', 'width': '25%' });
                 $('#footer-nav a').not(':first').css('margin-top', '0px');
+                $('#column2').css('margin-left', '5%');
             }
         });
     });
