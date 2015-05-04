@@ -57,5 +57,15 @@ namespace WorkWithKOTE.Filters
               db.SaveChanges();
           }
        }
+      public static void Curenci()
+      {
+          UsersContext db = new UsersContext();
+          var curenci = db.Curseds.ToList();
+          if (curenci.Count == 0)
+          {
+              db.Curseds.Add(new Cursed { USD = 22.262405M, Evro = 24.326132M });
+              db.SaveChanges();
+          }
+      }
     }
 }

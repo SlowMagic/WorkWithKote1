@@ -148,9 +148,8 @@
             </div>
             <div id="dateB" class="info">
                 <label>Дата рождения</label>
-                <input name="BirthDay" value="@Model.BirthDay" id="date-of-birth" placeholder="__ . __ . ____" maxlength="10">
+                <input name="BirthDay" value="@Model.BirthDay.Value.ToString("dd.MM.yyyy")" id="date-of-birth" placeholder="__ . __ . ____" maxlength="10">
             </div>
-
         </div>
         <div class="layout">
             <div class="info">
