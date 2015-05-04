@@ -221,6 +221,7 @@
     <Content Include="Content\img\calendar.png" />
     <Content Include="Content\img\facebook.png" />
     <Content Include="Content\img\fb.png" />
+    <Content Include="Content\img\fbBtn.png" />
     <Content Include="Content\img\footer-bg.jpg" />
     <Content Include="Content\img\google.png" />
     <Content Include="Content\img\group-border.png" />
@@ -263,6 +264,7 @@
     <Content Include="Content\img\user.png" />
     <Content Include="Content\img\video-preview.jpg" />
     <Content Include="Content\img\vk.png" />
+    <Content Include="Content\img\vkBtn.png" />
     <Content Include="Content\img\yes-btn.png" />
     <Content Include="Content\img\youtube-ico.png" />
     <Content Include="Content\img\zaglushka.jpg" />

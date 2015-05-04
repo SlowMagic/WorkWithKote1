@@ -23,7 +23,7 @@ else
     </div>
     }
 }*@
-*@if (Model.Count == 0)
+@if (Model.Count == 0)
 {
     <div class="message-info">
         <p>
@@ -37,11 +37,10 @@ else
     <form method="post" enctype="multipart/form-data" action="@Url.Action("ExternalLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl })">
         @Html.AntiForgeryToken()
         <fieldset id="socialLoginList">
-            <legend>Вход через другую службу</legend>
             <p>
                 @foreach (AuthenticationClientData p in Model)
                 {
-                    <button type="submit" name="provider" value="@p.AuthenticationClient.ProviderName" title="Войдите, используя свою учетную запись @p.DisplayName">@p.DisplayName</button>
+                    <button id="@p.AuthenticationClient.ProviderName" type="submit" name="provider" title="Войдите, используя свою учетную запись @p.DisplayName"></button>
                 }
             </p>
         </fieldset>

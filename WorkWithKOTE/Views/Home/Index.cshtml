@@ -70,6 +70,10 @@
         transition : 0.3s;
     }
 
+     #confirmTour,#anotherTour{
+         min-width : 85px;
+     }
+
 </style>
 
 <div id="big-preview-img" class="clearfix">
@@ -563,6 +567,7 @@
             $('.news-block article').css('margin-top', '0px');
             $('.news-title').css('margin-bottom', '0px');
             $('#small-logo').css('margin-left', '21.2%');
+            $('#navigation').show();
 
             $('.subTours').each(function () {
                 if (!$(this).prev().hasClass('mainTours')) {

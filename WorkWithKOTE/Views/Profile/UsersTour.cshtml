@@ -1,4 +1,5 @@
 ﻿@model IEnumerable< WorkWithKOTE.Models.Trip>
+@{var paid = "Оплачена";}
 
 <style>
     #smallTable{
@@ -10,6 +11,14 @@
 
     .headr{
         font-weight : 700;
+    }
+
+    .paid{
+        color : #00C853;
+    }
+
+    .notPaid{
+        color : red;
     }
 </style>
 
@@ -33,7 +42,7 @@
         <td>@Item.Tour.NameTour</td>
         <td>@Item.DateTour.FirstDate.ToString("dd.MM.yyyy") - @Item.DateTour.SecondDate.ToString("dd.MM.yyyy")</td>
         <td>@Item.TourPrice</td>
-        <td>@Item.Status</td>
+        <td class="@(Item.Status == paid ? "paid" : "notPaid")">@Item.Status</td>
     </tr>
 }
     </table>

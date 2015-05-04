@@ -43,6 +43,10 @@
         margin-left : 15px;
     }
 
+    .orange_li{
+        margin-bottom : 10px;
+    }
+
    .orange_li:before {
     content: "• ";
     color: #ff6a00;
@@ -132,6 +136,7 @@
                         <div>
                           <span style="font-size:20px;">от</span> <span class="old-price">@Model.Cost @Model.Valuta</span>
                              <span class="new-price">@Model.AukcionPrice @Model.Valuta</span>
+                             <span>@Model.PodpicePrice</span>
                         </div>
                     }
                     @if (Model.AukcionPrice == null)
@@ -192,7 +197,7 @@
             <span class="orangan">Тип тура : </span> <span class="rightDef">Семейный отдых</span> <br/><br/>
             <span class="orangan">Транспорт :</span> <span class="rightDef">Автобус</span>
 
-            <div style="margin-bottom : -15px;">
+            <div id="dop" style="margin-bottom : -15px;">
                 <span class="orangan">Дополнительные услги :</span>
 
                 <ul style="display : inline-table;list-style : none;">
@@ -217,9 +222,11 @@
                   из <span> @Html.DisplayFor(m => m.PlaceOfDeparture)</span>
             </div><br/>
 
+            @{ var i = Model.AllPeople - Model.People;}
             <div style="margin-left : 25px;">
-                <span style="font-size : 17px;">Количество участников: @Html.DisplayFor(m => m.AllPeople)</span> 
-                <span style="font-size:16px;">( Уже едут:<span id="places">@Html.DisplayFor(m => m.People)</span> )</span>
+                <span style="font-size : 17px;">Количество участников : @Html.DisplayFor(m => m.AllPeople)</span> 
+                <span style="font-size:16px;">( Уже едут : <span id="places">@Html.DisplayFor(m => m.People)</span> )</span>
+                <span style="font-size : 17px;">Осталось мест @i из @Html.DisplayFor(m => m.AllPeople)</span>
             </div>
 
             @if (Model.Bonus != null)
@@ -262,14 +269,14 @@
                             <p>Похожие туры:</p>
                             @foreach (SameTour item in Model.SameTour)
                             {
-                                @Html.ActionLink(item.SameTourName, "Index", "TourDisplay", new {id = item.SameTourID}, null)
+                              <span class="similarT">@Html.ActionLink(item.SameTourName, "Index", "TourDisplay", new {id = item.SameTourID}, null)</span>
                             }
                         </div>
                     }
-                    <ul>
+                    <ul id="taggBox">
                         @foreach (var item in Model.Tag)
                         {
-                            <li>@Html.DisplayFor(m => item.TagName)</li>
+                            <li class="tagg">@Html.DisplayFor(m => item.TagName)</li>
                         }
                     </ul>
 
@@ -313,11 +320,28 @@
 
 <script>
     $(function () {
+
+        if ($('.orange_li').text() == '') {
+            $('#dop').hide();
+        }
+
+        if ($('.tagg').text() == '') {
+            $('#taggBox li').hide();
+        }
+
+        if (!$('.similarT').length){
+            $('.similar-tour').hide();
+        }
+
+        if ($('.tagg').text() == '' && !$('.similarT').length) {
+            $('.social').hide();
+        }
+
         if ($('#bar').width() <= 800) {
             $('.Map').hide();
             $('.right-panel').css({ 'float': 'none', 'width': '100%' });
             $('.description').css('width', '80%');
-            $('.full-description').css({ 'width': '80%' });
+            $('.full-description').css({ 'width': '80%','margin-bottom' : '20px'});
             $('#block1,#block2').css({ 'width': '80%', 'float': 'none' });
             $('.telephone').css({ 'display': 'block', 'margin-left': '0px' });
             $('#datetour').css('margin-bottom', '10px');
@@ -328,7 +352,7 @@
             $('.Map').show();
             $('.right-panel').css({ 'float': 'right', 'width': '30%' });
             $('.description').css('width', '100%');
-            $('.full-description').css({ 'width': '58%' });
+            $('.full-description').css({ 'width': '58%','margin-bottom': '0px' });
             $('#block1').css({ 'width': '53%', 'float': 'left' });
             $('#block2').css({ 'width': '35%', 'float': 'right' });
             $('.telephone').css({ 'display': 'inline' });
@@ -344,7 +368,7 @@
                 $('.Map').hide();
                 $('.right-panel').css({ 'float': 'none', 'width': '100%' });
                 $('.description').css('width', '80%');
-                $('.full-description').css({ 'width': '80%' });
+                $('.full-description').css({ 'width': '80%', 'margin-bottom': '20px' });
                 $('#block1,#block2').css({ 'width': '80%', 'float': 'none' });
                 $('.telephone').css({ 'display': 'block', 'margin-left': '0px' });
                 $('#datetour').css('margin-bottom', '10px');
@@ -355,7 +379,7 @@
                 $('.Map').show();
                 $('.right-panel').css({ 'float': 'right', 'width': '30%' });
                 $('.description').css('width', '100%');
-                $('.full-description').css({ 'width': '58%' });
+                $('.full-description').css({ 'width': '58%', 'margin-bottom': '0px' });
                 $('#block1').css({ 'width': '53%', 'float': 'left' });
                 $('#block2').css({ 'width': '35%', 'float': 'right' });
                 $('.telephone').css({ 'display': 'inline' });
