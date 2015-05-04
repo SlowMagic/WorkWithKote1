@@ -163,9 +163,10 @@
 }
 
 .right-panel {
-  margin-top: 45px;
+  margin-top: 20px;
   margin-right: 10.1%;
   width: 30%;
+  float : right;
 }
 
 .full-description {

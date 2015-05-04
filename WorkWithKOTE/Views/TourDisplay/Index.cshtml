@@ -92,6 +92,9 @@
     .description{
         float:left;
     }
+    #smallTable{
+        display:none;
+    }
 
 </style>
 @{ Html.RenderPartial("HeaderPartial_main");}
@@ -103,7 +106,7 @@
     </div>
 
     <div class="container">
-        <table style="width: 90.2%;min-height:70px;">
+        <table id="bigTable" style="width: 90.2%;min-height:70px;">
             <tr>
                 <td style="text-align:center;width : 30%;">
                     <span class="upperText">Даты</span> <br />
@@ -136,11 +139,48 @@
                         <span class="new-price">@Html.DisplayFor(m => m.Cost)  @Model.Valuta</span>
                     }
                 </td>
+            </tr>
+        </table>
 
+        <table id="smallTable">
+            <tr>
+                <td style="text-align:center;width : 30%;">
+                    <span class="upperText">Даты</span> <br />
+                    <select id="datetour" style="margin-top:5px;height: 30px; border-radius: 4px;width:83%;font-size:15px;">
+                        @foreach (var item in Model.DateTour)
+                        {
+                            <option class="tour-date">
+                                @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
+                            </option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center;width : 30%;">
+                    <span class="upperText">Продолжительность</span> <br />
+                    <div style="font-size: 1.5em;">8 дней</div>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center;width : 30%;">
+                    <span class="upperText">Цена</span> <br />
+                    @if (Model.AukcionPrice != null)
+                    {
+                        <div>
+                            <span style="font-size:20px;">от</span> <span class="old-price">@Model.Cost @Model.Valuta</span>
+                            <span class="new-price">@Model.AukcionPrice @Model.Valuta</span>
+                        </div>
+                    }
+                    @if (Model.AukcionPrice == null)
+                    {
+                        <span class="new-price">@Html.DisplayFor(m => m.Cost)  @Model.Valuta</span>
+                    }
+                </td>
             </tr>
         </table>
        
-        <div style="width:53%; margin-top : 15px; box-shadow : 1px 1px 1px 1px #ccc; float : left;">
+        <div id="block1" style="width:53%; margin-top : 15px; box-shadow : 1px 1px 1px 1px #ccc; float : left;">
             <div class="tour-destination">
                 <span>@Html.DisplayFor(m => m.PlaceOfDeparture)</span>
                     <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
@@ -171,7 +211,7 @@
             </div>
         </div>
 
-        <div style="width : 35%;float : right;margin-top:15px; box-shadow : 1px 1px 1px 1px #ccc;margin-right : 10.1%;">
+        <div id="block2" style="width : 35%;float : right;margin-top:15px; box-shadow : 1px 1px 1px 1px #ccc;margin-right : 10.1%;">
             <div style="text-align : center; font-size:19px;margin-top : 15px;">
                Тур в <span> @Html.DisplayFor(m => m.PlaceOfArrival)</span>
                   из <span> @Html.DisplayFor(m => m.PlaceOfDeparture)</span>
@@ -275,17 +315,52 @@
     $(function () {
         if ($('#bar').width() <= 800) {
             $('.Map').hide();
+            $('.right-panel').css({ 'float': 'none', 'width': '100%' });
+            $('.full-description').css({ 'width': '100%' });
+            $('#block1,#block2').css({ 'width': '100%', 'float': 'none' });
+            $('.telephone').css({ 'display': 'block', 'margin-left': '0px' });
+            $('#datetour').css('margin-bottom', '10px');
+            $('#bigTable').hide();
+            $('#smallTable').show();
+
         }
         else {
             $('.Map').show();
+            $('.right-panel').css({ 'float': 'right', 'width': '30%' });
+            $('.full-description').css({ 'width': '58%' });
+            $('#block1').css({ 'width': '53%', 'float': 'left' });
+            $('#block2').css({ 'width': '35%', 'float': 'right' });
+            $('.telephone').css({ 'display': 'inline' });
+            $('.telephone:last').css({ 'margin-left': '20px' });
+            $('#datetour').css('margin-bottom', '0px');
+            $('#bigTable').show();
+            $('#smallTable').hide();
         }
 
-        $(window).resize(function () {
+        $(window).resize(function ()
+        {
             if ($('#bar').width() <= 800) {
                 $('.Map').hide();
+                $('.right-panel').css({ 'float': 'none', 'width': '100%' });
+                $('.full-description').css({ 'width': '100%' });
+                $('#block1,#block2').css({ 'width': '100%', 'float': 'none' });
+                $('.telephone').css({ 'display': 'block', 'margin-left': '0px' });
+                $('#datetour').css('margin-bottom', '10px');
+                $('#bigTable').hide();
+                $('#smallTable').show();
+
             }
             else {
                 $('.Map').show();
+                $('.right-panel').css({ 'float': 'right', 'width': '30%' });
+                $('.full-description').css({ 'width': '58%' });
+                $('#block1').css({ 'width': '53%', 'float': 'left' });
+                $('#block2').css({ 'width': '35%', 'float': 'right' });
+                $('.telephone').css({ 'display': 'inline' });
+                $('.telephone:last').css({ 'margin-left': '20px' });
+                $('#datetour').css('margin-bottom', '0px');
+                $('#bigTable').show();
+                $('#smallTable').hide();
             }
         });
     });
