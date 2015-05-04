@@ -76,7 +76,7 @@
     <div class="wish">
         <p style="display:none;" id="wishletter">
             <span id="textspan">Я хочу...<br /></span>
-            <span id="textspan1">
+            <span id="textspan1" style="font-size:60px;">
                 <span id="to"></span><span id="from"></span>
             </span>
         </p>
@@ -93,7 +93,7 @@
                 <span id="textspan2">Да,</span> <span> Я хочу&#x21;</span>
             </a>
             <a id="anotherTour" href="" class="no-btn">
-                <span id="textspan5">Нет,</span> <span> что-то другое</span>
+                <span id="textspan5">Нет,</span> <span id="other"> что - то другое</span>
             </a>
         </div>
     </div>
@@ -529,14 +529,19 @@
             $('#tourSearch_text,#subscribe,#big-logo').hide();
             $('#wishletter').css('margin-top', '100px');
             $('#third').text('Приключенческие');
-            $('#to,#from').css('font-size', '16px');
             $('#small-logo').css('margin-left', '10%');
+            $('#textspan1').css('font-size', '37px');
+            $('.scroll-text').css('bottom', '120px');
+            $('#other').text('другое');
         }
         else {
             $('#tourSearch_text,#subscribe,#big-logo').show();
             $('#third').text('Приключенческие туры');
-            $('#to,#from').css('font-size', '3em');
             $('.groupLinks').css('font-size', '20px');
+            $('#textspan1').css('font-size', '60px');
+            $('#wishletter').css('margin-top', '-100px');
+            $('.scroll-text').css('bottom', '30px');
+            $('#other').text('что - то другое');
         }
         
         if ($('#bar').width() <= 900) {
