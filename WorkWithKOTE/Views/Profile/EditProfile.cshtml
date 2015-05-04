@@ -21,6 +21,7 @@
 
     #form_tour input[type=date] {
      margin-top : 6px;
+     width : 53%;
     }
 
     .labels{
@@ -33,15 +34,16 @@
     }
 
      #form_tour{
-        margin-left : 35px;
+        margin-left : 11.7%;
     }
 
      #accept{
+      padding : 4px;
       border-radius : 4px;
       background-color : #ff6f40;
       border : 1px solid #ff6f40;
       color : white;
-      height : 25px;
+      height : 30px;
       cursor : pointer;
       margin-top : 10px;
       margin-bottom : 10px;
@@ -53,8 +55,8 @@
 
 <div id="small-preview-img" class="clearfix">
     <hgroup>
-        <h1>Редактирование личного кабинета</h1>
-        <h2>@Html.ActionLink("Главная", "Index", "Home", null, null) / Редактирование личного кабинета </h2>
+        <h1><span class="editing">Редактирование</span> личного кабинета</h1>
+        <h2>@Html.ActionLink("Главная", "Index", "Home", null, null) / <span class="editing">Редактирование</span> личного кабинета </h2>
     </hgroup>
 </div>
 
@@ -65,69 +67,69 @@
         <div id="form_tour">
 
             <div class="loginEl" id="Name">
-                <span class="labels">Введите имя :</span>
+                <span class="labels">Имя:</span>
                 <input type="text" name="RuFirstName" value="@Model.RuFirstName" required />
             </div>
 
             <div class="loginEl" id="secname">
-                <span class="labels">Введите фамилию :</span>
+                <span class="labels">Фамилия:</span>
                 <input type="text" name="RuSecondName" value="@Model.RuSecondName" required />
             </div>
 
             <div class="loginEl" id="thirdname">
-                <span class="labels">Введите отчество :</span>
+                <span class="labels">Отчество:</span>
                 <input type="text" name="RuThirdName" value="@Model.RuThirdName" required />
             </div>
 
             <div class="loginEl" id="e_name">
-                <span class="labels"> Enter Name :</span>
+                <span class="labels">Name:</span>
                 @Html.EditorFor(m => m.EngFirstName)
             </div>
 
 
             <div class="loginEl" id="e_secname">
-                <span class="labels"> Enter Surname :</span>
+                <span class="labels">Surname:</span>
                 @Html.EditorFor(m => m.EngSecondName)
             </div>
 
-            <div class="loginEl" id="e_thirdname">
-                <span class="labels"> Enter Patronymic :</span>
+            <div class="loginEl not_import" id="e_thirdname">
+                <span class="labels">Patronymic:</span>
                 @Html.EditorFor(m => m.EngThirdName)
             </div>
 
             <div class="loginEl" id="birthDate">
-                <span class="labels"> Дата рождения :</span>
+                <span class="labels"><span id="Dbirth">Дата рождения</span>:</span>
                 @Html.EditorFor(m => m.Birthday)
             </div>
 
-            <div class="loginEl" id="Nationality">
-                <span class="labels"> Введите гражданство :</span>
+            <div class="loginEl not_import" id="Nationality">
+                <span class="labels">Гражданство:</span>
                 @Html.EditorFor(m => m.Nationality)
             </div>
 
             <div class="loginEl" id="pasport">
-                <span class="labels"> Введите серию и номер паспорта :</span>
+                <span class="labels">Паспорт:</span>
                 @Html.EditorFor(m => m.PasportData)
             </div>
 
-            <div class="loginEl" id="pasportDate">
-                <span class="labels">Введите дату выдачи паспорта :</span>
+            <div class="loginEl not_import" id="pasportDate">
+                <span class="labels">Дата выдачи паспорта:</span>
                 @Html.EditorFor(m => m.DatePasport)
             </div>
-
-            <div class="loginEl" id="pasportDateExp">
-                <span class="labels">Паспорт действителен до :</span>
+             
+            <div class="loginEl not_import" id="pasportDateExp">
+                <span class="labels">Действителен до:</span>
                 @Html.EditorFor(m => m.DateZagran)
             </div>
 
-            <div class="loginEl" id="mobilePhone">
-                <span class="labels"> Ваш мобильный телефон :</span>
+            <div class="loginEl not_import" id="mobilePhone">
+                <span class="labels">Мобильный:</span>
                 @Html.EditorFor(m => m.Mobile)
                 @Html.ValidationMessageFor(m => m.Mobile)
             </div>
 
-            <div class="loginEl" id="avatar">
-                <span class="labels">Выберите фото для аватара :</span>
+            <div class="loginEl not_import" id="avatar">
+                <span class="labels">Выберите фото:</span>
                 <input type="file" name="file" />
                 @Html.HiddenFor(m => m.Avatar)
             </div> 
@@ -137,6 +139,36 @@
         </div>
     </form>
 </div>
-    @section scripts{
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    $(function ()
+    {
+        if ($('#bar').width() <= 800) {
+            $('.not_import').hide();
+            $('.editing').text('Редактор');
+            $('#Dbirth').text('Д.Рожд');
+        }
+        else {
+            $('.not_import').show();
+            $('.editing').text('Редактирование');
+            $('#Dbirth').text('Дата рождения');
+        }
+
+        $(window).resize(function ()
+        {
+            if ($('#bar').width() <= 800) {
+                $('.not_import').hide();
+                $('.editing').text('Редактор');
+                $('#Dbirth').text('Д.Рожд');
+            }
+            else {
+                $('.not_import').show();
+                $('.editing').text('Редактирование');
+                $('#Dbirth').text('Дата рождения');
+            }
+        });
+    });
+</script>

@@ -11,13 +11,12 @@
     @Scripts.Render("~/bundles/galleria")
     @Scripts.Render("~/bundles/common")
 </head>
+
 <body>
     <div class="primaryContainer clearfix">
-        @*        @RenderSection("featured", required: false)*@
-        @*        <section class="content-wrapper main-content clear-fix">*@
         @RenderBody()
-        @*        </section>*@
     </div>
+
     <footer>
         <div class="cont">
             <div id="column1" class="clearfix">
@@ -36,43 +35,35 @@
                     @Html.ActionLink("О Нас", "Contact", "Home", null, null)
                 </div>
 
-                <div id="address">
-                    @*                <p>Будем рады видеть вас по адресу&#x3a;</p>*@
-                    @**@
-                    @*                <p>Украина, г. Днепропетровск ул. Красная, 17</p>*@
-                </div>
-
                 <div id="follow-us">
                     <p>Следи за нами&#x3a;</p>
-                    <a href="https://vk.com/kotetur"><img src="~/Content/img/twitter.png" class="image-icons" /></a>
-                    <a href="https://plus.google.com/u/0/118122030268269531704/posts">
+                    <a target="_blank" href="https://vk.com/kotetur"><img src="~/Content/img/vk.png" class="image-icons" /></a>
+                    <a target="_blank" href="https://plus.google.com/u/0/118122030268269531704/posts">
                         <img src="~/Content/img/google.png" class="image-icons" />
                     </a>
-                    <a href="https://www.facebook.com/kotetravel"><img src="~/Content/img/facebook.png" class="image-icons" /></a>
+                    <a target="_blank" href="https://www.facebook.com/kotetravel"><img src="~/Content/img/facebook.png" class="image-icons" /></a>
                 </div>
 
             </div>
             <div id="column3" class="clearfix">
                 <div id="contacts">
                     <h5>Консультант&#x3a;</h5>
+                      <p class="phone">&#x2b;38 <span class="phone-code">097</span>-815-68-38</p>
+                      <p class="phone">&#x2b;38 <span class="phone-code">050</span>-774-99-18</p>
+                      <p class="phone">&#x2b;38 <span class="phone-code">063</span>-796-25-00</p>
+                    <br/>
 
-                    <p class="phone">&#x2b;38 <span class="phone-code">097</span>-815-68-38</p>
-
-                    <p class="phone">&#x2b;38 <span class="phone-code">050</span>-774-99-18</p>
-
-                    <p class="phone">&#x2b;38 <span class="phone-code">063</span>-796-25-00</p>
-
-                    <br>
                     <h5>Наша почта&#x3a;<br /></h5>
-
-                    <p class="mail">kote.travel&#x40;gmail.com</p>
+                      <p class="mail">kote.travel&#x40;gmail.com</p>
                     <br />
+
                     <h5>Skype&#x3a;<br /></h5>
-                    <p class="mail">kote.travel</p>
+                      <p class="mail">kote.travel</p>
                 </div>
             </div>
         </div>
     </footer>
+
     <div id="copy-bg" class="clearfix">
         <div id="copyrighter">
             <span id="copyright">&copy; 2015 </span>
@@ -83,3 +74,30 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+
+<script>
+    $(function () {
+        if ($('footer').width() <= 800) {
+            $('#column1,#follow-us').hide();
+            $('#footer-nav a').css({ 'float': 'none', 'display': 'block', 'width': 'auto' });
+            $('#footer-nav a').not(':first').css('margin-top', '20px');
+        }
+
+        $(window).resize(function ()
+        {
+            if ($('footer').width() <= 800)
+            {
+                $('#column1,#follow-us').hide();
+                $('#footer-nav a').css({ 'float': 'none', 'display': 'block', 'width': 'auto' });
+                $('#footer-nav a').not(':first').css('margin-top', '25px');
+            }
+            else {
+                $('#column1,#follow-us').show();
+                $('#footer-nav a').css({ 'float': 'left', 'display': 'inline', 'width': '25%' });
+                $('#footer-nav a').not(':first').css('margin-top', '0px');
+            }
+        });
+    });
+</script>
+

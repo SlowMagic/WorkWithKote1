@@ -2,7 +2,7 @@
 
 @foreach (var item in Model)
 {
-    <p>
-        Дата:&nbsp;@Html.DisplayFor(m => item.FirstDate)&nbsp;-&nbsp;@Html.DisplayFor(m => item.SecondDate)
+    <p style="font-size:14px;word-break:break-word;">
+        @Html.DisplayFor(m => item.FirstDate)&nbsp;-&nbsp;@Html.DisplayFor(m => item.SecondDate)
     </p>
 } 

@@ -31,10 +31,11 @@
     
     #alt_enterText{
         margin-top: 20px;
+        font-size : 19px;
     }
 
     #form_tour{
-        margin-left: -50px;
+        margin-left: 11.7%;
     }
 
     label {
@@ -53,40 +54,40 @@
         padding-left: 5px;
     }
 
-    .loginEl {
-        margin: 5px;
-    }
-
     .field-validation-error > span {
         display: block;
     }
 
-    #changePassword,.alternateBnt{
+    #changePassword,.alternateBnt,#removeAlt{
+      padding: 3px;
+      color: white !important;
       border-radius : 4px;
       background-color : #ff6f40;
       border : 1px solid #ff6f40;
       color : white;
-      height : 25px;
+      height : 27px;
       cursor : pointer;
-      margin-top : 10px;
-      margin-bottom : 20px;
     }
 
-    #removeAlt{
-      border-radius : 4px;
-      background-color : #ff6f40;
-      border : 1px solid #ff6f40;
-      color : white;
-      height : 25px;
-      cursor : pointer;
-      margin-left : 6px;
-    }
     .message-success{
         font-size : 18px;
         margin-left : -17px;
         font-weight : 600;
         margin-bottom: 10px;
     }
+
+    #servise{
+        font-size : 19px;
+    }
+
+    #socialLoginList{
+        margin-bottom : 20px;
+    }
+
+    #changePassword{
+        margin-top : 10px;
+    }
+
 </style>
 
 @{ Html.RenderPartial("HeaderPartial_main");}

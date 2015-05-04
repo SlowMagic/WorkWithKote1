@@ -16,12 +16,13 @@
     }
 
     label{
+        font-size : 17px;
         margin-top : 12px;
         cursor : pointer;
     }
 
      #form_tour{
-        margin-left : 35px;
+         margin-left : 11.7%;
     }
 
     input[type=text]{
@@ -35,13 +36,14 @@
     }
 
     #registerBtn{
+      padding:6px;
       border-radius : 4px;
       background-color : #ff6f40;
       border : 1px solid #ff6f40;
       color : white;
-      height : 25px;
+      height : 30px;
       cursor : pointer;
-      margin-top : 10px;
+      margin-top : 20px;
       margin-bottom : 10px;
     }
 
@@ -74,12 +76,12 @@
             </div>
 
             <div class="loginEl" id="confirm">
-                @Html.Label("Подтвердить пароль : ", new { @for = "ConfirmPassword" })
+                @Html.Label("Еще раз : ", new { @for = "ConfirmPassword" })
                 @Html.PasswordFor(m => m.ConfirmPassword)
             </div>
 
             <div id="loginBox" class="loginEl">
-                <input id="registerBtn" type="submit" value="Зарегистрировать" />
+                <input id="registerBtn" type="submit" value="Зарегистрироваться" />
             </div>
 
         </div>

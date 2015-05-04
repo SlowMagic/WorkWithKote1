@@ -5,6 +5,77 @@
 @using WorkWithKOTE.Code
 @Styles.Render("~/Content/order")
 @{ Html.RenderPartial("HeaderPartial_main");}
+
+<style>
+    .layout{
+        margin-left: 11.6%;
+    }
+
+    .date-select label.hide:after {
+        display : none;
+    }
+
+    .transport p {
+        margin-top : 10px;
+    }
+
+    .searchBtn{
+      padding: 6px;
+      color: white !important;
+      border-radius : 4px;
+      background-color : #ff6f40;
+      border : 1px solid #ff6f40;
+      color : white;
+      height : 30px;
+      cursor : pointer;
+    }
+
+    .tourImg:hover{
+        transition : 0.1s;
+        box-shadow: #ccc 1px 0px 8px 2px;
+    }
+
+     .tourImg{
+        transition : 0.3s;
+    }
+
+     .titleTour{
+       color : #ff6f40 !important;
+       font-size : 19px;
+     }
+
+     .found-tour{
+         margin-top: -38px;
+     }
+
+     .open{
+         margin-left : -21.2% !important;
+     }
+
+     #filter{
+       display:none;
+       position: fixed;
+       width: 10px;
+       float: right;
+       text-align: right;
+       margin-left:77%;
+       cursor:pointer;
+       background-color :#ff6f40;
+       color : white !important;
+       transition : 0.1s;
+       padding-right: 26px;
+       padding-left: 15px;
+       margin-top: -15px;
+       padding-top : 10px;
+     }
+
+     .openFilter{
+       margin-left:68.3% !important;
+     }
+  
+
+</style>
+
 <div id="small-preview-img" class="clearfix">
     <hgroup>
         <h1>Поиск</h1>
@@ -13,46 +84,49 @@
         </h2>
     </hgroup>
 </div>
+
 <div class="container">
     <div class="layout">
         <form action="@Url.Action("Search","TourSearch")" method="post" enctype="multipart/form-data">
             <div class="layout-left-column">
+             
+                <p id="filter">Ф и л ь т р</p>
 
                 <p>Даты</p>
+
                 @Html.DropDownList("Date", new List<SelectListItem> { new SelectListItem{Value="1", Text="Январь"},  new SelectListItem{Value="2",Text="Февраль"}, new SelectListItem{Value="3",Text="Март"},
                  new SelectListItem{Value="4",Text="Апрель"}, new SelectListItem{Value="5",Text="Май"}, new SelectListItem{Value = "6",Text="Июнь"}, new SelectListItem{Value="7",Text="Июль"},
                  new SelectListItem{Value="8",Text="Август"}, new SelectListItem{Value="9",Text="Сентябрь"}, new SelectListItem{Value="10",Text="Октябрь"}, new SelectListItem{Value="11",Text="Ноябрь"}, new SelectListItem{Value="12",Text="Декабрь"}}, "Все даты")
-                <p>Типы тура</p>
+            
+                 <p>Типы тура</p>
+
                 @Html.DropDownList("TypeOfTour", DropDown.SelectlistForTypeTour(), "Все туры")
                 <p>Путешествие в</p>
                 @Html.DropDownList("ArrivePlace", DropDown.SelectlistForArrive(), "Все направления")
-                <p>Теги</p>
-                    <input name="Tag" style="width:96%"/>
+
+                <p class="forHide">Теги</p>
+                <input class="forHide" name="Tag" style="width:96%" />
+
                 <p>Цена от</p>
                 @Html.DropDownList("Prices", DropDown.Price(), "Любая цена")
-                @*                <p>Тип тура</p>*@
-                @*                <select>*@
-                @*                    <option></option>*@
-                @*                </select>*@
-                <p>Транспорт</p>
-                <div class="transport">
-                    <p>@Html.CheckBox("IsCar")&nbsp;Автобус</p>
-                    <p>@Html.CheckBox("IsTrain")&nbsp;Поезд</p>
-                    <p>@Html.CheckBox("IsShip")&nbsp;Лайнер</p>
-                    <p>@Html.CheckBox("IsPlane")&nbsp;Самолет</p>
-                </div>
-                @*                <p>Город</p>*@
-                @*                <select>*@
-                @*                    <option></option>*@
-                @*                </select>*@
-                <p style="margin-top: 10px">
-                    <a href="#" onclick=" $(this).closest('form').submit(); return false" class="button">Поиск</a>
+
+                <p class="forHide">Транспорт</p>
+                <div class="transport forHide">
+                    <p>@Html.CheckBox("IsCar")&nbsp;<label for="IsCar">Автобус</label></p>
+                    <p>@Html.CheckBox("IsTrain")&nbsp;<label for="IsTrain">Поезд</label></p>
+                    <p>@Html.CheckBox("IsShip")&nbsp;<label for="IsShip">Лайнер</label></p>
+                    <p>@Html.CheckBox("IsPlane")&nbsp;<label for="IsPlane">Самолет</label></p>
+                </div><br/>
+
+                <p style="height:30px;">
+                    <a style="margin-left: 8px;" class="searchBtn" href="#" onclick=" $(this).closest('form').submit(); return false">Поиск</a>
                     @if (User.IsInRole("Admin"))
                     {
-                        <a style="margin-left: 10px" class="button" href='@Url.Action("SearchAllUsers", "Admin")'>Поиск людей</a>
+                        <a id="humanSearch" class="searchBtn" style="margin-left: 10px" href='@Url.Action("SearchAllUsers", "Admin")'>Поиск&nbsp;людей</a>
                     }
                 </p>
-            </div>
+            </div><br/><br/>
+
             <div class="layout-main-right">
                 <div class="found-tour">
                     @{
@@ -68,13 +142,12 @@
                             @:</div>
                             @:<div class="found-tour">
                         }
-                        <div style="margin-bottom: 15px">
                             <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m=>c.Valuta)</h3><br />
-                            <img style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)">
-                            <h4> @Html.DisplayFor(m => c.NameTour)</h4><br />
+                            <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
+                            <a class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
                             <div class="date-select mini">
-                                <label>
-                                    <select>
+                                <label style="margin-left: -23px;">
+                                    <select id="selectDate">
                                         @foreach (var item in c.DateTour)
                                         {
                                             <option>
@@ -83,14 +156,66 @@
                                         }
                                     </select>
                                 </label>
-                            </div>
-                            <a class=" button " style="float: none; margin-top: 10px" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'>Просмотреть тур</a>
-                        </div>
-                            index++;
-                            }
+                            </div><br/>
+                     index++;
+                     }
                 </div>
             </div>
         </form>
     </div>
 
 </div>
+
+<script>
+    function TourSearch()
+    {
+
+        if ($('#bar').width() <= 400) {
+            $('#humanSearch').text('Люди');
+        }
+        else {
+            $('#humanSearch').text('Поиск людей');
+        }
+
+        if ($('#bar').width() <= 1100) {
+            $('#filter').show();
+            $('.layout-left-column').css({ 'float': 'auto', 'width': '70%','margin-left':'-100%','top': '104px','position':'fixed','z-index':'4'});
+            $('.layout-main-right').css({ 'margin-left': '3%', 'width': '100%', 'margin-top': '20px' });
+            $('.tourImg').css({ 'max-width': '100%', 'max-height': '100%' });
+            $('.found-tour').css({ 'width': 'auto', 'margin-top': '20px' });
+            $('.date-select label').addClass('hide');
+            $('.date-select.mini select').css({ 'font-size': '14px !important', 'text-decoration': 'underline' });
+            $('#selectDate').css('font-size', '14px !important');
+            $('.forHide').hide();
+            $('#Prices').css({ 'margin-bottom': '17px' });
+        }
+        else {
+            $('#filter').hide();
+            $('.forHide').show();
+            $('.layout-left-column').css({ 'float': 'left', 'width': '30%', 'margin-left': '0px !important', 'position': 'inherit'});
+            $('.layout-main-right').css({ 'margin-left': '33%', 'width': '67%','margin-top':'0px' });
+            $('.tourImg').css({ 'max-width': '250px', 'max-height': '150px' });
+            $('.found-tour').css({ 'width': '250px', 'margin-top': '-38px' });
+            $('.date-select label').removeClass('hide');
+            $('.date-select.mini select').css({ 'font-size': '1em', 'text-decoration': 'none' });
+            $('#selectDate').css('font-size', '1em');
+            $('#Prices').css({ 'margin-bottom': '0px' });
+        }
+    }
+
+    $(function ()
+    {
+            TourSearch();
+
+            $('#filter').click(function () {
+                $(this).toggleClass('openFilter');
+                $('.layout-left-column').toggleClass('open');
+                $('.layout-left-column').css('transition','0.5s');
+            });
+
+            $(window).resize(function(){
+                TourSearch();
+            });
+
+        });
+</script>

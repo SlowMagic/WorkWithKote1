@@ -17,7 +17,7 @@
 
 </div>
 <div class="container">
-    <div class="layout" style="padding-left: 10px;">
+    <div class="layout" style="padding-left: 11.6%;">
         @foreach (var item in Model)
         {
             <div class="found-tour">
@@ -28,9 +28,7 @@
                     if (pic.PicType == "Image")
                     {
                         <a href="@Url.Action("Gallery", "Gallery", new {id = item.GalleryId})">
-                            <div class="gal-img" style="background: url('@pic.PicLink') no-repeat center">
-                                @*<img style="max-height: 150px; max-width: 250px" src="@pic.PicLink"/>*@
-                            </div>
+                            <div class="gal-img" style="background: url('@pic.PicLink') no-repeat center"></div>
                         </a>
                         flag = true;
                         break;
@@ -40,9 +38,7 @@
                 @if (!flag)
                 {
                     <a href="@Url.Action("Gallery", "Gallery", new {id = item.GalleryId})">
-                        <div class="gal-img" style="background: url('/Content/img/big-logo.png') no-repeat center">
-                            @*<img style="max-height: 150px; max-width: 250px" src="@pic.PicLink"/>*@
-                        </div>
+                        <div class="gal-img" style="background: url('/Content/img/big-logo.png') no-repeat center"></div>
                     </a>
                 }
                 <a class="button" style="float: none; margin-top: 10px; margin-bottom: 50px" href='@Url.Action("GalleryDelete", "Gallery", new {id = item.GalleryId})'>Удалить</a><br/>
@@ -60,6 +56,16 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    transition : 0.7s;
    } 
+
+   .gal-img:hover{
+        transition : 0.15s;
+        box-shadow: #ccc 1px 0px 8px 2px;
+    }
+
+   .layout{
+       padding-left : 6%;
+   }
      
 </style>

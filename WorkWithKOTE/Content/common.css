@@ -3,8 +3,8 @@ nav, footer, header, section, article, iframe, img {
 }
 @font-face {
  /*  font-family: HelveticaNeueCyr;
-  src: url(fonts/);
-  font-weight, font-style ==> по умолчанию normal */
+     src: url(fonts/);
+     font-weight, font-style ==> по умолчанию normal */
 }
 header {
     position: fixed;
@@ -19,8 +19,7 @@ header {
 }
 
 #bar {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding-bottom: 28px;
+    padding-bottom: 35px;
 }
 
 #small-logo {
@@ -28,7 +27,9 @@ header {
     filter: alpha(opacity=0);
     float: left;
     margin: 15px;
-    margin-left: 15%;
+    margin-left: 21.2%;
+    width: 60px;
+    margin-top: 18px;
 }
 
 nav {
@@ -45,15 +46,15 @@ nav {
     clear: none;
 }
 
-    nav a {
-        margin-left: 25px;
-        padding-bottom: 44px;
-    }
+nav a {
+    margin-left: 25px;
+    padding-bottom: 44px;
+}
 
-        nav a:hover {
-            padding-bottom: 41px;
-            border-bottom: 3px solid rgba(255, 255, 255, 0.5);
-        }
+nav a:hover {
+   padding-bottom: 47px;
+   border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+}
 
 .nav-other {
     display: inline-block;
@@ -69,21 +70,21 @@ nav {
     clear: none;
 }
 
-    .nav-other a {
-        margin-left: 25px;
-        padding-bottom: 44px;
-    }
+.nav-other a {
+   margin-left: 25px;
+   padding-bottom: 44px;
+}
 
-        .nav-other a:hover {
-            padding-bottom: 41px;
-            border-bottom: 3px solid #acacac;
-        }
+.nav-other a:hover {
+   padding-bottom: 47px;
+   border-bottom: 3px solid #acacac;
+}
 
 #second-navigation {
     text-transform: capitalize;
     display: none;
     top: 50px;
-    padding: 10px;
+    padding: 2px;
     border-top: 1px solid #ffffff;
     background-color: rgba(0,0,0,0.6);
 }
@@ -137,7 +138,7 @@ nav {
     margin: 0 auto;
     padding-top: 40px;
     width: 80%;
-    min-width: 930px;
+   /* min-width: 930px;*/
 }
 
 footer {
@@ -154,9 +155,11 @@ footer {
     float: left;
     height: auto;
     width: 33%;
+    margin-left : 8%;
 }
 
 #about {
+    margin-left: 19%;
     float: left;
     font-size: 0.75em;
     text-align: left;
@@ -249,7 +252,7 @@ footer {
 #column3 {
     float: left;
     height: auto;
-    margin-left: 10%;
+    /*margin-left: 10%;*/
     width: 15%;
 }
 
@@ -278,7 +281,8 @@ footer {
     }
 
 .mail {
-    font-size: 0.875em;
+    font-size: 15px;
+    text-decoration: underline;
     color: rgb(255, 255, 255);
 }
 
@@ -392,7 +396,7 @@ footer {
 }
 
 #amnesia {
-    width: 150px;
+    width: 130px;
 }
 
 .hidden {
@@ -413,8 +417,8 @@ footer {
 #block_enter {
     display: inherit;
     position: absolute;
-    margin-left: 9px;
-    width: 220px;
+    margin-left: 10px;
+    width: 219px;
     height: 165px;
     background-color: #121212;
     border-bottom-left-radius: 10px;
@@ -426,9 +430,9 @@ footer {
     border-radius: 4px;
     height: 30px;
     padding-left: 10px;
-    margin-top: 5px;
+    margin-top: 9px;
     margin-left: 9px;
-    width: 203px;
+    width: 92%;
     background-color: #424242;
     border: 1px solid #424242;
     color: white;
@@ -440,8 +444,8 @@ footer {
     height: 30px;
     padding-left: 10px;
     margin-top: 8px;
-    margin-left: 9px;
-    width: 203px;
+    margin-left: 10px;
+    width: 92%;
     background-color: #ff6f40;
     border: 1px solid #ff6f40;
     color: white;
@@ -461,12 +465,12 @@ footer {
     -webkit-appearance: none;
     -moz-appearance: none;
     cursor: pointer; 
-    font-size: 1.57em;
+    /*font-size: 1.57em;*/
     font-weight: 300;
 }
 .date-select.mini select {
     
-    font-size: 1em !important;
+   /* font-size: 1em !important;*/
     font-weight: 100!important;
 }
 .date-select label{position:relative}

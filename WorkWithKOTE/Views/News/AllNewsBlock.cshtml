@@ -6,6 +6,24 @@
 @{ Html.RenderPartial("HeaderPartial_main");}
 @Styles.Render("~/Content/order")
 
+<style>
+    .myButton{
+      padding: 6px;
+      color: white !important;
+      border-radius : 4px;
+      background-color : #ff6f40;
+      border : 1px solid #ff6f40;
+      color : white;
+      height : 30px;
+      cursor : pointer;
+      min-width : 70px;
+    }
+
+    .container{
+        margin-left : 21%;
+    }
+</style>
+
 <div id="small-preview-img" class="clearfix">
 
     <hgroup>
@@ -21,10 +39,10 @@
 {
     <h2>@Html.DisplayFor(m => item.NewsTitle)</h2><br />
     @Html.Raw(item.NewsBody)<br />
-    @Html.DisplayFor(m => item.NewsDate)<br />
+    @Html.DisplayFor(m => item.NewsDate)<br /><br/>
     if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
     {
-        <a style="float:none" class="button" href='@Url.Action("NewsDelete", new { id = item.NewsId })'>Удалить новость</a>
+        <a style="float:none" class="myButton" href='@Url.Action("NewsDelete", new { id = item.NewsId })'>Удалить новость</a>
     }
     <hr />
 }

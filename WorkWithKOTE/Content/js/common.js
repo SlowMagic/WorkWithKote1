@@ -51,7 +51,7 @@ function switchLogo(pos)
         }
 
         else {
-               $('#bar').css('backgroundColor', 'transparent');
+            $('#bar').css('backgroundColor', 'rgba(0,0,0, 0.2)');
                $('#small-logo').css('opacity', '0');
                $('#big-logo').css('opacity', '1');
                $('#top-shadow').show();
@@ -71,6 +71,7 @@ function switchLogo(pos)
 $(function ()
 {
     $('#block_links').css('width', $('#user_name').width() + 57 + 'px');
+    $('#block_enter').css('width', $('#user_name').width() + 53 + 'px');
 
     $('#user_name').click(function () {
         $('#block_links,#block_enter').toggleClass('hidden');
