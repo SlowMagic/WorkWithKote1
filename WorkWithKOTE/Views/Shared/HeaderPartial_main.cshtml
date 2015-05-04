@@ -110,6 +110,12 @@
             $('.profile').css('margin-top', '25px');
             $('#forMenu').show().css('display','inline');
         }
+        else {
+            $('.nav-other a,#Searching,#navigation').show();
+            $('#forMenu').hide();
+            $('.profile').css('margin-top', '0px');
+            $('#tiny_menu').hide(500);
+        }
 
         if ($('#bar').width() <= 450) {
             $('#small-logo').hide();
