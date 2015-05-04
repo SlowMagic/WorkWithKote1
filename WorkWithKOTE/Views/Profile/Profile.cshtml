@@ -118,7 +118,7 @@
    }
 
    #bbbonus{
-    font-size: 17px;
+    font-size: 15px;
     margin-top: 3px;
     margin-left: -22px;
     padding-left: 5px;
@@ -132,7 +132,7 @@
    #bbbonus:before{
     content: '';
     position: absolute;
-    margin-top: 25px;
+    margin-top: 23px;
     margin-left : -5px;
     border: 6px solid transparent;
     border-top: 6px solid #00C853;
@@ -326,7 +326,7 @@
             if ($('#bar').width() <= 1200) {
                 $('.layout-right-column').css({ 'float': 'none', 'width': '200px' });
                 $('#rightCol').css({ 'float': 'none', 'margin-left': '15px' });
-                $('#bbbonus').css({ 'margin-left': '0px' });
+                $('#bbbonus').css({ 'margin-left': '0px','min-width':'160px' });
                 $('#change-profile').css({ 'margin-left': '0px', 'margin-top': '5px' });
                 $('#leftCol').hide();
                 $('.layout-main').css({ 'width': '100%' });
@@ -339,7 +339,7 @@
             else {
                 $('.layout-right-column').css({ 'float': 'right', 'width': '40%' });
                 $('#rightCol').css({ 'float': 'right', 'margin-left': '0px' });
-                $('#bbbonus').css({ 'margin-left': '-22px' });
+                $('#bbbonus').css({ 'margin-left': '-22px', 'min-width': '137px' });
                 $('#change-profile').css({ 'margin-left': '15px', 'margin-top': '19px' });
                 $('#leftCol').show();
                 $('.layout-main').css({ 'width': '57%' });
