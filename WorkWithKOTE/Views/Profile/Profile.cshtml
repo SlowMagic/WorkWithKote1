@@ -218,7 +218,7 @@
 
             @if (User.IsInRole("Admin"))
             {
-                <a class="profileBtn" href='@Url.Action("RolesForUser", "Admin", new {moder = Model.Email})'>Назначить<br />модератором</a>
+                <a class="profileBtn" href='@Url.Action("RolesForUser", "Admin", new {moder = Model.Email , id = Model.UserId})'>Назначить<br />модератором</a>
             }
             <a href="@Url.Action("EditProfile", "Profile")" style="margin-left:12px;" class="profileBtn" id="change-profile">Редактировать<br />профиль</a>
             <a href="@Url.Action("Manage", "Account")" class="profileBtn" id="change-password">Изменить<br />пароль</a>

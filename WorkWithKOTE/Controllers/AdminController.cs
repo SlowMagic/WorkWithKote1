@@ -105,5 +105,11 @@ namespace WorkWithKOTE.Controllers
         {
             return PartialView(db.Curseds.Single());
         }
+        public ActionResult Cursed(Cursed cursed)
+        {
+            db.Entry(cursed).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Profile", "Profile");
+        }
     }
 }
