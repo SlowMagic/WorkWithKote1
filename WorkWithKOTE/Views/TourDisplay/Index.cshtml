@@ -211,7 +211,7 @@
             </div>
         </div>
 
-        <div id="block2" style="width : 35%;float : right;margin-top:15px; box-shadow : 1px 1px 1px 1px #ccc;margin-right : 10.1%;">
+        <div id="block2" style="width : 35%;float : right;margin-top:15px; box-shadow : 1px 1px 1px 1px #ccc;margin-right : 10.1%;padding-bottom: 15px;">
             <div style="text-align : center; font-size:19px;margin-top : 15px;">
                Тур в <span> @Html.DisplayFor(m => m.PlaceOfArrival)</span>
                   из <span> @Html.DisplayFor(m => m.PlaceOfDeparture)</span>
@@ -316,17 +316,18 @@
         if ($('#bar').width() <= 800) {
             $('.Map').hide();
             $('.right-panel').css({ 'float': 'none', 'width': '100%' });
-            $('.full-description').css({ 'width': '100%' });
-            $('#block1,#block2').css({ 'width': '100%', 'float': 'none' });
+            $('.description').css('width', '80%');
+            $('.full-description').css({ 'width': '80%' });
+            $('#block1,#block2').css({ 'width': '80%', 'float': 'none' });
             $('.telephone').css({ 'display': 'block', 'margin-left': '0px' });
             $('#datetour').css('margin-bottom', '10px');
             $('#bigTable').hide();
-            $('#smallTable').show();
-
+            $('#smallTable').show().css('width','80%');
         }
         else {
             $('.Map').show();
             $('.right-panel').css({ 'float': 'right', 'width': '30%' });
+            $('.description').css('width', '100%');
             $('.full-description').css({ 'width': '58%' });
             $('#block1').css({ 'width': '53%', 'float': 'left' });
             $('#block2').css({ 'width': '35%', 'float': 'right' });
@@ -342,17 +343,18 @@
             if ($('#bar').width() <= 800) {
                 $('.Map').hide();
                 $('.right-panel').css({ 'float': 'none', 'width': '100%' });
-                $('.full-description').css({ 'width': '100%' });
-                $('#block1,#block2').css({ 'width': '100%', 'float': 'none' });
+                $('.description').css('width', '80%');
+                $('.full-description').css({ 'width': '80%' });
+                $('#block1,#block2').css({ 'width': '80%', 'float': 'none' });
                 $('.telephone').css({ 'display': 'block', 'margin-left': '0px' });
                 $('#datetour').css('margin-bottom', '10px');
                 $('#bigTable').hide();
-                $('#smallTable').show();
-
+                $('#smallTable').show().css('width', '80%');
             }
             else {
                 $('.Map').show();
                 $('.right-panel').css({ 'float': 'right', 'width': '30%' });
+                $('.description').css('width', '100%');
                 $('.full-description').css({ 'width': '58%' });
                 $('#block1').css({ 'width': '53%', 'float': 'left' });
                 $('#block2').css({ 'width': '35%', 'float': 'right' });

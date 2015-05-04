@@ -80,6 +80,7 @@
     $(function () {
         if ($('footer').width() <= 800) {
             $('#column1,#follow-us').hide();
+            $('#column2').css('margin-left', '15%');
             $('#footer-nav a').css({ 'float': 'none', 'display': 'block', 'width': 'auto' });
             $('#footer-nav a').not(':first').css('margin-top', '20px');
         }
@@ -89,6 +90,7 @@
             if ($('footer').width() <= 800)
             {
                 $('#column1,#follow-us').hide();
+                $('#column2').css('margin-left', '15%');
                 $('#footer-nav a').css({ 'float': 'none', 'display': 'block', 'width': 'auto' });
                 $('#footer-nav a').not(':first').css('margin-top', '25px');
             }
@@ -96,6 +98,7 @@
                 $('#column1,#follow-us').show();
                 $('#footer-nav a').css({ 'float': 'left', 'display': 'inline', 'width': '25%' });
                 $('#footer-nav a').not(':first').css('margin-top', '0px');
+                $('#column2').css('margin-left', '5%');
             }
         });
     });
