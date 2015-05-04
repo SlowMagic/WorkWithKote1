@@ -280,4 +280,13 @@ namespace WorkWithKOTE.Models
         public List<Trip> trips { get; set; }
         public List<DateTour> date { get; set; }
     }
+    public class Cursed
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int CursedID { get; set; }
+        public decimal USD { get; set; }
+        public decimal Evro { get; set; }
+
+    }
 }

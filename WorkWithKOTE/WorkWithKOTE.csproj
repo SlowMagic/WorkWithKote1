@@ -1204,6 +1204,7 @@
     <Content Include="Views\Gallery\GalleryList.cshtml" />
     <Content Include="Views\Gallery\Gallery.cshtml" />
     <Content Include="Views\Buy\TripEdit.cshtml" />
+    <Content Include="Views\Admin\Cursed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

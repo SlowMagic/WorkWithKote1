@@ -131,15 +131,14 @@
             <span class="links">@Html.ActionLink("Register", "Register")</span>
             <span class="links">@Html.ActionLink("Забыл пароль?!", "ForgotPassword", "Profile")</span>
         </div>
-
-        <div id="alternate">
-            <section class="social" id="socialLoginForm">
-                <span id="alternateText">Использовать другой сервис для входа</span>
-                @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-            </section>
-        </div>
     </div>           
 }
+     <div id="alternate">
+         <section class="social" id="socialLoginForm">
+             <span id="alternateText">Использовать другой сервис для входа</span>
+             @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+         </section>
+     </div>
  </section>
 </div>
 

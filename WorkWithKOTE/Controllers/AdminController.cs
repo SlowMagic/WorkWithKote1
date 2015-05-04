@@ -39,7 +39,7 @@ namespace WorkWithKOTE.Controllers
                 data = data.Where(m => m.Sex == sex);
             return View(data);
         }
-        public ActionResult RolesForUser(string moder)
+        public ActionResult RolesForUser(string moder, int id)
         {
             var roles = (SimpleRoleProvider)Roles.Provider;
             var membership = (SimpleMembershipProvider)Membership.Provider;
@@ -55,7 +55,7 @@ namespace WorkWithKOTE.Controllers
             }
             if (!roles.IsUserInRole(moder, "Moderator"))
                 roles.AddUsersToRoles(new[] { moder }, new[] { "Moderator" });
-            return RedirectToAction("SearchAllUsers", "Admin");
+            return RedirectToAction("Profile", "Profile", new {id = id });
         }
         [HttpPost]
         public ActionResult BonusForUser(int UserId, int? UserBonus)
@@ -100,6 +100,10 @@ namespace WorkWithKOTE.Controllers
             db.Entry(tour).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Profile", "Profile", new { id = trip.UserId });
+        }
+        public ActionResult Cursed()
+        {
+            return PartialView(db.Curseds.Single());
         }
     }
 }

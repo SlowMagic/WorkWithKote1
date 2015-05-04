@@ -63,7 +63,7 @@
                             <input type="hidden" name="UserId" value="@Model.UserId" />
                             <input class="bonuses" type="submit" value="Ok" />
                         }
-                        <a class="button" style="float: none; width: 150px; margin: 9% 3% 0 0;" href='@Url.Action("RolesForUser", "Admin", new {moder = Model.Email})'>Назначить<br />модератором</a>
+                        <a class="button" style="float: none; width: 150px; margin: 9% 3% 0 0;" href='@Url.Action("RolesForUser", "Admin", new {moder = Model.Email, id= Model.UserId})'>Назначить<br />модератором</a>
                     }
                 </p>
             </div>
