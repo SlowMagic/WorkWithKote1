@@ -215,7 +215,7 @@
             }
 
             <div id="dop" style="margin-bottom : -15px;">
-                <span class="orangan">Дополнительные услги :</span>
+                <span id="yslyga" class="orangan">Дополнительные услуги :</span>
 
                 <ul style="display : inline-table;list-style : none;">
                     @foreach (var item in Model.DopUslug)
@@ -363,7 +363,8 @@
             $('.telephone').css({ 'display': 'block', 'margin-left': '0px' });
             $('#datetour').css('margin-bottom', '10px');
             $('#bigTable').hide();
-            $('#smallTable').show().css('width','80%');
+            $('#smallTable').show().css('width', '80%');
+            $('#yslyga').text('Доп. услуги :');
         }
         else {
             $('.Map').show();
@@ -377,6 +378,7 @@
             $('#datetour').css('margin-bottom', '0px');
             $('#bigTable').show();
             $('#smallTable').hide();
+            $('#yslyga').text('Дополнительные услуги :');
         }
 
         $(window).resize(function ()
@@ -391,6 +393,7 @@
                 $('#datetour').css('margin-bottom', '10px');
                 $('#bigTable').hide();
                 $('#smallTable').show().css('width', '80%');
+                $('#yslyga').text('Доп. услуги :');
             }
             else {
                 $('.Map').show();
@@ -404,6 +407,7 @@
                 $('#datetour').css('margin-bottom', '0px');
                 $('#bigTable').show();
                 $('#smallTable').hide();
+                $('#yslyga').text('Дополнительные услуги :');
             }
         });
     });

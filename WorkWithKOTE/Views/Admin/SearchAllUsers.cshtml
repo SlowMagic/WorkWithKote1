@@ -17,6 +17,10 @@
         border-radius : 4px;
         margin-top : 5px;
     }
+
+    .peopleName{
+        font-size : 18px;
+    }
 </style>
 
 @{ Html.RenderPartial("HeaderPartial_main");}
@@ -61,7 +65,7 @@
                         @:<div class="found-tour">
                         }
                         <div class="profBlock" style="margin-bottom: 15px; width: 100%; min-width:200px; border: 1px solid #ccc; padding: 5px">
-                            <h4 style="text-align:center;">
+                            <h4 class="peopleName" style="text-align:center;">
                                 @Html.DisplayFor(m => item.Email)
                             </h4>
                             <img style="height: 150px; width: 150px;  left: 0; right: 0; margin: auto; border-radius: 50%; padding: 5px" src="@Html.DisplayFor(m => item.Avatar)">
@@ -87,11 +91,13 @@
             $('.layout-main-right').css({ 'margin-left': '0px', 'width': '80%', 'margin-top': '30px' });
             $('.profBlock').css({ 'width': '80%' });
             $('#searCH').css('margin-bottom', '15px');
+            $('.peopleName').css('font-size','16px');
         }
         else {
             $('.layout-left-column').css({ 'float': 'left', 'width': '30%', 'padding-bottom': '15px' });
             $('.layout-main-right').css({ 'margin-left': '33%', 'width': '67%', 'margin-top': '0px' });
             $('.profBlock').css({ 'width': '100%' });
+            $('.peopleName').css('font-size','18px');
         }
 
         $(window).resize(function () {
@@ -100,11 +106,13 @@
                 $('.layout-main-right').css({ 'margin-left': '0px', 'width': '80%', 'margin-top': '30px' });
                 $('.profBlock').css({ 'width': '80%' });
                 $('#searCH').css('margin-bottom', '15px');
+                $('.peopleName').css('font-size','16px');
             }
             else {
                 $('.layout-left-column').css({ 'float': 'left', 'width': '30%', 'padding-bottom': '15px' });
                 $('.layout-main-right').css({ 'margin-left': '33%', 'width': '67%', 'margin-top': '0px' });
                 $('.profBlock').css({ 'width': '100%' });
+                $('.peopleName').css('font-size','18px');
             }
         });
     });

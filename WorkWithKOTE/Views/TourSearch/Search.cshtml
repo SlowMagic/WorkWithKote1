@@ -55,22 +55,30 @@
      #filter{
        display:none;
        position: fixed;
-       width: 10px;
        float: right;
        text-align: right;
-       margin-left:77%;
-       cursor:pointer;
-       background-color :#ff6f40;
-       color : white !important;
-       transition : 0.1s;
-       padding-right: 26px;
+       margin-left: 67%;
+       cursor: pointer;
+       background-color: #ff6f40;
+       color: white !important;
+       transition: 0.1s;
+       padding-right: 15px;
        padding-left: 15px;
-       margin-top: -15px;
-       padding-top : 10px;
+       margin-top: 19px;
+       padding-bottom: 7px;
+       padding-top: 10px;
+       width : 110px;
      }
 
      .openFilter{
-       margin-left:68.3% !important;
+       margin-left:62.2% !important;
+     }
+
+     .rotate{
+       -webkit-transform: rotate(90deg);
+       -moz-transform: rotate(90deg);
+       -ms-transform: rotate(90deg);
+       -o-transform: rotate(90deg);
      }
   
 
@@ -90,7 +98,7 @@
         <form action="@Url.Action("Search","TourSearch")" method="post" enctype="multipart/form-data">
             <div class="layout-left-column">
              
-                <p id="filter">Ф и л ь т р</p>
+                <p class="rotate" id="filter">Ф и л ь т р</p>
 
                 <p>Даты</p>
 
