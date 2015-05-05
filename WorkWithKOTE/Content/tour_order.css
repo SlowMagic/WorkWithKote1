@@ -235,10 +235,11 @@ th {
     margin: 0 1% 0 1%;
 }
 
-#change-profile, #change-password {
+/*#change-profile, #change-password {
     width: 150px;
     margin: 3% 3% 0 0;
 }
+*/
 
 .layout-left-column > select{
     width: 96%;
