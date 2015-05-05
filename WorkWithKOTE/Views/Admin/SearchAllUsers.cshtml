@@ -4,6 +4,21 @@
 @model IEnumerable<WorkWithKOTE.Models.UserProfile>
 @Styles.Render("~/Content/order")
 
+<style>
+    .container{
+        margin-left : 21.2%;
+    }
+
+    .myBtn{
+        cursor : pointer;
+        background : #ff6a00 !important;
+        color : white !important;
+        padding : 5px;
+        border-radius : 4px;
+        margin-top : 5px;
+    }
+</style>
+
 @{ Html.RenderPartial("HeaderPartial_main");}
 <div id="small-preview-img" class="clearfix">
     <hgroup>
@@ -27,8 +42,8 @@
                 <p>Возраст</p>
                 <input style="width:96%" name="age" />
                 <p>Пол</p>
-                @Html.DropDownList("sex", new List<SelectListItem> { new SelectListItem { Text = "Мужской" }, new SelectListItem { Text = "Женский" } }, "Любой пол")<br />
-                <a href="#" class="button" onclick=" $(this).closest('form').submit(); return false;">Поиск</a>
+                @Html.DropDownList("sex", new List<SelectListItem> { new SelectListItem { Text = "Мужской" }, new SelectListItem { Text = "Женский" } }, "Любой пол")<br /><br />
+                <a id="searCH" style="margin-left:6px" class="myBtn" onclick=" $(this).closest('form').submit(); return false;">Поиск</a>
             </div>
             <div class="layout-main-right">
                 <div class="found-tour">
@@ -45,17 +60,16 @@
                             @:</div>
                         @:<div class="found-tour">
                         }
-                        <div style="margin-bottom: 15px; width: 250px; border: 1px solid #ccc; padding: 5px">
-                            <h4>
+                        <div class="profBlock" style="margin-bottom: 15px; width: 100%; min-width:200px; border: 1px solid #ccc; padding: 5px">
+                            <h4 style="text-align:center;">
                                 @Html.DisplayFor(m => item.Email)
                             </h4>
                             <img style="height: 150px; width: 150px;  left: 0; right: 0; margin: auto; border-radius: 50%; padding: 5px" src="@Html.DisplayFor(m => item.Avatar)">
-                            <p>  Имя : @Html.DisplayFor(m => item.RuFirstName)  </p>
+                            <p>Имя : @Html.DisplayFor(m => item.RuFirstName)  </p>
                             <p>Фамилия : @Html.DisplayFor(m => item.RuSecondName)</p>
-                            <p> Дата рождения: @Html.DisplayFor(m => item.Birthday)</p>
-                            <p>Бонусы :@Html.DisplayFor(m => item.Bonus)</p>
-                             <input type="button" value="Перейти к профилю" onclick="location.href='@Url.Action("Profile", "Profile", new {id = item.UserId})'" />
-                            @*                            <a class=" button " style="float: none; margin-top: 10px" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'>Просмотреть тур</a>*@
+                            <p>Дата рождения: @Html.DisplayFor(m => item.Birthday)</p>
+                            <p>Бонусы : <span style="color:#00C853">@Html.DisplayFor(m => item.Bonus)</span></p>
+                            <input class="myBtn" type="button" value="Перейти к профилю" onclick="location.href='@Url.Action("Profile", "Profile", new {id = item.UserId})'" />
                         </div>
                         index++;
                     }
@@ -64,3 +78,34 @@
         </form>
     </div>
 </div>
+
+<script>
+    $(function ()
+    {
+        if ($('#bar').width() <= 800) {
+            $('.layout-left-column').css({ 'float': 'none', 'width': '95%','padding-bottom': '15px' });
+            $('.layout-main-right').css({ 'margin-left': '0px', 'width': '80%', 'margin-top': '30px' });
+            $('.profBlock').css({ 'width': '80%' });
+            $('#searCH').css('margin-bottom', '15px');
+        }
+        else {
+            $('.layout-left-column').css({ 'float': 'left', 'width': '30%', 'padding-bottom': '15px' });
+            $('.layout-main-right').css({ 'margin-left': '33%', 'width': '67%', 'margin-top': '0px' });
+            $('.profBlock').css({ 'width': '100%' });
+        }
+
+        $(window).resize(function () {
+            if ($('#bar').width() <= 800) {
+                $('.layout-left-column').css({ 'float': 'none', 'width': '95%', 'padding-bottom': '15px' });
+                $('.layout-main-right').css({ 'margin-left': '0px', 'width': '80%', 'margin-top': '30px' });
+                $('.profBlock').css({ 'width': '80%' });
+                $('#searCH').css('margin-bottom', '15px');
+            }
+            else {
+                $('.layout-left-column').css({ 'float': 'left', 'width': '30%', 'padding-bottom': '15px' });
+                $('.layout-main-right').css({ 'margin-left': '33%', 'width': '67%', 'margin-top': '0px' });
+                $('.profBlock').css({ 'width': '100%' });
+            }
+        });
+    });
+</script>
