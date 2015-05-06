@@ -60,7 +60,9 @@
                 <input type="radio" name="Valuta" value="USD" />USD
                 <input type="radio" name="Valuta" value="EUR" />EUR
             </span><br/>
-
+          <span class="textbox">
+              Сколько можно оплатить бонусам : @Html.TextBoxFor(m => m.BonusPay)
+          </span><br/>
             <span class="textbox">
                Предоплата :<input type="checkbox" id="Predop" onclick="showHide('#Predop', '#PrePay');" />
                @Html.TextBoxFor(m => m.PrePay, new { style = "visibility:hidden", id = "PrePay" })
@@ -88,7 +90,6 @@
           <span class="textbox">
               Подпись к цене : @Html.TextBoxFor(m => m.PodpicePrice)
           </span><br/>
-
           <span class="textbox">
               Аукционная цена : @Html.TextBoxFor(m => m.AukcionPrice)
           </span><br/>
