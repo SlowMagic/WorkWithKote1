@@ -124,7 +124,7 @@
                     <a style="margin-left: 8px;" class="searchBtn" href="#" onclick=" $(this).closest('form').submit(); return false">Поиск</a>
                     @if (User.IsInRole("Admin"))
                     {
-                        <a id="humanSearch" class="searchBtn" style="margin-left: 10px" href='@Url.Action("SearchAllUsers", "Admin")'>Поиск&nbsp;людей</a>
+                        <a id="humanSearch" class="searchBtn" style="margin-left: 10px" href='@Url.Action("SearchAllUsers", "Admin")'>Люди</a>
                     }
                 </p>
             </div><br/><br/>
@@ -171,14 +171,6 @@
 <script>
     function TourSearch()
     {
-
-        if ($('#bar').width() <= 400) {
-            $('#humanSearch').text('Люди');
-        }
-        else {
-            $('#humanSearch').text('Поиск людей');
-        }
-
         if ($('#bar').width() <= 1100) {
             $('#filter').show();
             $('.layout-left-column').css({ 'float': 'auto','min-width':'215px','max-width':'215px', 'width': '70%','margin-left':'-100%','top': '104px','position':'fixed','z-index':'4'});
