@@ -103,7 +103,6 @@ namespace WorkWithKOTE.Controllers
         {
             
             var date = db.DateTours.Where(m => m.TourId== id);
-          
             return PartialView(date);
         }
         public ActionResult NewsBlock()
