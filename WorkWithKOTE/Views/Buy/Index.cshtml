@@ -149,7 +149,13 @@
             </div>
             <div id="dateB" class="info">
                 <label>Дата рождения</label>
-                <input name="BirthDay" value="@Model.BirthDay.Value.ToString("dd.MM.yyyy")" id="date-of-birth" placeholder="__ . __ . ____" maxlength="10">
+                @if (Model.BirthDay.HasValue)
+                {
+                     <input name="BirthDay"  value="@Model.BirthDay.Value.ToString("dd.MM.yyyy")" id="date-of-birth" placeholder="__ . __ . ____" maxlength="10">
+                }
+                else{
+                <input name="BirthDay"  id="date-of-birth" placeholder="__ . __ . ____" maxlength="10">
+                }
             </div>
         </div>
         <div class="layout">
