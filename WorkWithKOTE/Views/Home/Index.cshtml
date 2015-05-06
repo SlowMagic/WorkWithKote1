@@ -155,7 +155,23 @@
 
                 <div class="tourInfo">
                     <p class="tourDescription">
-                        Тур&#x3a; &nbsp;Автобусный
+                        Тур&#x3a; &nbsp;
+                        @if (Model.TourHightPrev.IsBus)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-bus.png" title="Автобусом">
+                        }
+                        @if (Model.TourHightPrev.IsTrain)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-train.png" title="Поездом">
+                        }
+                        @if (Model.TourHightPrev.IsShip)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-ship.png" title="На корабле">
+                        }
+                        @if (Model.TourHightPrev.IsAriplane)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-plane.png" title="На самолёте">
+                        }
                              @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourHightPrev.TourId }); }
                              @Html.DisplayFor(item => item.TourHightPrev.PlaceOfDeparture)
                                  <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
@@ -193,7 +209,23 @@
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
-                        Тур&#x3a; &nbsp;Автобусный
+                        Тур&#x3a; &nbsp;
+                        @if (item.IsBus)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-bus.png" title="Автобусом">
+                        }
+                        @if (item.IsTrain)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-train.png" title="Поездом">
+                        }
+                        @if (item.IsShip)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-ship.png" title="На корабле">
+                        }
+                        @if (item.IsAriplane)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-plane.png" title="На самолёте">
+                        }
                         @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }
                         @Html.DisplayFor(m => item.PlaceOfDeparture)
                             <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
@@ -247,7 +279,23 @@
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
-                        Тур&#x3a; &nbsp;Автобусный<br />
+                        Тур&#x3a; &nbsp;
+                        @if (Model.TourHightPrev.IsBus)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-bus.png" title="Автобусом">
+                        }
+                        @if (Model.TourHightPrev.IsTrain)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-train.png" title="Поездом">
+                        }
+                        @if (Model.TourHightPrev.IsShip)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-ship.png" title="На корабле">
+                        }
+                        @if (Model.TourHightPrev.IsAriplane)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-plane.png" title="На самолёте">
+                        }
                         @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourCenterPrev.TourId }); }
                         @Html.DisplayFor(item => item.TourCenterPrev.PlaceOfDeparture)<img class="destination_arrow" src="~/Content/img/arrow_small.png" />@Html.DisplayFor(item => item.TourCenterPrev.PlaceOfArrival)
                     </p>
@@ -287,7 +335,23 @@
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
-                        Тур&#x3a; &nbsp;Автобусный
+                        Тур&#x3a; &nbsp;
+                        @if (item.IsBus)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-bus.png" title="Автобусом">
+                        }
+                        @if (item.IsTrain)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-train.png" title="Поездом">
+                        }
+                        @if (item.IsShip)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-ship.png" title="На корабле">
+                        }
+                        @if (item.IsAriplane)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-plane.png" title="На самолёте">
+                        }
                         @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }
                         @Html.DisplayFor(m => item.PlaceOfDeparture)
                            <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
@@ -330,7 +394,23 @@
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
-                        Тур&#x3a; &nbsp;Автобусный
+                        Тур&#x3a; &nbsp;
+                        @if (Model.TourHightPrev.IsBus)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-bus.png" title="Автобусом">
+                        }
+                        @if (Model.TourHightPrev.IsTrain)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-train.png" title="Поездом">
+                        }
+                        @if (Model.TourHightPrev.IsShip)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-ship.png" title="На корабле">
+                        }
+                        @if (Model.TourHightPrev.IsAriplane)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-plane.png" title="На самолёте">
+                        }
                         @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourDownPrev.TourId }); }
                         @Html.DisplayFor(item => item.TourDownPrev.PlaceOfDeparture)
                              <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
@@ -367,7 +447,23 @@
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
-                        Тур&#x3a; &nbsp;Автобусный
+                        Тур&#x3a; &nbsp;
+                        @if (item.IsBus)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-bus.png" title="Автобусом">
+                        }
+                        @if (item.IsTrain)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-train.png" title="Поездом">
+                        }
+                        @if (item.IsShip)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-ship.png" title="На корабле">
+                        }
+                        @if (item.IsAriplane)
+                        {
+                            <img style="width: 20px; display: inline;" src="/Content/img/t-plane.png" title="На самолёте">
+                        }
                         @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }
                         @Html.DisplayFor(m => item.PlaceOfDeparture)
                            <img class="destination_arrow" src="~/Content/img/arrow_small.png" />

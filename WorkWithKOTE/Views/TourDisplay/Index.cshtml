@@ -114,19 +114,20 @@
             <tr>
                 <td style="text-align:center;width : 30%;">
                     <span class="upperText">Даты</span> <br />
-                    <select style="margin-top:5px;height: 30px; border-radius: 4px;width:83%;font-size:15px;">
+                    <select class="dataSelect" style="margin-top:5px;height: 30px; border-radius: 4px;width:83%;font-size:15px;">
+                        @{var index = 0;}
                         @foreach (var item in Model.DateTour)
                         {
-                            <option class="tour-date">
+                            <option data-data="@Model.DateTour[index].SecondDate.Subtract(Model.DateTour[index].FirstDate).Days" class="tour-date">
                                 @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
                             </option>
+                            index ++;
                         }
                     </select>
                 </td>
-
                 <td style="text-align:center;width : 30%;">
                     <span class="upperText">Продолжительность</span> <br />
-                    <div style="font-size: 1.5em;">8 дней</div>
+                    <div class="days" style="font-size: 1.5em;">@Model.DateTour[0].SecondDate.Subtract(Model.DateTour[0].FirstDate).Days дня(ей)</div>
                 </td>
 
                 <td style="text-align:center;width : 30%;">
@@ -151,21 +152,22 @@
             <tr>
                 <td style="text-align:center;width : 30%;">
                     <span class="upperText">Даты</span> <br />
-                    <select id="datetour" style="margin-top:5px;height: 30px; border-radius: 4px;width:83%;font-size:15px;">
+                    <select class="dataSelectClone" id="datetour" style="margin-top:5px;height: 30px; border-radius: 4px;width:83%;font-size:15px;">
+                        @{var index1 = 0;}
                         @foreach (var item in Model.DateTour)
                         {
-                            <option class="tour-date">
+                            <option data-clone="@Model.DateTour[index1].SecondDate.Subtract(Model.DateTour[index1].FirstDate).Days" class="tour-date">
                                 @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
                             </option>
+                            index1++;
                         }
                     </select>
                 </td>
             </tr>
             <tr>
-                
                 <td style="text-align:center;width : 30%;">
                     <span class="upperText">Продолжительность</span> <br />
-                    <div style="font-size: 1.5em;">8 дней</div>
+                    <div class="daysClone" style="font-size: 1.5em;">@Model.DateTour[0].SecondDate.Subtract(Model.DateTour[0].FirstDate).Days дня(ей)</div>
                 </td>
             </tr>
             <tr>
@@ -215,7 +217,7 @@
             }
 
             <div id="dop" style="margin-bottom : -15px;">
-                <span class="orangan">Дополнительные услги :</span>
+                <span id="yslyga" class="orangan">Дополнительные услуги :</span>
 
                 <ul style="display : inline-table;list-style : none;">
                     @foreach (var item in Model.DopUslug)
@@ -338,6 +340,14 @@
 <script>
     $(function () {
 
+        $('.dataSelect').change(function () {
+            $('.days').text($('.dataSelect option:selected').attr('data-data') + ' дня(ей)');
+        });
+
+        $('.dataSelectClone').change(function () {
+            $('.daysClone').text($('.dataSelectClone option:selected').attr('data-clone') + ' дня(ей)');
+        });
+
         if ($('.orange_li').text() == '') {
             $('#dop').hide();
         }
@@ -346,7 +356,7 @@
             $('#taggBox li').hide();
         }
 
-        if (!$('.similarT').length){
+        if (!$('.similarT').length) {
             $('.similar-tour').hide();
         }
 
@@ -358,18 +368,19 @@
             $('.Map').hide();
             $('.right-panel').css({ 'float': 'none', 'width': '100%' });
             $('.description').css('width', '80%');
-            $('.full-description').css({ 'width': '80%','margin-bottom' : '20px'});
+            $('.full-description').css({ 'width': '80%', 'margin-bottom': '20px' });
             $('#block1,#block2').css({ 'width': '80%', 'float': 'none' });
             $('.telephone').css({ 'display': 'block', 'margin-left': '0px' });
             $('#datetour').css('margin-bottom', '10px');
             $('#bigTable').hide();
-            $('#smallTable').show().css('width','80%');
+            $('#smallTable').show().css('width', '80%');
+            $('#yslyga').text('Доп. услуги :');
         }
         else {
             $('.Map').show();
             $('.right-panel').css({ 'float': 'right', 'width': '30%' });
             $('.description').css('width', '100%');
-            $('.full-description').css({ 'width': '58%','margin-bottom': '0px' });
+            $('.full-description').css({ 'width': '58%', 'margin-bottom': '0px' });
             $('#block1').css({ 'width': '53%', 'float': 'left' });
             $('#block2').css({ 'width': '35%', 'float': 'right' });
             $('.telephone').css({ 'display': 'inline' });
@@ -377,10 +388,10 @@
             $('#datetour').css('margin-bottom', '0px');
             $('#bigTable').show();
             $('#smallTable').hide();
+            $('#yslyga').text('Дополнительные услуги :');
         }
 
-        $(window).resize(function ()
-        {
+        $(window).resize(function () {
             if ($('#bar').width() <= 800) {
                 $('.Map').hide();
                 $('.right-panel').css({ 'float': 'none', 'width': '100%' });
@@ -391,6 +402,7 @@
                 $('#datetour').css('margin-bottom', '10px');
                 $('#bigTable').hide();
                 $('#smallTable').show().css('width', '80%');
+                $('#yslyga').text('Доп. услуги :');
             }
             else {
                 $('.Map').show();
@@ -404,6 +416,7 @@
                 $('#datetour').css('margin-bottom', '0px');
                 $('#bigTable').show();
                 $('#smallTable').hide();
+                $('#yslyga').text('Дополнительные услуги :');
             }
         });
     });

@@ -17,6 +17,39 @@
         border-radius : 4px;
         margin-top : 5px;
     }
+
+    .peopleName{
+        font-size : 18px;
+    }
+     
+    .open{
+         margin-left : -21.2% !important;
+     }
+
+
+     #filter{
+      position: fixed;
+      float: right;
+      text-align: right;
+      left: -42px;
+      cursor: pointer;
+      background-color: #ff6f40;
+      color: white !important;
+      transition: 0.5s;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-top: 19px;
+      padding-bottom: 7px;
+      padding-top: 10px;
+      width: 120px;
+     }
+
+     .rotate{
+       -webkit-transform: rotate(90deg);
+       -moz-transform: rotate(90deg);
+       -ms-transform: rotate(90deg);
+       -o-transform: rotate(90deg);
+     }
 </style>
 
 @{ Html.RenderPartial("HeaderPartial_main");}
@@ -33,6 +66,9 @@
         <form method="post" action="@Url.Action("SearchAllUsers")">
 
             <div class="layout-left-column">
+
+                <p class="rotate" id="filter">Ф и л ь т р</p>
+
                 <p>Email </p>
                 <input style="width:96%" name="mail" />
                 <p>Имя</p>
@@ -61,7 +97,7 @@
                         @:<div class="found-tour">
                         }
                         <div class="profBlock" style="margin-bottom: 15px; width: 100%; min-width:200px; border: 1px solid #ccc; padding: 5px">
-                            <h4 style="text-align:center;">
+                            <h4 class="peopleName" style="text-align:center;">
                                 @Html.DisplayFor(m => item.Email)
                             </h4>
                             <img style="height: 150px; width: 150px;  left: 0; right: 0; margin: auto; border-radius: 50%; padding: 5px" src="@Html.DisplayFor(m => item.Avatar)">
@@ -82,29 +118,48 @@
 <script>
     $(function ()
     {
+        $('#filter').click(function () {
+            if (!$('.layout-left-column').hasClass('open')) {
+                $('#filter').css('left', '172.6px');
+            }
+            else {
+                $('#filter').css('left', '-42px');
+            }
+            $('.layout-left-column').toggleClass('open');
+            $('.layout-left-column').css('transition','0.5s');
+        });
+
         if ($('#bar').width() <= 800) {
-            $('.layout-left-column').css({ 'float': 'none', 'width': '95%','padding-bottom': '15px' });
+            $('#filter').show();
+            $('.layout-left-column').css({ 'float': 'auto','min-width':'215px','max-width':'215px', 'width': '95%','margin-left':'-100%','top': '104px','position':'fixed','z-index':'4','padding-bottom': '15px'});
             $('.layout-main-right').css({ 'margin-left': '0px', 'width': '80%', 'margin-top': '30px' });
             $('.profBlock').css({ 'width': '80%' });
             $('#searCH').css('margin-bottom', '15px');
+            $('.peopleName').css('font-size','16px');
         }
         else {
-            $('.layout-left-column').css({ 'float': 'left', 'width': '30%', 'padding-bottom': '15px' });
+            $('#filter').hide();
+            $('.layout-left-column').css({ 'float': 'left','min-width':'auto','max-width':'auto','width': '30%', 'padding-bottom': '15px' });
             $('.layout-main-right').css({ 'margin-left': '33%', 'width': '67%', 'margin-top': '0px' });
             $('.profBlock').css({ 'width': '100%' });
+            $('.peopleName').css('font-size','18px');
         }
 
         $(window).resize(function () {
             if ($('#bar').width() <= 800) {
-                $('.layout-left-column').css({ 'float': 'none', 'width': '95%', 'padding-bottom': '15px' });
+                $('#filter').show();
+                $('.layout-left-column').css({ 'float': 'auto','min-width':'215px','max-width':'215px', 'width': '95%','margin-left':'-100%','top': '104px','position':'fixed','z-index':'4','padding-bottom': '15px'});
                 $('.layout-main-right').css({ 'margin-left': '0px', 'width': '80%', 'margin-top': '30px' });
                 $('.profBlock').css({ 'width': '80%' });
                 $('#searCH').css('margin-bottom', '15px');
+                $('.peopleName').css('font-size','16px');
             }
             else {
-                $('.layout-left-column').css({ 'float': 'left', 'width': '30%', 'padding-bottom': '15px' });
+                $('#filter').hide();
+                $('.layout-left-column').css({ 'float': 'left','min-width':'auto','max-width':'auto','width': '30%', 'padding-bottom': '15px' });
                 $('.layout-main-right').css({ 'margin-left': '33%', 'width': '67%', 'margin-top': '0px' });
                 $('.profBlock').css({ 'width': '100%' });
+                $('.peopleName').css('font-size','18px');
             }
         });
     });

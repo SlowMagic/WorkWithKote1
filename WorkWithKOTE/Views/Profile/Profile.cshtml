@@ -5,10 +5,19 @@
 @Styles.Render("~/Content/order")
 @{ Html.RenderPartial("HeaderPartial_main");}
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+
 <style>
     .bonuses {
-        max-width: 55px;
+        width: 100px;
         display: inline-block;
+    }
+
+    #admBonus{
+        cursor : pointer;
     }
 
     .layout-right-column{
@@ -157,13 +166,18 @@
 
    #leftCol{
       float: left;
-      width: 24%;
-      border-right: 2px solid #ccc;
+      width: 26%;
+      border-right: 1px solid #ccc;
    }
 
    #rightCol{
      float: right;
      width: 27%;
+   }
+
+   #form0{
+       display : none;
+       min-height : 15px !important;
    }
 
 </style>
@@ -191,15 +205,22 @@
             <div id="user-profile" style="height: 110px">
                 <img style="margin-left:20px;" src="@Html.DisplayFor(m => m.Avatar)" class="tourist">
                 <p id="bbbonus">
-                    Бонусы: <span id="user-bonuses">@Html.DisplayFor(m => m.Bonus)</span>&nbsp;грн
+                    @if (User.IsInRole("Admin"))
+                    {
+                      <span id="admBonus">Бонусы:</span> 
+                    }
+                    else{
+                      <span>Бонусы:</span> 
+                    }
+                   
+                    <span id="user-bonuses">@Html.DisplayFor(m => m.Bonus)</span>&nbsp;грн
                     @if (User.IsInRole("Admin"))
                     {
                         using (Ajax.BeginForm("BonusForUser", "Admin", new AjaxOptions { UpdateTargetId = "user-bonuses" }))
                         {
-                          <!-- <input class="bonuses" type="text" id="bonus" name="UserBonus" />
+                            <input class="bonuses" type="text" id="bonus" name="UserBonus" />
                             <input type="hidden" name="UserId" value="@Model.UserId" />
-                            <input class="bonuses" type="submit" value="Ok" />
-                          --> 
+                            <input style="display:inline;" type="submit" value="Подтвердить" />
                         }
                     }
                 </p>
@@ -287,6 +308,18 @@
 <script>
     $(function ()
     {
+        $('#admBonus').click(function () {
+            $("#form0").dialog({
+                title: "Добавить бонусы"
+            });
+        });
+
+        $('#rightCol span').each(function () {
+            if ($(this).text() == '') {
+                $(this).text('не указано').addClass('empty');
+            }
+        });
+
         if ($('#bar').width() <= 800) {
             $('.additional-nav').hide();
         }
@@ -295,7 +328,7 @@
         }
 
         if ($('#bar').width() <= 1200) {
-            $('.layout-right-column').css({ 'float': 'none', 'width': '60%' });
+            $('.layout-right-column').css({ 'float': 'none', 'width': '75%' });
             $('#rightCol').css({ 'float': 'none','margin-left': '15px' });
             $('#bbbonus').css({ 'margin-left': '0px' });
             $('#change-profile').css({ 'margin-left': '0px', 'margin-top': '5px' });
@@ -304,7 +337,7 @@
             $('.profileBtn').css({'font-size':'15px','margin-left':'5px'});
             $('.adminBtn').css({ 'margin-left': '0px', 'margin-top': '20px', 'display': 'block' });
             $('h3').css({ 'margin-top': '20px', 'margin-bottom': '-10px' });
-            $('#requests').hide();
+            $('#requests,.empty').hide();
             $('#smallTable').show();
         }
         else {
@@ -317,7 +350,7 @@
             $('.profileBtn').css({'font-size':'16px','margin-left':'0px'});
             $('.adminBtn').css({ 'margin-left': '20px', 'margin-top': '0px', 'display': 'inline' });
             $('h3').css({ 'margin-top': '0px', 'margin-bottom': '0px' });
-            $('#requests').show();
+            $('#requests,.empty').show();
             $('#smallTable').hide();
         }
 
@@ -331,7 +364,7 @@
             }
 
             if ($('#bar').width() <= 1200) {
-                $('.layout-right-column').css({ 'float': 'none', 'width': '60%' });
+                $('.layout-right-column').css({ 'float': 'none', 'width': '75%' });
                 $('#rightCol').css({ 'float': 'none', 'margin-left': '15px' });
                 $('#bbbonus').css({ 'margin-left': '0px' });
                 $('#change-profile').css({ 'margin-left': '0px', 'margin-top': '5px' });
@@ -340,7 +373,7 @@
                 $('.profileBtn').css({ 'font-size': '15px', 'margin-left': '5px' });
                 $('.adminBtn').css({ 'margin-left': '0px', 'margin-top': '20px', 'display': 'block' });
                 $('h3').css({ 'margin-top': '20px', 'margin-bottom': '-10px' });
-                $('#requests').hide();
+                $('#requests,.empty').hide();
                 $('#smallTable').show();
             }
             else {
@@ -353,7 +386,7 @@
                 $('.profileBtn').css({ 'font-size': '16px', 'margin-left': '0px' });
                 $('.adminBtn').css({ 'margin-left': '20px', 'margin-top': '0px', 'display': 'inline' });
                 $('h3').css({ 'margin-top': '0px', 'margin-bottom': '0px' });
-                $('#requests').show();
+                $('#requests,.empty').show();
                 $('#smallTable').hide();
             }
         });

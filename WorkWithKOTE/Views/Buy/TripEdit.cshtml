@@ -20,8 +20,8 @@
         border: none;
         background: none;
         display: inline;
-        width: 150px;
-        text-align: right;
+        width: 202px;
+        text-align: right !important;
     }
 
     .layout-right-column {
@@ -79,6 +79,10 @@
         color: #ff6f40;
         text-decoration: underline;
     }
+
+    .container{
+        margin-left : 21%;
+    }
 </style>
 
 <div id="small-preview-img" class="clearfix">
@@ -93,12 +97,9 @@
     <form class="buyTour" action="@Url.Action("TripEdit")" method="post" enctype="multipart/form-data">
         @Html.ValidationSummary()
 
-
-
-
         <div class="layout">
             <div class="layout-right-column">
-                <h4>Дополнительные услуги:</h4>
+                <h4 id="uslugaText">Дополнительные услуги:</h4>
                 <p>
                     @*                     Кол-во человек <input value="@Model.AmtPeople" name="AmtPeople" id="user_num" type="number" min="1" max="100" step="1" />*@
                     Дата :@Html.DropDownList("DateTourId")
@@ -122,18 +123,17 @@
                 @*      </div>*@
             </div>
             <div class="layout-main">
-                <h3>Состав вашего заказа</h3><hr class="firstHR" />
+                <h3 id="orderText">Состав вашего заказа</h3><hr class="firstHR" />
 
-                <p class="orderContent">Стоимость тура :@ViewBag.TourPrices&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
+                <p class="orderContent">Стоимость тура&nbsp;:@ViewBag.TourPrices&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
                 @Html.HiddenFor(m => m.Valuta)
 
-                <p class="orderContent">Сумма заказа с учетом изменений :<span id="Prices">@Html.DisplayFor(m => m.TourPrice, new { id = "Prices" })</span>&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
-
-                <p class="orderContent" id="toPay">К оплате :<input readonly="readonly" id="finalPrice" name="TourPrice" value="@Html.DisplayFor(m => m.TourPrice, new {id = "Price"})" />&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
+                <p class="orderContent">Сумма заказа с учетом изменений&nbsp;:&nbsp;<span id="Prices">@Html.DisplayFor(m => m.TourPrice, new { id = "Prices" })</span>&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
+                <p class="orderContent" id="toPay">К оплате&nbsp;:&nbsp;<input readonly="readonly" id="finalPrice" name="TourPrice" value="@Html.DisplayFor(m => m.TourPrice, new {id = "Price"})" />&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
             </div>
         </div>
         <div class="layout">
-            <h3> Введите свои данные</h3><hr class="secondHR" />
+            <h3 id="yourData"> Введите свои данные</h3><hr class="secondHR" />
 
             <div class="info">
                 <label>Ваш пол</label>
@@ -143,12 +143,12 @@
                 </select>
             </div>
             <div class="info">
-                <label>ФИО</label>
+                <label id="fio">ФИО</label>
                 <input placeholder="Фамилия" name="Surname" value="@Model.Surname" id="surname">
                 <input placeholder="Имя" name="Name" value="@Model.Name" id="name">
                 <input placeholder="Отчество" name="FatherName" value="@Model.FatherName" id="second-name">
             </div>
-            <div class="info">
+            <div id="dateB" class="info">
                 <label>Дата рождения</label>
                 <input name="BirthDay" value="@String.Format("{0:dd.MM.yyyy}", Model.BirthDay)" id="date-of-birth" placeholder="__ . __ . ____" maxlength="10">
             </div>
@@ -163,28 +163,31 @@
                 <label>Паспорт</label>
                 <input value="@Model.Pasport" name="Pasport" id="passport" placeholder="АН 000000" maxlength="9">
             </div>
-            <div class="info" style=" float: right">
-                <p style="width: 350px; text-align: left; color:gray">  Ваша личная информация никогда не будет разглашена или передана третьим лицам без Вашего на то прямого согласия.</p>
+            <div id="textLong" style=" float: right">
+                <p id="stupidText" style="width: 350px; text-align: left; color:gray">  Ваша личная информация никогда не будет разглашена или передана третьим лицам без Вашего на то прямого согласия.</p>
             </div>
         </div>
         <div class="layout">
             <div class="info">
-                <p>Контактные данные:</p>
+                <p id="contactData">Контактные данные:</p>
             </div>
             <div class="info">
                 <label>Номер телефона</label>
-                <input value="@Model.mobile" name="mobile" placeholder="+38 (___) ___-__-__" type="tel" required>
+                <input style="width:100%;" value="@Model.mobile" name="mobile" placeholder="+38 (___) ___-__-__" type="tel" required>
             </div>
             <div class="info">
                 <label>Почта</label>
-                <input value="@Model.email" name="email" placeholder="user000@mail.com">
+                <input style="width:100%;" value="@Model.email" name="email" placeholder="user000@mail.com">
+            </div>
+            <div id="Clone" class="info" style=" float: right;display:none">
+                <p id="" style="width: 100%; text-align: left; color:gray">  Ваша личная информация никогда не будет разглашена или передана третьим лицам без Вашего на то прямого согласия.</p>
             </div>
         </div>
 
         <div class="layout">
             <div id="i-agree">
                 <input id="agree" type="checkbox">
-                <label id="agreeLabel" for="agree">Cогласен с условиями соглашения</label>
+                <label id="agreeLabel" for="agree">Cогласен с условиями</label>
             </div>
             <input type="submit" disabled value="Перейти к оплате" id="orderTour" class="notActive" />
         </div>
@@ -234,4 +237,68 @@
             sumFunction();
         }
     </script>
+
+    <script>
+    function OrderView() {
+        if ($('#bar').width() <= 700) {
+            $('.layout-right-column').css({ 'float': 'none', 'width': '100%' });
+            $('#uslugaText').text('Доп. услуги:');
+            $('#orderText').css('margin-top', '20px');
+            $('#surname,#name,#second-name').css({ 'display': 'block', 'float': 'none', 'min-width': '190px', 'margin-top': '19px' });
+            $('#stupidText').css({ 'width': '100%' });
+            $('.info').css({ 'margin-top': '15px' });
+            $('#orderTour').css({ 'margin-left': '0px' });
+            $('#contactData,#fio').hide();
+            $('#i-agree').css({ 'margin-bottom': '15px', 'margin-top': '15px' });
+            $('#finalPrice').css('text-align', 'left', 'width', '58px');
+            $('.firstHR').css({ 'width': '100%' });
+            $('h3').css('font-size', '18px', 'font-weight', '600');
+            $('#yourData').css({ 'margin-top': '30px' });
+            $('#gender').css({ 'min-width': '190px', 'margin-bottom': '-15px' });
+            $('#date-of-birth,#nationality,#passport').css({ 'min-width': '190px' });
+            $('#dateB').css('margin-top', '10px');
+            $('#finalPrice').css({ 'width': '70px' });
+            $('#stupidText').hide();
+            $('#Clone').show();
+        }
+        else {
+            $('#Clone').hide();
+            $('#stupidText').show();
+            $('.layout-right-column').css({ 'float': 'right', 'width': 'auto' });
+            $('#uslugaText').text('Дополнительные услуги:');
+            $('#orderText').css('margin-top', '0px');
+            $('#stupidText').css({ 'width': '350px' });
+            $('.info').css({ 'margin-top': '0px' });
+            $('#surname,#name,#second-name').css({ 'display': 'inline', 'float': 'left', 'min-width': '120px', 'margin-top': '0px' });
+            $('#orderTour').css({ 'margin-left': '15px' });
+            $('#contactData,#fio').show();
+            $('#i-agree').css({ 'margin-bottom': '0px', 'margin-top': '0px' });
+            $('#finalPrice').css('text-align', 'center', 'width', 'auto');
+            $('.firstHR').css({ 'width': '50%' });
+            $('h3').css('font-size', 'font-size: 1.5em', 'font-weight', '600');
+            $('#yourData').css({ 'margin-top': '0px' });
+            $('#gender').css({ 'min-width': 'auto', 'margin-bottom': '0px' });
+            $('#date-of-birth,#nationality,#passport').css({ 'min-width': '120px' });
+            $('#dateB').css('margin-top', '0px');
+            $('#finalPrice').css({ 'width': '202px' });
+        }
+
+        if ($('#bar').width() <= 1200) {
+            $('#dateB').css('margin-top', '20px');
+        }
+        else {
+            $('#dateB').css('margin-top', '0px');
+        }
+
+    }
+
+    $(function () {
+        OrderView();
+
+        $(window).resize(function () {
+            OrderView();
+        });
+    });
+</script>
+
 }
