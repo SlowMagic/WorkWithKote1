@@ -14,6 +14,7 @@
     .orderContent {
         margin-top: 8px;
     }
+
     #finalPrice {
         border: none;
         background: none;
@@ -21,6 +22,7 @@
         width: 202px;
         text-align: right !important;
     }
+
     .layout-right-column {
         /* margin-top: -145px;
          width: 360px !important;
@@ -77,8 +79,8 @@
         text-decoration: underline;
     }
 
-    .container{
-        margin-left : 21%;
+    .container {
+        margin-left: 21%;
     }
 </style>
 
@@ -92,7 +94,6 @@
 </div>
 <div class="container">
     <form class="buyTour" action="@Url.Action("Index")" method="post" enctype="multipart/form-data">
-        @Html.ValidationSummary()
 
         <div class="layout">
             <div class="layout-right-column">
@@ -192,16 +193,7 @@
 
 </div>
 @section scripts{
-    @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
-
-        //        function Changes() {
-        //            var AmtPeople = parseFloat($('#AmtPeople').val());
-        //            var price = parseFloat($("#Prices").val());
-        //            var sum = price * AmtPeople;
-        //            $("#Prices").val(sum);
-        //            $('#FinalPrice').val(sum);
-        //        }
         $(function () {
             $('#agree').change(function () {
                 if ($(this).is(':checked')) {
@@ -231,10 +223,8 @@
 
     <script>
 
-        function OrderView()
-        {
-            if ($('#bar').width() <= 700)
-            {
+        function OrderView() {
+            if ($('#bar').width() <= 700) {
                 $('.layout-right-column').css({ 'float': 'none', 'width': '100%' });
                 $('#uslugaText').text('Доп. услуги:');
                 $('#orderText').css('margin-top', '20px');
@@ -283,7 +273,7 @@
             else {
                 $('#dateB').css('margin-top', '0px');
             }
-            
+
         }
 
         $(function () {

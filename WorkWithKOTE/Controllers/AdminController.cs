@@ -39,6 +39,7 @@ namespace WorkWithKOTE.Controllers
                 data = data.Where(m => m.Sex == sex);
             return View(data);
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult RolesForUser(string moder, int id)
         {
             var roles = (SimpleRoleProvider)Roles.Provider;
@@ -55,12 +56,13 @@ namespace WorkWithKOTE.Controllers
             }
             if (!roles.IsUserInRole(moder, "Moderator"))
                 roles.AddUsersToRoles(new[] { moder }, new[] { "Moderator" });
-            return RedirectToAction("Profile", "Profile", new {id = id });
+            return RedirectToAction("Profile", "Profile", new { id = id });
         }
         [HttpPost]
         public ActionResult BonusForUser(int UserId, int? UserBonus)
         {
-            if (UserBonus == null){
+            if (UserBonus == null)
+            {
                 UserBonus = 0;
             }
             var user = db.UserProfiles.Find(UserId);
@@ -70,41 +72,58 @@ namespace WorkWithKOTE.Controllers
                 user.Bonus = UserBonus;
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Profile","Profile", new { id = UserId });
+            return RedirectToAction("Profile", "Profile", new { id = UserId });
         }
-        public ActionResult SubmitTrip(int id)
+        [Authorize(Roles = "Admin")]
+        public ActionResult SubmitTrip(int? id)
         {
-            var trip = db.Trip.Find(id);
-            trip.Status = "Оплачена";
-            db.Entry(trip).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Profile", "Profile", new {id = trip.UserId });
+            if (id != null)
+            {
+                var trip = db.Trip.Find(id);
+                trip.Status = "Оплачена";
+                db.Entry(trip).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Profile", "Profile", new { id = trip.UserId });
+            }
+            return RedirectToAction("Error", "Error");
         }
-        public ActionResult CancleTrip(int id)
+        [Authorize(Roles = "Admin")]
+        public ActionResult CancleTrip(int? id)
         {
-            var trip = db.Trip.Find(id);
-            trip.Status = "Отклонена";
-            var tour = db.Tour.Find(trip.TourId);
-            tour.People = tour.People.Value - 1;
-            db.Entry(trip).State = EntityState.Modified;
-            db.Entry(tour).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Profile", "Profile", new { id = trip.UserId });
+            if (id != null)
+            {
+                var trip = db.Trip.Find(id);
+                trip.Status = "Отклонена";
+                var tour = db.Tour.Find(trip.TourId);
+                tour.People = tour.People.Value - 1;
+                db.Entry(trip).State = EntityState.Modified;
+                db.Entry(tour).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Profile", "Profile", new { id = trip.UserId });
+            }
+            return RedirectToAction("Error", "Error");
         }
-        public ActionResult DeleteTrip(int id)
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeleteTrip(int? id)
         {
-            var trip = db.Trip.Find(id);
-            var tour = db.Tour.Find(trip.TourId);
-            tour.People = tour.People.Value - 1;
-            db.Entry(trip).State = EntityState.Deleted;
-            db.Entry(tour).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Profile", "Profile", new { id = trip.UserId });
+            if (id != null)
+            {
+                var trip = db.Trip.Find(id);
+                var tour = db.Tour.Find(trip.TourId);
+                tour.People = tour.People.Value - 1;
+                db.Entry(trip).State = EntityState.Deleted;
+                db.Entry(tour).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Profile", "Profile", new { id = trip.UserId });
+            }
+            return RedirectToAction("Error", "Error");
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult Cursed()
         {
             return PartialView(db.Curseds.Single());
         }
+        [HttpPost]
         public ActionResult Cursed(Cursed cursed)
         {
             db.Entry(cursed).State = EntityState.Modified;

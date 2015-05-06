@@ -24,6 +24,8 @@ namespace WorkWithKOTE.Controllers
         [HttpPost]
         public ActionResult CreateNews(News model)
         {
+            if (model.NewsBody == null)
+                model.NewsBody = "Новость пустая";
             model.NewsBody = Regex.Replace(model.NewsBody, "<script.*?</script>", "", RegexOptions.IgnoreCase);
             db.Entry(model).State = EntityState.Added;
             db.SaveChanges();
