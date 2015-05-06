@@ -129,8 +129,11 @@
 
                 <p class="orderContent">Сумма заказа с учетом изменений&nbsp;:<span data-euro="@ViewBag.valutaEuro" data-usd="@ViewBag.valutaUSD" data-valute="@Html.DisplayFor(m => m.Valuta)" id="Prices">@Html.DisplayFor(m => m.TourPrice, new { id = "Prices" })</span>&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
                 <p class="orderContent">
-                    <label for="useBonus">Использовать бонус</label>
-                    <input style="display:inline;" id="useBonus" type="checkbox" /> 
+                    <span data-can="@Model.BonusPay" id="canuse">Можно списать @Model.BonusPay бонусых баллов</span>
+                </p>
+                <p class="orderContent">
+                    <label for="useBonus">Использовать Ваш бонус</label>
+                    <input style="display:inline;" id="useBonus" type="checkbox" />
                     <input readonly style="border:none;width:70px;display:inline-block" id="bonusField" type="text" value="@ViewBag.UsersBonus" />UAH
                 </p>
                  <p class="orderContent" id="toPay">К оплате:&nbsp;<input readonly="readonly" id="finalPrice" name="TourPrice" value="@Model.TourPrice" />&nbspUAH</p>
@@ -334,11 +337,22 @@
                 if ($(this).is(':checked'))
                 {
                     if (parseFloat($('#finalPrice').val()) >= parseFloat($('#bonusField').val())) {
-                        $('#finalPrice').val(($('#finalPrice').val() - $('#bonusField').val()).toFixed(2));
+                        if (parseFloat($('#bonusField').val()) < parseFloat($('#canuse').attr('data-can'))) {
+                            $('#finalPrice').val(($('#finalPrice').val() - $('#bonusField').val()).toFixed(2));
+                        }
+                        else {
+                            $('#finalPrice').val(($('#finalPrice').val() - $('#canuse').attr('data-can')).toFixed(2));
+                        }
+                        
                     }
                 }
                 else {
-                    $('#finalPrice').val(((parseFloat($('#finalPrice').val()) + parseFloat($('#bonusField').val()))).toFixed(2));
+                    if (parseFloat($('#bonusField').val()) < parseFloat($('#canuse').attr('data-can'))) {
+                        $('#finalPrice').val((parseFloat($('#finalPrice').val()) + parseFloat($('#bonusField').val())).toFixed(2));
+                    }
+                    else {
+                        $('#finalPrice').val((parseFloat($('#finalPrice').val()) + parseFloat($('#canuse').attr('data-can'))).toFixed(2));
+                    }
                 }
             });
         });
