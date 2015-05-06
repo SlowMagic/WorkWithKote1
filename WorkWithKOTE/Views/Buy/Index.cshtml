@@ -127,8 +127,8 @@
                 <p class="orderContent">Стоимость тура&nbsp;:@ViewBag.TourPrices&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
                 @Html.HiddenFor(m => m.Valuta)
 
-                <p class="orderContent">Сумма заказа с учетом изменений&nbsp;:<span id="Prices">@Html.DisplayFor(m => m.TourPrice, new { id = "Prices" })</span>&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
-                <p class="orderContent" id="toPay">К оплате:&nbsp;<input readonly="readonly" id="finalPrice" name="TourPrice" value="@Model.TourPrice" />&nbsp;@Model.Valuta</p>
+                <p class="orderContent">Сумма заказа с учетом изменений&nbsp;:<span data-euro="@ViewBag.valutaEuro" data-usd="@ViewBag.valutaUSD" data-valute="@Html.DisplayFor(m => m.Valuta)" id="Prices">@Html.DisplayFor(m => m.TourPrice, new { id = "Prices" })</span>&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
+                <p class="orderContent" id="toPay">К оплате:&nbsp;<input readonly="readonly" id="finalPrice" name="TourPrice" value="@Model.TourPrice" />&nbspUAH</p>
             </div>
         </div>
         <div class="layout">
@@ -230,7 +230,18 @@
                 sum += parseFloat($(v).attr('data-price'));
             });
             $("#Prices").text(sum);
-            $('#finalPrice').val(sum);
+
+            if ($('#Prices').attr('data-valute') == 'USD') {
+                $('#finalPrice').val((sum * $('#Prices').attr('data-usd')).toFixed(2));
+            }
+
+            else if ($('#Prices').attr('data-valute') == 'EUR') {
+                     $('#finalPrice').val((sum * $('#Prices').attr('data-euro')).toFixed(2));
+            }
+
+            else {
+                $("#finalPrice").val(sum);
+            }
         };
         function Check() {
             sumFunction();
@@ -292,7 +303,19 @@
 
         }
 
-        $(function () {
+        $(function ()
+        {
+            var price      = parseFloat($('#Prices').val());
+            var finalPrice = parseFloat($('#finalPrice').val());
+
+            if ($('#Prices').attr('data-valute') == 'USD') {
+                $('#finalPrice').val((finalPrice * $('#Prices').attr('data-usd')).toFixed(2));
+            }
+
+            if ($('#Prices').attr('data-valute') == 'EUR') {
+                $('#finalPrice').val((finalPrice * $('#Prices').attr('data-euro')).toFixed(2));
+            }
+
             OrderView();
 
             $(window).resize(function () {
