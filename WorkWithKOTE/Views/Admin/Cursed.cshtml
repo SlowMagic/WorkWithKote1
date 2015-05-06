@@ -1,7 +1,7 @@
 ﻿@model WorkWithKOTE.Models.Cursed
 <form method="post" action="@Url.Action("Cursed","Admin")">
-    Курс Доллара @Html.TextBoxFor(m=>m.USD) <br/>
-    Курс Евро @Html.TextBoxFor(m=>m.Evro)
-    @Html.HiddenFor(m=>m.CursedID)
+    Курс Доллара @Html.TextBoxFor(m => m.USD) <br />
+    Курс Евро @Html.TextBoxFor(m => m.Evro)
+    @Html.HiddenFor(m => m.CursedID)
     <input type="submit" value="Ok" />
 </form>

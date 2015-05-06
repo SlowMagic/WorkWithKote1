@@ -278,6 +278,7 @@
     </div>
     <div id="TripTable">
         @{Html.RenderAction("UsersTour", new { id = Model.UserId });}
+        @{Html.RenderAction("Cursed", "Admin");}
     </div>
 
     @using (Ajax.BeginForm("Payment", "Buy", new AjaxOptions { UpdateTargetId = "TripTable" }))

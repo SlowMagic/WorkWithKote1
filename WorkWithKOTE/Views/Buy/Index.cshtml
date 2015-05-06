@@ -94,6 +94,7 @@
 </div>
 <div class="container">
     <form class="buyTour" action="@Url.Action("Index")" method="post" enctype="multipart/form-data">
+        @Html.ValidationSummary()
 
         <div class="layout">
             <div class="layout-right-column">
@@ -127,7 +128,7 @@
                 @Html.HiddenFor(m => m.Valuta)
 
                 <p class="orderContent">Сумма заказа с учетом изменений&nbsp;:<span id="Prices">@Html.DisplayFor(m => m.TourPrice, new { id = "Prices" })</span>&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
-                <p class="orderContent" id="toPay">К оплате:&nbsp;<input readonly="readonly" id="finalPrice" name="TourPrice" value="@Html.DisplayFor(m => m.TourPrice, new {id = "Price"})" />&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
+                <p class="orderContent" id="toPay">К оплате:&nbsp;<input readonly="readonly" id="finalPrice" name="TourPrice" value="@Model.TourPrice" />&nbsp;@Model.Valuta</p>
             </div>
         </div>
         <div class="layout">
@@ -193,7 +194,16 @@
 
 </div>
 @section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
+
+        //        function Changes() {
+        //            var AmtPeople = parseFloat($('#AmtPeople').val());
+        //            var price = parseFloat($("#Prices").val());
+        //            var sum = price * AmtPeople;
+        //            $("#Prices").val(sum);
+        //            $('#FinalPrice').val(sum);
+        //        }
         $(function () {
             $('#agree').change(function () {
                 if ($(this).is(':checked')) {
