@@ -248,6 +248,7 @@
             @if (User.IsInRole("Admin"))
             {
                 <a id="makeModer" class="profileBtn" href='@Url.Action("RolesForUser", "Admin", new {moder = Model.Email , id = Model.UserId})'>Назначить<br />модератором</a>
+                <a id="changeValut" class="profileBtn">Изменить<br />курс</a>
             }
             <a href="@Url.Action("EditProfile", "Profile")" class="profileBtn" id="change-profile">Редактировать<br />профиль</a>
             <a href="@Url.Action("Manage", "Account")" class="profileBtn" id="change-password">Изменить<br />пароль</a>
@@ -308,10 +309,20 @@
 <script>
     $(function ()
     {
+        if (!$('#Id option').length) {
+            $('.adminBtn').prop('disabled', true).css({ 'cursor': 'default' });
+        }
+
         $('#admBonus').click(function () {
             $("#form0").dialog({
                 title: "Добавить бонусы"
             });
+        });
+
+        $('#changeValut').click(function () {
+        //    $("#").dialog({
+        //        title: "Изменить курс валют"
+        //    });
         });
 
         $('#rightCol span').each(function () {
