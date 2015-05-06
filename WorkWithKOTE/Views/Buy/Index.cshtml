@@ -333,7 +333,7 @@
             {
                 if ($(this).is(':checked'))
                 {
-                    if ($('#finalPrice').val() >= $('#bonusField').val()) {
+                    if (parseFloat($('#finalPrice').val()) >= parseFloat($('#bonusField').val())) {
                         $('#finalPrice').val(($('#finalPrice').val() - $('#bonusField').val()).toFixed(2));
                     }
                 }
