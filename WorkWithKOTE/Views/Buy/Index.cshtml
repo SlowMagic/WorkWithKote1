@@ -128,9 +128,13 @@
                 @Html.HiddenFor(m => m.Valuta)
 
                 <p class="orderContent">Сумма заказа с учетом изменений&nbsp;:<span data-euro="@ViewBag.valutaEuro" data-usd="@ViewBag.valutaUSD" data-valute="@Html.DisplayFor(m => m.Valuta)" id="Prices">@Html.DisplayFor(m => m.TourPrice, new { id = "Prices" })</span>&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
-                <p class="orderContent" id="toPay">К оплате:&nbsp;<input readonly="readonly" id="finalPrice" name="TourPrice" value="@Model.TourPrice" />&nbspUAH</p>
+                <p class="orderContent">
+                    <label for="useBonus">Использовать бонус</label>
+                    <input style="display:inline;" id="useBonus" type="checkbox" /> 
+                    <input readonly style="border:none;width:70px;display:inline-block" id="bonusField" type="text" value="@ViewBag.UsersBonus" />UAH
+                </p>
+                 <p class="orderContent" id="toPay">К оплате:&nbsp;<input readonly="readonly" id="finalPrice" name="TourPrice" value="@Model.TourPrice" />&nbspUAH</p>
             </div>
-            <input type="text" value="@ViewBag.UsersBonus" />
         </div>
         <div class="layout">
             <h3 id="yourData"> Введите свои данные</h3><hr class="secondHR" />
@@ -231,6 +235,7 @@
                 sum += parseFloat($(v).attr('data-price'));
             });
             $("#Prices").text(sum);
+            $('#useBonus').prop('checked', false);
 
             if ($('#Prices').attr('data-valute') == 'USD') {
                 $('#finalPrice').val((sum * $('#Prices').attr('data-usd')).toFixed(2));
@@ -321,6 +326,20 @@
 
             $(window).resize(function () {
                 OrderView();
+            });
+
+
+            $('#useBonus').change(function ()
+            {
+                if ($(this).is(':checked'))
+                {
+                    if ($('#finalPrice').val() >= $('#bonusField').val()) {
+                        $('#finalPrice').val(($('#finalPrice').val() - $('#bonusField').val()).toFixed(2));
+                    }
+                }
+                else {
+                    $('#finalPrice').val(((parseFloat($('#finalPrice').val()) + parseFloat($('#bonusField').val()))).toFixed(2));
+                }
             });
         });
     </script>
