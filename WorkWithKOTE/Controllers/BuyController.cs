@@ -23,6 +23,9 @@ namespace WorkWithKOTE.Controllers
         [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Index(int id)
         {
+            var valuta = db.Curseds.Find(1);
+            ViewBag.valutaUsd = valuta.USD;
+            ViewBag.valutaEuro = valuta.Evro;
             Trip data = new Trip();
             Tour tour = db.Tour.Find(id);
             if (tour != null)
