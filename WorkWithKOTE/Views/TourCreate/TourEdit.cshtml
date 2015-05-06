@@ -7,6 +7,13 @@
 
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<style>
+    #form_tour{
+        margin-left : 18.7%;
+    }
+</style>
+
 @{ Html.RenderPartial("HeaderPartial_main");}
 
 <div id="small-preview-img" class="clearfix">
@@ -83,7 +90,7 @@
 
                     <span class="textbox">
                         Введите дату приезда:
-                        <input style="margin-left:6px;" type='date' id="myDateSecond+@i" name="DateTour[@i].SecondDate" required />
+                        <input style="margin-left:9px;margin-bottom:10px;" type='date' id="myDateSecond+@i" name="DateTour[@i].SecondDate" required />
                     </span><br/>
 
                       <input type="hidden" name="DateTour[@i].DateTourId" value="@item.DateTourId" />
@@ -138,7 +145,7 @@
                   {
                       <div id="dopusluga_@k">
                           Дополнительная услуга :
-                          <input style="margin-left:41px;" type='text' name="DopUslug[@k].Name" value="@item.Name" />
+                          <input style="margin-left:46px;" type='text' name="DopUslug[@k].Name" value="@item.Name" />
                           <br />
                           Цена дополнительной услуги :
                           <input type='text' name="DopUslug[@k].Price" value="@Html.DisplayFor(m=>item.Price)" />
@@ -218,7 +225,7 @@
                       <div class="tag_@j">
                           <span class="textbox">
                               Тег тура :
-                              <input style="margin-left: 52px;" type='text' name="Tag[@j].TagName" value="@Html.DisplayFor(m=>item.TagName)" />
+                              <input style="margin-left: 57px;" type='text' name="Tag[@j].TagName" value="@Html.DisplayFor(m=>item.TagName)" />
                            </span>
                               <input type="hidden" name="Tag[@j].TagId" value="@item.TagId" />
                               <input type="hidden" name="Tag[@j].TourId" value="@Model.TourId" />
@@ -333,7 +340,7 @@
     {
             var html2Adds = "<div id='dopuslugas_" + k + "'>" +
                                   "Дополнительная услуга : " +
-                                  "<input style='margin-left:41px;' type='text' name='DP[" +k + "].Name' /><br/>" +
+                                  "<input style='margin-left:46px;' type='text' name='DP[" +k + "].Name' /><br/>" +
                                   "Цена дополнительной услуги : " +
                                   "<input type='text' name='DP[" + k + "].Price' />" +
                                   "<input type='hidden' name='DP[" + k + "].TourId' value='@Model.TourId' />"+
@@ -358,7 +365,7 @@
 function AddTag() {
             var html2Addss = "<div style='margin-left:35px;' class='tags_" + l + "'>" +
                                 "Тег тура : "+
-                                "<input style='margin-left:52px;' type='text' name='Ts[" + l + "].TagName' />" +
+                                "<input style='margin-left:57px;' type='text' name='Ts[" + l + "].TagName' />" +
                                 "<input type='hidden' name='Ts[" + l + "].TourId' value='@Model.TourId' />" +
                              "</div>";
             $('#tag-pannel').append(html2Addss);

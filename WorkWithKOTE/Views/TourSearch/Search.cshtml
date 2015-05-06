@@ -53,21 +53,20 @@
      }
 
      #filter{
-       display:none;
-       position: fixed;
-       float: right;
-       text-align: right;
-       left : -37px;
-       cursor: pointer;
-       background-color: #ff6f40;
-       color: white !important;
-       transition: 0.5s;
-       padding-right: 15px;
-       padding-left: 15px;
-       margin-top: 19px;
-       padding-bottom: 7px;
-       padding-top: 10px;
-       width : 110px;
+      position: fixed;
+      float: right;
+      text-align: right;
+      left: -42px;
+      cursor: pointer;
+      background-color: #ff6f40;
+      color: white !important;
+      transition: 0.5s;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-top: 19px;
+      padding-bottom: 7px;
+      padding-top: 10px;
+      width: 120px;
      }
 
      .rotate{
@@ -212,10 +211,10 @@
 
             $('#filter').click(function () {
                 if (!$('.layout-left-column').hasClass('open')) {
-                     $('#filter').css('left', '177.6px');
+                     $('#filter').css('left', '172.6px');
                 }
                 else {
-                    $('#filter').css('left', '-37px');
+                    $('#filter').css('left', '-42px');
                 }
                 $('.layout-left-column').toggleClass('open');
                 $('.layout-left-column').css('transition','0.5s');

@@ -12,6 +12,19 @@
     .delbut {
         margin-left: 35px;
         margin-bottom: 10px;
+        display : inline-block;
+    }
+
+    .container{
+        margin-left : 18.7%;
+    }
+
+    input[name*="PicName"]{
+        margin-left: 38px;
+    }
+
+    input[name*="PicDescription"]{
+        margin-left : 2px;
     }
      
 </style>
@@ -28,7 +41,7 @@
 
         <span class="textbox">
             Название галереи: @Html.TextBoxFor(m => m.GalleryName)
-        </span><br />
+        </span>
 @*        <span class="textbox">*@
 @*            Тип файла:  <br />*@
 @*            <input style="display: inline" type="radio" name="Pics[0].PicType" value="Image" id="chimg" checked onchange="checkType()"/>*@
@@ -50,7 +63,7 @@
 @*                Изображение: <input type="file" name="file[0]" />*@
 @*            </span><br />*@
         @*        </div>*@
-        <input id="addFile" class="delbut" type="button" value="more" onclick="incPic()"/><br/>
+        <input id="addFile" class="delbut" type="button" value="Добавить еще" onclick="incPic()"/><br/>
         <input id="createNews" type="submit" value="Создать Галерею" /><br /><br />
 
     </form>
@@ -92,8 +105,8 @@
                 '<span class="textbox" id="inpimg' + count + '">' +
                 'Изображение: <input type="file" name="file[' + count + ']" />' +
             '</span><br />' +
-            '<input type="button" class="delbut" value="delete" onclick="delPic('+count+')"/>'+
-        '</div>';
+            '<input style="margin-top: 10px;" type="button" class="delbut" value="Удалить" onclick="delPic(' + count + ')"/>' +
+        '</div><br/>';
         if(!get) $("#form_tour").find('#addFile').before(bigdiv);
         return bigdiv;
     }
