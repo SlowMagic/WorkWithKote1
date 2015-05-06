@@ -75,6 +75,7 @@ namespace WorkWithKOTE.Controllers
             var tour = db.Tour.Find(id);
             var currency = db.Curseds.Single();
             decimal Price = 0;
+            model.BonusPay = 200;
             if (tour.AukcionPrice != null)
             {
                 if (tour.Valuta == "EUR")
@@ -117,6 +118,27 @@ namespace WorkWithKOTE.Controllers
             }
             if (tour.People <= tour.AllPeople)
             {
+                if (Request.IsAuthenticated)
+                {
+                    int userID = WebSecurity.GetUserId(User.Identity.Name);
+                    UserProfile userprofile = db.UserProfiles.Find(userID);
+                    if (userprofile.Bonus != null || userprofile.Bonus != 0)
+                    {
+                        if (userprofile.Bonus <= model.BonusPay)
+                        {
+                            Price -= userprofile.Bonus.Value;
+                            userprofile.Bonus -= userprofile.Bonus;
+                            db.Entry(userprofile).State = EntityState.Modified;
+                        }
+                        if (userprofile.Bonus > model.BonusPay)
+                        {
+                            Price -= model.BonusPay.Value;
+                            userprofile.Bonus -= model.BonusPay;
+                            db.Entry(userprofile).State = EntityState.Modified;
+                        }
+                    }
+                }
+                Price = decimal.Parse( String.Format("{0:0.00}",Price));
                 if (model.TourPrice == Price)
                 {
                     model.Status = "Не оплачена";

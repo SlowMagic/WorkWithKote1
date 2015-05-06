@@ -70,7 +70,7 @@ namespace WorkWithKOTE.Models
         public DateTime? DateZagran { get; set; }
         public string Sex { get; set; }
         public string Mobile { get; set; }
-        public float? Bonus { get; set; }
+        public decimal? Bonus { get; set; }
         public string Avatar { get; set; }
         public List<Trip> Trips { get; set; }
         public List<VisitedTour> VisitedTours { get; set; }

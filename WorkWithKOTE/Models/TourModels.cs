@@ -36,8 +36,8 @@ namespace WorkWithKOTE.Models
         public DateTour DateTour { get; set; }
         public string Valuta { get; set; }
         public string Status { get; set; }
-        public float? Bonus { get; set; }
-        public float? BonusPay { get; set; }
+        public decimal? Bonus { get; set; }
+        public decimal? BonusPay { get; set; }
         public int UserId { get; set; }
         public UserProfile User { get; set; }
         public int TourId { get; set; }
@@ -88,8 +88,8 @@ namespace WorkWithKOTE.Models
         public string TourImg { get; set; }
         public List<SameTour> SameTour { get; set; }
         public string Document { get; set; }
-        public float? Bonus { get; set; }
-        public int? BonusPay { get; set; }
+        public decimal? Bonus { get; set; }
+        public decimal? BonusPay { get; set; }
         public IList<Tag> Tag { get; set; }
         public IList<RoutePoint> RoutePoints { get; set; }
         public IList<DateTour> DateTour { get; set; }
