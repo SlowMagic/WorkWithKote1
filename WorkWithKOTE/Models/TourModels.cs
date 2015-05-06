@@ -89,6 +89,7 @@ namespace WorkWithKOTE.Models
         public List<SameTour> SameTour { get; set; }
         public string Document { get; set; }
         public float? Bonus { get; set; }
+        public Decimal? BonusPay { get; set; }
         public IList<Tag> Tag { get; set; }
         public IList<RoutePoint> RoutePoints { get; set; }
         public IList<DateTour> DateTour { get; set; }

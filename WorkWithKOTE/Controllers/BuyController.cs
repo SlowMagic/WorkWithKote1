@@ -70,18 +70,37 @@ namespace WorkWithKOTE.Controllers
         {
             var selectedDop = new List<SelectedDopUslug>();
             var tour = db.Tour.Find(id);
+            var currency = db.Curseds.Single();
             decimal Price = 0;
-            if(tour.AukcionPrice != null)
-               Price = tour.AukcionPrice.Value;
+            if (tour.AukcionPrice != null)
+            {
+                if (tour.Valuta == "EUR")
+                    Price = tour.AukcionPrice.Value * currency.Evro;
+                else if (tour.Valuta == "USD")
+                    Price = tour.AukcionPrice.Value * currency.USD;
+                else
+                    Price = tour.AukcionPrice.Value;
+            }
             else
-               Price = tour.Cost.Value;
+            {
+                if (tour.Valuta == "EUR")
+                    Price = tour.Cost.Value * currency.Evro;
+                else if (tour.Valuta == "USD")
+                    Price = tour.Cost.Value * currency.USD;
+                else
+                    Price = tour.Cost.Value;
+            }
             if (Item != null)
                 for (int i = 0; i < Item.Length; i++)
                 {
                     var DopUslug = db.DopUslugs.Find(Item[i]);
                     selectedDop.Add(new SelectedDopUslug { SelectedDopUslugName = DopUslug.Name, SelectedDopPrice = DopUslug.Price });
-                    Price += DopUslug.Price;
-
+                    if (tour.Valuta == "EUR")
+                        Price = Price + DopUslug.Price * currency.Evro;
+                    if (tour.Valuta == "USD")
+                        Price = Price + DopUslug.Price * currency.USD;
+                    if (tour.Valuta == "UAH")
+                        Price = Price + DopUslug.Price;
                 }
             model.SelectedDopUslug = new List<SelectedDopUslug>();
             foreach (var item in selectedDop)
@@ -90,10 +109,10 @@ namespace WorkWithKOTE.Controllers
             }
             if (tour.People >= tour.AllPeople && tour.AllPeolpeFake != 0)
             {
-                tour.People  = tour.People.Value - tour.AllPeolpeFake.Value;
-                tour.AllPeolpeFake  = 0;
+                tour.People = tour.People.Value - tour.AllPeolpeFake.Value;
+                tour.AllPeolpeFake = 0;
             }
-            if(tour.People <= tour.AllPeople)
+            if (tour.People <= tour.AllPeople)
             {
                 if (model.TourPrice == Price)
                 {
@@ -145,7 +164,7 @@ namespace WorkWithKOTE.Controllers
                 version = 3,
                 public_key = "i69833650669",
                 amount = data.TourPrice,
-                currency ="UAH",
+                currency = "UAH",
                 description = dataTour.NameTour,
                 order_id = data.TripID,
                 pay_way = "card,liqpay,delayed,invoice,privat24",
@@ -167,7 +186,7 @@ namespace WorkWithKOTE.Controllers
             ViewBag.Data = dataStr;
             ViewBag.Signature = System.Convert.ToBase64String(hash);
 
-            return View(db.Trip.Where(m => m.TripID == id).Include(m => m.DateTour).Include(m=>m.SelectedDopUslug).Single());
+            return View(db.Trip.Where(m => m.TripID == id).Include(m => m.DateTour).Include(m => m.SelectedDopUslug).Single());
         }
         [HttpPost]
         public ActionResult ValidatePay(string data, string signature)
@@ -251,15 +270,16 @@ namespace WorkWithKOTE.Controllers
                 for (int i = 0; i < Item.Length; i++)
                 {
                     var DopUslug = db.DopUslugs.Find(Item[i]);
-                    selectedDop.Add(new SelectedDopUslug { SelectedDopUslugName = DopUslug.Name, SelectedDopPrice = DopUslug.Price, TripID = model.TripID});
+                    selectedDop.Add(new SelectedDopUslug { SelectedDopUslugName = DopUslug.Name, SelectedDopPrice = DopUslug.Price, TripID = model.TripID });
                     Price += DopUslug.Price;
                 }
             if (model.TourPrice == Price)
             {
                 model.Status = "Не оплачена";
                 model.DateTourId = int.Parse(DateTourId);
-                foreach(var item in selectedDop){
-                    db.Entry(item).State = EntityState.Added; 
+                foreach (var item in selectedDop)
+                {
+                    db.Entry(item).State = EntityState.Added;
                 }
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
