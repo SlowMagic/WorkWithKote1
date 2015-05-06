@@ -36,10 +36,6 @@
         margin-left : 21%;
     }
 
-    #current{
-        color : #ff6f40;
-    }
-
     #Id{
       min-width: 50px;
       border-radius: 4px;
@@ -180,13 +176,17 @@
        min-height : 15px !important;
    }
 
+   #valutCurs{
+       display : none;
+   }
+
 </style>
 <div id="small-preview-img" class="clearfix">
 
     <hgroup>
         <h1>Личный кабинет</h1>
 
-        <h2><a href="@Url.Action("Index","Home")">Главная </a> / <span id="current">Личный кабинет</span></h2>
+        <h2><a href="@Url.Action("Index","Home")">Главная </a> / <span id="currentZ">Личный кабинет</span></h2>
     </hgroup>
 
 </div>
@@ -321,9 +321,9 @@
         });
 
         $('#changeValut').click(function () {
-        //    $("#").dialog({
-        //        title: "Изменить курс валют"
-        //    });
+            $("#valutCurs").dialog({
+               title: "Изменить курс валют"
+            });
         });
 
         $('#rightCol span').each(function () {

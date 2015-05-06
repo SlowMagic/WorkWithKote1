@@ -1,7 +1,24 @@
 ﻿@model WorkWithKOTE.Models.Cursed
-<form method="post" action="@Url.Action("Cursed","Admin")">
-    Курс Доллара @Html.TextBoxFor(m => m.USD) <br />
-    Курс Евро @Html.TextBoxFor(m => m.Evro)
-    @Html.HiddenFor(m => m.CursedID)
-    <input type="submit" value="Ok" />
+
+<style>
+    #valutCurs input[type=text]{
+        width : 70px;
+        display : inline;
+        margin-top : 5px;
+    }
+
+    #Evro{
+        margin-left : 33px;
+    }
+
+    .ttExt{
+        font-size : 17px;
+    }
+</style>
+
+<form id="valutCurs" method="post" action="@Url.Action("Cursed","Admin")">
+    <span class="ttExt">Курс Доллара</span> : @Html.TextBoxFor(m => m.USD) грн <br />
+    <span class="ttExt">Курс Евро</span> :  @Html.TextBoxFor(m => m.Evro) грн
+        @Html.HiddenFor(m => m.CursedID)
+        <input style="margin-top:10px;" type="submit" value="Подтвердить" />
 </form>
