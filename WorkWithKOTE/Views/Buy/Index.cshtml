@@ -130,6 +130,7 @@
                 <p class="orderContent">Сумма заказа с учетом изменений&nbsp;:<span data-euro="@ViewBag.valutaEuro" data-usd="@ViewBag.valutaUSD" data-valute="@Html.DisplayFor(m => m.Valuta)" id="Prices">@Html.DisplayFor(m => m.TourPrice, new { id = "Prices" })</span>&nbsp;@Html.DisplayFor(m => m.Valuta)</p>
                 <p class="orderContent" id="toPay">К оплате:&nbsp;<input readonly="readonly" id="finalPrice" name="TourPrice" value="@Model.TourPrice" />&nbspUAH</p>
             </div>
+            <input type="text" value="@ViewBag.UsersBonus" />
         </div>
         <div class="layout">
             <h3 id="yourData"> Введите свои данные</h3><hr class="secondHR" />

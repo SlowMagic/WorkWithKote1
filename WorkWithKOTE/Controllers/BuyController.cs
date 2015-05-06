@@ -55,6 +55,7 @@ namespace WorkWithKOTE.Controllers
                 {
                     int userID = WebSecurity.GetUserId(User.Identity.Name);
                     var userprofile = db.UserProfiles.Find(userID);
+                    ViewBag.UsersBonus = userprofile.Bonus;
                     data.email = userprofile.Email;
                     data.BirthDay = userprofile.Birthday;
                     data.Citizenship = userprofile.Nationality;
@@ -63,6 +64,7 @@ namespace WorkWithKOTE.Controllers
                     data.FatherName = userprofile.RuThirdName;
                     data.mobile = userprofile.Mobile;
                     data.Pasport = userprofile.PasportData;
+                    data.BonusPay = tour.BonusPay;
                 }
                 ViewBag.TitleOf = tour.NameTour;
             }
@@ -250,8 +252,15 @@ namespace WorkWithKOTE.Controllers
         [Authorize(Roles = "Admin,Moderator")]
         public ActionResult TripEdit(int IdTrip)
         {
-
+            var valuta = db.Curseds.Find(1);
+            ViewBag.valutaUsd = valuta.USD;
+            ViewBag.valutaEuro = valuta.Evro;
             var data = db.Trip.Find(IdTrip);
+             if (Request.IsAuthenticated)
+            {
+                var userprofile = db.UserProfiles.Find(data.UserId);
+                ViewBag.UsersBonus = userprofile.Bonus;
+            }
             var tour = db.Tour.Find(data.TourId);
             ViewBag.DateTourId = new SelectList(db.DateTours.Where(m => m.TourId == data.TourId)
                   .AsEnumerable()
