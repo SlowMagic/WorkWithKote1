@@ -18,6 +18,10 @@ header {
     font-family: HelveticaNeueCyr;
 }
 
+#currentZ{
+    color : #ff6f40;
+}
+
 #bar {
     padding-bottom: 35px;
 }
