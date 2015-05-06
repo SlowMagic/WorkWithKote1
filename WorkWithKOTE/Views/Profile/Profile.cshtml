@@ -176,6 +176,10 @@
        min-height : 15px !important;
    }
 
+   #valutCurs{
+       display : none;
+   }
+
 </style>
 <div id="small-preview-img" class="clearfix">
 
@@ -317,9 +321,9 @@
         });
 
         $('#changeValut').click(function () {
-        //    $("#").dialog({
-        //        title: "Изменить курс валют"
-        //    });
+            $("#valutCurs").dialog({
+               title: "Изменить курс валют"
+            });
         });
 
         $('#rightCol span').each(function () {
