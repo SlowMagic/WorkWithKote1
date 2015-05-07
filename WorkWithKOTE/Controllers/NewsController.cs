@@ -31,16 +31,19 @@ namespace WorkWithKOTE.Controllers
             db.SaveChanges();
             return RedirectToAction("Index","Home");
         }
+        [AllowAnonymous]
         public ActionResult NewsBlock(int id)
         {
             return View(db.News.Find(id));
         }
+        [AllowAnonymous]
         public ActionResult AllNewsBlock( )
         {
             List<News> news = db.News.ToList();
             news.Reverse();
             return View(news);
         }
+        [Authorize(Roles="Admin,Moderator")]
         public ActionResult NewsDelete(int id = 0)
         {
            if(id != 0)

@@ -13,7 +13,6 @@ namespace WorkWithKOTE.Controllers
         //
         // GET: /TourDisplay/
         UsersContext db = new UsersContext();
-        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Index(int id = 0)
         {
             if (id != 0)

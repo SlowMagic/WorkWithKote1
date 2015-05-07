@@ -25,7 +25,6 @@ namespace WorkWithKOTE.Controllers
         // GET: /Account/Logi
 
         [Authorize]
-        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Profile(int? id)
         {
             if (id != null)

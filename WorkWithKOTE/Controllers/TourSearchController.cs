@@ -13,7 +13,6 @@ namespace WorkWithKOTE.Controllers
         // GET: /TourSearch/
         // TourContext db = new TourContext();
         UsersContext db = new UsersContext();
-        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Search()
         {
             return View(db.Tour.Include(m=>m.DateTour).ToList());

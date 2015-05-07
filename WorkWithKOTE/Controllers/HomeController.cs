@@ -81,7 +81,6 @@ namespace WorkWithKOTE.Controllers
             return data;
 
         }
-        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Index()
         {
             var data = new TourForHomePage();
@@ -111,14 +110,12 @@ namespace WorkWithKOTE.Controllers
             data.Reverse();
             return PartialView(data);
         }
-        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";
             
             return View();
         }
-        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
