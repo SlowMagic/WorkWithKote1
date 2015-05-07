@@ -76,7 +76,6 @@ namespace WorkWithKOTE.Controllers
             var tour = db.Tour.Find(id);
             var currency = db.Curseds.Single();
             decimal Price = 0;
-            model.BonusPay = 200;
             if (tour.AukcionPrice != null)
             {
                 if (tour.Valuta == "EUR")
@@ -128,6 +127,7 @@ namespace WorkWithKOTE.Controllers
                         if (userprofile.Bonus <= model.BonusPay)
                         {
                             Price -= userprofile.Bonus.Value;
+                            model.UsersBonus = userprofile.Bonus.Value;
                             userprofile.Bonus -= userprofile.Bonus;
                             db.Entry(userprofile).State = EntityState.Modified;
                         }
@@ -135,6 +135,7 @@ namespace WorkWithKOTE.Controllers
                         {
                             Price -= model.BonusPay.Value;
                             userprofile.Bonus -= model.BonusPay;
+                            model.UsersBonus = model.BonusPay;
                             db.Entry(userprofile).State = EntityState.Modified;
                         }
                     }
@@ -256,6 +257,9 @@ namespace WorkWithKOTE.Controllers
              if (Request.IsAuthenticated)
             {
                 var userprofile = db.UserProfiles.Find(data.UserId);
+                userprofile.Bonus += data.UsersBonus.Value;
+                db.Entry(userprofile).State = EntityState.Modified;
+                db.SaveChanges();
                 ViewBag.UsersBonus = userprofile.Bonus;
             }
             var tour = db.Tour.Find(data.TourId);
@@ -293,17 +297,63 @@ namespace WorkWithKOTE.Controllers
             List<SelectedDopUslug> selectedDop = new List<SelectedDopUslug>();
             var tour = db.Tour.Find(model.TourId);
             decimal Price = 0;
+            var currency = db.Curseds.Single();
             if (tour.AukcionPrice != null)
-                Price = tour.AukcionPrice.Value;
+            {
+                if (tour.Valuta == "EUR")
+                    Price = tour.AukcionPrice.Value * currency.Evro;
+                else if (tour.Valuta == "USD")
+                    Price = tour.AukcionPrice.Value * currency.USD;
+                else
+                    Price = tour.AukcionPrice.Value;
+            }
             else
-                Price = tour.Cost.Value;
+            {
+                if (tour.Valuta == "EUR")
+                    Price = tour.Cost.Value * currency.Evro;
+                else if (tour.Valuta == "USD")
+                    Price = tour.Cost.Value * currency.USD;
+                else
+                    Price = tour.Cost.Value;
+            }
             if (Item != null)
                 for (int i = 0; i < Item.Length; i++)
                 {
                     var DopUslug = db.DopUslugs.Find(Item[i]);
                     selectedDop.Add(new SelectedDopUslug { SelectedDopUslugName = DopUslug.Name, SelectedDopPrice = DopUslug.Price, TripID = model.TripID });
-                    Price += DopUslug.Price;
+                    if (tour.Valuta == "EUR")
+                        Price = Price + DopUslug.Price * currency.Evro;
+                    if (tour.Valuta == "USD")
+                        Price = Price + DopUslug.Price * currency.USD;
+                    if (tour.Valuta == "UAH")
+                        Price = Price + DopUslug.Price;
                 }
+            model.SelectedDopUslug = new List<SelectedDopUslug>();
+            foreach (var item in selectedDop)
+            {
+                model.SelectedDopUslug.Add(item);
+            }
+            if (Request.IsAuthenticated)
+            {
+                UserProfile userprofile = db.UserProfiles.Find(model.UserId);
+                if (userprofile.Bonus != null || userprofile.Bonus != 0)
+                {
+                    if (userprofile.Bonus <= model.BonusPay)
+                    {
+                        Price -= userprofile.Bonus.Value;
+                        model.UsersBonus = userprofile.Bonus.Value;
+                        userprofile.Bonus -= userprofile.Bonus;
+                        db.Entry(userprofile).State = EntityState.Modified;
+                    }
+                    if (userprofile.Bonus > model.BonusPay)
+                    {
+                        Price -= model.BonusPay.Value;
+                        userprofile.Bonus -= model.BonusPay;
+                        model.UsersBonus = model.BonusPay;
+                        db.Entry(userprofile).State = EntityState.Modified;
+                    }
+                }
+            }
             if (model.TourPrice == Price)
             {
                 model.Status = "Не оплачена";

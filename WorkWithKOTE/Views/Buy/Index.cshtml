@@ -210,9 +210,9 @@
             </div>
             <input type="submit" disabled value="Перейти к оплате" id="orderTour" class="notActive" />
         </div>
+        @Html.HiddenFor(m => m.BonusPay)
         <br />
     </form>
-
 </div>
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
@@ -234,7 +234,6 @@
                 }
             });
         });
-
     </script>
     <script type="text/javascript">
         var sum0 = $("#Prices").text();

@@ -144,7 +144,7 @@
                         </p>
                     }
                 }   
-
+                @Html.HiddenFor(m=>m.UsersBonus)
                 <p class="orderContent" id="toPay">К оплате&nbsp;:&nbsp;<input readonly="readonly" id="finalPrice" name="TourPrice" value="@Html.DisplayFor(m => m.TourPrice, new {id = "Price"})" />&nbsp;UAH</p>
             </div>
         </div>
@@ -212,6 +212,7 @@
         @Html.HiddenFor(m=>m.TourId)
         @Html.HiddenFor(m=>m.UserId)
         @Html.HiddenFor(m => m.DateTrip);
+        @Html.HiddenFor(m => m.BonusPay)
     </form>
 
 </div>

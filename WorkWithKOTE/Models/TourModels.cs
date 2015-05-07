@@ -38,6 +38,7 @@ namespace WorkWithKOTE.Models
         public string Status { get; set; }
         public decimal? Bonus { get; set; }
         public decimal? BonusPay { get; set; }
+        public decimal? UsersBonus { get; set; }
         public int UserId { get; set; }
         public UserProfile User { get; set; }
         public int TourId { get; set; }
