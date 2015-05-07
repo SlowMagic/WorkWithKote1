@@ -131,7 +131,7 @@
                
                 @if (User.Identity.IsAuthenticated)
                 {
-                    if (@Model.BonusPay > 0)
+                    if (@Model.BonusPay > 0 && @ViewBag.UsersBonus > 0)
                     {
                      <p class="orderContent">
                          <span data-can="@Model.BonusPay" id="canuse">Можно списать @Model.BonusPay бонусых баллов</span>
