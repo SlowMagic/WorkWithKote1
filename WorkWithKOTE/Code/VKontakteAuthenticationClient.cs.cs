@@ -66,19 +66,18 @@ namespace WorkWithKOTE.Code
  
                 var response = VKontakteAuthenticationClient.Load(address);
                 var accessToken = VKontakteAuthenticationClient.DeserializeJson<AccessToken>(response);
- 
                 address = String.Format(
                         "https://api.vk.com/method/users.get?uids={0}&fields=photo_50",
                         accessToken.user_id);
- 
                 response = VKontakteAuthenticationClient.Load(address);
+                var AccessTyken = new Dictionary<string, string>();
+                AccessTyken.Add("1", accessToken.access_token);
                 var usersData = VKontakteAuthenticationClient.DeserializeJson<UsersData>(response);
                 var userData = usersData.response.First();
- 
                 return new AuthenticationResult(
                     true, (this as IAuthenticationClient).ProviderName, accessToken.user_id,
                     userData.first_name + " " + userData.last_name,
-                    new Dictionary<string, string>());
+                    AccessTyken);
             }
             catch (Exception ex)
             {
@@ -97,7 +96,6 @@ namespace WorkWithKOTE.Code
                 }
             }
         }
- 
         public static T DeserializeJson<T>(string input)
         {
             var serializer = new JavaScriptSerializer();

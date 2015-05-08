@@ -73,12 +73,26 @@ namespace WorkWithKOTE.Controllers
         public ActionResult EditProfile(UserProfile model, HttpPostedFileBase file)
         {
             int i = WebSecurity.GetUserId(User.Identity.Name);
+            var newUserModel = db.UserProfiles.Find(i);
             var check = UploadImages.UploadImg(file, "/UpLoad/Avatar/"); 
-            if (check != null)
+            if (check != null){
                 model.Avatar = check;
-            model.UserId = i;
-            model.Email = User.Identity.Name;
-            db.Entry(model).State = EntityState.Modified;
+                newUserModel.Avatar = model.Avatar;
+            }
+            newUserModel.Birthday = model.Birthday;
+            newUserModel.DatePasport = model.DatePasport;
+            newUserModel.DateZagran = model.DateZagran;
+            newUserModel.EngFirstName = model.EngFirstName;
+            newUserModel.EngSecondName = model.EngSecondName;
+            newUserModel.EngThirdName = model.EngThirdName;
+            newUserModel.Mobile = model.Mobile;
+            newUserModel.Nationality = model.Nationality;
+            newUserModel.PasportData = model.PasportData;
+            newUserModel.RuFirstName = model.RuFirstName;
+            newUserModel.RuSecondName = model.RuSecondName;
+            newUserModel.RuThirdName = model.RuThirdName;
+            newUserModel.Sex = model.Sex;
+            db.Entry(newUserModel).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Profile", "Profile");
         }
