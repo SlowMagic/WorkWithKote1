@@ -78,7 +78,7 @@
 
     .adminBtn{
         width : 78%;
-        height : 40px;
+        height : 38px;
         color:white !important;
         border-radius : 4px;
         background : #ff6a00;
@@ -87,6 +87,17 @@
         font-size : 16px;
         margin-top : 10px;
         margin-bottom : 10px;
+    }
+
+    #headerBtn{
+        width : 10%;
+        height : 15px;
+        color:white !important;
+        border-radius : 4px;
+        background : #00C853;
+        display : inline;
+        padding : 6px;
+        font-size : 14px;
     }
 
     td{
@@ -188,7 +199,7 @@
             </tr>
         </table>
        
-        <div id="block1" style="width:53%; margin-top : 15px; box-shadow : 1px 1px 1px 1px #ccc; float : left;">
+        <div id="block1" style="width:57%; margin-top : 15px; border:1px solid #ccc; float : left;">
             <div class="tour-destination">
                 <span>@Html.DisplayFor(m => m.PlaceOfDeparture)</span>
                     <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
@@ -235,7 +246,7 @@
             </div>
         </div>
 
-        <div id="block2" style="width : 35%;float : right;margin-top:15px; box-shadow : 1px 1px 1px 1px #ccc;margin-right : 10.1%;padding-bottom: 15px;">
+        <div id="block2" style="width : 30%;float : right;margin-top:15px;border:1px solid #ccc;margin-right : 9.9%;padding-bottom: 15px;">
             <div style="text-align : center; font-size:19px;margin-top : 15px;">
                Тур в <span> @Html.DisplayFor(m => m.PlaceOfArrival)</span>
                   из <span> @Html.DisplayFor(m => m.PlaceOfDeparture)</span>
@@ -243,8 +254,8 @@
 
             @{ var i = Model.AllPeople - Model.People;}
             <div style="margin-left : 25px;">
-                <span style="font-size : 17px;">Количество участников : @Html.DisplayFor(m => m.AllPeople)</span> 
-                <span style="font-size:16px;">( Уже едут : <span id="places">@Html.DisplayFor(m => m.People)</span> )</span>
+                <span style="font-size : 17px;">Количество участников : @Html.DisplayFor(m => m.AllPeople)</span><br/>
+                <span style="font-size:16px;">Уже едут : <span id="places">@Html.DisplayFor(m => m.People)</span>.</span>
                 <span style="font-size : 17px;">Осталось мест @i из @Html.DisplayFor(m => m.AllPeople)</span>
             </div>
 
@@ -257,7 +268,7 @@
             
             <hr/>
 
-            <div style="text-align:-webkit-center;">
+            <div id="buttonBox" style="text-align:-webkit-center;">
                 @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                 {
                     <a href='@Url.Action("TourEdit", "TourCreate", new {id = Model.TourId})' id="book-tour" class="adminBtn">Редактировать тур</a>
@@ -339,6 +350,15 @@
 
 <script>
     $(function () {
+   
+        $(window).scroll(function () {
+            if ($('header').offset().top >= $('.container').offset().top && $('#bar').width() >= 800) {
+                $('#headerBonus').slideDown(300);
+            }
+            else {
+                $('#headerBonus').slideUp(300);
+            }
+        });
 
         $('.dataSelect').change(function () {
             $('.days').text($('.dataSelect option:selected').attr('data-data') + ' дня(ей)');
@@ -365,58 +385,89 @@
         }
 
         if ($('#bar').width() <= 800) {
-            $('.Map').hide();
-            $('.right-panel').css({ 'float': 'none', 'width': '100%' });
+            $('.Map,.right-panel,#headerBonus').hide();
+          //  $('.right-panel').css({ 'float': 'none', 'width': '100%' });
             $('.description').css('width', '80%');
-            $('.full-description').css({ 'width': '80%', 'margin-bottom': '20px' });
+            $('.full-description').css({ 'width': '100%', 'margin-bottom': '20px' });
             $('#block1,#block2').css({ 'width': '80%', 'float': 'none' });
             $('.telephone').css({ 'display': 'block', 'margin-left': '0px' });
             $('#datetour').css('margin-bottom', '10px');
             $('#bigTable').hide();
             $('#smallTable').show().css('width', '80%');
             $('#yslyga').text('Доп. услуги :');
+            $('#book-tour').text('Редактировать');
         }
         else {
-            $('.Map').show();
-            $('.right-panel').css({ 'float': 'right', 'width': '30%' });
+            $('.Map,.right-panel,#headerBonus').show();
+          //  $('.right-panel').css({ 'float': 'right', 'width': '30%' });
             $('.description').css('width', '100%');
-            $('.full-description').css({ 'width': '58%', 'margin-bottom': '0px' });
-            $('#block1').css({ 'width': '53%', 'float': 'left' });
-            $('#block2').css({ 'width': '35%', 'float': 'right' });
+            $('.full-description').css({ 'width': '57%', 'margin-bottom': '0px' });
+            $('#block1').css({ 'width': '57%', 'float': 'left' });
+            $('#block2').css({ 'width': '30%', 'float': 'right' });
             $('.telephone').css({ 'display': 'inline' });
             $('.telephone:last').css({ 'margin-left': '20px' });
             $('#datetour').css('margin-bottom', '0px');
             $('#bigTable').show();
             $('#smallTable').hide();
             $('#yslyga').text('Дополнительные услуги :');
+            $('#book-tour').text('Редактировать тур');
+
+            if (!$('#headerBonus').length) {
+                $('header').append('<div id="headerBonus" style="width:100%;height:40px;background:#ccc;display:none">' +
+                                       '<div id="headerBox1" style="width:30%;display:inline">' + $('#bigTable tr td:first').html() + '</div>' +
+                                       '<div id="headerBox2" style="width:30%;display:inline;margin-left:20px">' + $('#bigTable tr td:last').html() + '</div>' +
+                                       '<a href="@Url.Action("Index", "Buy", new {id = Model.TourId})"  id="headerBtn"  style="width:30%;display:inline;margin-left:20px">Бронь и оплата</a>' +
+
+                                   '</div>'
+                                  ).find('select').css('width', '17%');
+
+                $('#headerBox1,#headerBox2').find('br').remove();
+                $('.new-price:first').css({ 'padding-left': '0px', 'font-size': '22px' });
+            }
+ 
         }
 
         $(window).resize(function () {
             if ($('#bar').width() <= 800) {
-                $('.Map').hide();
-                $('.right-panel').css({ 'float': 'none', 'width': '100%' });
+                $('.Map,.right-panel,#headerBonus').hide();
+                //$('.right-panel').css({ 'float': 'none', 'width': '100%' });
                 $('.description').css('width', '80%');
-                $('.full-description').css({ 'width': '80%', 'margin-bottom': '20px' });
+                $('.full-description').css({ 'width': '100%', 'margin-bottom': '20px' });
                 $('#block1,#block2').css({ 'width': '80%', 'float': 'none' });
                 $('.telephone').css({ 'display': 'block', 'margin-left': '0px' });
                 $('#datetour').css('margin-bottom', '10px');
                 $('#bigTable').hide();
                 $('#smallTable').show().css('width', '80%');
                 $('#yslyga').text('Доп. услуги :');
+                $('#book-tour').text('Редактировать');
             }
             else {
-                $('.Map').show();
-                $('.right-panel').css({ 'float': 'right', 'width': '30%' });
+                $('.Map,.right-panel,#headerBonus').show();
+                // $('.right-panel').css({ 'float': 'right', 'width': '30%' });
                 $('.description').css('width', '100%');
-                $('.full-description').css({ 'width': '58%', 'margin-bottom': '0px' });
-                $('#block1').css({ 'width': '53%', 'float': 'left' });
-                $('#block2').css({ 'width': '35%', 'float': 'right' });
+                $('.full-description').css({ 'width': '57%', 'margin-bottom': '0px' });
+                $('#block1').css({ 'width': '57%', 'float': 'left' });
+                $('#block2').css({ 'width': '30%', 'float': 'right' });
                 $('.telephone').css({ 'display': 'inline' });
                 $('.telephone:last').css({ 'margin-left': '20px' });
                 $('#datetour').css('margin-bottom', '0px');
                 $('#bigTable').show();
                 $('#smallTable').hide();
                 $('#yslyga').text('Дополнительные услуги :');
+                $('#book-tour').text('Редактировать тур');
+
+                if (!$('#headerBonus').length) {
+                    $('header').append('<div id="headerBonus" style="width:100%;height:40px;background:#ccc;display:none">' +
+                                           '<div id="headerBox1" style="width:30%;display:inline">' + $('#bigTable tr td:first').html() + '</div>' +
+                                           '<div id="headerBox2" style="width:30%;display:inline;margin-left:20px">' + $('#bigTable tr td:last').html() + '</div>' +
+                                           '<a href="@Url.Action("Index", "Buy", new {id = Model.TourId})"  id="headerBtn"  style="width:30%;display:inline;margin-left:20px">Бронь и оплата</a>' +
+
+                                       '</div>'
+                                      ).find('select').css('width', '17%');
+
+                    $('#headerBox1,#headerBox2').find('br').remove();
+                    $('.new-price:first').css({ 'padding-left': '0px', 'font-size': '22px' });
+                }
             }
         });
     });

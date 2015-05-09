@@ -143,7 +143,7 @@
                     </a>
                     <div class="titleHref">
                         <a href="@Url.Action("Index", "TourDisplay", new {id=Model.TourHightPrev.TourId })" class="tourTitle">
-                           @Html.DisplayFor(item => item.TourHightPrev.TitleTour)
+                           @Html.DisplayFor(item => item.TourHightPrev.NameTour)
                         </a>
                     </div>
                 </div>
@@ -200,7 +200,7 @@
                 <div class="tourName">
                     <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})"><img src="@Html.DisplayFor(m => item.TourImg)" class="groupSubPreview image"></a>
                       <div class="titleHref">
-                          <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})" class="tourTitle">@Html.DisplayFor(m => item.TitleTour)</a>
+                          <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})" class="tourTitle">@Html.DisplayFor(m => item.NameTour)</a>
                       </div>
                 </div>   
                 <div class="price">
@@ -268,7 +268,7 @@
                     </a>
                     <div class="titleHref">
                         <a href="@Url.Action( "Index","TourDisplay", new {id=Model.TourCenterPrev.TourId})" class="tourTitle">
-                            @Html.DisplayFor(item => item.TourCenterPrev.TitleTour)
+                            @Html.DisplayFor(item => item.TourCenterPrev.NameTour)
                         </a>
                     </div>
                 </div>
@@ -280,19 +280,19 @@
                 <div class="tourInfo">
                     <p class="tourDescription">
                         Тур&#x3a; &nbsp;
-                        @if (Model.TourHightPrev.IsBus)
+                        @if (Model.TourCenterPrev.IsBus)
                         {
                             <img style="width: 20px; display: inline;" src="/Content/img/t-bus.png" title="Автобусом">
                         }
-                        @if (Model.TourHightPrev.IsTrain)
+                        @if (Model.TourCenterPrev.IsTrain)
                         {
                             <img style="width: 20px; display: inline;" src="/Content/img/t-train.png" title="Поездом">
                         }
-                        @if (Model.TourHightPrev.IsShip)
+                        @if (Model.TourCenterPrev.IsShip)
                         {
                             <img style="width: 20px; display: inline;" src="/Content/img/t-ship.png" title="На корабле">
                         }
-                        @if (Model.TourHightPrev.IsAriplane)
+                        @if (Model.TourCenterPrev.IsAriplane)
                         {
                             <img style="width: 20px; display: inline;" src="/Content/img/t-plane.png" title="На самолёте">
                         }
@@ -325,7 +325,7 @@
                     <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})"><img src="@Html.DisplayFor(m => item.TourImg)" class="groupSubPreview image"></a>
                     <div class="titleHref">
                         <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})" class="tourTitle">
-                           @Html.DisplayFor(m => item.TitleTour)
+                           @Html.DisplayFor(m => item.NameTour)
                         </a>
                     </div>
                 </div>
@@ -383,7 +383,7 @@
                     </a>
                      <div class="titleHref">
                          <a href="@Url.Action("Index", "TourDisplay", new { id = Model.TourDownPrev.TourId })" class="tourTitle">
-                             @Html.DisplayFor(item => item.TourDownPrev.TitleTour)
+                             @Html.DisplayFor(item => item.TourDownPrev.NameTour)
                          </a>
                      </div>
                 </div>
@@ -395,19 +395,19 @@
                 <div class="tourInfo">
                     <p class="tourDescription">
                         Тур&#x3a; &nbsp;
-                        @if (Model.TourHightPrev.IsBus)
+                        @if (Model.TourDownPrev.IsBus)
                         {
                             <img style="width: 20px; display: inline;" src="/Content/img/t-bus.png" title="Автобусом">
                         }
-                        @if (Model.TourHightPrev.IsTrain)
+                        @if (Model.TourDownPrev.IsTrain)
                         {
                             <img style="width: 20px; display: inline;" src="/Content/img/t-train.png" title="Поездом">
                         }
-                        @if (Model.TourHightPrev.IsShip)
+                        @if (Model.TourDownPrev.IsShip)
                         {
                             <img style="width: 20px; display: inline;" src="/Content/img/t-ship.png" title="На корабле">
                         }
-                        @if (Model.TourHightPrev.IsAriplane)
+                        @if (Model.TourDownPrev.IsAriplane)
                         {
                             <img style="width: 20px; display: inline;" src="/Content/img/t-plane.png" title="На самолёте">
                         }
@@ -441,7 +441,7 @@
                     <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})"><img src="@Html.DisplayFor(m => item.TourImg)" class="groupSubPreview image"></a>
                     <div class="titleHref">
                         <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})" class="tourTitle">
-                            @Html.DisplayFor(m => item.TitleTour)
+                            @Html.DisplayFor(m => item.NameTour)
                         </a>
                     </div>
                 </div>
@@ -638,7 +638,7 @@
             $('#third').text('Приключенческие туры');
             $('.groupLinks').css('font-size', '20px');
             $('#textspan1').css('font-size', '60px');
-            $('#wishletter').css('margin-top', '-100px');
+            $('#wishletter').css('margin-top', '-150px');
             $('#other').text('что - то другое');
         }
         
