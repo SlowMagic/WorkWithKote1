@@ -12,6 +12,7 @@ using WorkWithKOTE.Filters;
 using WorkWithKOTE.Models;
 using System.Data;
 using System.IO;
+using WorkWithKOTE.Code;
 namespace WorkWithKOTE.Controllers
 {
     public class AccountController : Controller
@@ -218,16 +219,19 @@ namespace WorkWithKOTE.Controllers
         public ActionResult ExternalLoginCallback(string returnUrl)
         {
             AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+            string k = null;
             if (!result.IsSuccessful)
             {
                 return RedirectToAction("ExternalLoginFailure");
             }
-
+            foreach (var item in result.ExtraData)
+            {
+                 k = item.Value;
+            }
             if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
             {
                 return RedirectToLocal(returnUrl);
             }
-
             if (User.Identity.IsAuthenticated)
             {
                 // If the current user is logged in add the new account
