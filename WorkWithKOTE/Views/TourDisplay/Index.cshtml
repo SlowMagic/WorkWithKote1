@@ -384,7 +384,7 @@
             $('header').append('<div id="headerBonus" style="width:100%;height:22px;background:rgb(245, 245, 240);display:none">' +
                                   '<div id="bonusBlock1" style="margin-top:4px;width:30%;display:inline;"> Дата <span id="dataData"> ' + $('.dataSelect').val() + '</span></div>' +
 
-                                  '<div style="margin-top:4px;width:30%;display:inline;margin-left:30px;"> Цена <span style="color:#00C853" id="dataPrice"> ' + $('.new-price:first').text() + '</span></div>' +
+                                  '<div id="bonusBlock2" style="margin-top:4px;width:30%;display:inline;margin-left:30px;"> Цена <span style="color:#00C853" id="dataPrice"> ' + $('.new-price:first').text() + '</span></div>' +
 
                                   '<div id=headerBon style="margin-top:4px;width:30%;display:none;margin-left:30px;">Бонусные баллы <span style="font-size:16px !important;color:#00C853">' + $('#myBonus').text() + '</span></div>' +
 
@@ -450,6 +450,8 @@
             $('#firstDes').show().css({ 'float': 'none', 'width': '100%', 'margin-bottom': '20px', 'margin-left': '-20%' });
             $('.full-description:last').hide();
             $('#block2').css('margin-bottom', '20px');
+            $('#bonusBlock2').css('margin-left', '0px');
+            $('#headerBtn').css('margin-left', '10px');
         }
         else {
             $('.Map,.right-panel,#bonusBlock1,#headerBon').show();
@@ -467,6 +469,8 @@
             $('.full-description:first').hide();
             $('.full-description:last').show();
             $('#block2').css('margin-bottom', '0px');
+            $('#bonusBlock2').css('margin-left', '30px');
+            $('#headerBtn').css('margin-left', '30px');
         }
 
         $(window).resize(function () {
@@ -484,6 +488,8 @@
                 $('#firstDes').show().css({ 'float': 'none', 'width': '100%', 'margin-bottom': '20px','margin-left': '-20%'});
                 $('.full-description:last').hide();
                 $('#block2').css('margin-bottom', '20px');
+                $('#bonusBlock2').css('margin-left', '0px');
+                $('#headerBtn').css('margin-left', '10px');
             }
             else {
                 $('.Map,.right-panel,#bonusBlock1,#headerBon').show();
@@ -501,6 +507,8 @@
                 $('.full-description:first').hide();
                 $('.full-description:last').show();
                 $('#block2').css('margin-bottom', '0px');
+                $('#bonusBlock2').css('margin-left', '30px');
+                $('#headerBtn').css('margin-left', '30px');
             }
         });
     });
