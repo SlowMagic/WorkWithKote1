@@ -201,7 +201,28 @@
                 </td>
             </tr>
         </table>
-       
+
+        <div id="firstDes" style="display:none;" class="full-description">
+            <h1>Программа тура:</h1>
+            @Html.Raw(Model.DescriptionTour)
+            @if (Model.Gallery != null)
+            {
+                <div class="galleria">
+                    @foreach (var item in Model.Gallery.Pics)
+                    {
+                        if (item.PicType == "Image")
+                        {
+                            <img src="@Html.DisplayFor(m => item.PicLink)" data-title="@item.PicName" data-description="@item.PicDescription" />
+                        }
+                        if (item.PicType == "Video")
+                        {
+                            <a href="@Html.DisplayFor(m => item.PicLink)"><img src="/Content/img/play-btn.jpg" data-title="@item.PicName" data-description="@item.PicDescription"></a>
+                        }
+                    }
+                </div>
+            }
+        </div>
+
         <div id="block1" style="width:57%; margin-top : 15px; border:1px solid #ccc; float : left;">
             <div class="tour-destination">
                 <span>@Html.DisplayFor(m => m.PlaceOfDeparture)</span>
@@ -426,6 +447,9 @@
             $('#smallTable').show().css('width', '80%');
             $('#yslyga').text('Доп. услуги :');
             $('#book-tour').text('Редактировать');
+            $('#firstDes').show().css({ 'float': 'none', 'width': '100%', 'margin-bottom': '20px', 'margin-left': '-20%' });
+            $('.full-description:last').hide();
+            $('#block2').css('margin-bottom', '20px');
         }
         else {
             $('.Map,.right-panel,#bonusBlock1,#headerBon').show();
@@ -440,6 +464,9 @@
             $('#smallTable').hide();
             $('#yslyga').text('Дополнительные услуги');
             $('#book-tour').text('Редактировать тур');
+            $('.full-description:first').hide();
+            $('.full-description:last').show();
+            $('#block2').css('margin-bottom', '0px');
         }
 
         $(window).resize(function () {
@@ -454,6 +481,9 @@
                 $('#smallTable').show().css('width', '80%');
                 $('#yslyga').text('Доп. услуги :');
                 $('#book-tour').text('Редактировать');
+                $('#firstDes').show().css({ 'float': 'none', 'width': '100%', 'margin-bottom': '20px','margin-left': '-20%'});
+                $('.full-description:last').hide();
+                $('#block2').css('margin-bottom', '20px');
             }
             else {
                 $('.Map,.right-panel,#bonusBlock1,#headerBon').show();
@@ -468,6 +498,9 @@
                 $('#smallTable').hide();
                 $('#yslyga').text('Дополнительные услуги');
                 $('#book-tour').text('Редактировать тур');
+                $('.full-description:first').hide();
+                $('.full-description:last').show();
+                $('#block2').css('margin-bottom', '0px');
             }
         });
     });
