@@ -623,10 +623,11 @@
         }
 
         if ($('#bar').width() <= 800) {
+            $('#tourSearch_text,#subscribe,#big-logo').hide();
             $('h1.groupTitle').addClass('smallTitle');
             $('.groupLinks a').css({ 'dispalay': 'block !important' });
             $('.groupLinks').css('font-size', '14px');
-            $('#tourSearch_text,#subscribe,#big-logo').hide();
+            $('#tourSearch_text,#subscribe').hide();
             $('#wishletter').css('margin-top', '100px');
             $('#third').text('Приключенческие');
             $('#small-logo').css('margin-left', '10%');
@@ -651,6 +652,8 @@
             $('.news-block').css('display', 'block');
             $('.news-block article').css('margin-top', '20px');
             $('.news-title').css('margin-bottom', '20px');
+            $('#big-logo').hide();
+            $('#wishletter').css('margin-top', '100px');
         }
         else {
             $('.mainTours,.subTours').css('display', 'inline-block');
@@ -664,6 +667,17 @@
             $('.news-title').css('margin-bottom', '0px');
             $('#small-logo').css('margin-left', '21.2%');
             $('#navigation').show();
+            $('#big-logo').hide();
+            $('#wishletter').css('margin-top', '100px');
+
+            if ($('#bar').width() <= 1250) {
+                $('#big-logo').hide();
+                $('#wishletter').css('margin-top', '100px');
+            }
+            else {
+                $('#big-logo').show();
+                $('#wishletter').css('margin-top', '-150px');
+            }
 
             $('.subTours').each(function () {
                 if (!$(this).prev().hasClass('mainTours')) {

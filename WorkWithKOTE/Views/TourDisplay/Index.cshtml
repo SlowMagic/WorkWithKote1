@@ -12,6 +12,10 @@
         background: #000;
     }
 
+    .ulClass{
+        display : inline-table;
+    }
+
     .container{
         margin-left : 21.2%;
         width: 77%;
@@ -91,12 +95,11 @@
 
     #headerBtn{
         width : 10%;
-        height : 15px;
         color:white !important;
         border-radius : 4px;
         background : #00C853;
         display : inline;
-        padding : 6px;
+        padding : 2px;
         font-size : 14px;
     }
 
@@ -138,7 +141,7 @@
                 </td>
                 <td style="text-align:center;width : 30%;">
                     <span class="upperText">Продолжительность</span> <br />
-                    <div class="days" style="font-size: 1.5em;">@Model.DateTour[0].SecondDate.Subtract(Model.DateTour[0].FirstDate).Days дня(ей)</div>
+                    <div class="days" style="font-size: 23px;">@Model.DateTour[0].SecondDate.Subtract(Model.DateTour[0].FirstDate).Days дня(ей)</div>
                 </td>
 
                 <td style="text-align:center;width : 30%;">
@@ -178,7 +181,7 @@
             <tr>
                 <td style="text-align:center;width : 30%;">
                     <span class="upperText">Продолжительность</span> <br />
-                    <div class="daysClone" style="font-size: 1.5em;">@Model.DateTour[0].SecondDate.Subtract(Model.DateTour[0].FirstDate).Days дня(ей)</div>
+                    <div class="daysClone" style="font-size: 23px;">@Model.DateTour[0].SecondDate.Subtract(Model.DateTour[0].FirstDate).Days дня(ей)</div>
                 </td>
             </tr>
             <tr>
@@ -227,15 +230,17 @@
                 <img style="width: 20px; display: inline;" src="/Content/img/t-plane.png" title="На самолёте">
             }
 
-            <div id="dop" style="margin-bottom : -15px;">
-                <span id="yslyga" class="orangan">Дополнительные услуги :</span>
-
-                <ul style="display : inline-table;list-style : none;">
-                    @foreach (var item in Model.DopUslug)
-                    {
-                        <li class="orange_li">@Html.DisplayFor(m => item.Name)</li>
-                    }
-                </ul>
+            <div id="dop" style="margin-top : 15px;">
+                <span id="yslyga" title="Просмотреть услуги" style="text-decoration:underline;cursor:pointer;" class="orangan">Дополнительные услуги</span>
+              
+                <div style="display : inline-table;">
+                  <ul id="dop_ul" style="display : none;list-style : none;">
+                      @foreach (var item in Model.DopUslug)
+                      {
+                          <li class="orange_li">@Html.DisplayFor(m => item.Name)</li>
+                      }
+                  </ul>
+               </div>
             </div><hr />
        
             <p style="text-align:center">Если у Вас есть вопросы, обратитесь к нашему консультанту:</p>
@@ -248,21 +253,20 @@
 
         <div id="block2" style="width : 30%;float : right;margin-top:15px;border:1px solid #ccc;margin-right : 9.9%;padding-bottom: 15px;">
             <div style="text-align : center; font-size:19px;margin-top : 15px;">
-               Тур в <span> @Html.DisplayFor(m => m.PlaceOfArrival)</span>
-                  из <span> @Html.DisplayFor(m => m.PlaceOfDeparture)</span>
+               <span> @Html.DisplayFor(m => m.TitleTour)</span>
             </div><br/>
 
             @{ var i = Model.AllPeople - Model.People;}
             <div style="margin-left : 25px;">
                 <span style="font-size : 17px;">Количество участников : @Html.DisplayFor(m => m.AllPeople)</span><br/>
-                <span style="font-size:16px;">Уже едут : <span id="places">@Html.DisplayFor(m => m.People)</span>.</span>
+                <span style="font-size:16px;">Уже едут : <span id="places">@Html.DisplayFor(m => m.People)</span></span><br />
                 <span style="font-size : 17px;">Осталось мест @i из @Html.DisplayFor(m => m.AllPeople)</span>
             </div>
 
             @if (Model.Bonus != null)
             {
-                <div style="font-size : 17px;margin-left : 25px;">
-                    Бонусные баллы : <span style="color:green;font-size:19px;">@Html.DisplayFor(m => m.Bonus)</span>
+                <div id="bbonusBall" style="font-size : 17px;margin-left : 25px;">
+                    Бонусные баллы : <span id="myBonus" style="color:green;font-size:19px;">@Html.DisplayFor(m => m.Bonus)</span>
                 </div>
             }
             
@@ -350,9 +354,35 @@
 
 <script>
     $(function () {
+
+        $('#yslyga').click(function () {
+            $('#dop_ul').slideToggle(350);
+        });
+
+        if (!$('#headerBonus').length) {
+            $('header').append('<div id="headerBonus" style="width:100%;height:22px;background:rgb(245, 245, 240);display:none">' +
+                                  '<div id="bonusBlock1" style="margin-top:4px;width:30%;display:inline;"> Дата <span id="dataData"> ' + $('.dataSelect').val() + '</span></div>' +
+
+                                  '<div style="margin-top:4px;width:30%;display:inline;margin-left:30px;"> Цена <span style="color:#00C853" id="dataPrice"> ' + $('.new-price:first').text() + '</span></div>' +
+
+                                  '<div id=headerBon style="margin-top:4px;width:30%;display:none;margin-left:30px;">Бонусные баллы <span style="font-size:16px !important;color:#00C853">' + $('#myBonus').text() + '</span></div>' +
+
+                                  '<div style="margin-top:4px;width:30%;display:inline;">' +
+                                   '<a href="@Url.Action("Index", "Buy", new {id = Model.TourId})" id="headerBtn" style="width:30%;display:inline;margin-left:30px">Бронь и оплата</a>' +
+                                 '</div>' +
+                               '</div>'
+                              );
+
+            if ($('#myBonus').length) {
+                $('#headerBon').css('display', 'inline');
+            }
+
+            $('#headerBox1,#headerBox2').find('br').remove();
+            $('.new-price:first').css({ 'padding-left': '0px', 'font-size': '22px' });
+        }
    
         $(window).scroll(function () {
-            if ($('header').offset().top >= $('.container').offset().top && $('#bar').width() >= 800) {
+            if ($('header').offset().top >= $('.container').offset().top - 30) {
                 $('#headerBonus').slideDown(300);
             }
             else {
@@ -362,6 +392,7 @@
 
         $('.dataSelect').change(function () {
             $('.days').text($('.dataSelect option:selected').attr('data-data') + ' дня(ей)');
+            $('#dataData').text($(this).val());
         });
 
         $('.dataSelectClone').change(function () {
@@ -385,8 +416,7 @@
         }
 
         if ($('#bar').width() <= 800) {
-            $('.Map,.right-panel,#headerBonus').hide();
-          //  $('.right-panel').css({ 'float': 'none', 'width': '100%' });
+            $('.Map,.right-panel,#bonusBlock1,#headerBon').hide();
             $('.description').css('width', '80%');
             $('.full-description').css({ 'width': '100%', 'margin-bottom': '20px' });
             $('#block1,#block2').css({ 'width': '80%', 'float': 'none' });
@@ -398,8 +428,7 @@
             $('#book-tour').text('Редактировать');
         }
         else {
-            $('.Map,.right-panel,#headerBonus').show();
-          //  $('.right-panel').css({ 'float': 'right', 'width': '30%' });
+            $('.Map,.right-panel,#bonusBlock1,#headerBon').show();
             $('.description').css('width', '100%');
             $('.full-description').css({ 'width': '57%', 'margin-bottom': '0px' });
             $('#block1').css({ 'width': '57%', 'float': 'left' });
@@ -409,28 +438,13 @@
             $('#datetour').css('margin-bottom', '0px');
             $('#bigTable').show();
             $('#smallTable').hide();
-            $('#yslyga').text('Дополнительные услуги :');
+            $('#yslyga').text('Дополнительные услуги');
             $('#book-tour').text('Редактировать тур');
-
-            if (!$('#headerBonus').length) {
-                $('header').append('<div id="headerBonus" style="width:100%;height:40px;background:#ccc;display:none">' +
-                                       '<div id="headerBox1" style="width:30%;display:inline">' + $('#bigTable tr td:first').html() + '</div>' +
-                                       '<div id="headerBox2" style="width:30%;display:inline;margin-left:20px">' + $('#bigTable tr td:last').html() + '</div>' +
-                                       '<a href="@Url.Action("Index", "Buy", new {id = Model.TourId})"  id="headerBtn"  style="width:30%;display:inline;margin-left:20px">Бронь и оплата</a>' +
-
-                                   '</div>'
-                                  ).find('select').css('width', '17%');
-
-                $('#headerBox1,#headerBox2').find('br').remove();
-                $('.new-price:first').css({ 'padding-left': '0px', 'font-size': '22px' });
-            }
- 
         }
 
         $(window).resize(function () {
             if ($('#bar').width() <= 800) {
-                $('.Map,.right-panel,#headerBonus').hide();
-                //$('.right-panel').css({ 'float': 'none', 'width': '100%' });
+                $('.Map,.right-panel,#bonusBlock1,#headerBon').hide();
                 $('.description').css('width', '80%');
                 $('.full-description').css({ 'width': '100%', 'margin-bottom': '20px' });
                 $('#block1,#block2').css({ 'width': '80%', 'float': 'none' });
@@ -442,8 +456,7 @@
                 $('#book-tour').text('Редактировать');
             }
             else {
-                $('.Map,.right-panel,#headerBonus').show();
-                // $('.right-panel').css({ 'float': 'right', 'width': '30%' });
+                $('.Map,.right-panel,#bonusBlock1,#headerBon').show();
                 $('.description').css('width', '100%');
                 $('.full-description').css({ 'width': '57%', 'margin-bottom': '0px' });
                 $('#block1').css({ 'width': '57%', 'float': 'left' });
@@ -453,21 +466,8 @@
                 $('#datetour').css('margin-bottom', '0px');
                 $('#bigTable').show();
                 $('#smallTable').hide();
-                $('#yslyga').text('Дополнительные услуги :');
+                $('#yslyga').text('Дополнительные услуги');
                 $('#book-tour').text('Редактировать тур');
-
-                if (!$('#headerBonus').length) {
-                    $('header').append('<div id="headerBonus" style="width:100%;height:40px;background:#ccc;display:none">' +
-                                           '<div id="headerBox1" style="width:30%;display:inline">' + $('#bigTable tr td:first').html() + '</div>' +
-                                           '<div id="headerBox2" style="width:30%;display:inline;margin-left:20px">' + $('#bigTable tr td:last').html() + '</div>' +
-                                           '<a href="@Url.Action("Index", "Buy", new {id = Model.TourId})"  id="headerBtn"  style="width:30%;display:inline;margin-left:20px">Бронь и оплата</a>' +
-
-                                       '</div>'
-                                      ).find('select').css('width', '17%');
-
-                    $('#headerBox1,#headerBox2').find('br').remove();
-                    $('.new-price:first').css({ 'padding-left': '0px', 'font-size': '22px' });
-                }
             }
         });
     });
