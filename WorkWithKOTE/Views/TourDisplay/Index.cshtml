@@ -133,7 +133,7 @@
     <div class="container">
         <table id="bigTable" style="width: 90.2%;min-height:70px;">
             <tr>
-                <td style="text-align:center;width : 30%;">
+                <td style="text-align:center;width : 30%;padding-top: 5px;">
                     <span class="upperText">Даты</span> <br />
                     <select class="dataSelect" style="margin-top:5px;height: 30px; border-radius: 4px;width:83%;font-size:15px;">
                         @{var index = 0;}
@@ -146,12 +146,12 @@
                         }
                     </select>
                 </td>
-                <td style="text-align:center;width : 30%;">
+                <td style="text-align:center;width : 30%;padding-top: 5px;">
                     <span class="upperText">Продолжительность</span> <br />
                     <div class="days" style="font-size: 23px;">@Model.DateTour[0].SecondDate.Subtract(Model.DateTour[0].FirstDate).Days дня(ей)</div>
                 </td>
 
-                <td style="text-align:center;width : 30%;">
+                <td style="text-align:center;width : 30%;padding-top: 5px;">
                     <span class="upperText">Цена</span> <br />
                     @if (Model.AukcionPrice != null)
                     {
@@ -260,10 +260,10 @@
 
             <div id="dop" style="margin-top : 15px;">
                 <span id="yslyga" title="Просмотреть услуги" style="text-decoration:underline;cursor:pointer;" class="orangan">Дополнительные услуги</span>
-                <img id="triangle" style="display: inline;cursor:pointer;" src="~/Content/img/triangle.png" />
+                <img id="triangle" style="display: inline;cursor:pointer;width:13px;" src="~/Content/img/triangle.png" />
               
                 <div style="display : inline-table;">
-                  <ul id="dop_ul" style="display : none;list-style : none;">
+                  <ul id="dop_ul" style="list-style : none;">
                       @foreach (var item in Model.DopUslug)
                       {
                           <li class="orange_li">@Html.DisplayFor(m => item.Name)</li>
@@ -287,8 +287,8 @@
 
             @{ var i = Model.AllPeople - Model.People;}
             <div style="margin-left : 25px;">
-                <span style="font-size : 17px;">Количество участников : @Html.DisplayFor(m => m.AllPeople)</span><br/>
-                <span style="font-size:16px;">Уже едут : <span id="places">@Html.DisplayFor(m => m.People)</span></span><br />
+                <span style="font-size : 17px;">Количество участников :&nbsp;@Html.DisplayFor(m => m.AllPeople)</span><br/>
+                <span style="font-size:16px;">Уже едут :&nbsp; <span id="places">@Html.DisplayFor(m => m.People)</span></span><br />
                 <span style="font-size : 17px;">Осталось мест @i из @Html.DisplayFor(m => m.AllPeople)</span>
             </div>
 
@@ -385,8 +385,29 @@
     $(function () {
 
         $('#yslyga,#triangle').click(function () {
-            $('#dop_ul').slideToggle(350);
+
+            if ($('#triangle').hasClass('rotate')) {
+                $('.orange_li').each(function () {
+                    if ($(this).index() > 1) {
+                        $(this).slideUp(300);
+                    }
+                });
+            }
+            else {
+                $('.orange_li').each(function () {
+                    if ($(this).index() > 1) {
+                        $(this).slideDown(300);
+                    }
+                });
+            }
+
             $('#triangle').toggleClass('rotate');
+        });
+
+        $('.orange_li').each(function () {
+            if ($(this).index() > 1) {
+                $(this).hide();
+            }
         });
 
         if (!$('#headerBonus').length) {
@@ -461,12 +482,13 @@
             $('#block2').css('margin-bottom', '20px');
             $('#bonusBlock2').css('margin-left', '0px');
             $('#headerBtn').css('margin-left', '10px');
+            $('#smallTable,#block1,#block2').css({ 'width': '107%', 'margin-left': '-20%' });
         }
         else {
             $('.Map,.right-panel,#bonusBlock1,#headerBon').show();
             $('.description').css('width', '100%');
             $('.full-description').css({ 'width': '57%', 'margin-bottom': '0px' });
-            $('#block1').css({ 'width': '57%', 'float': 'left' });
+            $('#block1').css({ 'width': '57%', 'float': 'left','margin-left':'0px' });
             $('#block2').css({ 'width': '30%', 'float': 'right' });
             $('.telephone').css({ 'display': 'inline' });
             $('.telephone:last').css({ 'margin-left': '20px' });
@@ -499,12 +521,13 @@
                 $('#block2').css('margin-bottom', '20px');
                 $('#bonusBlock2').css('margin-left', '0px');
                 $('#headerBtn').css('margin-left', '10px');
+                $('#smallTable,#block1,#block2').css({ 'width': '107%', 'margin-left': '-20%' });
             }
             else {
                 $('.Map,.right-panel,#bonusBlock1,#headerBon').show();
                 $('.description').css('width', '100%');
                 $('.full-description').css({ 'width': '57%', 'margin-bottom': '0px' });
-                $('#block1').css({ 'width': '57%', 'float': 'left' });
+                $('#block1').css({ 'width': '57%', 'float': 'left', 'margin-left': '0px' });
                 $('#block2').css({ 'width': '30%', 'float': 'right' });
                 $('.telephone').css({ 'display': 'inline' });
                 $('.telephone:last').css({ 'margin-left': '20px' });
