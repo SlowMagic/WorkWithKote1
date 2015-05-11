@@ -427,6 +427,9 @@
             if ($('#myBonus').length) {
                 $('#headerBon').css('display', 'inline');
             }
+            else {
+                $('#headerBon').remove();
+            }
 
             $('#headerBox1,#headerBox2').find('br').remove();
             $('.new-price:first').css({ 'padding-left': '0px', 'font-size': '22px' });

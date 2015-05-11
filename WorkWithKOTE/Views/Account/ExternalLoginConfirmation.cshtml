@@ -3,31 +3,53 @@
     ViewBag.Title = "Register";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>Associate your @ViewBag.ProviderDisplayName account.</h2>
-</hgroup>
+@Styles.Render("~/Content/form")
+@Styles.Render("~/Content/order")
+
+<style>
+    #regExt{
+      padding: 6px;
+      color: white !important;
+      border-radius : 4px;
+      background-color : #ff6f40;
+      border : 1px solid #ff6f40;
+      color : white;
+      height : 30px;
+      cursor : pointer;
+      min-width : 70px;
+    }
+</style>
+
+@{ Html.RenderPartial("HeaderPartial_main");}
+
+<div id="small-preview-img" class="clearfix">
+    <hgroup>
+        <h1>Вход</h1>
+        <h2>@Html.ActionLink("Главная", "Index", "Home", null, null) / <span id="currentZ">Регистрация</span> </h2>
+    </hgroup>
+</div>
+
 
 @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl })) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Association Form</legend>
-        <p>
-            Вы успешно авторизовались <strong>@ViewBag.ProviderDisplayName</strong>.
-           Пожалуйстa, введите ваш логин для данного сайта 
-        </p>
-        <ol>
-            <li class="name">
+    <div style="margin-left:21%;" id="form_tour"><br/>
+        <div>
+            Вы успешно авторизовались <strong>@ViewBag.ProviderDisplayName</strong><br/>
+            Пожалуйстa, введите ваш логин для данного сайта
+        </div>
+        <div>
+            <div class="name">
                 @Html.LabelFor(m => m.Email)
                 @Html.TextBoxFor(m => m.Email)
                 @Html.ValidationMessageFor(m => m.Email)
-            </li>
-        </ol>
+            </div>
+        </div><br/>
+
         @Html.HiddenFor(m => m.ExternalLoginData)
-        <input type="submit" value="Register" />
-    </fieldset>
+        <input type="submit" id="regExt" value="Зарегистрироваться" /><br/>
+    </div>
 }
 
 @section Scripts {

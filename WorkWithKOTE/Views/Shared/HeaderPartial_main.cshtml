@@ -58,6 +58,11 @@
                 {
                     <span id="user_name">Вход в личный кабинет </span>
                       <div id="block_enter" class="hidden">
+
+                         <div id="blockExt">
+                             @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+                         </div>
+
                          @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, @id = "signForm" }))
                          {
                               @Html.AntiForgeryToken();
@@ -100,12 +105,11 @@
 </div>
 </header>
 
-
-
-
 <script>
     $(function ()
     {
+        $('#blockExt button').css({ 'width': '40.5%', 'display': 'inline' }).text('Войти');
+        $('#blockExt button:first').css('margin-left', '20px');
 
         if ($('#bar').width() <= 800)
         {
