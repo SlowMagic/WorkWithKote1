@@ -259,6 +259,7 @@
     <Content Include="Content\img\t-train.png" />
     <Content Include="Content\img\top-bg.jpg" />
     <Content Include="Content\img\top-shadow.png" />
+    <Content Include="Content\img\triangle.png" />
     <Content Include="Content\img\twitter.png" />
     <Content Include="Content\img\user-black.png" />
     <Content Include="Content\img\user.png" />

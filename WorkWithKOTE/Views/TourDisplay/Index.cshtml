@@ -96,7 +96,7 @@
     #headerBtn{
         width : 10%;
         color:white !important;
-        border-radius : 4px;
+        border-radius : 2px;
         background : #00C853;
         display : inline;
         padding : 2px;
@@ -113,6 +113,13 @@
     #smallTable{
         display:none;
     }
+
+    .rotate{
+       -webkit-transform: rotate(180deg);
+       -moz-transform: rotate(180deg);
+       -ms-transform: rotate(180deg);
+       -o-transform: rotate(180deg);
+     }
 
 </style>
 @{ Html.RenderPartial("HeaderPartial_main");}
@@ -253,6 +260,7 @@
 
             <div id="dop" style="margin-top : 15px;">
                 <span id="yslyga" title="Просмотреть услуги" style="text-decoration:underline;cursor:pointer;" class="orangan">Дополнительные услуги</span>
+                <img id="triangle" style="display: inline;cursor:pointer;" src="~/Content/img/triangle.png" />
               
                 <div style="display : inline-table;">
                   <ul id="dop_ul" style="display : none;list-style : none;">
@@ -376,12 +384,13 @@
 <script>
     $(function () {
 
-        $('#yslyga').click(function () {
+        $('#yslyga,#triangle').click(function () {
             $('#dop_ul').slideToggle(350);
+            $('#triangle').toggleClass('rotate');
         });
 
         if (!$('#headerBonus').length) {
-            $('header').append('<div id="headerBonus" style="width:100%;height:22px;background:rgb(245, 245, 240);display:none">' +
+            $('header').append('<div id="headerBonus" style="width:100%;padding-top:6px;height:30px;background:rgb(245, 245, 240);display:none">' +
                                   '<div id="bonusBlock1" style="margin-top:4px;width:30%;display:inline;"> Дата <span id="dataData"> ' + $('.dataSelect').val() + '</span></div>' +
 
                                   '<div id="bonusBlock2" style="margin-top:4px;width:30%;display:inline;margin-left:30px;"> Цена <span style="color:#00C853" id="dataPrice"> ' + $('.new-price:first').text() + '</span></div>' +
