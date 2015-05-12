@@ -196,7 +196,7 @@
 </div>
 <div class="container">
     <div class="additional-nav">
-        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+        @if (User.IsInRole("Admin") == true || User.IsInRole("Moderator") == true)
         {
             <a href="@Url.Action("CreateNews", "News")">Создать&nbsp;новость&nbsp;</a>
             <a href="@Url.Action("TourCreate", "TourCreate")">Создать&nbsp;тур&nbsp;</a>
@@ -209,7 +209,7 @@
             <div id="user-profile" style="height: 110px">
                 <img style="margin-left:20px;" src="@Html.DisplayFor(m => m.Avatar)" class="tourist">
                 <p id="bbbonus">
-                    @if (User.IsInRole("Admin"))
+                    @if (User.IsInRole("Admin") == true)
                     {
                       <span id="admBonus">Бонусы:</span> 
                     }
@@ -218,7 +218,7 @@
                     }
                    
                     <span id="user-bonuses">@Html.DisplayFor(m => m.Bonus)</span>&nbsp;грн
-                    @if (User.IsInRole("Admin"))
+                    @if (User.IsInRole("Admin") == true)
                     {
                         using (Ajax.BeginForm("BonusForUser", "Admin", new AjaxOptions { UpdateTargetId = "user-bonuses" }))
                         {
@@ -249,7 +249,7 @@
             </div>
          </div>
 
-            @if (User.IsInRole("Admin"))
+            @if (User.IsInRole("Admin") == true)
             {
                 <a id="makeModer" class="profileBtn" href='@Url.Action("RolesForUser", "Admin", new {moder = Model.Email , id = Model.UserId})'>Назначить<br />модератором</a>
                 <a id="changeValut" class="profileBtn">Изменить<br />курс</a>
@@ -286,7 +286,10 @@
     </div>
     <div id="TripTable">
         @{Html.RenderAction("UsersTour", new { id = Model.UserId });}
-        @{Html.RenderAction("Cursed", "Admin");}
+        @if (User.IsInRole("Admin"))
+        {
+            Html.RenderAction("Cursed", "Admin");
+        }
     </div>
 
     @using (Ajax.BeginForm("Payment", "Buy", new AjaxOptions { UpdateTargetId = "TripTable" }))

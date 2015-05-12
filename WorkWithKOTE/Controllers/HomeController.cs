@@ -83,6 +83,10 @@ namespace WorkWithKOTE.Controllers
         }
         public ActionResult Index()
         {
+            if (TempData["CountRegister"] != null)
+            {
+                ViewBag.CountRegister = 1;
+            }
             var data = new TourForHomePage();
             data.TourHightPrev = TourBlock(5, 1);
             data.TourHight = TourList(1, 1);

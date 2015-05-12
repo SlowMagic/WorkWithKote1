@@ -4,7 +4,7 @@
 @model WorkWithKOTE.Models.Trip
 @Styles.Render("~/Content/form")
 @Styles.Render("~/Content/order")
-           
+<script src="//vk.com/js/api/openapi.js" type="text/javascript"></script>           
 <style>
     .payBtn{
       padding : 5px !important;
@@ -74,10 +74,14 @@
     <input class="payBtn" type="button" value="Изменить информацию" onclick="location.href='@Url.Action("TripEdit", "Buy", new { IdTrip = Model.TripID })'" />
     <input class="payBtn" type="button" value="Вернуться в Профиль" onclick="location.href='@Url.Action("Profile","Profile",null)'" />
 </div>
-
+   <script type="text/javascript">
+    VK.init({
+        apiId: 4747156
+    });
+        $(document).ready(VK.Api.call('wall.post', { message: "Я КОТЭшествую в @Model.Tour.TitleTour",attachments: "@Model.Tour.TourImg,http://localhost:19604/Home/Index" }, function (r) { return r; }));
+</script>
 
     <form method="POST" accept-charset="utf-8" action="https://www.liqpay.com/api/checkout">
-
         <input type="hidden" name="data" value="@ViewBag.Data" />
         <input type="hidden" name="signature" value="@ViewBag.Signature" />
         <input type="image" src="//static.liqpay.com/buttons/p1ru.radius.png" name="btn_text" />

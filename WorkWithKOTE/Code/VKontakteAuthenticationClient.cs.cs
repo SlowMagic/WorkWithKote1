@@ -74,6 +74,7 @@ namespace WorkWithKOTE.Code
                 AccessTyken.Add("1", accessToken.access_token);
                 var usersData = VKontakteAuthenticationClient.DeserializeJson<UsersData>(response);
                 var userData = usersData.response.First();
+                AccessTyken.Add("2", userData.photo_50);
                 return new AuthenticationResult(
                     true, (this as IAuthenticationClient).ProviderName, accessToken.user_id,
                     userData.first_name + " " + userData.last_name,

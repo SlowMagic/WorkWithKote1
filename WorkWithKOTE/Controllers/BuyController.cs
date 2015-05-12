@@ -212,7 +212,7 @@ namespace WorkWithKOTE.Controllers
             ViewBag.Data = dataStr;
             ViewBag.Signature = System.Convert.ToBase64String(hash);
 
-            return View(db.Trip.Where(m => m.TripID == id).Include(m => m.DateTour).Include(m => m.SelectedDopUslug).Single());
+            return View(db.Trip.Where(m => m.TripID == id).Include(m => m.DateTour).Include(m => m.SelectedDopUslug).Include(m=>m.Tour).Single());
         }
         [HttpPost]
         public ActionResult ValidatePay(string data, string signature)

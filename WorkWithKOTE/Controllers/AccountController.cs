@@ -27,7 +27,7 @@ namespace WorkWithKOTE.Controllers
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
-      //  [ValidateAntiForgeryToken]
+        //  [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
             if (ModelState.IsValid && WebSecurity.Login(model.Email, model.Password, persistCookie: model.RememberMe))
@@ -43,8 +43,8 @@ namespace WorkWithKOTE.Controllers
         //
         // POST: /Account/LogOff
 
-       // [HttpPost]
-       // [ValidateAntiForgeryToken]
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             WebSecurity.Logout();
@@ -82,6 +82,7 @@ namespace WorkWithKOTE.Controllers
                     user.Bonus = 200;
                     db.Entry(user).State = EntityState.Modified;
                     db.SaveChanges();
+                    TempData["CountRegister"] = 1;
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
@@ -218,15 +219,29 @@ namespace WorkWithKOTE.Controllers
         [AllowAnonymous]
         public ActionResult ExternalLoginCallback(string returnUrl)
         {
-            AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+           // AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+            AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication();
             string k = null;
+            string Photo = null ;
             if (!result.IsSuccessful)
             {
                 return RedirectToAction("ExternalLoginFailure");
             }
             foreach (var item in result.ExtraData)
             {
-                 k = item.Value;
+
+                if (item.Key == "1") { k = item.Value; }
+                if (item.Key == "2")
+                {
+                    Photo = item.Value;
+                }
+            }
+            if(Photo == null){
+                TempData["Photos"] = "no item";
+            }
+            else
+            {
+                TempData["Photos"] = Photo;
             }
             if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
             {
@@ -274,13 +289,18 @@ namespace WorkWithKOTE.Controllers
                     if (user == null)
                     {
                         // Insert name into the profile table
-                        db.UserProfiles.Add(new UserProfile { Email = model.Email });
+                        if(TempData["Photos"].ToString() != "no item")
+                        {
+                            db.UserProfiles.Add(new UserProfile { Email = model.Email, Bonus = 200, Avatar = TempData["Photos"].ToString() });
+                        }
+                        else
+                        db.UserProfiles.Add(new UserProfile { Email = model.Email, Bonus = 200});
                         db.SaveChanges();
 
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.Email);
                         OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
-
-                        return RedirectToLocal(returnUrl);
+                        TempData["CountRegister"] = 1;
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {

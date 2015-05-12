@@ -29,7 +29,7 @@ namespace WorkWithKOTE.Controllers
         {
             if (id != null)
             {
-                if (User.IsInRole("Admin"))
+                if (User.IsInRole("Admin") == true)
                 {
                     UserProfile user = db.UserProfiles.Include(m => m.VisitedTours).First(m => m.UserId == id);
                     ViewBag.UserRole = Roles.GetRolesForUser(user.Email);
