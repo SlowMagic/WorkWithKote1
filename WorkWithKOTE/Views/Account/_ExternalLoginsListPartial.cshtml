@@ -38,10 +38,10 @@ else
         @Html.AntiForgeryToken()
         <fieldset id="socialLoginList">
             <p>
-                @foreach (AuthenticationClientData p in Model)
-{
-    <button id="@p.AuthenticationClient.ProviderName" value="@p.AuthenticationClient.ProviderName" type="submit" name="provider" title="Войдите, используя свою учетную запись @p.DisplayName">Войти через @p.DisplayName</button>
-}
+              @foreach (AuthenticationClientData p in Model)
+              {
+                 <button class="@p.AuthenticationClient.ProviderName" value="@p.AuthenticationClient.ProviderName" type="submit" name="provider" title="Войдите, используя свою учетную запись @p.DisplayName">Войти через @p.DisplayName</button>
+              }
             </p>
         </fieldset>
     </form>
