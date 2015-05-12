@@ -58,9 +58,8 @@
                 {
                     <span id="user_name">Вход в личный кабинет </span>
                       <div id="block_enter" class="hidden">
-
                          <div id="blockExt">
-                             @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+                             @Html.Action("ExternalLoginsList","Account", new { ReturnUrl = ViewBag.ReturnUrl })
                          </div>
 
                          @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, @id = "signForm" }))

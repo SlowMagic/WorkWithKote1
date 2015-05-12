@@ -15,6 +15,7 @@ namespace WorkWithKOTE.Models
         {
         }
         public DbSet<BigLogo> BigLogos { get; set; }
+        public DbSet<Bonuses> Bonuses { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Trip> Trip { get; set; }
         public DbSet<Tour> Tour { get; set; }

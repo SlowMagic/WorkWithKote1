@@ -291,4 +291,13 @@ namespace WorkWithKOTE.Models
         public decimal Evro { get; set; }
 
     }
+    public class Bonuses
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int BonusesID { get; set; }
+        public decimal BonusesForRegistration { get; set; }
+        public decimal BonusesForReposted { get; set; }
+        public decimal BonusesForBirthday { get; set; }
+    }
 }

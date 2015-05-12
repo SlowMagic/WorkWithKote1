@@ -67,5 +67,15 @@ namespace WorkWithKOTE.Filters
               db.SaveChanges();
           }
       }
+      public static void Bonuses()
+      {
+          UsersContext db = new UsersContext();
+          var bonuses = db.Bonuses.ToList();
+          if (bonuses.Count == 0)
+          {
+              db.Bonuses.Add(new Bonuses { BonusesForRegistration = 200, BonusesForReposted = 50, BonusesForBirthday = 200 });
+              db.SaveChanges();
+          }
+      }
     }
 }

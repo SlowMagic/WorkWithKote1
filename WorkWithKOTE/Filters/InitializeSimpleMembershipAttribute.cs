@@ -42,6 +42,7 @@ namespace WorkWithKOTE.Filters
                           DefaultValueForTour.DefaultValueForBigLogo();
                           DefaultValueForTour.Anonimus();
                           DefaultValueForTour.Curenci();
+                          DefaultValueForTour.Bonuses();
                            // Database.SetInitializer<UsersContext>(new TourInitialization());
                             
                         }

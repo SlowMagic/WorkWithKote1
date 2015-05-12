@@ -125,7 +125,7 @@
 @{ Html.RenderPartial("HeaderPartial_main");}
 
 <div class="primaryContainer clearfix">
-   
+    <div id="fb-root"></div>
     <div id="big-preview-img" class="clearfix" style="background: url('@Html.DisplayFor(m => m.TourImg)') no-repeat center 100%; background-size: 100% 850px;">
         <div class="tour-name">@Html.DisplayFor(m => m.NameTour)</div>
     </div>
@@ -318,7 +318,8 @@
                     <h4>Сопровождающий</h4>
                     <img src="@Html.DisplayFor(m => m.SuppFoto)" class="img-photo guide-photo">
 
-                    <div class="person-name"><a href="@Html.DisplayFor(m => m.SuppVkontakte)">@Html.DisplayFor(m => m.SuppName)</a>
+                    <div class="person-name">
+                        <a href="@Html.DisplayFor(m => m.SuppVkontakte)">@Html.DisplayFor(m => m.SuppName)</a>
                     </div>
                     <div class="about-person">
                         @Html.DisplayFor(m => m.SuppDiscription)
@@ -332,7 +333,7 @@
                             <p>Похожие туры:</p>
                             @foreach (SameTour item in Model.SameTour)
                             {
-                              <span class="similarT">@Html.ActionLink(item.SameTourName, "Index", "TourDisplay", new {id = item.SameTourID}, null)</span>
+                                <span class="similarT">@Html.ActionLink(item.SameTourName, "Index", "TourDisplay", new { id = item.SameTourID }, null)</span>
                             }
                         </div>
                     }
@@ -348,13 +349,14 @@
             <div class="full-description">
                 <h1>Программа тура:</h1>
                 @Html.Raw(Model.DescriptionTour)
-                @if (Model.Gallery != null) {
+                @if (Model.Gallery != null)
+                {
                     <div class="galleria">
                         @foreach (var item in Model.Gallery.Pics)
                         {
                             if (item.PicType == "Image")
                             {
-                                <img src="@Html.DisplayFor(m => item.PicLink)" data-title="@item.PicName" data-description="@item.PicDescription"/>
+                                <img src="@Html.DisplayFor(m => item.PicLink)" data-title="@item.PicName" data-description="@item.PicDescription" />
                             }
                             if (item.PicType == "Video")
                             {
@@ -363,9 +365,11 @@
                         }
                     </div>
                 }
-                    <h1 class="Map">Карта путешествия:</h1>
-                    @{Html.RenderAction("MapForDisplay", new {id = Model.TourId});}
+                <h1 class="Map">Карта путешествия:</h1>
+                @{Html.RenderAction("MapForDisplay", new { id = Model.TourId });}
             </div>
+            <div class="fb-like" data-href="http://kote.travel/TourDisplay/Index/@Model.TourId" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>
+        </div>         
         </div>
    </div> 
 </div> 
@@ -380,7 +384,15 @@
         Galleria.run('.galleria');
     }
 </script>
-
+<script >
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.3&appId=878101295595387";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
 <script>
     $(function () {
 

@@ -219,8 +219,8 @@ namespace WorkWithKOTE.Controllers
         [AllowAnonymous]
         public ActionResult ExternalLoginCallback(string returnUrl)
         {
-           // AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
-            AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication();
+            AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+            //AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication();
             string k = null;
             string Photo = null ;
             if (!result.IsSuccessful)

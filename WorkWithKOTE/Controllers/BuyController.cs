@@ -11,6 +11,8 @@ using WorkWithKOTE.Models;
 using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
+using DotNetOpenAuth.AspNet;
+using Microsoft.Web.WebPages.OAuth;
 namespace WorkWithKOTE.Controllers
 {
 
@@ -211,7 +213,8 @@ namespace WorkWithKOTE.Controllers
 
             ViewBag.Data = dataStr;
             ViewBag.Signature = System.Convert.ToBase64String(hash);
-
+            AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication();
+            ViewBag.UserIDI = result.ProviderUserId;
             return View(db.Trip.Where(m => m.TripID == id).Include(m => m.DateTour).Include(m => m.SelectedDopUslug).Include(m=>m.Tour).Single());
         }
         [HttpPost]
