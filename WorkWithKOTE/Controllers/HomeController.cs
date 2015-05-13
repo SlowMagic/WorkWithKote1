@@ -10,6 +10,7 @@ using WebMatrix.WebData;
 using WorkWithKOTE.Filters;
 using WorkWithKOTE.Models;
 using System.Data.Entity;
+using System.Data;
 namespace WorkWithKOTE.Controllers
 {
     public class HomeController : Controller
@@ -125,6 +126,27 @@ namespace WorkWithKOTE.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        public ActionResult Bonuses(int? RegestrationID ,int? TourRepostID, int? id )
+        {
+            int userID = WebSecurity.GetUserId(User.Identity.Name);
+            var bonus = db.Bonuses.Find(1);
+            var user = db.UserProfiles.Find(userID);
+            if (RegestrationID == 1)
+            {
+                user.Bonus += bonus.BonusesForRegistration;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Profile", "Profile");
+            }
+            if (TourRepostID == 1)
+            {
+                user.Bonus += bonus.BonusesForReposted;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Payment", "Buy", new  { id = id });
+            }
+            return RedirectToAction("Profile", "Profile");
         }
     }
 }

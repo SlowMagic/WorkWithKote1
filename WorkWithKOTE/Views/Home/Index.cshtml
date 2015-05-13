@@ -25,55 +25,53 @@
         padding-right: 5px;
     }
 
-    .smallTitle{
-        font-size : 22px !important;
+    .smallTitle {
+        font-size: 22px !important;
     }
 
     .groupLinks {
-        font-size : 20px;
-        margin-top : 18px;
+        font-size: 20px;
+        margin-top: 18px;
     }
 
-    .groupLinks a{
-        margin : 3px;
+        .groupLinks a {
+            margin: 3px;
+        }
+
+    .allTours, .allToursClone {
+        background: #ff6f40;
+        border: 1px solid #ff6f40;
+        border-radius: 4px;
+        padding: 7px;
+        color: white !important;
     }
 
-    .allTours,.allToursClone{
-      background : #ff6f40;
-      border: 1px solid #ff6f40;
-      border-radius: 4px;
-      padding: 7px;
-      color : white !important;
-      
+    .allToursClone {
+        display: none;
     }
 
-    .allToursClone{
-        display : none;
-    }
-
-    .titleHref{
+    .titleHref {
         margin-top: 10px;
         margin-left: 15px;
     }
 
-    .price{
+    .price {
         margin-left: 15px;
-        margin-top : 5px;
+        margin-top: 5px;
     }
 
-    .tour.clearfix:hover{
-        transition : 0.1s;
+    .tour.clearfix:hover {
+        transition: 0.1s;
         box-shadow: #ccc 1px 0px 8px 2px;
     }
 
-     .tour.clearfix{
-        transition : 0.3s;
+    .tour.clearfix {
+        transition: 0.3s;
     }
 
-     #confirmTour,#anotherTour{
-         min-width : 85px;
-     }
-
+    #confirmTour, #anotherTour {
+        min-width: 85px;
+    }
 </style>
 
 <div id="big-preview-img" class="clearfix">
@@ -102,12 +100,12 @@
         </div>
     </div>
 
-   <!-- <div class="scroll clearfix">
-        <p class="scroll-text">
-            Скроль<br />вниз
-        </p>
-    </div>
-         -->
+    <!-- <div class="scroll clearfix">
+         <p class="scroll-text">
+             Скроль<br />вниз
+         </p>
+     </div>
+          -->
 </div>
 
 @{Html.RenderAction("NewsBlock");}
@@ -125,7 +123,7 @@
         <p class="consultLinks">
             Используйте сервис
             @Html.ActionLink("поиска", "Search", "TourSearch", null, new { @class = "link-btn" })
-           <span id="tourSearch_text">для подбора тура</span>
+            <span id="tourSearch_text">для подбора тура</span>
         </p>
     </div>
 </div>
@@ -144,7 +142,7 @@
                     </a>
                     <div class="titleHref">
                         <a href="@Url.Action("Index", "TourDisplay", new {id=Model.TourHightPrev.TourId })" class="tourTitle">
-                           @Html.DisplayFor(item => item.TourHightPrev.NameTour)
+                            @Html.DisplayFor(item => item.TourHightPrev.NameTour)
                         </a>
                     </div>
                 </div>
@@ -173,13 +171,13 @@
                         {
                             <img style="width: 20px; display: inline;" src="/Content/img/t-plane.png" title="На самолёте">
                         }
-                             @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourHightPrev.TourId }); }
-                             @Html.DisplayFor(item => item.TourHightPrev.PlaceOfDeparture)
-                                 <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
-                             @Html.DisplayFor(item => item.TourHightPrev.PlaceOfArrival)
-                    </p>    
+                        @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourHightPrev.TourId }); }
+                        @Html.DisplayFor(item => item.TourHightPrev.PlaceOfDeparture)
+                        <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                        @Html.DisplayFor(item => item.TourHightPrev.PlaceOfArrival)
+                    </p>
                 </div>
-                <div class="tourPrice">    
+                <div class="tourPrice">
                     <div class="smallDescription">
                         Актуальная стоимость тура формируется в&nbsp;корзине услуг после
                         нажатия &#x27;Купить&#x27;.
@@ -193,20 +191,21 @@
         @{int counter = 0;}
         @foreach (var item in Model.TourHight)
         {
-            if (counter > 1){
+            if (counter > 1)
+            {
                 break;
             }
             counter++;
             <div class="tour clearfix">
                 <div class="tourName">
                     <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})"><img src="@Html.DisplayFor(m => item.TourImg)" class="groupSubPreview image"></a>
-                      <div class="titleHref">
-                          <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})" class="tourTitle">@Html.DisplayFor(m => item.NameTour)</a>
-                      </div>
-                </div>   
+                    <div class="titleHref">
+                        <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})" class="tourTitle">@Html.DisplayFor(m => item.NameTour)</a>
+                    </div>
+                </div>
                 <div class="price">
                     От&nbsp;<span class="boldPrice">@Html.DisplayFor(m => item.Cost)</span>
-                      &nbsp;@Html.DisplayFor(m => item.Valuta)
+                    &nbsp;@Html.DisplayFor(m => item.Valuta)
                 </div>
                 <div class="tourInfo">
                     <p class="tourDescription">
@@ -229,23 +228,24 @@
                         }
                         @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }
                         @Html.DisplayFor(m => item.PlaceOfDeparture)
-                            <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                        <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
                         @Html.DisplayFor(m => item.PlaceOfArrival)
                     </p>
                 </div>
-            </div>     
+            </div>
         }
-        @if(counter > 0){
-           <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>   
-        }    
+        @if (counter > 0)
+        {
+            <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
+        }
     </div>
 </div>
 
 <div class="groups-bg clearfix">
     <p class="consultLinks">
-        <span class="subscribe-title">Подпишитесь на нашу рассылку<br /></span><br/>
+        <span class="subscribe-title">Подпишитесь на нашу рассылку<br /></span><br />
         будьте в курсе интересных предложений и горящих туров
-     
+
     </p>
     <form class="mailform">
         <div class="mailsender">
@@ -302,22 +302,23 @@
                     </p>
                 </div>
                 <div class="tourPrice">
-                        <div class="smallDescription">
-                            Актуальная стоимость тура формируется в&nbsp;корзине услуг
+                    <div class="smallDescription">
+                        Актуальная стоимость тура формируется в&nbsp;корзине услуг
 
-                            после нажатия &#x27;Купить&#x27;.
-                        </div>
+                        после нажатия &#x27;Купить&#x27;.
+                    </div>
                 </div>
             </div>
             <a class="allTours" href="@Url.Action("Search", "TourSearch")">Все туры</a>
         </div>
     }
-    
+
     <div class="subTours">
         @{int counter1 = 0;}
         @foreach (var item in Model.TourCenter)
         {
-            if (counter1 > 1){
+            if (counter1 > 1)
+            {
                 break;
             }
             counter1++;
@@ -326,7 +327,7 @@
                     <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})"><img src="@Html.DisplayFor(m => item.TourImg)" class="groupSubPreview image"></a>
                     <div class="titleHref">
                         <a href="@Url.Action( "Index","TourDisplay", new {id=item.TourId})" class="tourTitle">
-                           @Html.DisplayFor(m => item.NameTour)
+                            @Html.DisplayFor(m => item.NameTour)
                         </a>
                     </div>
                 </div>
@@ -355,15 +356,16 @@
                         }
                         @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }
                         @Html.DisplayFor(m => item.PlaceOfDeparture)
-                           <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                        <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
                         @Html.DisplayFor(m => item.PlaceOfArrival)
                     </p>
                 </div>
             </div>
         }
-        @if(counter1 > 0){
-          <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
-        } 
+        @if (counter1 > 0)
+        {
+            <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
+        }
     </div>
 </div>
 
@@ -383,11 +385,11 @@
                     <a href="@Url.Action("Index", "TourDisplay", new { id = Model.TourDownPrev.TourId })">
                         <img src="@Html.DisplayFor(item => item.TourDownPrev.TourImg)" class="groupMainPreview image">
                     </a>
-                     <div class="titleHref">
-                         <a href="@Url.Action("Index", "TourDisplay", new { id = Model.TourDownPrev.TourId })" class="tourTitle">
-                             @Html.DisplayFor(item => item.TourDownPrev.NameTour)
-                         </a>
-                     </div>
+                    <div class="titleHref">
+                        <a href="@Url.Action("Index", "TourDisplay", new { id = Model.TourDownPrev.TourId })" class="tourTitle">
+                            @Html.DisplayFor(item => item.TourDownPrev.NameTour)
+                        </a>
+                    </div>
                 </div>
                 <div class="price">
                     От
@@ -415,14 +417,14 @@
                         }
                         @{ Html.RenderAction("DateForCurrentTour", new { id = Model.TourDownPrev.TourId }); }
                         @Html.DisplayFor(item => item.TourDownPrev.PlaceOfDeparture)
-                             <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                        <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
                         @Html.DisplayFor(item => item.TourDownPrev.PlaceOfArrival)
                     </p>
                 </div>
                 <div class="tourPrice">
                     <div class="smallDescription">
-                          Актуальная стоимость тура формируется в&nbsp;корзине услуг
-                          после нажатия &#x27;Купить&#x27;.
+                        Актуальная стоимость тура формируется в&nbsp;корзине услуг
+                        после нажатия &#x27;Купить&#x27;.
                     </div>
                 </div>
             </div>
@@ -434,7 +436,8 @@
         @{int counter2 = 0;}
         @foreach (var item in Model.TourDown)
         {
-            if (counter2 > 1){
+            if (counter2 > 1)
+            {
                 break;
             }
             counter2++;
@@ -468,7 +471,7 @@
                         }
                         @{ Html.RenderAction("DateForCurrentTour", new { id = item.TourId }); }
                         @Html.DisplayFor(m => item.PlaceOfDeparture)
-                           <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                        <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
                         @Html.DisplayFor(m => item.PlaceOfArrival)
                     </p>
                 </div>
@@ -479,14 +482,13 @@
                 </div>
             </div>
         }
-        @if(counter2 > 0){
-          <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
-        } 
+        @if (counter2 > 0)
+        {
+            <a class="allToursClone" href="@Url.Action("Search", "TourSearch")">Все туры</a>
+        }
     </div>
 </div>
- <div>
-    <input type="button" id="share_button" value="Share" />
-</div>
+ч
 <div id="media-bg" class="clearfix">
     <p class="consultLinks">
         <span class="subscribe-title"><a style="text-decoration:underline;" href="@Url.Action("GalleryList","Gallery")">Галерея</a><br /></span>фото, видео. Cамые красивые места в мире
@@ -498,27 +500,27 @@
                 <iframe width="100%" height="300px" src="https://www.youtube.com/embed/bhjUXNy1PiE" frameborder="0"
                         allowfullscreen></iframe>
             </div>
-<!--
-            <div id="video-title" class="clearfix">
-                @*                <p id="video-title-date">27.04.2015</p>*@
+            <!--
+                        <div id="video-title" class="clearfix">
+                            @*                <p id="video-title-date">27.04.2015</p>*@
 
-                <p id="video-title-name">Автобус для КОТЭшествий</p>
-            </div>
+                            <p id="video-title-name">Автобус для КОТЭшествий</p>
+                        </div>
 
-            <div id="subscribe">
-                <div class="align_center_to_left">
-                    <div class="align_center_to_right">
-                        <dl id="sub-nav">
-                            <dt>Следите за нами&#x3a;</dt>
-                            <dd><img id="youtube-ico" src="~/Content/img/youtube-ico.png" /></dd>
-                            <dt>14&nbsp;579</dt>
-                            <dd><img id="instagram-ico" src="~/Content/img/instagram-ico.png" /></dd>
-                            <dt>6&nbsp;945</dt>
-                        </dl>
-                    </div>
-                </div>
-            </div>
--->
+                        <div id="subscribe">
+                            <div class="align_center_to_left">
+                                <div class="align_center_to_right">
+                                    <dl id="sub-nav">
+                                        <dt>Следите за нами&#x3a;</dt>
+                                        <dd><img id="youtube-ico" src="~/Content/img/youtube-ico.png" /></dd>
+                                        <dt>14&nbsp;579</dt>
+                                        <dd><img id="instagram-ico" src="~/Content/img/instagram-ico.png" /></dd>
+                                        <dt>6&nbsp;945</dt>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+            -->
         </div>
 
         <div id="box22">
@@ -531,15 +533,17 @@
                     <div class="galleria">
                         @foreach (var pics in item.Pics)
                         {
-                            if (pics.PicType == "Image"){
+                            if (pics.PicType == "Image")
+                            {
                                 <img src="@Html.DisplayFor(m => pics.PicLink)" data-title="@pics.PicName" data-description="@pics.PicDescription" />
                             }
-                            if (pics.PicType == "Video"){
+                            if (pics.PicType == "Video")
+                            {
                                 <a href="@Html.DisplayFor(m => pics.PicLink)"><img src="/Content/img/play-btn.jpg" data-title="@pics.PicName" data-description="@pics.PicDescription"></a>
                             }
                         }
                     </div>
-                    countergal++;
+                        countergal++;
                 }
             }
         </div>
@@ -550,9 +554,16 @@
         apiId: 4747156
     });
     var counter = parseInt('@ViewBag.CountRegister');
-    if (counter == 1) {
-        $(document).ready(VK.Api.call('wall.post', { message: "Теперь я тоже КОТЭшествую с тур клубом КОТЭ ",attachments: "http://localhost:19604/Home/Index" }, function (r) { return r; }));
-    }
+    @*if (counter == 1) {*@
+    function postapi() {
+        VK.Api.call('wall.post', { message: "Теперь я тоже КОТЭшествую с тур клубом КОТЭ ", attachments: "photo-30598666_365322387,http://localhost:19604/Home/Index" },
+        function (r) {
+            if (r.response) {
+                window.location.href = '@Url.Action("Bonuses", "Home", new { RegestrationID = 1})'
+            }
+
+        })
+    };
 </script>
 <script type="text/javascript">
     window.fbAsyncInit = function () {
@@ -569,21 +580,27 @@
     }());
 </script>
 <script type="text/javascript">
-    @*var img = 'http://kote.travel/Content/img/parked.jpg';*@
+    var img = 'http://kote.travel//Content/img/parked.jpg';
     var TourLink = 'http://localhost:19604/Home/Index/';
     $(document).ready(function () {
         $('#share_button').click(function (e) {
             e.preventDefault();
             FB.ui(
 {
-     method: 'feed',
+    method: 'feed',
     name: 'КОТЭшествуй',
-    link:  TourLink,
-    picture: 'http://kote.travel/UpLoad/TourImg/cab5ca1b-ef57-4566-8cbe-51e0893df6e7.jpg',
+    link: TourLink,
+    picture: img,
     caption: 'Только интересныйе Туры! КОТЭшествуй с нами',
     description: 'Теперь я тоже КОТЭшествую с тур клубом КОТЭ',
     message: 'Присоединяйтесь!'
-});
+},
+            function(response) {
+                if (response && response.post_id) {
+                    window.location.href='@Url.Action("Bonuses", "Home", new { RegestrationID = 1})'
+                } 
+            }
+);
         });
     });
 </script>
@@ -600,8 +617,7 @@
 </script>
 
 <script>
-    $(function ()
-    {
+    $(function () {
         var index = 0;
         var confirmHref = $('#confirmTour').attr('href');
 
@@ -628,10 +644,8 @@
             $('#anotherTour').click(function (event) {
                 event.preventDefault();
 
-                $('#big-preview-img').fadeTo(800, 0, function ()
-                {
-                    if (index <= $('#switchTour li').length - 1)
-                    {
+                $('#big-preview-img').fadeTo(800, 0, function () {
+                    if (index <= $('#switchTour li').length - 1) {
                         $('.buttons.clearfix,#wishletter').css('display', 'inherit');
                         $('#confirmTour').attr('href', '');
                         $('#big-preview-img').css('background', 'url(' + $('#switchTour li').eq(index).attr('data-src') + ') no-repeat 50% 100% ');
@@ -657,9 +671,8 @@
 
 <script>
 
-    function MobileVersion()
-    {
-        
+    function MobileVersion() {
+
         if ($('#bar').width() <= 700) {
             $('#box21,#box22').hide();
         }
@@ -687,7 +700,7 @@
             $('#wishletter').css('margin-top', '-150px');
             $('#other').text('что - то другое');
         }
-        
+
         if ($('#bar').width() <= 900) {
             $('.mainTours,.subTours').css({ 'display': 'block', 'width': '100%', 'float': 'none', 'margin-left': '0px' });
             $('.subTours:first').css('margin-top', '30px');

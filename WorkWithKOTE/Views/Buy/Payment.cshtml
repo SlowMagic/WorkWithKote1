@@ -74,44 +74,24 @@
     <div id="fb-root">
     </div>
     <div>
-        <input type="button" id="share_button" value="Share" />
+        <input type="button" id="share_button" value="Share" /><br />
+        <input type="button" value="VKshare" onclick="postapi()" id="share_VK" />
     </div>
     <input class="payBtn" type="button" value="Изменить информацию" onclick="location.href='@Url.Action("TripEdit", "Buy", new { IdTrip = Model.TripID })'" />
     <input class="payBtn" type="button" value="Вернуться в Профиль" onclick="location.href='@Url.Action("Profile","Profile",null)'" />
 </div>
-
-@*<script language="javascript">
-        VK.Api.call('photos.getWallUploadServer', {
-            uid : parseInt('@ViewBag.UserIDI')
-        },function (answer) {
-            up_url = answer.response.upload_url; // получаем upload_url, куда загружать фото
-            $.post(up_url, // загружаем
-            {
-                photo : @Model.Tour.TourImg
-
-                },function (request) { // параметры для сохранения
-
-                    request.uid = uid_того_кому_отправляешь;
-
-                    VK.Api.call('photos.saveWallPhoto',{ // сохраняем
-                        request// передаем параметры полученные от post + uid_того_кому_отправляешь
-                        }, function (result) { // данные о сохраненном фото
-                            VK.Api.call('wall.post', { // постим на стену
-
-                                owner_id : result.owner_id,
-                                attachments : '<photo><' + result.owner_id + '>_<' + result.id + '>',
-                                message : 'фото для тебя '
-                            });
-                        });
-                });
-        });
-
-    </script>*@
 <script type="text/javascript">
     VK.init({
         apiId: 4747156
     });
-    $(document).ready(VK.Api.call('wall.post', { message: "Я КОТЭшествую в @Model.Tour.NameTour. Присоиденяйтесь!! Со мной уже едут  @Model.Tour.People человек ", attachments: "http://localhost:19604/Home/Index" }, function (r) { return r; }));
+    function postapi() {
+        VK.Api.call('wall.post', { message: "Я КОТЭшествую в @Model.Tour.NameTour. Присоиденяйтесь!! Со мной уже едут  @Model.Tour.People человек ", attachments: "http://localhost:19604/Home/Index" },
+        function (r) {
+            if (r.response) {
+                window.location.href = '@Url.Action("Bonuses", "Home", new { TourRepostID = 1, id = Model.TripID })'
+            }
+        })
+    };
 </script>
 <script type="text/javascript">
     window.fbAsyncInit = function () {
@@ -135,14 +115,19 @@
             e.preventDefault();
             FB.ui(
 {
-     method: 'feed',
+    method: 'feed',
     name: 'КОТЭшествуй',
-    link:  TourLink,
-    picture: 'http://kote.travel/UpLoad/TourImg/cab5ca1b-ef57-4566-8cbe-51e0893df6e7.jpg',
+    link: TourLink,
+    picture: 'http://kote.travel//UpLoad/TourImg/cab5ca1b-ef57-4566-8cbe-51e0893df6e7.jpg',
     caption: 'Только интересныйе Туры! КОТЭшествуй с нами',
     description: 'Я КОТЭшествую в @Model.Tour.NameTour. Присоиденяйтесь!! Со мной уже едут  @Model.Tour.People человек',
     message: 'Присоединяйтесь!'
-});
+},
+  function (response) {
+      if (response && response.post_id) {
+          window.location.href = '@Url.Action("Bonuses", "Home", new { TourRepostID = 1 , id = Model.TripID })'
+      }
+  });
         });
     });
 </script>
