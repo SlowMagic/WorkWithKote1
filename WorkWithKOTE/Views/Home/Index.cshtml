@@ -6,7 +6,13 @@
 @Styles.Render("~/Content/page")
 
 @{ Html.RenderPartial("HeaderPartial_main");}
+
 <script src="//vk.com/js/api/openapi.js" type="text/javascript"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+
 <style>
     .galleria {
         float: left;
@@ -72,6 +78,38 @@
     #confirmTour, #anotherTour {
         min-width: 85px;
     }
+
+      .VkontakteDialog{
+       border-radius: 4px;
+       margin-top : 5px;
+       height: 33.5px;
+       font-size: 14px;
+       background : #6383a8 no-repeat;
+       background-image : url("/Content/img/vk.png");     
+       color : white;
+       width : 150px;
+       text-align : right;
+        display:inline-block;
+       border : 1px solid #6383a8;
+    }
+
+    .facebookDialog{
+       margin-top: 5px;
+       border-radius: 4px;
+       height: 33.5px;
+       font-size: 14px;
+       background : #6383a8 no-repeat;
+       background-image : url("/Content/img/facebook.png");     
+       color : white;
+       width : 150px;
+       text-align : right;
+       display:inline-block;
+       border : 1px solid #6383a8;    
+    }
+
+    .ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-draggable.ui-resizable{
+        width: 353px !important;
+    }
 </style>
 
 <div id="big-preview-img" class="clearfix">
@@ -126,6 +164,12 @@
             <span id="tourSearch_text">для подбора тура</span>
         </p>
     </div>
+</div>
+
+<div data-check="@ViewBag.CountRegister" id="shareBlock" style="display:none;">
+    <span>Расскажите о нас и получите бонусные баллы на свой счёт!</span>
+    <input type="button" id="share_button" class="facebookDilaog" value="Поделиться" />
+    <input type="button" class="VkontakteDialog" value="Поделиться" onclick="postapi()" id="share_VK" />
 </div>
 
 <div class="tourGroup clearfix">
@@ -754,5 +798,15 @@
         $(window).resize(function () {
             MobileVersion();
         });
+    });
+</script>
+
+<script>
+    $(function () {
+        if ($("#shareBlock").attr('data-check') == '1') {
+            $("#shareBlock").dialog({
+                title: "Рассказать о KOTЕ"
+            });
+        }
     });
 </script>
