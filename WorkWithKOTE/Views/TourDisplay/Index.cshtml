@@ -8,119 +8,120 @@
     .galleria {
         width: 90%;
         height: 400px;
-        margin-bottom: 15px;margin-top: 15px;
+        margin-bottom: 15px;
+        margin-top: 15px;
         background: #000;
     }
 
-    .ulClass{
-        display : inline-table;
+    .ulClass {
+        display: inline-table;
     }
 
-    .container{
-        margin-left : 21.2%;
+    .container {
+        margin-left: 21.2%;
         width: 77%;
         min-width: 77%;
-        margin-top : -2px;
+        margin-top: -2px;
     }
 
-    .upperText{
-        color : gray;
-        font-size : 18px;
-        margin-bottom : 10px;
+    .upperText {
+        color: gray;
+        font-size: 18px;
+        margin-bottom: 10px;
     }
 
-    .telephone{
-        font-weight : 800;
-    }
-    
-    .telephone:last-child{
-        margin-left : 20px;
+    .telephone {
+        font-weight: 800;
     }
 
-    .tour-destination{
-        text-align : center;
-        font-size : 17px;
+        .telephone:last-child {
+            margin-left: 20px;
+        }
+
+    .tour-destination {
+        text-align: center;
+        font-size: 17px;
     }
 
-    .orangan{
-        color : #ff6a00;
-        margin-left : 15px;
+    .orangan {
+        color: #ff6a00;
+        margin-left: 15px;
     }
 
-    .orange_li{
-        margin-bottom : 10px;
+    .orange_li {
+        margin-bottom: 10px;
     }
 
-   .orange_li:before {
-    content: "• ";
-    color: #ff6a00;
+        .orange_li:before {
+            content: "• ";
+            color: #ff6a00;
+        }
+
+    hr {
+        width: 94%;
+        margin: 0 auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
-    hr{
-      width: 94%;
-      margin: 0 auto;
-      margin-top: 10px;
-      margin-bottom: 10px;
+    .greenBtn {
+        width: 78%;
+        height: 40px;
+        color: white !important;
+        border-radius: 4px;
+        background: #00C853;
+        display: block;
+        padding: 9px;
+        font-size: 16px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
-    .greenBtn{
-        width : 78%;
-        height : 40px;
-        color:white !important;
-        border-radius : 4px;
-        background : #00C853;
-        display : block;
-        padding : 9px;
-        font-size : 16px;
-        margin-top : 10px;
-        margin-bottom : 10px;
+    .new-price {
+        color: #00C853;
     }
 
-    .new-price{
-        color : #00C853;
+    .adminBtn {
+        width: 78%;
+        height: 38px;
+        color: white !important;
+        border-radius: 4px;
+        background: #ff6a00;
+        display: block;
+        padding: 9px;
+        font-size: 16px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
-    .adminBtn{
-        width : 78%;
-        height : 38px;
-        color:white !important;
-        border-radius : 4px;
-        background : #ff6a00;
-        display : block;
-        padding : 9px;
-        font-size : 16px;
-        margin-top : 10px;
-        margin-bottom : 10px;
+    #headerBtn {
+        width: 10%;
+        color: white !important;
+        border-radius: 2px;
+        background: #00C853;
+        display: inline;
+        padding: 2px;
+        font-size: 14px;
     }
 
-    #headerBtn{
-        width : 10%;
-        color:white !important;
-        border-radius : 2px;
-        background : #00C853;
-        display : inline;
-        padding : 2px;
-        font-size : 14px;
+    td {
+        border: 1px solid #ccc;
     }
 
-    td{
-        border : 1px solid #ccc;
+    .description {
+        float: left;
     }
 
-    .description{
-        float:left;
-    }
-    #smallTable{
-        display:none;
+    #smallTable {
+        display: none;
     }
 
-    .rotate{
-       -webkit-transform: rotate(180deg);
-       -moz-transform: rotate(180deg);
-       -ms-transform: rotate(180deg);
-       -o-transform: rotate(180deg);
-     }
-
+    .rotate {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+    }
 </style>
 @{ Html.RenderPartial("HeaderPartial_main");}
 
@@ -142,7 +143,7 @@
                             <option data-data="@Model.DateTour[index].SecondDate.Subtract(Model.DateTour[index].FirstDate).Days" class="tour-date">
                                 @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
                             </option>
-                            index ++;
+                            index++;
                         }
                     </select>
                 </td>
@@ -156,9 +157,9 @@
                     @if (Model.AukcionPrice != null)
                     {
                         <div>
-                          <span style="font-size:20px;">от</span> <span class="old-price">@Model.Cost @Model.Valuta</span>
-                             <span class="new-price">@Model.AukcionPrice @Model.Valuta</span>
-                             <span>@Model.PodpicePrice</span>
+                            <span style="font-size:20px;">от</span> <span class="old-price">@Model.Cost @Model.Valuta</span>
+                            <span class="new-price">@Model.AukcionPrice @Model.Valuta</span>
+                            <span>@Model.PodpicePrice</span>
                         </div>
                     }
                     @if (Model.AukcionPrice == null)
@@ -233,13 +234,13 @@
         <div id="block1" style="width:57%; margin-top : 15px; border:1px solid #ccc; float : left;">
             <div class="tour-destination">
                 <span>@Html.DisplayFor(m => m.PlaceOfDeparture)</span>
-                    <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
                 <span> @Html.DisplayFor(m => m.PlaceOfArrival)</span>
-                    <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
+                <img class="destination_arrow" src="~/Content/img/arrow_small.png" />
                 <span>@Html.DisplayFor(m => m.PlaceOfDeparture)</span>
-            </div><hr/>
+            </div><hr />
 
-            <span class="orangan">Тип тура : </span> <span class="rightDef">Семейный отдых</span> <br/><br/>
+            <span class="orangan">Тип тура : </span> <span class="rightDef">Семейный отдых</span> <br /><br />
             <span class="orangan">Транспорт : </span>
             @if (Model.IsBus)
             {
@@ -261,17 +262,17 @@
             <div id="dop" style="margin-top : 15px;">
                 <span id="yslyga" title="Просмотреть услуги" style="text-decoration:underline;cursor:pointer;" class="orangan">Дополнительные услуги</span>
                 <img id="triangle" style="display: inline;cursor:pointer;width:13px;" src="~/Content/img/triangle.png" />
-              
+
                 <div style="display : inline-table;">
-                  <ul id="dop_ul" style="list-style : none;">
-                      @foreach (var item in Model.DopUslug)
-                      {
-                          <li class="orange_li">@Html.DisplayFor(m => item.Name)</li>
-                      }
-                  </ul>
-               </div>
+                    <ul id="dop_ul" style="list-style : none;">
+                        @foreach (var item in Model.DopUslug)
+                        {
+                            <li class="orange_li">@Html.DisplayFor(m => item.Name)</li>
+                        }
+                    </ul>
+                </div>
             </div><hr />
-       
+
             <p style="text-align:center">Если у Вас есть вопросы, обратитесь к нашему консультанту:</p>
 
             <div style="text-align:center">
@@ -282,12 +283,12 @@
 
         <div id="block2" style="width : 30%;float : right;margin-top:15px;border:1px solid #ccc;margin-right : 9.9%;padding-bottom: 15px;">
             <div style="text-align : center; font-size:19px;margin-top : 15px;">
-               <span> @Html.DisplayFor(m => m.TitleTour)</span>
-            </div><br/>
+                <span> @Html.DisplayFor(m => m.TitleTour)</span>
+            </div><br />
 
             @{ var i = Model.AllPeople - Model.People;}
             <div style="margin-left : 25px;">
-                <span style="font-size : 17px;">Количество участников :&nbsp;@Html.DisplayFor(m => m.AllPeople)</span><br/>
+                <span style="font-size : 17px;">Количество участников :&nbsp;@Html.DisplayFor(m => m.AllPeople)</span><br />
                 <span style="font-size:16px;">Уже едут :&nbsp; <span id="places">@Html.DisplayFor(m => m.People)</span></span><br />
                 <span style="font-size : 17px;">Осталось мест @i из @Html.DisplayFor(m => m.AllPeople)</span>
             </div>
@@ -298,8 +299,8 @@
                     Бонусные баллы : <span id="myBonus" style="color:green;font-size:19px;">@Html.DisplayFor(m => m.Bonus)</span>
                 </div>
             }
-            
-            <hr/>
+
+            <hr />
 
             <div id="buttonBox" style="text-align:-webkit-center;">
                 @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
@@ -309,7 +310,7 @@
                 }
                 <a href="@Url.Action("Index", "Buy", new {id = Model.TourId})" id="book-and-pay" class="greenBtn">Бронь и оплата</a>
             </div>
-            
+
         </div>
 
         <div class="description">
@@ -369,10 +370,11 @@
                 @{Html.RenderAction("MapForDisplay", new { id = Model.TourId });}
             </div>
             <div class="fb-like" data-href="http://kote.travel/TourDisplay/Index/@Model.TourId" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>
-        </div>         
         </div>
-   </div> 
-</div> 
+        <div class="fb-page" data-href="https://www.facebook.com/facebook" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div></div>
+    </div>
+</div>
+</div>
 
 <script>
     Galleria.loadTheme('/Content/js/themes/classic/galleria.classic.min.js');
@@ -380,18 +382,18 @@
         lightbox: true,
         transition: 'fade'
     });
-    if ($('.galleria').length>=1) {
+    if ($('.galleria').length >= 1) {
         Galleria.run('.galleria');
     }
 </script>
-<script >
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.3&appId=878101295595387";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.3&appId=878101295595387";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
 <script>
     $(function () {
@@ -446,7 +448,7 @@
             $('#headerBox1,#headerBox2').find('br').remove();
             $('.new-price:first').css({ 'padding-left': '0px', 'font-size': '22px' });
         }
-   
+
         $(window).scroll(function () {
             if ($('header').offset().top >= $('.container').offset().top - 30) {
                 $('#headerBonus').slideDown(300);
@@ -503,7 +505,7 @@
             $('.Map,.right-panel,#bonusBlock1,#headerBon').show();
             $('.description').css('width', '100%');
             $('.full-description').css({ 'width': '57%', 'margin-bottom': '0px' });
-            $('#block1').css({ 'width': '57%', 'float': 'left','margin-left':'0px' });
+            $('#block1').css({ 'width': '57%', 'float': 'left', 'margin-left': '0px' });
             $('#block2').css({ 'width': '30%', 'float': 'right' });
             $('.telephone').css({ 'display': 'inline' });
             $('.telephone:last').css({ 'margin-left': '20px' });
@@ -531,7 +533,7 @@
                 $('#smallTable').show().css('width', '80%');
                 $('#yslyga').text('Доп. услуги :');
                 $('#book-tour').text('Редактировать');
-                $('#firstDes').show().css({ 'float': 'none', 'width': '100%', 'margin-bottom': '20px','margin-left': '-20%'});
+                $('#firstDes').show().css({ 'float': 'none', 'width': '100%', 'margin-bottom': '20px', 'margin-left': '-20%' });
                 $('.full-description:last').hide();
                 $('#block2').css('margin-bottom', '20px');
                 $('#bonusBlock2').css('margin-left', '0px');

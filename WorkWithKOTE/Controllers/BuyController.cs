@@ -76,7 +76,7 @@ namespace WorkWithKOTE.Controllers
         {
             var selectedDop = new List<SelectedDopUslug>();
             var tour = db.Tour.Find(id);
-            var currency = db.Curseds.Single();
+            var currency = db.Curseds.Find(1);
             decimal Price = 0;
             if (tour.AukcionPrice != null)
             {
