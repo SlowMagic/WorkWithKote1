@@ -66,7 +66,7 @@ namespace WorkWithKOTE.Controllers
         [Authorize(Roles = "Admin,Moderator")]
         public ActionResult TourEdit(int id = 0)
         {
-            var data = db.Tour.Include(m=>m.Trips).Include(m => m.DopUslug).Include(m => m.DateTour).Include(m => m.RoutePoints).Include(m=>m.Tag).Where(m => m.TourId == id).FirstOrDefault();
+            var data = db.Tour.Include(m=>m.Places).Include(m=>m.Trips).Include(m => m.DopUslug).Include(m => m.DateTour).Include(m => m.RoutePoints).Include(m=>m.Tag).Where(m => m.TourId == id).FirstOrDefault();
             ViewBag.TourStatusId = new SelectList(db.TourStatus, "TourStatusId", "TourStatusName",data.TourStatusId);
             ViewBag.GalleryID = new SelectList(db.Gallery, "GalleryId", "GalleryName");
             ViewBag.TypeOfTourId = new SelectList(db.TypeOfTours, "TypeOfTourId", "TypeOfTourName",data.TypeOfTourId);
@@ -76,7 +76,7 @@ namespace WorkWithKOTE.Controllers
             return View(data);
         }
         [HttpPost]
-        public ActionResult TourEdit(List<int> SameTours, Tour model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp, DateTour[] DT, DopUslug[] DP,Tag[] Ts,RoutePoint[] Point)
+        public ActionResult TourEdit(List<int> SameTours, Tour model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp, Place[] PLs, DateTour[] DT, DopUslug[] DP,Tag[] Ts,RoutePoint[] Point)
         {
             if (SameTours != null)
             {
@@ -101,6 +101,11 @@ namespace WorkWithKOTE.Controllers
                 Document.SaveAs(Server.MapPath("/UpLoad/TourDocument/" + Document.FileName));
                 model.Document = "/UpLoad/TourDocument/" + Document.FileName;
             }
+            if(PLs != null)
+                foreach (var item in PLs)
+                {
+                    db.Entry(item).State = EntityState.Added;
+                }
             if(DT !=null)
             foreach (var item in DT)
             { db.Entry(item).State = EntityState.Added; }
@@ -124,6 +129,11 @@ namespace WorkWithKOTE.Controllers
                     db.Entry(item).State = EntityState.Added;
                 }
             foreach(var item in model.Tag)
+            {
+                db.Entry(item).State = EntityState.Modified;
+            }
+            if (model.Places != null)
+            foreach(var item in model.Places)
             {
                 db.Entry(item).State = EntityState.Modified;
             }

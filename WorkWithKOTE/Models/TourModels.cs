@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Globalization;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -95,6 +96,7 @@ namespace WorkWithKOTE.Models
         public IList<RoutePoint> RoutePoints { get; set; }
         public IList<DateTour> DateTour { get; set; }
         public IList<DopUslug> DopUslug { get; set; }
+        public List<Place> Places { get; set; }
         public int? GalleryID { get; set; }
         public Gallery Gallery { get; set; }
         public DateTime? DateTrip { get; set; }
@@ -299,5 +301,19 @@ namespace WorkWithKOTE.Models
         public decimal BonusesForRegistration { get; set; }
         public decimal BonusesForReposted { get; set; }
         public decimal BonusesForBirthday { get; set; }
+    }
+    [Table("Places")]
+    public class Place
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int PlaceID { get; set; }
+        public string PlaceName { get; set; }
+        public int TourId { get; set; }
+    }
+    public class TourSearches
+    {
+        public IQueryable<Tour> tours { get; set; }
+        public List<string> tags { get; set; }
     }
 }

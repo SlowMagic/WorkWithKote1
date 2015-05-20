@@ -30,6 +30,7 @@ namespace WorkWithKOTE.Models
         public DbSet<TypeOfTour> TypeOfTours { get; set; }
         public DbSet<VisitedTour> VisitedTours { get; set; }
         public DbSet<Cursed> Curseds { get; set; }
+        public DbSet<Place> Places { get; set; }
         public DbSet<SelectedDopUslug> SelectedDopUslugs { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

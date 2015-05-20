@@ -109,7 +109,8 @@
 
                 <p class="forHide">Теги</p>
                 <input class="forHide" name="Tag" style="width:96%" />
-
+                <p>Пункты назначения</p>
+                @Html.DropDownList("Places",DropDown.Places(),"Любое направление")
                 <p>Цена от</p>
                 @Html.DropDownList("Prices", DropDown.Price(), "Любая цена")
 
@@ -166,9 +167,7 @@
             </div>
         </form>
     </div>
-
 </div>
-
 <script>
     function TourSearch()
     {

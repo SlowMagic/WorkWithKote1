@@ -1,0 +1,12 @@
+﻿<form action="@Url.Action("Searches","TourSearch")" method="post" enctype="multipart/form-data">
+
+    @* @Html.DropDownList("Places", DropDown.Places(), "Любое направление")*@
+    Путешествие в  <input type="text" name="Places" />
+    <br />
+    Дата отъезда <input type="date" name="DateFirst" />
+    <br />
+    Минимальная цена <input type="text" name="MinValue" /><br />
+    Максимальная цена <input type="text" name="MaxValue" /><br />
+    <hr />
+<input type="submit" value="Поиск" />
+</form>
