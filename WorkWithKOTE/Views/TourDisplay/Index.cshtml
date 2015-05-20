@@ -332,8 +332,6 @@
                     </div>
                 </div>
 
-                <div class="fb-page" data-href="https://www.facebook.com/facebook" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div></div>
-
                 <div class="social">
                     @if (Model.SameTour != null)
                     {
@@ -353,7 +351,10 @@
                     </ul>
 
                 </div>
+                <div class="fb-page" data-href="https://www.facebook.com/facebook" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div></div>
+
             </div>
+
             <div class="full-description">
                 <h1>Программа тура:</h1>
                 @Html.Raw(Model.DescriptionTour)
@@ -489,6 +490,9 @@
             $('.social').hide();
         }
 
+        $('iframe').css('width', $('.right-panel').width());
+
+
         if ($('#bar').width() <= 800) {
             $('.Map,.right-panel,#bonusBlock1,#headerBon').hide();
             $('.description').css('width', '80%');
@@ -528,6 +532,8 @@
         }
 
         $(window).resize(function () {
+            $('iframe').css('width', $('.right-panel').width());
+
             if ($('#bar').width() <= 800) {
                 $('.Map,.right-panel,#bonusBlock1,#headerBon').hide();
                 $('.description').css('width', '80%');
