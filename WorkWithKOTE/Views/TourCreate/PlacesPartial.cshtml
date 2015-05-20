@@ -1,0 +1,34 @@
+﻿<div id="places">
+    <div class="place">
+       Следующий пункт прибытия <input type="text" name="Places[0].PlaceName" /><br />
+    </div>
+</div><br />
+<input type="button" class="addPlace usluga" value="Добавить Пункт" />
+<input type="button" class="deleteLinkPlace usluga" value="Удалить Пункт" />
+
+<script>
+
+    var p = 1;
+
+    $(function () {
+        $('.addPlace').click(function () {
+            var html2Adds = "<div id='places" + p + "'>" +
+                               "Следующий пункт прибытия " +
+                               "<input style='margin-left:3px;' type='text'  name='Places[" + p + "].PlaceName' /><br/>" +
+                            "</div>";
+            $('#places').append(html2Adds);
+            p++;
+        });
+    });
+
+    $(function () {
+        $('.deleteLinkPlace').click(function () {
+            var count = p - 1;
+            $('#places' + count).remove();
+
+            if (p != 1) {
+                p--;
+            }
+        });
+    });
+</script>

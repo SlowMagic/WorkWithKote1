@@ -49,7 +49,7 @@
             <span class="textbox">
                 Выезд из @Html.TextBoxFor(m => m.PlaceOfDeparture)
             </span><br/>
-
+            @{Html.RenderPartial("PlacesPartial");}<br/>
             <span class="textbox">
                 Прибываем в @Html.TextBoxFor(m => m.PlaceOfArrival)
             </span><br />
