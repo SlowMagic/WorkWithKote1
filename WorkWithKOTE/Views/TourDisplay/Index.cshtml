@@ -13,6 +13,11 @@
         background: #000;
     }
 
+    .fb-page{
+        margin-top: 15px;
+        margin-bottom: 15px;  
+    }
+
     .ulClass {
         display: inline-table;
     }
@@ -327,6 +332,8 @@
                     </div>
                 </div>
 
+                <div class="fb-page" data-href="https://www.facebook.com/facebook" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div></div>
+
                 <div class="social">
                     @if (Model.SameTour != null)
                     {
@@ -369,9 +376,8 @@
                 <h1 class="Map">Карта путешествия:</h1>
                 @{Html.RenderAction("MapForDisplay", new { id = Model.TourId });}
             </div>
-            <div class="fb-like" data-href="http://kote.travel/TourDisplay/Index/@Model.TourId" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>
+           <!--<div class="fb-like" data-href="http://kote.travel/TourDisplay/Index/@Model.TourId" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>-->
         </div>
-        <div class="fb-page" data-href="https://www.facebook.com/facebook" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div></div>
     </div>
 </div>
 </div>
