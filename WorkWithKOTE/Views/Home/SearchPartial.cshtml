@@ -3,16 +3,19 @@
 
 <style>
     #searchForm{
-        width : 960px;
-        height : 100px;
+        width: 71.5%;
+        min-height : 100px;
         margin-left : 19%;
         background : #434a54;
         position : absolute;
         bottom : 100px;
+        text-align : left;
     }
 
     #searchForm input{
         display : inline-block;
+        margin-top : 30px;
+        margin-left : 16px;
     }
 
     /*input[type="date"]:before {
@@ -61,8 +64,9 @@
     }
 
     #slider-range{
-      width : 153px;
+      width : 145px;
       display : inline-block;
+      margin-left : 15px;
     }
 
     #searchBtn{
@@ -103,8 +107,26 @@
         outline : none;
     }
 
+    #search_label{
+        width : 190px;
+        height : 40px;
+        border-radius : 6px;
+	    background: #434a54;
+        font-size : 16px;
+        line-height : 14px;
+        font-family : Helvetica-Roman;
+        color: #e6e9ed;
+        position: absolute;
+        bottom: 196px;
+        padding-top: 10px;
+        margin-left: 19%;
+    }
+
 </style>
 
+<div id="search_label">
+    Быстрый поиск
+</div>
 <form id="searchForm" action="@Url.Action("Searches","TourSearch")" method="post" enctype="multipart/form-data">
     @* @Html.DropDownList("Places", DropDown.Places(), "Любое направление")*@
     <input id="where" type="text" name="Places" placeholder="Куда" />
