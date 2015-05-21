@@ -5,7 +5,7 @@
     #searchForm{
         width: 71.5%;
         min-height : 100px;
-        margin-left : 19%;
+        margin-left : 16%;
         background : #434a54;
         position : absolute;
         bottom : 100px;
@@ -28,7 +28,7 @@
     }
 
     #where{
-        width : 222px;
+        max-width : 222px;
         height : 40px;
 	    background: #656d78;
 	    color: #e6e9ed;
@@ -66,7 +66,8 @@
     #slider-range{
       width : 145px;
       display : inline-block;
-      margin-left : 15px;
+      margin-left : 17px;
+      margin-top : 30px;
     }
 
     #searchBtn{
@@ -79,6 +80,7 @@
 	   /* box-shadow : 0px 2px 0px #d45227; */
         border-radius: 6px;
         color: #e6e9ed;
+        margin-bottom : 20px;
     }
 
     .ui-widget-content{
@@ -119,7 +121,7 @@
         position: absolute;
         bottom: 196px;
         padding-top: 10px;
-        margin-left: 19%;
+        margin-left: 16%;
     }
 
 </style>
@@ -127,6 +129,7 @@
 <div id="search_label">
     Быстрый поиск
 </div>
+
 <form id="searchForm" action="@Url.Action("Searches","TourSearch")" method="post" enctype="multipart/form-data">
     @* @Html.DropDownList("Places", DropDown.Places(), "Любое направление")*@
     <input id="where" type="text" name="Places" placeholder="Куда" />
@@ -148,10 +151,10 @@
             max: 5000,
             values: [ 1000, 3000 ],
             slide: function( event, ui ) {
-                $("#showPrice").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                $('#minPrice').val(ui.values[0]);
-                $('#maxPrice').val(ui.values[1]);
-            }
+                     $("#showPrice").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                     $('#minPrice').val(ui.values[0]);
+                     $('#maxPrice').val(ui.values[1]);
+                   }
         });
     });
 </script>

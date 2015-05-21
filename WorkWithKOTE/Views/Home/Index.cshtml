@@ -711,19 +711,25 @@
             $('.groupLinks a').css({ 'dispalay': 'block !important' });
             $('.groupLinks').css('font-size', '14px');
             $('#tourSearch_text,#subscribe').hide();
-           // $('#wishletter').css('margin-top', '100px');
+            $('#wishletter').css('margin-top', '100px');
             $('#third').text('Приключенческие');
             $('#small-logo').css('margin-left', '10%');
             $('#textspan1').css('font-size', '30px');
             $('#other').text('другое');
+            $('#where').css('width', '165px');
+            $('#searchForm').css('bottom', '5px');
+            $('#search_label').hide();
         }
         else {
             $('#tourSearch_text,#subscribe,#big-logo').show();
             $('#third').text('Приключенческие туры');
             $('.groupLinks').css('font-size', '20px');
             $('#textspan1').css('font-size', '60px');
-          //  $('#wishletter').css('margin-top', '-150px');
+            $('#wishletter').css('margin-top', '270px');
             $('#other').text('что - то другое');
+            $('#where').css('width', '222px');
+            $('#searchForm').css('bottom', '100px');
+            $('#search_label').show();
         }
 
         if ($('#bar').width() <= 900) {
@@ -736,7 +742,7 @@
             $('.news-block article').css('margin-top', '20px');
             $('.news-title').css('margin-bottom', '20px');
             $('#big-logo').hide();
-          //  $('#wishletter').css('margin-top', '100px');
+            $('#wishletter').css('margin-top', '100px');
         }
         else {
             $('.mainTours,.subTours').css('display', 'inline-block');
@@ -751,15 +757,15 @@
             $('#small-logo').css('margin-left', '21.2%');
             $('#navigation').show();
             $('#big-logo').hide();
-          //  $('#wishletter').css('margin-top', '100px');
+            $('#wishletter').css('margin-top', '270px');
 
             if ($('#bar').width() <= 1250) {
                 $('#big-logo').hide();
-             //   $('#wishletter').css('margin-top', '100px');
+                $('#wishletter').css('margin-top', '100px');
             }
             else {
                 $('#big-logo').show();
-             //   $('#wishletter').css('margin-top', '-150px');
+                $('#wishletter').css('margin-top', '270px');
             }
 
             $('.subTours').each(function () {
