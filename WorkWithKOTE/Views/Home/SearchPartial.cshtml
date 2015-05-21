@@ -1,12 +1,135 @@
-﻿<form action="@Url.Action("Searches","TourSearch")" method="post" enctype="multipart/form-data">
+﻿ <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+ <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
+<style>
+    #searchForm{
+        width : 960px;
+        height : 100px;
+        margin-left : 19%;
+        background : #434a54;
+        position : absolute;
+        bottom : 100px;
+    }
+
+    #searchForm input{
+        display : inline-block;
+    }
+
+    /*input[type="date"]:before {
+        content: attr(placeholder) !important;
+    }
+    */
+
+    #minPrice,#maxPrice{
+        display : none !important;
+    }
+
+    #where{
+        width : 222px;
+        height : 40px;
+	    background: #656d78;
+	    color: #e6e9ed;
+        line-height : 14px;
+	    font-size: 16px;
+	    border: 1px solid #3e4753;
+	    border-radius: 6px;
+        padding-left : 15px;
+    }
+
+    #when{
+        width : 164px;
+        height : 40px;
+	    background: #656d78;
+	    color: #e6e9ed;
+        line-height : 14px;
+	    font-size: 16px;
+	    border: 1px solid #3e4753;
+	    border-radius: 6px;
+        padding-left : 15px;
+    }
+
+    #showPrice{
+        width : 153px;
+        height : 40px;
+	    background: #656d78;
+	    color: #e6e9ed;
+        line-height : 14px;
+	    font-size: 16px;
+	    border: 1px solid #3e4753;
+	    border-radius: 6px;
+        padding-left : 15px;
+    }
+
+    #slider-range{
+      width : 153px;
+      display : inline-block;
+    }
+
+    #searchBtn{
+        width : 160px;
+        height : 38px;
+        font-family : Helvetica-Medium;
+        font-size : 16px;
+        line-height : 14px;
+	    background: #ff6f40;
+	   /* box-shadow : 0px 2px 0px #d45227; */
+        border-radius: 6px;
+        color: #e6e9ed;
+    }
+
+    .ui-widget-content{
+        background : #656d78 !important;
+        height : 8px;
+        border : 1px solid #656d78;
+    }
+
+    .ui-slider-range.ui-widget-header.ui-corner-all{
+        background : #ff6f40 !important;
+    }
+
+    .ui-slider-handle.ui-state-default.ui-corner-all{
+      background : #ff6f40 !important;
+      height: 21px;
+      margin-top: -3px;
+      border: 1px solid #ff6f40;
+      border-radius: 50%;
+      box-shadow : inset #e85f31 4px;
+      box-shadow : 0px 0px 5px rgba(0,0,0,0.35);
+    }
+
+    .ui-slider-handle.ui-state-default.ui-corner-all:focus,
+    #searchForm input 
+    {
+        outline : none;
+    }
+
+</style>
+
+<form id="searchForm" action="@Url.Action("Searches","TourSearch")" method="post" enctype="multipart/form-data">
     @* @Html.DropDownList("Places", DropDown.Places(), "Любое направление")*@
-    Путешествие в  <input type="text" name="Places" />
-    <br />
-    Дата отъезда <input type="date" name="DateFirst" />
-    <br />
-    Минимальная цена <input type="text" name="MinValue" /><br />
-    Максимальная цена <input type="text" name="MaxValue" /><br />
-    <hr />
-<input type="submit" value="Поиск" />
+    <input id="where" type="text" name="Places" placeholder="Куда" />
+    <input id="when" type="date"  name="DateFirst" placeholder="Когда" />
+
+    <div id="slider-range"></div>
+    <input type="text" id="showPrice" value="$1000 - $3000" />
+    <input id="minPrice" type="text" name="MinValue" />
+    <input id="maxPrice" type="text" name="MaxValue" />
+     
+    <input id="searchBtn" type="submit" value="Искать" />
 </form>
+
+<script>
+    $(function () {
+        $( "#slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 5000,
+            values: [ 1000, 3000 ],
+            slide: function( event, ui ) {
+                $("#showPrice").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                $('#minPrice').val(ui.values[0]);
+                $('#maxPrice').val(ui.values[1]);
+            }
+        });
+    });
+</script>
