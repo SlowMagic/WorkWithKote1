@@ -15,7 +15,7 @@
     #searchForm input{
         display : inline-block;
         margin-top : 30px;
-        margin-left : 16px;
+        margin-left : 17px;
     }
 
     /*input[type="date"]:before {
@@ -32,7 +32,7 @@
         height : 40px;
 	    background: #656d78;
 	    color: #e6e9ed;
-        line-height : 14px;
+        line-height : 17px;
 	    font-size: 16px;
 	    border: 1px solid #3e4753;
 	    border-radius: 6px;
@@ -66,7 +66,7 @@
     #slider-range{
       width : 145px;
       display : inline-block;
-      margin-left : 17px;
+      margin-left : 9px;
       margin-top : 30px;
     }
 
@@ -75,11 +75,12 @@
         height : 38px;
         font-family : Helvetica-Medium;
         font-size : 16px;
+        border : none;
         line-height : 14px;
-	    background: #ff6f40;
-	   /* box-shadow : 0px 2px 0px #d45227; */
+	    background : #ff6f40;
+	    box-shadow : 0px 2px 0px #d45227; 
         border-radius: 6px;
-        color: #e6e9ed;
+        color : #e6e9ed;
         margin-bottom : 20px;
     }
 
@@ -96,10 +97,9 @@
     .ui-slider-handle.ui-state-default.ui-corner-all{
       background : #ff6f40 !important;
       height: 21px;
-      margin-top: -3px;
-      border: 1px solid #ff6f40;
+      border : 4px solid #e85f31;
+      margin-top: -6px;
       border-radius: 50%;
-      box-shadow : inset #e85f31 4px;
       box-shadow : 0px 0px 5px rgba(0,0,0,0.35);
     }
 
@@ -121,12 +121,22 @@
         position: absolute;
         bottom: 196px;
         padding-top: 10px;
+        padding-right : 20px;
         margin-left: 16%;
+    }
+
+    #label_img{
+      width: 20px;
+      height: 20px;
+      float: left;
+      margin-left: 20px;
+      margin-top: -2px;
     }
 
 </style>
 
 <div id="search_label">
+    <img id="label_img" src="/Content/img/Searching-black.png"  alt="search"/>
     Быстрый поиск
 </div>
 
@@ -147,6 +157,7 @@
     $(function () {
         $( "#slider-range" ).slider({
             range: true,
+            step: 10,
             min: 0,
             max: 5000,
             values: [ 1000, 3000 ],
