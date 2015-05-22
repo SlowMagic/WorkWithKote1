@@ -58,5 +58,27 @@ namespace WorkWithKOTE.Code
              }
              return list;
          }
+         public static List<System.Web.Mvc.SelectListItem> PlaceDeparture()
+         {
+             UsersContext db = new UsersContext();
+             var places = db.Tour.Select(m=>m.PlaceOfDeparture).Distinct();
+             List<System.Web.Mvc.SelectListItem> list = new List<SelectListItem>();
+             foreach (var item in places)
+             {
+                 list.Add(new SelectListItem { Text = item });
+             }
+             return list;
+         }
+         public static List<System.Web.Mvc.SelectListItem> Tags()
+         {
+             UsersContext db = new UsersContext();
+             var tags = db.Teg.Select(m => m.TagName).Distinct();
+             List<System.Web.Mvc.SelectListItem> list = new List<SelectListItem>();
+             foreach(var item in tags)
+             {
+                 list.Add(new SelectListItem { Text = item });
+             }
+             return list;
+         }
     }
 }

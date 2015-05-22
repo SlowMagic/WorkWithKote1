@@ -1,0 +1,86 @@
+﻿@model IEnumerable<WorkWithKOTE.Models.Tour>
+@using WorkWithKOTE.Code
+<div>
+    @if (ViewBag.Counter == 0)
+    {
+        <label> Возвращения</label> <input type="date" name="DateSecond" />
+        @Html.CheckBox("IsBus") <label>Автобус</label>
+        @Html.CheckBox("IsShip")  <label>Лайнер</label>
+        @Html.CheckBox("IsTrain")  <label>Поезд</label>
+        @Html.CheckBox("IsAriplane")  <label>Самолет</label><br />
+        @Html.DropDownList("PlaceDepartmen", DropDown.PlaceDeparture(), "С любого места")
+        foreach (var item in DropDown.Tags())
+        {
+            if (!String.IsNullOrEmpty(item.Text))
+            {
+                <input type="checkbox" name="Tags" value="@item.Text" /> <label>@item.Text</label>
+            }
+        }
+    }
+    @if (ViewBag.Counter == 1)
+    {
+        <label> Возвращения</label> <input type="date" name="DateSecond" />
+        <br />
+        if (Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                int B = 0;
+                int S = 0;
+                int T = 0;
+                int A = 0;
+                if (item.IsBus && B == 0)
+                { @Html.CheckBox("IsBus") <label>Автобус</label> B++;
+                }
+                if (item.IsShip && S == 0)
+                {@Html.CheckBox("IsShip")  <label>Лайнер</label> S++;
+                }
+                if (item.IsTrain && T == 0)
+                {@Html.CheckBox("IsTrain")  <label>Поезд</label> T++;
+                }
+                if (item.IsAriplane && A == 0)
+                {@Html.CheckBox("IsAriplane")  <label>Самолет</label> A++;
+                }
+                <hr />
+            }
+            foreach (var item in ViewBag.Tags)
+            {
+                if (!String.IsNullOrEmpty(item))
+                {
+                    <input type="checkbox" name="Tags" value="@item" /> <label>@item</label>
+                }
+            }
+            <br />
+            if (ViewBag.PlaceDeparture != null)
+            {
+                <select name="PlaceDepartmen">
+                    <option selected>С любого места</option>
+                    @foreach (var item in ViewBag.PlaceDeparture)
+                    {
+                        <option>@item</option>
+                    }
+                </select>
+            }
+        }
+    }
+</div>
+    <div id="target2">
+        @foreach (var c in Model)
+        {
+            <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m => c.Valuta)</h3><br />
+            <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
+            <a class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
+            <div class="date-select mini">
+                <label style="margin-left: -23px;">
+                    <select id="selectDate">
+                        @foreach (var item in c.DateTour)
+                        {
+                            <option>
+                                @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
+                            </option>
+                        }
+                    </select>
+                </label>
+            </div><br />
+        }
+    </div>
