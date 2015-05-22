@@ -63,13 +63,19 @@ namespace WorkWithKOTE.Controllers
         public ActionResult Searches()
         {
             ViewBag.Counter = 0;
-            return View(db.Tour.Include(m => m.DateTour).Include(m=>m.Tag).ToList());
+            return View(db.Tour.Include(m => m.DateTour).Include(m => m.Tag).ToList());
         }
         [HttpPost]
-        public ActionResult Searches( string Places, DateTime? DateFirst, DateTime? DateSecond,decimal? MinValue,decimal? MaxValue, bool IsCar = false, bool IsShip = false, bool IsTrain = false, bool IsPlane = false,string[] Tags = null)
+        public ActionResult Searches(string Places, DateTime? DateFirst, DateTime? DateSecond, decimal? MinValue, decimal? MaxValue, bool IsCar = false, bool IsShip = false, bool IsTrain = false, bool IsPlane = false, int PageID = 0,
+            int PageCount =5, string[] Tags = null)
         {
             ViewBag.Counter = 1;
             IQueryable<Tour> data = db.Tour;
+            var actualRates = db.Curseds.First();
+            Dictionary<string, decimal> rates = new Dictionary<string, decimal>();
+            rates.Add("UAH", 1);
+            rates.Add("USD", actualRates.USD);
+            rates.Add("EUR", actualRates.Evro);
             if (!String.IsNullOrEmpty(Places))
             {
                 ViewBag.Place = Places;
@@ -82,22 +88,22 @@ namespace WorkWithKOTE.Controllers
                 DateTime dateMax = DateFirst.Value.AddDays(5);
                 data = data.Where(m => m.DateTour.Any(dt => dt.FirstDate >= dateMin && dt.FirstDate <= dateMax));
             }
-            if(DateSecond != null)
+            if (DateSecond != null)
             {
                 ViewBag.DateSecond = DateSecond.Value.ToString("yyyy-MM-dd");
                 DateTime dateMin = DateSecond.Value.AddDays(-5);
                 DateTime dateMax = DateSecond.Value.AddDays(5);
                 data = data.Where(m => m.DateTour.Any(dt => dt.SecondDate >= dateMin && dt.SecondDate <= dateMax));
             }
-            if(MinValue != null)
+            if (MinValue != null)
             {
                 ViewBag.MinValue = MinValue;
-                data = data.Where(m => m.Cost >= MinValue || m.AukcionPrice >= MinValue);
+                data = data.Where(m => m.Cost * rates[m.Valuta] >= MinValue || m.AukcionPrice >= MinValue);
             }
-            if(MaxValue != null)
+            if (MaxValue != null)
             {
                 ViewBag.MaxValue = MaxValue;
-                data = data.Where(m => m.Cost <= MaxValue || m.AukcionPrice <= MaxValue);
+                data = data.Where(m => m.Cost * rates[m.Valuta] <= MaxValue || m.AukcionPrice <= MaxValue);
             }
             if (IsCar == true)
                 data = data.Where(m => m.IsBus == true);
@@ -115,14 +121,23 @@ namespace WorkWithKOTE.Controllers
                 }
             }
             ViewBag.Tags = data.SelectMany(m => m.Tag).Select(m => m.TagName).Distinct();
+
             var places = data.Select(m => m.PlaceOfDeparture).Distinct();
-            List<System.Web.Mvc.SelectListItem> list = new List<SelectListItem>();
-            foreach (var item in places)
+
+            List<string> list = new List<string>();
+            if (places.Any())
             {
-                list.Add(new SelectListItem { Text = item });
+                foreach (var item in places)
+                {
+                    list.Add(item);
+                }
             }
             ViewBag.PlaceDeparture = list;
-            return View(data.Include(m=>m.DateTour));
+            if (PageCount != 0 && PageID != 0)
+            {
+                return PartialView("SearchResult", data.Include(m => m.DateTour).Skip(PageCount * PageID).Take(PageCount));
+            }
+            return PartialView("SearchResult", data.Include(m => m.DateTour));
         }
     }
 }

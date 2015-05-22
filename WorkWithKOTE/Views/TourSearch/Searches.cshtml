@@ -3,74 +3,27 @@
 }
 @model IEnumerable<WorkWithKOTE.Models.Tour>
 @using WorkWithKOTE.Code
-<form action="@Url.Action("Searches","TourSearch")" method="post" enctype="multipart/form-data">
-
-    @* @Html.DropDownList("Places", DropDown.Places(), "Любое направление")*@
-    Путешествие в  <input type="text" name="Places"/>
+@Scripts.Render("~/bundles/jqueryval")
+@using (Ajax.BeginForm("Searches", "TourSearch", new AjaxOptions()
+{
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "target"
+}))
+{
+    @Html.DropDownList("Places", DropDown.Places(), "Любое направление")
+    @:Путешествие в  <input type="text" name="Places" />
     <br />
-    Дата отъезда <input type="date" name="DateFirst" />
+    @:Дата отъезда <input type="date" name="DateFirst" />
     <br />
-    Минимальная цена <input type="text" name="MinValue" /><br />
-    Максимальная цена <input type="text" name="MaxValue" /><br />
-    <hr/>
-    @if (ViewBag.Counter == 1)
+    @:Минимальная цена <input type="text" name="MinValue" /><br />
+    @:Максимальная цена <input type="text" name="MaxValue" /><br />
+    <hr />
+    <div id="target">
+        @{Html.RenderPartial("SearchResult");}
+    </div>
+   @* for (int i = 0; i < 10; i++)
     {
-           <label> Возвращения</label> <input type="date" name="DateSecond" />
-    <br />
-        foreach (var item in Model)
-        {
-            int B = 0;
-            int S = 0;
-            int T = 0;
-            int A = 0;
-            if (item.IsBus && B == 0)
-            { @Html.CheckBox("IsBus") <label>Автобус</label> B++; }
-            if (item.IsShip && S == 0)
-            {@Html.CheckBox("IsShip")  <label>Лайнер</label> S++ ;}
-            if (item.IsTrain && T == 0)
-            {@Html.CheckBox("IsTrain")  <label>Поезд</label> T++; }
-            if (item.IsAriplane && A == 0)
-            {@Html.CheckBox("IsAriplane")  <label>Самолет</label> A++;}
-             <hr />
-         }
-         int count = 0 ;
-        foreach (var item in ViewBag.Tags)
-        {
-            if (!String.IsNullOrEmpty(item))
-            {
-                 <input type="checkbox" name="Tags" value="@item" /> <label>@item</label>
-                count++;   
-            }                                                 
-        }
-        <br/>
-        if (ViewBag.PlaceDeparture.Count != 0)
-        {
-            <select name="PlaceDepartmen">
-           <option selected>С любого места</option>
-           @foreach (var item in ViewBag.PlaceDeparture)
-           {
-              <option>@item</option>
-           }
-               </select>   
-        }
-    }
-    @foreach (var c in Model)
-    {
-        <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m => c.Valuta)</h3><br />
-        <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
-        <a class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
-        <div class="date-select mini">
-            <label style="margin-left: -23px;">
-                <select id="selectDate">
-                    @foreach (var item in c.DateTour)
-                    {
-                        <option>
-                            @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
-                        </option>
-                    }
-                </select>
-            </label>
-        </div><br />
-    }
+        @Ajax.ActionLink((i + 1).ToString(), "Searches", new { pageID = i,counter = 1 }, new AjaxOptions { UpdateTargetId = "target2", InsertionMode = InsertionMode.Replace })
+    }*@
     <input type="submit" value="Найти" />
-</form>
+}
