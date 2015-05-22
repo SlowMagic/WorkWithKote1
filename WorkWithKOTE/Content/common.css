@@ -1,11 +1,23 @@
 nav, footer, header, section, article, iframe, img {
     display: block;
 }
+
 @font-face {
      font-family: HelveticaNeueCyr;
      src: url(fonts/helveticaneuecyr-light.otf);
    /*  font-weight, font-style ==> по умолчанию normal */
 }
+
+@font-face {
+     font-family: Helvetica-Medium;
+     src: url(fonts/helveticaneuecyr-medium.otf);
+}
+
+@font-face {
+     font-family: Helvetica-Roman;
+     src: url(fonts/helveticaneuecyr-roman.otf);
+}
+
 header {
     position: fixed;
     text-align: center;

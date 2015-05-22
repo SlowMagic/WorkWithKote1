@@ -114,21 +114,24 @@
 
 <div id="big-preview-img" class="clearfix">
     <div class="wish">
-        <p style="display:none;" id="wishletter">
+        <p id="wishletter">
             <span id="textspan">Я хочу...<br /></span>
             <span id="textspan1" style="font-size:60px;">
-                <span id="to"></span><span id="from"></span>
+                <span id="to"> Тур в Башкиртыстан </span> из Днепропетровска <span id="from"></span>
             </span>
         </p>
-        @*@{Html.RenderPartial("SearchPartial");}*@
+
+        @{Html.RenderPartial("SearchPartial");}
+
         <ul id="switchTour">
             @foreach (var item in Model.TourMain)
             {
                 <li style="list-style-type: none;" data-id="@item.TourId" data-src="@item.TourImg" data-baf="@item.BigLogo.UrlImg" data-to="@item.PlaceOfArrival" data-from="@item.PlaceOfDeparture"></li>
             }
         </ul>
+    
 
-        <div style="display:none;" class="buttons clearfix">
+    <!--<div style="display:none;" class="buttons clearfix">
             <a id="confirmTour" href="@Url.Action("Index","TourDisplay")" class="yes-btn">
                 <span id="textspan2">Да,</span> <span> Я хочу&#x21;</span>
             </a>
@@ -136,14 +139,9 @@
                 <span id="textspan5">Нет,</span> <span id="other"> что - то другое</span>
             </a>
         </div>
-    </div>
+    -->
 
-    <!-- <div class="scroll clearfix">
-         <p class="scroll-text">
-             Скроль<br />вниз
-         </p>
-     </div>
-          -->
+    </div>
 </div>
 
 @{Html.RenderAction("NewsBlock");}
@@ -289,7 +287,6 @@
     <p class="consultLinks">
         <span class="subscribe-title">Подпишитесь на нашу рассылку<br /></span><br />
         будьте в курсе интересных предложений и горящих туров
-
     </p>
     <form class="mailform">
         <div class="mailsender">
@@ -348,7 +345,6 @@
                 <div class="tourPrice">
                     <div class="smallDescription">
                         Актуальная стоимость тура формируется в&nbsp;корзине услуг
-
                         после нажатия &#x27;Купить&#x27;.
                     </div>
                 </div>
@@ -532,10 +528,13 @@
         }
     </div>
 </div>
-<div>
+
+<!--<div>
     <input type="button" id="share_button" value="Share" /><br />
     <input type="button" value="VKshare" onclick="postapi()" id="share_VK" />
 </div>
+-->
+
 <div id="media-bg" class="clearfix">
     <p class="consultLinks">
         <span class="subscribe-title"><a style="text-decoration:underline;" href="@Url.Action("GalleryList","Gallery")">Галерея</a><br /></span>фото, видео. Cамые красивые места в мире
@@ -547,27 +546,6 @@
                 <iframe width="100%" height="300px" src="https://www.youtube.com/embed/bhjUXNy1PiE" frameborder="0"
                         allowfullscreen></iframe>
             </div>
-            <!--
-                        <div id="video-title" class="clearfix">
-                            @*                <p id="video-title-date">27.04.2015</p>*@
-
-                            <p id="video-title-name">Автобус для КОТЭшествий</p>
-                        </div>
-
-                        <div id="subscribe">
-                            <div class="align_center_to_left">
-                                <div class="align_center_to_right">
-                                    <dl id="sub-nav">
-                                        <dt>Следите за нами&#x3a;</dt>
-                                        <dd><img id="youtube-ico" src="~/Content/img/youtube-ico.png" /></dd>
-                                        <dt>14&nbsp;579</dt>
-                                        <dd><img id="instagram-ico" src="~/Content/img/instagram-ico.png" /></dd>
-                                        <dt>6&nbsp;945</dt>
-                                    </dl>
-                                </div>
-                            </div>
-                        </div>
-            -->
         </div>
 
         <div id="box22">
@@ -669,11 +647,11 @@
         var confirmHref = $('#confirmTour').attr('href');
 
         // if no tours
-        if (!$('#switchTour li').length) {
-            $('#big-preview-img').css('background', 'url(/Content/img/zaglushka.jpg) no-repeat 50% 100% ');
-            $('#big-logo').remove();
-        }
-        else {
+        //  if (!$('#switchTour li').length) {
+            $('#big-preview-img').css('background', 'url(/Content/img/big-preview-img.jpg) no-repeat 50% 100% ');
+        //     $('#big-logo').remove();
+        // }
+      /*  else {
             // if tours length. Display 1-st tour
             $('.buttons.clearfix,#wishletter').css('display', 'inherit');
             $('#confirmTour').attr('href', '');
@@ -685,9 +663,9 @@
             $('#confirmTour').attr('href', confirmHref + '/' + $('#switchTour li').eq(index).attr('data-id'));
             index++;
         }
-
+    */
         // if  many tours. Switch tours
-        if ($('#switchTour li').length > 1) {
+    /*    if ($('#switchTour li').length > 1) {
             $('#anotherTour').click(function (event) {
                 event.preventDefault();
 
@@ -711,7 +689,7 @@
                     }
                 });
             });
-        }
+      } */
         switchLogo(0);
     });
 </script>
@@ -738,14 +716,20 @@
             $('#small-logo').css('margin-left', '10%');
             $('#textspan1').css('font-size', '30px');
             $('#other').text('другое');
+            $('#where').css('width', '165px');
+            $('#searchForm').css('bottom', '5px');
+            $('#search_label').hide();
         }
         else {
             $('#tourSearch_text,#subscribe,#big-logo').show();
             $('#third').text('Приключенческие туры');
             $('.groupLinks').css('font-size', '20px');
             $('#textspan1').css('font-size', '60px');
-            $('#wishletter').css('margin-top', '-150px');
+            $('#wishletter').css('margin-top', '270px');
             $('#other').text('что - то другое');
+            $('#where').css('width', '222px');
+            $('#searchForm').css('bottom', '100px');
+            $('#search_label').show();
         }
 
         if ($('#bar').width() <= 900) {
@@ -773,7 +757,7 @@
             $('#small-logo').css('margin-left', '21.2%');
             $('#navigation').show();
             $('#big-logo').hide();
-            $('#wishletter').css('margin-top', '100px');
+            $('#wishletter').css('margin-top', '270px');
 
             if ($('#bar').width() <= 1250) {
                 $('#big-logo').hide();
@@ -781,7 +765,7 @@
             }
             else {
                 $('#big-logo').show();
-                $('#wishletter').css('margin-top', '-150px');
+                $('#wishletter').css('margin-top', '270px');
             }
 
             $('.subTours').each(function () {
