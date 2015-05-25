@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Searches";
 }
+
 @model IEnumerable<WorkWithKOTE.Models.Tour>
 @using WorkWithKOTE.Code
 @Scripts.Render("~/bundles/jqueryval")
@@ -10,20 +11,17 @@
     UpdateTargetId = "target"
 }))
 {
-    @Html.DropDownList("Places", DropDown.Places(), "Любое направление")
-    @:Путешествие в  <input type="text" name="Places" />
-    <br />
-    @:Дата отъезда <input type="date" name="DateFirst" />
-    <br />
-    @:Минимальная цена <input type="text" name="MinValue" /><br />
-    @:Максимальная цена <input type="text" name="MaxValue" /><br />
-    <hr />
+   @* @Html.DropDownList("Places", DropDown.Places(), "Любое направление")*@
+    <input type="text" name="Places" placeholder="Куда"/>
+    @Html.DropDownList("PlaceDepartmen", DropDown.PlaceDeparture(), "Город выезда")
+    
     <div id="target">
         @{Html.RenderPartial("SearchResult");}
     </div>
+
    @* for (int i = 0; i < 10; i++)
     {
         @Ajax.ActionLink((i + 1).ToString(), "Searches", new { pageID = i,counter = 1 }, new AjaxOptions { UpdateTargetId = "target2", InsertionMode = InsertionMode.Replace })
     }*@
-    <input type="submit" value="Найти" />
+  
 }
