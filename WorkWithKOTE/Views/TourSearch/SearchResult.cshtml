@@ -8,11 +8,15 @@
 </style>
 
 <div class="searchForm">
+    
+    <input type="text" name="Places" placeholder="Куда"/>
+    @Html.DropDownList("PlaceDepartmen", DropDown.PlaceDeparture(), "Город выезда")
+
     @if (ViewBag.Counter == 0)
     {
        @* <label> Возвращения</label>
         <input type="date" name="DateSecond"/>*@
-        
+
         <div> Тип транспорта
             <div class="transportSelect">
                 @Html.CheckBox("IsBus") <label for="IsBus">Автобус</label><br/>
@@ -31,7 +35,7 @@
             }
         }
     }
-    
+
     @if (ViewBag.Counter == 1)
     {
        @* <label> Возвращения</label> <input type="date" name="DateSecond" /> *@
@@ -49,22 +53,30 @@
 
                         if (item.IsBus && B == 0)
                         {
-                          @Html.CheckBox("IsBus") <label>Автобус</label> B++;
+                            @Html.CheckBox("IsBus")
+                            <label>Автобус</label>
+                            B++;
                         }
 
                         if (item.IsShip && S == 0)
                         {
-                          @Html.CheckBox("IsShip") <label>Лайнер</label> S++;
+                            @Html.CheckBox("IsShip")
+                            <label>Лайнер</label>
+                            S++;
                         }
 
                         if (item.IsTrain && T == 0)
                         {
-                          @Html.CheckBox("IsTrain") <label>Поезд</label> T++;
+                            @Html.CheckBox("IsTrain")
+                            <label>Поезд</label>
+                            T++;
                         }
 
                         if (item.IsAriplane && A == 0)
                         {
-                          @Html.CheckBox("IsAriplane") <label>Самолет</label> A++;
+                            @Html.CheckBox("IsAriplane")
+                            <label>Самолет</label>
+                            A++;
                         }
 
                     }
@@ -73,10 +85,51 @@
 
             foreach (var item in ViewBag.Tags)
             {
-                if (!String.IsNullOrEmpty(item))
+                <label> Возвращения</label>
+                <input type="date" name="DateSecond"/>
+                <br/>
+            }
+
+            foreach (var item in Model)
+            {
+                int B = 0;
+                int S = 0;
+                int T = 0;
+                int A = 0;
+                if (item.IsBus && B == 0)
                 {
-                    <input type="checkbox" name="Tags" value="@item"/>
-                    <label>@item</label>
+                    @Html.CheckBox("IsBus")
+                    <label>Автобус</label>
+                    B++;
+                }
+                if (item.IsShip && S == 0)
+                {@Html.CheckBox("IsShip")
+                    <label>Лайнер</label>
+                    S++;
+                }
+                if (item.IsTrain && T == 0)
+                {@Html.CheckBox("IsTrain")
+                    <label>Поезд</label>
+                    T++;
+                }
+                if (item.IsAriplane && A == 0)
+                {@Html.CheckBox("IsAriplane")
+                    <label>Самолет</label>
+                    A++;
+                }
+                <hr/>
+            }
+            foreach (var item in Model)
+            {
+                foreach (var items in item.Tag)
+                {
+                    if (!String.IsNullOrEmpty(items.TagName))
+                    {
+                        <input type="checkbox" name="Tags" value="@item"/>
+                        <label>@item</label>
+                        <input type="checkbox" name="Tags" value="@items.TagName"/>
+                        <label>@items.TagName</label>
+                    }
                 }
             }
 
@@ -93,33 +146,31 @@
         }
     }
 
-    <input type="date" name="DateFirst" />
-    <input type="date" name="DateSecond" />
-    <input type="text" name="MinValue" value="1000" />
+    <input type="date" name="DateFirst"/>
+    <input type="date" name="DateSecond"/>
+    <input type="text" name="MinValue" value="1000"/>
     <input type="text" name="MaxValue" value="3000"/>
 
-    <input type="submit" value="Искать" />
+    <input type="submit" value="Искать"/>
 </div>
 
-    <div id="target2">
-        @foreach (var c in Model)
+<div id="target2">
+    @foreach (var c in Model)
         {
-            <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m => c.Valuta)</h3><br />
-            <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'>
-                <img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)" />
-            </a>
-            <a class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
-            <div class="date-select mini">
-                <label style="margin-left: -23px;">
-                    <select id="selectDate">
-                        @foreach (var item in c.DateTour)
+        <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m => c.Valuta)</h3><br />
+        <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
+        <a class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
+        <div class="date-select mini">
+            <label style="margin-left: -23px;">
+                <select id="selectDate">
+                    @foreach (var item in c.DateTour)
                         {
-                            <option>
-                                @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
-                            </option>
+                        <option>
+                            @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
+                        </option>
                         }
                     </select>
                 </label>
             </div>
         }
-    </div>
+</div>

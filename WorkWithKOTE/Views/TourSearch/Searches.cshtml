@@ -12,8 +12,6 @@
 }))
 {
    @* @Html.DropDownList("Places", DropDown.Places(), "Любое направление")*@
-    <input type="text" name="Places" placeholder="Куда"/>
-    @Html.DropDownList("PlaceDepartmen", DropDown.PlaceDeparture(), "Город выезда")
     
     <div id="target">
         @{Html.RenderPartial("SearchResult");}
