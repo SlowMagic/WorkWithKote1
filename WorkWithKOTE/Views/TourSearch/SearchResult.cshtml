@@ -21,8 +21,6 @@
     {
         <label> Возвращения</label> <input type="date" name="DateSecond" />
         <br />
-        if (Model.Any())
-        {
             foreach (var item in Model)
             {
                 int B = 0;
@@ -43,12 +41,14 @@
                 }
                 <hr />
             }
-            foreach (var item in ViewBag.Tags)
+           foreach (var item in Model)
             {
-                if (!String.IsNullOrEmpty(item))
+               foreach( var items in item.Tag){
+                 if (!String.IsNullOrEmpty(items.TagName))
                 {
-                    <input type="checkbox" name="Tags" value="@item" /> <label>@item</label>
+                    <input type="checkbox" name="Tags" value="@items.TagName" /> <label>@items.TagName</label>
                 }
+               }
             }
             <br />
             if (ViewBag.PlaceDeparture != null)
@@ -62,25 +62,24 @@
                 </select>
             }
         }
-    }
 </div>
-    <div id="target2">
-        @foreach (var c in Model)
+<div id="target2">
+    @foreach (var c in Model)
         {
-            <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m => c.Valuta)</h3><br />
-            <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
-            <a class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
-            <div class="date-select mini">
-                <label style="margin-left: -23px;">
-                    <select id="selectDate">
-                        @foreach (var item in c.DateTour)
+        <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m => c.Valuta)</h3><br />
+        <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
+        <a class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
+        <div class="date-select mini">
+            <label style="margin-left: -23px;">
+                <select id="selectDate">
+                    @foreach (var item in c.DateTour)
                         {
-                            <option>
-                                @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
-                            </option>
+                        <option>
+                            @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
+                        </option>
                         }
-                    </select>
-                </label>
-            </div><br />
+                </select>
+            </label>
+        </div><br />
         }
-    </div>
+</div>
