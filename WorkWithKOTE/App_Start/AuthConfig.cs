@@ -29,7 +29,7 @@ namespace WorkWithKOTE
            
             OAuthWebSecurity.RegisterClient(
             client: new VKontakteAuthenticationClient(
-              "4747156", "Nqr8BU7gAc9y2ObSauUf"),
+              "4913176", "fdUz0732af1ifEkZC3l7"),
             displayName: "ВКонтакте", 
             extraData: null);
          //   OAuthWebSecurity.RegisterGoogleClient();

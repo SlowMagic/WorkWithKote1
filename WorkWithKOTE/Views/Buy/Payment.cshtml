@@ -119,11 +119,12 @@
     <input class="payBtn" type="button" value="Вернуться в Профиль" onclick="location.href='@Url.Action("Profile","Profile",null)'" />
 </div>
 <script type="text/javascript">
+    var TourLink = 'http://kote.travel/TourDisplay/Index/' + '@Model.TourId';
     VK.init({
-        apiId: 4747156
+        apiId: 4913176
     });
     function postapi() {
-        VK.Api.call('wall.post', { message: "Я КОТЭшествую в @Model.Tour.NameTour. Присоиденяйтесь!! Со мной уже едут  @Model.Tour.People человек ", attachments: "http://localhost:19604/Home/Index" },
+        VK.Api.call('wall.post', { message: "Я КОТЭшествую в @Model.Tour.NameTour. Присоиденяйтесь!! Со мной уже едут  @Model.Tour.People человек ", attachments: "photo-30598666_365322387,http://kote.travel/Home/Index" },
         function (r) {
             if (r.response) {
                 window.location.href = '@Url.Action("Bonuses", "Home", new { TourRepostID = 1, id = Model.TripID })'
@@ -134,7 +135,7 @@
 <script type="text/javascript">
     window.fbAsyncInit = function () {
         FB.init({
-            appId: '336589873199739', status: true, cookie: true,
+            appId: '878101295595387', status: true, cookie: true,
             xfbml: true
         });
     };
@@ -146,8 +147,8 @@
     }());
 </script>
 <script type="text/javascript">
-    var img = 'http://localhost:19604' + '@Model.Tour.TourImg';
-    var TourLink = 'http://localhost:19604/TourDisplay/Index/' + '@Model.TourId';
+    var img = 'http://kote.travel/' + '@Model.Tour.TourImg';
+    var TourLink = 'http://kote.travel/TourDisplay/Index/' + '@Model.TourId';
     $(document).ready(function () {
         $('#share_button').click(function (e) {
             e.preventDefault();
@@ -156,7 +157,7 @@
     method: 'feed',
     name: 'КОТЭшествуй',
     link: TourLink,
-    picture: 'http://kote.travel//UpLoad/TourImg/cab5ca1b-ef57-4566-8cbe-51e0893df6e7.jpg',
+    picture: img,
     caption: 'Только интересныйе Туры! КОТЭшествуй с нами',
     description: 'Я КОТЭшествую в @Model.Tour.NameTour. Присоиденяйтесь!! Со мной уже едут  @Model.Tour.People человек',
     message: 'Присоединяйтесь!'
