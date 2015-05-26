@@ -90,11 +90,13 @@ h4 {
 
 .layout-left-column {
     float: left;
-    width: 30%;
-    padding: 1.5%;
-    border: solid rgb(220, 220, 220) 1px;
-    background-color: rgb(245, 245, 240);
-    color: rgb(18, 18, 18);
+    width: 265px;
+    height: 502px;
+    /*padding: 1.5%;*/
+    border-radius: 6px;
+    border: solid #eaeaea 1px;
+    background-color: #fff;
+    color: #434a54;
 }
 
 input[type=date], input[type=number] {

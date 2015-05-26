@@ -4,150 +4,378 @@
 
 @model IEnumerable<WorkWithKOTE.Models.Tour>
 @using WorkWithKOTE.Code
+@Styles.Render("~/Content/order")
+@{ Html.RenderPartial("HeaderPartial_main");}
+<style>
+    .layout {
+        margin-left: 11.6%;
+    }
+
+    .date-select label.hide:after {
+        display: none;
+    }
+
+    .transport p {
+        margin-top: 10px;
+    }
+
+    .searchBtn {
+        padding: 6px;
+        color: white !important;
+        border-radius: 4px;
+        background-color: #ff6f40;
+        border: 1px solid #ff6f40;
+        color: white;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    .tourImg:hover {
+        transition: 0.1s;
+        box-shadow: #ccc 1px 0px 8px 2px;
+    }
+
+    .tourImg {
+        transition: 0.3s;
+    }
+
+    .titleTour {
+        color: #ff6f40 !important;
+        font-size: 19px;
+    }
+
+    .found-tour {
+        margin-top: -38px;
+    }
+
+    .open {
+        margin-left: -21.2% !important;
+    }
+
+    #filter {
+        display: none;
+        position: fixed;
+        float: right;
+        text-align: right;
+        left: -42px;
+        cursor: pointer;
+        background-color: #ff6f40;
+        color: white !important;
+        transition: 0.5s;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-top: 19px;
+        padding-bottom: 7px;
+        padding-top: 10px;
+        width: 120px;
+    }
+
+    .rotate {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+    }
+
+    #search_label{
+        border-radius : 6px 6px 0px 0px;
+        width: 265px;
+        height: 40px;
+	    background: #434a54;
+        font-size : 16px;
+        line-height : 14px;
+        font-family : Helvetica-Roman;
+        color: #e6e9ed;
+        padding-top: 12px;
+    }
+
+    #label_img{
+      width: 20px;
+      height: 20px;
+      float: left;
+      margin-left: 20px;
+      margin-top: -2px;
+    }
+</style>
 @Scripts.Render("~/bundles/jqueryval")
-<form action="@Url.Action("Searches","TourSearch")", method="post" enctype="multipart/form-data">
-    <style>
-        .transportSelect input[type=checkbox] {
-            display: inline;
-        }
-    </style>
+<div id="small-preview-img" class="clearfix">
+    <hgroup>
+        <h1>Поиск</h1>
+        <h2>
+            <a href="@Url.Action("Index", "Home")">Главная</a> / <span id="currentZ">Поиск</span>
+        </h2>
+    </hgroup>
+</div>
 
-    <div class="searchForm">
-
-        <input type="text" name="Places" placeholder="Куда" value="@ViewBag.Place" />
-        @Html.DropDownList("PlaceDepartmen", DropDown.PlaceDeparture(), "Город выезда")
-
-        @if (ViewBag.Counter == 0)
-        {
-            @* <label> Возвращения</label>
-                <input type="date" name="DateSecond"/>*@
-
-            <div>
-                Тип транспорта
-                <div class="transportSelect">
-                    @Html.CheckBox("IsBus") <label for="IsBus">Автобус</label><br />
-                    @Html.CheckBox("IsShip") <label for="IsShip">Лайнер</label><br />
-                    @Html.CheckBox("IsTrain") <label for="IsTrain">Поезд</label><br />
-                    @Html.CheckBox("IsAriplane") <label for="IsAriplane">Самолет</label>
-                </div>
+<div class="container">
+    <div class="layout">
+        <div class="layout-left-column">
+            <p class="rotate" id="filter">Ф и л ь т р</p>
+            <div id="search_label">
+                <img id="label_img" src="/Content/img/Searching.png" alt="search"/>
+                Поиск
             </div>
+            <form action="@Url.Action("Searches", "TourSearch")" method="post" enctype="multipart/form-data">
+                <style>
+                    .transportSelect input[type=checkbox] {
+                        display: inline;
+                    }
+                    .searchForm {
+                    }
+                    .searchForm input[type=text] {
+                        background: #f9f9f9;
+                        border: 1px solid #eaeaea;
+                        width: 90%;
+                        margin: 10px 10px;
+                        padding: 5px;
+                        padding-left: 20px;
+                        height: 30px;
+                        border-radius: 2px;
+                    }
+                     .searchForm select {
+                        background: #f9f9f9;
+                        border: 1px solid #eaeaea;
+                        width: 90%;
+                        margin: 10px 10px;
+                        padding: 5px;
+                        padding-left: 20px;
+                        height: 30px;
+                        border-radius: 2px;
+                        color: #434a54 !important;
+                    }
+                     div.transportSelect {
+                         /*display: none;*/
 
-            foreach (var item in DropDown.Tags())
-            {
-                if (!String.IsNullOrEmpty(item.Text))
-                {
-                    <input type="checkbox" name="Tags" value="@item.Text" />
-                    <label>@item.Text</label>
-                }
-            }
-        }
+                     }
+                </style>
 
-        @if (ViewBag.Counter == 1)
-        {
-            @* <label> Возвращения</label> <input type="date" name="DateSecond" /> *@
+                <div class="searchForm">
 
-            if (Model.Any())
-            {
-                <div>
-                    Тип транспорта
-                    <div class="transportSelect">
-                        @foreach (var item in Model)
-                        {
-                            int B = 0;
-                            int S = 0;
-                            int T = 0;
-                            int A = 0;
+                    <input type="text" name="Places" placeholder="Куда" value="@ViewBag.Place"/>
+                    @Html.DropDownList("PlaceDepartmen", DropDown.PlaceDeparture(), "Город выезда")
 
-                            if (item.IsBus && B == 0)
-                            {
-                                @Html.CheckBox("IsBus")
-                                <label>Автобус</label>
-                                B++;
-                            }
-
-                            if (item.IsShip && S == 0)
-                            {
-                                @Html.CheckBox("IsShip")
-                                <label>Лайнер</label>
-                                S++;
-                            }
-
-                            if (item.IsTrain && T == 0)
-                            {
-                                @Html.CheckBox("IsTrain")
-                                <label>Поезд</label>
-                                T++;
-                            }
-
-                            if (item.IsAriplane && A == 0)
-                            {
-                                @Html.CheckBox("IsAriplane")
-                                <label>Самолет</label>
-                                A++;
-                            }
-
-                        }
-                    </div>
-                </div>
-                foreach (var item in Model)
-                {
-                    foreach (var items in item.Tag)
+                    @if (ViewBag.Counter == 0)
                     {
-                        if (!String.IsNullOrEmpty(items.TagName))
+                        @* <label> Возвращения</label>
+                            <input type="date" name="DateSecond"/>*@
+
+                        <div class="transportSelect-label">
+                            Тип транспорта
+                            <div class="transportSelect">
+                                @Html.CheckBox("IsBus") <label for="IsBus">Автобус</label><br/>
+                                @Html.CheckBox("IsShip") <label for="IsShip">Лайнер</label><br/>
+                                @Html.CheckBox("IsTrain") <label for="IsTrain">Поезд</label><br/>
+                                @Html.CheckBox("IsAriplane") <label for="IsAriplane">Самолет</label>
+                            </div>
+                        </div>
+                        <div>
+                            @foreach (var item in DropDown.Tags())
+                            {
+                                if (!String.IsNullOrEmpty(item.Text))
+                                {
+                                    <input type="checkbox" name="Tags" value="@item.Text"/>
+                                    <label>@item.Text</label>
+                                }
+                            }
+                        </div>
+                    }
+
+                    @if (ViewBag.Counter == 1)
+                    {
+                        @* <label> Возвращения</label> <input type="date" name="DateSecond" /> *@
+
+                        if (Model.Any())
                         {
-                            <input type="checkbox" name="Tags" value="@items.TagName" />
-                            <label>@items.TagName</label>
+                            <div>
+                                Тип транспорта
+                                <div class="transportSelect">
+                                    @foreach (var item in Model)
+                                    {
+                                        int B = 0;
+                                        int S = 0;
+                                        int T = 0;
+                                        int A = 0;
+
+                                        if (item.IsBus && B == 0)
+                                        {
+                                            @Html.CheckBox("IsBus")
+                                            <label>Автобус</label>
+                                            B++;
+                                        }
+
+                                        if (item.IsShip && S == 0)
+                                        {
+                                            @Html.CheckBox("IsShip")
+                                            <label>Лайнер</label>
+                                            S++;
+                                        }
+
+                                        if (item.IsTrain && T == 0)
+                                        {
+                                            @Html.CheckBox("IsTrain")
+                                            <label>Поезд</label>
+                                            T++;
+                                        }
+
+                                        if (item.IsAriplane && A == 0)
+                                        {
+                                            @Html.CheckBox("IsAriplane")
+                                            <label>Самолет</label>
+                                            A++;
+                                        }
+
+                                    }
+                                </div>
+                            </div>
+                            foreach (var item in Model)
+                            {
+                                foreach (var items in item.Tag)
+                                {
+                                    if (!String.IsNullOrEmpty(items.TagName))
+                                    {
+                                        <input type="checkbox" name="Tags" value="@items.TagName"/>
+                                        <label>@items.TagName</label>
+                                    }
+                                }
+                            }
+
+@*                            if (ViewBag.PlaceDeparture != null)*@
+@*                            {*@
+@*                                <select name="PlaceDepartmen">*@
+@*                                    <option selected>Город выезда</option>*@
+@*                                    @foreach (var item in ViewBag.PlaceDeparture)*@
+@*                                    {*@
+@*                                        <option>@item</option>*@
+@*                                    }*@
+@*                                </select>*@
+@*                            }*@
                         }
                     }
-                }
 
-                if (ViewBag.PlaceDeparture != null)
+                    <input type="date" name="DateFirst" value="@ViewBag.DateFirst"/>
+                    <input type="date" name="DateSecond" value="@ViewBag.DateSecond"/>
+                    <input type="text" name="MinValue" value="@ViewBag.MinValue"/>
+                    <input type="text" name="MaxValue" value="@ViewBag.MaxValue"/>
+
+                    <input type="submit" value="Искать"/>
+                </div>
+
+                @* @Html.DropDownList("Places", DropDown.Places(), "Любое направление")*@
+
+            </form>
+        </div><br/><br/>
+        <div class="layout-main-right">
+            <div class="found-tour">
+                @{
+                    int index = 0;
+                    bool flag = true;
+                }
+                @{ int max = Model.Count(); }
+                @foreach (var c in Model)
                 {
-                    <select name="PlaceDepartmen">
-                        <option selected>Город выезда</option>
-                        @foreach (var item in ViewBag.PlaceDeparture)
-                        {
-                            <option>@item</option>
+                    if (index >= max / 2 && flag)
+                    {
+                        flag = false;
+                        @:</div>
+                    @:<div class="found-tour">
                         }
-                    </select>
+                        <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m => c.Valuta)</h3><br />
+                        <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
+                        <a class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
+                        <div class="date-select mini">
+                            <label style="margin-left: -23px;">
+                                <select id="selectDate">
+                                    @foreach (var item in c.DateTour)
+                                    {
+                                        <option>
+                                            @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
+                                        </option>
+                                    }
+                                </select>
+                            </label>
+                        </div><br />
+                                    index++;
                 }
-            }
-        }
-
-        <input type="date" name="DateFirst" value="@ViewBag.DateFirst" />
-        <input type="date" name="DateSecond" value="@ViewBag.DateSecond" />
-        <input type="text" name="MinValue" value="@ViewBag.MinValue" />
-        <input type="text" name="MaxValue" value="@ViewBag.MaxValue" />
-
-        <input type="submit" value="Искать" />
-    </div>
-
-    @* @Html.DropDownList("Places", DropDown.Places(), "Любое направление")*@
-
-    <div id="target2">
-        @foreach (var c in Model)
-        {
-            <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m => c.Valuta)</h3><br />
-            <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
-            <a class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
-            <div class="date-select mini">
-                <label style="margin-left: -23px;">
-                    <select id="selectDate">
-                        @foreach (var item in c.DateTour)
-                        {
-                            <option>
-                                @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
-                            </option>
-                        }
-                    </select>
-                </label>
             </div>
-        }
+        </div>
+
+@*        <div id="target2">*@
+@*            @foreach (var c in Model)*@
+@*            {*@
+@*                <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m => c.Valuta)</h3><br/>*@
+@*                <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>*@
+@*                <a class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>*@
+@*                <div class="date-select mini">*@
+@*                    <label style="margin-left: -23px;">*@
+@*                        <select id="selectDate">*@
+@*                            @foreach (var item in c.DateTour)*@
+@*                            {*@
+@*                                <option>*@
+@*                                    @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)*@
+@*                                </option>*@
+@*                            }*@
+@*                        </select>*@
+@*                    </label>*@
+@*                </div>*@
+@*            }*@
+@*        </div>*@
+
+
+        @* for (int i = 0; i < 10; i++)
+            {
+                @Ajax.ActionLink((i + 1).ToString(), "Searches", new { pageID = i,counter = 1 }, new AjaxOptions { UpdateTargetId = "target2", InsertionMode = InsertionMode.Replace })
+            }*@
     </div>
+</div>
 
+<script>
+    function TourSearch()
+    {
+        if ($('#bar').width() <= 1100) {
+            $('#filter').show();
+            $('.layout-left-column').css({ 'float': 'auto','min-width':'215px','max-width':'215px', 'width': '70%','margin-left':'-100%','top': '104px','position':'fixed','z-index':'4'});
+            $('.layout-main-right').css({ 'margin-left': '3%', 'width': '100%', 'margin-top': '20px' });
+            $('.tourImg').css({ 'max-width': '100%', 'max-height': '100%' });
+            $('.found-tour').css({ 'width': 'auto', 'margin-top': '20px' });
+            $('.date-select label').addClass('hide');
+            $('.date-select.mini select').css({ 'font-size': '14px !important', 'text-decoration': 'underline' });
+            $('#selectDate').css('font-size', '14px !important');
+            $('.forHide').hide();
+            $('#Prices').css({ 'margin-bottom': '17px' });
+            $('#search_label').css({ 'width':'215px' });
+        }
+        else {
+            $('#filter').hide();
+            $('.forHide').show();
+            $('.layout-left-column').css({ 'float': 'left','min-width':'auto','max-width':'auto','width': '30%', 'margin-left': '0px !important', 'position': 'inherit'});
+            $('.layout-main-right').css({ 'margin-left': '33%', 'width': '67%','margin-top':'0px' });
+            $('.tourImg').css({ 'max-width': '250px', 'max-height': '150px' });
+            $('.found-tour').css({ 'width': '250px', 'margin-top': '-38px' });
+            $('.date-select label').removeClass('hide');
+            $('.date-select.mini select').css({ 'font-size': '1em', 'text-decoration': 'none' });
+            $('#selectDate').css('font-size', '1em');
+            $('#Prices').css({ 'margin-bottom': '0px' });
+        }
+    }
 
-    @* for (int i = 0; i < 10; i++)
-        {
-            @Ajax.ActionLink((i + 1).ToString(), "Searches", new { pageID = i,counter = 1 }, new AjaxOptions { UpdateTargetId = "target2", InsertionMode = InsertionMode.Replace })
-        }*@
-</form> 
+    $(function ()
+    {
+            TourSearch();
+
+            $('#filter').click(function () {
+                if (!$('.layout-left-column').hasClass('open')) {
+                     $('#filter').css('left', '172.6px');
+                }
+                else {
+                    $('#filter').css('left', '-42px');
+                }
+                $('.layout-left-column').toggleClass('open');
+                $('.layout-left-column').css('transition','0.5s');
+            });
+
+            $(window).resize(function(){
+                TourSearch();
+            });
+
+        });
+</script>
