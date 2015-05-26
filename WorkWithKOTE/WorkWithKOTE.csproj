@@ -1212,7 +1212,6 @@
     <Content Include="Views\TourCreate\PlacesPartial.cshtml" />
     <Content Include="Views\TourSearch\Searches.cshtml" />
     <Content Include="Views\Home\SearchPartial.cshtml" />
-    <Content Include="Views\TourSearch\SearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
