@@ -82,51 +82,12 @@
                     }
                 </div>
             </div>
-
-            foreach (var item in ViewBag.Tags)
-            {
-                <label> Возвращения</label>
-                <input type="date" name="DateSecond"/>
-                <br/>
-            }
-
-            foreach (var item in Model)
-            {
-                int B = 0;
-                int S = 0;
-                int T = 0;
-                int A = 0;
-                if (item.IsBus && B == 0)
-                {
-                    @Html.CheckBox("IsBus")
-                    <label>Автобус</label>
-                    B++;
-                }
-                if (item.IsShip && S == 0)
-                {@Html.CheckBox("IsShip")
-                    <label>Лайнер</label>
-                    S++;
-                }
-                if (item.IsTrain && T == 0)
-                {@Html.CheckBox("IsTrain")
-                    <label>Поезд</label>
-                    T++;
-                }
-                if (item.IsAriplane && A == 0)
-                {@Html.CheckBox("IsAriplane")
-                    <label>Самолет</label>
-                    A++;
-                }
-                <hr/>
-            }
             foreach (var item in Model)
             {
                 foreach (var items in item.Tag)
                 {
                     if (!String.IsNullOrEmpty(items.TagName))
                     {
-                        <input type="checkbox" name="Tags" value="@item"/>
-                        <label>@item</label>
                         <input type="checkbox" name="Tags" value="@items.TagName"/>
                         <label>@items.TagName</label>
                     }

@@ -3,109 +3,151 @@
 }
 
 @model IEnumerable<WorkWithKOTE.Models.Tour>
-@using WorkWithKOTE.Code@Styles.Render("~/Content/order")
-@{ Html.RenderPartial("HeaderPartial_main");}
+@using WorkWithKOTE.Code
+@Scripts.Render("~/bundles/jqueryval")
+<form action="@Url.Action("Searches","TourSearch")", method="post" enctype="multipart/form-data">
+    <style>
+        .transportSelect input[type=checkbox] {
+            display: inline;
+        }
+    </style>
 
-<style>
-    .layout {
-        margin-left: 11.6%;
-    }
+    <div class="searchForm">
 
-    .date-select label.hide:after {
-        display: none;
-    }
+        <input type="text" name="Places" placeholder="Куда" value="@ViewBag.Place" />
+        @Html.DropDownList("PlaceDepartmen", DropDown.PlaceDeparture(), "Город выезда")
 
-    .transport p {
-        margin-top: 10px;
-    }
-
-    .searchBtn {
-        padding: 6px;
-        color: white !important;
-        border-radius: 4px;
-        background-color: #ff6f40;
-        border: 1px solid #ff6f40;
-        color: white;
-        height: 30px;
-        cursor: pointer;
-    }
-
-    .tourImg:hover {
-        transition: 0.1s;
-        box-shadow: #ccc 1px 0px 8px 2px;
-    }
-
-    .tourImg {
-        transition: 0.3s;
-    }
-
-    .titleTour {
-        color: #ff6f40 !important;
-        font-size: 19px;
-    }
-
-    .found-tour {
-        margin-top: -38px;
-    }
-
-    .open {
-        margin-left: -21.2% !important;
-    }
-
-    #filter {
-        display: none;
-        position: fixed;
-        float: right;
-        text-align: right;
-        left: -42px;
-        cursor: pointer;
-        background-color: #ff6f40;
-        color: white !important;
-        transition: 0.5s;
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-top: 19px;
-        padding-bottom: 7px;
-        padding-top: 10px;
-        width: 120px;
-    }
-
-    .rotate {
-        -webkit-transform: rotate(90deg);
-        -moz-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        -o-transform: rotate(90deg);
-    }
-</style>
-
-<div id="small-preview-img" class="clearfix">
-    <hgroup>
-        <h1>Поиск</h1>
-        <h2>
-            <a href="@Url.Action("Index", "Home")">Главная</a> / <span id="currentZ">Поиск</span>
-        </h2>
-    </hgroup>
-</div>
-<div class="container">
-    <div class="layout">
-        @Scripts.Render("~/bundles/jqueryval")
-        @using (Ajax.BeginForm("Searches", "TourSearch", new AjaxOptions()
-    {
-        InsertionMode = InsertionMode.Replace,
-        UpdateTargetId = "target"
-    }))
+        @if (ViewBag.Counter == 0)
         {
-            @* @Html.DropDownList("Places", DropDown.Places(), "Любое направление")*@
+            @* <label> Возвращения</label>
+                <input type="date" name="DateSecond"/>*@
 
-            <div id="target">
-                @{Html.RenderPartial("SearchResult");}
+            <div>
+                Тип транспорта
+                <div class="transportSelect">
+                    @Html.CheckBox("IsBus") <label for="IsBus">Автобус</label><br />
+                    @Html.CheckBox("IsShip") <label for="IsShip">Лайнер</label><br />
+                    @Html.CheckBox("IsTrain") <label for="IsTrain">Поезд</label><br />
+                    @Html.CheckBox("IsAriplane") <label for="IsAriplane">Самолет</label>
+                </div>
             </div>
 
-            @* for (int i = 0; i < 10; i++)
+            foreach (var item in DropDown.Tags())
+            {
+                if (!String.IsNullOrEmpty(item.Text))
                 {
-                    @Ajax.ActionLink((i + 1).ToString(), "Searches", new { pageID = i,counter = 1 }, new AjaxOptions { UpdateTargetId = "target2", InsertionMode = InsertionMode.Replace })
-                }*@
+                    <input type="checkbox" name="Tags" value="@item.Text" />
+                    <label>@item.Text</label>
+                }
+            }
+        }
 
+        @if (ViewBag.Counter == 1)
+        {
+            @* <label> Возвращения</label> <input type="date" name="DateSecond" /> *@
+
+            if (Model.Any())
+            {
+                <div>
+                    Тип транспорта
+                    <div class="transportSelect">
+                        @foreach (var item in Model)
+                        {
+                            int B = 0;
+                            int S = 0;
+                            int T = 0;
+                            int A = 0;
+
+                            if (item.IsBus && B == 0)
+                            {
+                                @Html.CheckBox("IsBus")
+                                <label>Автобус</label>
+                                B++;
+                            }
+
+                            if (item.IsShip && S == 0)
+                            {
+                                @Html.CheckBox("IsShip")
+                                <label>Лайнер</label>
+                                S++;
+                            }
+
+                            if (item.IsTrain && T == 0)
+                            {
+                                @Html.CheckBox("IsTrain")
+                                <label>Поезд</label>
+                                T++;
+                            }
+
+                            if (item.IsAriplane && A == 0)
+                            {
+                                @Html.CheckBox("IsAriplane")
+                                <label>Самолет</label>
+                                A++;
+                            }
+
+                        }
+                    </div>
+                </div>
+                foreach (var item in Model)
+                {
+                    foreach (var items in item.Tag)
+                    {
+                        if (!String.IsNullOrEmpty(items.TagName))
+                        {
+                            <input type="checkbox" name="Tags" value="@items.TagName" />
+                            <label>@items.TagName</label>
+                        }
+                    }
+                }
+
+                if (ViewBag.PlaceDeparture != null)
+                {
+                    <select name="PlaceDepartmen">
+                        <option selected>Город выезда</option>
+                        @foreach (var item in ViewBag.PlaceDeparture)
+                        {
+                            <option>@item</option>
+                        }
+                    </select>
+                }
+            }
+        }
+
+        <input type="date" name="DateFirst" value="@ViewBag.DateFirst" />
+        <input type="date" name="DateSecond" value="@ViewBag.DateSecond" />
+        <input type="text" name="MinValue" value="@ViewBag.MinValue" />
+        <input type="text" name="MaxValue" value="@ViewBag.MaxValue" />
+
+        <input type="submit" value="Искать" />
+    </div>
+
+    @* @Html.DropDownList("Places", DropDown.Places(), "Любое направление")*@
+
+    <div id="target2">
+        @foreach (var c in Model)
+        {
+            <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m => c.Valuta)</h3><br />
+            <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
+            <a class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
+            <div class="date-select mini">
+                <label style="margin-left: -23px;">
+                    <select id="selectDate">
+                        @foreach (var item in c.DateTour)
+                        {
+                            <option>
+                                @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
+                            </option>
+                        }
+                    </select>
+                </label>
+            </div>
         }
     </div>
-</div>
+
+
+    @* for (int i = 0; i < 10; i++)
+        {
+            @Ajax.ActionLink((i + 1).ToString(), "Searches", new { pageID = i,counter = 1 }, new AjaxOptions { UpdateTargetId = "target2", InsertionMode = InsertionMode.Replace })
+        }*@
+</form> 
