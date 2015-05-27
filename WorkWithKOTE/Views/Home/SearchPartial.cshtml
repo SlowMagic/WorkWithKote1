@@ -1,6 +1,9 @@
-﻿ <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+﻿@using WorkWithKOTE.Code
+ <script src="//code.jquery.com/jquery-1.10.2.js"></script>
  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
+<script type="text/javascript" src="/Content/js/selectize/js/standalone/selectize.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/Content/js/selectize/css/selectize.css" />
 <style>
     #searchForm{
         width: 71.5%;
@@ -151,8 +154,8 @@
 </div>
 
 <form id="searchForm" action="@Url.Action("Searches","TourSearch")" method="post" enctype="multipart/form-data">
-    @* @Html.DropDownList("Places", DropDown.Places(), "Любое направление")*@
-    <input id="where" type="text" name="Places" placeholder="Куда" />
+     @Html.DropDownList("Places", DropDown.Places(), "Куда", new { @id = "where", @class = "selecti1" })
+@*    <input id="where" type="text" name="Places" placeholder="Куда" />*@
 @*    <input id="when" type="date" name="DateFirst" placeholder="Когда" />*@
     <input id="when" type="text" onfocus="(this.type='date')" name="DateFirst" placeholder="Когда" />
 
@@ -166,6 +169,7 @@
 
 <script>
     $(function () {
+        $('select.selectize1').selectize();
         $( "#slider-range" ).slider({
             range: true,
             step: 10,
