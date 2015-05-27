@@ -5,11 +5,11 @@
 @model IEnumerable<WorkWithKOTE.Models.Tour>
 @using WorkWithKOTE.Code
 @Styles.Render("~/Content/order")
-<script src="//vk.com/js/api/openapi.js" type="text/javascript"></script>
+@*<script src="//vk.com/js/api/openapi.js" type="text/javascript"></script>*@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+@*<script src="//code.jquery.com/jquery-1.10.2.js"></script>*@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
+@*<link rel="stylesheet" href="/resources/demos/style.css">*@
 <script type="text/javascript" src="/Content/js/selectize/js/standalone/selectize.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/Content/js/selectize/css/selectize.css" />
 @{ Html.RenderPartial("HeaderPartial_main");}
@@ -212,7 +212,7 @@
                     .transportSelect-label {
                           height: 32px;
                           padding: 3px;
-                          margin: 10px 10px;
+                          margin: 10px 10px 20px 10px;
                           width: 90%;
                           border: 1px solid #eaeaea;
                     }
@@ -223,6 +223,10 @@
                         cursor: pointer;
                     }
 
+                    .tourdate {
+                         margin-left:11px;
+                         width:42% !important;
+                    }
                 </style>
 
                 <div class="searchForm">
@@ -337,8 +341,8 @@
                         }
                     }
 
-                    <input style="margin-left:10px;width:44%;" type="date" name="DateFirst" value="@ViewBag.DateFirst" />
-                    <input  style="width:44%;" type="date" name="DateSecond" value="@ViewBag.DateSecond" />
+                    <input class="tourdate" type="date" name="DateFirst" value="@ViewBag.DateFirst" />
+                    <input class="tourdate" type="date" name="DateSecond" value="@ViewBag.DateSecond" />
 
                     <input style="display:none;" id="minPrice" type="text" name="MinValue" value="@ViewBag.MinValue" />
                     <input style="display:none;" id="maxPrice" type="text" name="MaxValue" value="@ViewBag.MaxValue" />
@@ -445,8 +449,9 @@
         }
     }
 
-    $(function (){
+    $(function () {
 
+        $('select.selectize').selectize();
             $("#slider-range").slider({
                 range: true,
                 step: 10,
@@ -468,7 +473,6 @@
            $('#tourTypechoose').slideToggle(300);
        });
 
-        $('select.selectize').selectize();
         TourSearch();
 
         $('#filter').click(function () {
