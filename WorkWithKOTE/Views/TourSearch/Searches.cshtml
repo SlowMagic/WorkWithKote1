@@ -240,8 +240,8 @@
                             <input type="date" name="DateSecond"/>*@
 
                         <div class="transportSelect-label">
-                           <div id="transoprt_lable" >Тип транспорта</div>
-                            <div id="typeoftrans" class="transportSelect">
+                            <div class="slidechoose" id="transoprt_lable">Тип транспорта</div>
+                            <div id="typeoftrans" class="transportSelect slidechoose">
                                 <label for="IsBus"> @Html.CheckBox("IsBus")&nbsp;Автобус</label>
                                 <label for="IsShip"> @Html.CheckBox("IsShip")&nbsp;Лайнер</label>
                                 <label for="IsTrain"> @Html.CheckBox("IsTrain")&nbsp;Поезд</label>
@@ -250,8 +250,8 @@
                         </div>
                         
                         <div class="transportSelect-label">
-                            <div id="tourtype">Тип тура</div>
-                            <div id="tourTypechoose" class="transportSelect">
+                            <div class="slidechoose" id="tourtype">Тип тура</div>
+                            <div id="tourTypechoose" class="transportSelect slidechoose">
                                 @foreach (var item in DropDown.Tags())
                                 {
                                     if (!String.IsNullOrEmpty(item.Text))
@@ -270,49 +270,50 @@
                         if (Model.Any())
                         {
                         <div class="transportSelect-label">
-                           <div id="transoprt_lable" >Тип транспорта</div>
-                            <div id="typeoftrans" class="transportSelect">
-                                    @foreach (var item in Model)
+                            <div class="slidechoose" id="transoprt_lable">Тип транспорта</div>
+                            <div id="typeoftrans" class="transportSelect slidechoose">
+                                @foreach (var item in Model)
+                                {
+                                    int B = 0;
+                                    int S = 0;
+                                    int T = 0;
+                                    int A = 0;
+
+                                    if (item.IsBus && B == 0)
                                     {
-                                        int B = 0;
-                                        int S = 0;
-                                        int T = 0;
-                                        int A = 0;
-
-                                        if (item.IsBus && B == 0)
-                                        {
-                                            @Html.CheckBox("IsBus")
-                                            <label for="IsBus">Автобус</label>
-                                            B++;
-                                        }
-
-                                        if (item.IsShip && S == 0)
-                                        {
-                                            @Html.CheckBox("IsShip")
-                                            <label for="IsShip">Лайнер</label>
-                                            S++;
-                                        }
-
-                                        if (item.IsTrain && T == 0)
-                                        {
-                                            @Html.CheckBox("IsTrain")
-                                            <label for="IsTrain">Поезд</label>
-                                            T++;
-                                        }
-
-                                        if (item.IsAriplane && A == 0)
-                                        {
-                                            @Html.CheckBox("IsAriplane")
-                                           <label for="IsAriplane">Самолет</label>
-                                            A++;
-                                        }
-
+                                        @Html.CheckBox("IsBus")
+                                        <label for="IsBus">Автобус</label>
+                                        B++;
                                     }
-                                </div>
+
+                                    if (item.IsShip && S == 0)
+                                    {
+                                        @Html.CheckBox("IsShip")
+                                        <label for="IsShip">Лайнер</label>
+                                        S++;
+                                    }
+
+                                    if (item.IsTrain && T == 0)
+                                    {
+                                        @Html.CheckBox("IsTrain")
+                                        <label for="IsTrain">Поезд</label>
+                                        T++;
+                                    }
+
+                                    if (item.IsAriplane && A == 0)
+                                    {
+                                        @Html.CheckBox("IsAriplane")
+                                        <label for="IsAriplane">Самолет</label>
+                                        A++;
+                                    }
+
+                                }
+                            </div>
+
                             </div>
                         
                         <div class="transportSelect-label">
-                            <div id="tourtype">Тип тура</div>
+                            <div class="slidechoose" id="tourtype">Тип тура</div>
                             <div id="tourTypechoose" class="transportSelect">
                             @foreach (var item in Model)
                             {
@@ -464,13 +465,21 @@
                     $('#maxPrice').val(ui.values[1]);
                 }
             });
+
+            $('body').click(function (event) {
+                if (!$(event.target).hasClass('slidechoose') && !$(event.target).parents('div').hasClass('slidechoose')) {
+                    $('#typeoftrans,#tourTypechoose').hide(300);
+                }
+            });
         
        $('#transoprt_lable').click(function() {
            $('#typeoftrans').slideToggle(300);
+           $('#tourTypechoose').hide(300);
        });
 
        $('#tourtype').click(function() {
            $('#tourTypechoose').slideToggle(300);
+           $('#typeoftrans').hide(300);
        });
 
         TourSearch();
