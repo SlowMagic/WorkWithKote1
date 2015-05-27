@@ -207,6 +207,16 @@
                           padding: 5px;
                           background: white;
                           border: 1px solid #eaeaea;
+                          max-height:150px;
+                          z-index : 5;
+                    }
+
+                    #typeoftrans{
+                         overflow:hidden !important;
+                    }
+
+                    #tourTypechoose{
+                          overflow:auto !important;
                     }
 
                     .transportSelect-label {
@@ -314,19 +324,19 @@
                         
                         <div class="transportSelect-label">
                             <div class="slidechoose" id="tourtype">Тип тура</div>
-                            <div id="tourTypechoose" class="transportSelect">
-                            @foreach (var item in Model)
-                            {
-                                foreach (var items in item.Tag)
+                            <div id="tourTypechoose" class="transportSelect slidechoose">
+                                @foreach (var item in Model)
                                 {
-                                    if (!String.IsNullOrEmpty(items.TagName))
+                                    foreach (var items in item.Tag)
                                     {
-                                        <input type="checkbox" name="Tags" value="@items.TagName" />
-                                        <label>@items.TagName</label>
+                                        if (!String.IsNullOrEmpty(items.TagName))
+                                        {
+                                            <input type="checkbox" name="Tags" value="@items.TagName" />
+                                            <label>@items.TagName</label>
+                                        }
                                     }
                                 }
-                            }
-                                </div>
+                            </div>
                             </div>
 
                             @*                            if (ViewBag.PlaceDeparture != null)*@
@@ -468,18 +478,18 @@
 
             $('body').click(function (event) {
                 if (!$(event.target).hasClass('slidechoose') && !$(event.target).parents('div').hasClass('slidechoose')) {
-                    $('#typeoftrans,#tourTypechoose').hide(300);
+                    $('#typeoftrans,#tourTypechoose').slideUp(300);
                 }
             });
         
        $('#transoprt_lable').click(function() {
            $('#typeoftrans').slideToggle(300);
-           $('#tourTypechoose').hide(300);
+           $('#tourTypechoose').slideUp(300);
        });
 
        $('#tourtype').click(function() {
            $('#tourTypechoose').slideToggle(300);
-           $('#typeoftrans').hide(300);
+           $('#typeoftrans').slideUp(300);
        });
 
         TourSearch();

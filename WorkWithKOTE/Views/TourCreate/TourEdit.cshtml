@@ -56,22 +56,23 @@
         <span class="textbox">
             Выезд из @Html.TextBoxFor(m => m.PlaceOfDeparture)
         </span><br />
-        <div id="places-pannel">
+        <div style="margin-left:35px;" id="places-pannel">
             @{int p = 0;}
             @foreach (var item in Model.Places)
             {
-                <div id="places_@p">
-                    <input type="text" name="Places[@p].PlaceName" value="@item.PlaceName" />
+                <div id="places_@p">Следующий пункт прибытия
+                    <input style="margin-left:3px;" type="text" name="Places[@p].PlaceName" value="@item.PlaceName" />
                     <input type="hidden" name="Places[@p].PlaceID" value="@item.PlaceID" /> <br />
                     <input type="hidden" name="Places[@p].TourId" value="@item.TourId" />
                 </div>
                 p++;
             }
-            <span class="textbox">
-                <input style="display:inline !important" type="button" class="addPlace usluga" value="Добавить Пункт" />
-                <input style="display:inline !important" type="button" class="deleteLinkPlace usluga" value="Удалить Пункт" />
-                </span>
 </div>
+        <div style="margin-top:10px">
+            <input style="display:inline !important" type="button" class="addPlace usluga" value="Добавить Пункт" />
+            <input style="display:inline !important" type="button" class="deleteLinkPlace usluga" value="Удалить Пункт" />
+        </div>
+
         <span class="textbox">
             Прибываем в @Html.TextBoxFor(m => m.PlaceOfArrival)
         </span><br />
