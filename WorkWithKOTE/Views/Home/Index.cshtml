@@ -576,12 +576,12 @@
 </div>
 <script type="text/javascript">
     VK.init({
-        apiId: 4747156
+        apiId: 4913176
     });
     var counter = parseInt('@ViewBag.CountRegister');
     @*if (counter == 1) {*@
     function postapi() {
-        VK.Api.call('wall.post', { message: "Теперь я тоже КОТЭшествую с тур клубом КОТЭ ", attachments: "photo-30598666_365322387,http://localhost:19604/Home/Index" },
+        VK.Api.call('wall.post', { message: "Теперь я тоже КОТЭшествую с тур клубом КОТЭ ", attachments: "photo-30598666_365322387,http://kote.travel/Home/Index" },
         function (r) {
             if (r.response) {
                 window.location.href = '@Url.Action("Bonuses", "Home", new { RegestrationID = 1})'
@@ -593,7 +593,7 @@
 <script type="text/javascript">
     window.fbAsyncInit = function () {
         FB.init({
-            appId: '336589873199739', status: true, cookie: true,
+            appId: '878101295595387', status: true, cookie: true,
             xfbml: true
         });
     };
@@ -606,7 +606,7 @@
 </script>
 <script type="text/javascript">
     var img = 'http://kote.travel//Content/img/parked.jpg';
-    var TourLink = 'http://localhost:19604/Home/Index/';
+    var TourLink = 'http://kote.travel/Home/Index';
     $(document).ready(function () {
         $('#share_button').click(function (e) {
             e.preventDefault();
