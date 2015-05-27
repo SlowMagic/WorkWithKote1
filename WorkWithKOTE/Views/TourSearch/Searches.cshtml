@@ -136,8 +136,10 @@
                             height: 30px;
                             border-radius: 2px;
                         }
-
-                        .searchForm select {
+                        .searchForm input[type=date]::-webkit-inner-spin-button{
+                            display: none;
+                        }
+                        .searchForm select .selectize {
                             background: #f9f9f9;
                             border: 1px solid #eaeaea;
                             width: 90%;
@@ -151,10 +153,34 @@
                         .searchForm label{
                             display: inline-block;
                         }
-
-                    div.transportSelect {
-                        /*display: none;*/
+                        .selectize-dropdown.single.selectize {
+                            top: 50px !important;
+                            left: 10px !important;
+                        }
+                    .transportSelect {
+                          display: none;
+                          left: -4px;
+                          position: relative;
+                          width: 237px;
+                          padding: 5px;
+                          background: white;
+                          border: 1px solid #eaeaea;
                     }
+
+                    .transportSelect-label {
+                          height: 32px;
+                          padding: 3px;
+                          margin: 10px 10px;
+                          width: 90%;
+                          border: 1px solid #eaeaea;
+                    }
+                        
+                     #transoprt_lable,#tourtype {
+                         padding-left: 20px;
+                         width: 100%;
+                         cursor: pointer;
+                       
+                     }
                 </style>
 
                 <div class="searchForm">
@@ -168,27 +194,26 @@
                             <input type="date" name="DateSecond"/>*@
 
                         <div class="transportSelect-label">
-                            Тип транспорта
-                            <div class="transportSelect">
+                           <div id="transoprt_lable" >Тип транспорта</div>
+                            <div id="typeoftrans" class="transportSelect">
                                 <label for="IsBus"> @Html.CheckBox("IsBus")&nbsp;Автобус</label>
                                 <label for="IsShip"> @Html.CheckBox("IsShip")&nbsp;Лайнер</label>
                                 <label for="IsTrain"> @Html.CheckBox("IsTrain")&nbsp;Поезд</label>
                                 <label for="IsAriplane"> @Html.CheckBox("IsAriplane")&nbsp;Самолет</label>
                             </div>
                         </div>
-                        <div>
-                            Тип тура
-                            <div class="transportSelect">
-                                @foreach (var item in DropDown.Tags())
-                                {
-                                    if (!String.IsNullOrEmpty(item.Text))
-                                    {
-                                        <input type="checkbox" name="Tags" value="@item.Text"/>
-                                        <label>@item.Text</label>
-                                    }
-                                }
-                            </div>
-                        </div>
+    <div class="transportSelect-label">
+        <div id="tourtype">Тип тура</div>
+        <div id="tourTypechoose" class="transportSelect">
+            @foreach (var item in DropDown.Tags())
+            {
+                if (!String.IsNullOrEmpty(item.Text))
+                {
+                    <label><input type="checkbox" name="Tags" value="@item.Text" />@item.Text</label>
+                }
+            }
+        </div>
+    </div>
                     }
 
                     @if (ViewBag.Counter == 1)
@@ -368,7 +393,17 @@
         }
     }
 
-    $(function () {
+    $(function (){
+
+        
+       $('#transoprt_lable').click(function() {
+           $('#typeoftrans').slideToggle(300);
+       });
+
+       $('#tourtype').click(function() {
+           $('#tourTypechoose').slideToggle(300);
+       });
+
         $('select.selectize').selectize();
         TourSearch();
 

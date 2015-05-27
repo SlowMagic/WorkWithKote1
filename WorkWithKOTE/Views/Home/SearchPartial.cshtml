@@ -26,6 +26,14 @@
     #minPrice,#maxPrice{
         display : none !important;
     }
+    
+    input[type=date]::-webkit-inner-spin-button {
+        display: none;
+    }
+    input[type=date]::-webkit-calendar-picker-indicator:hover {
+        background: none;
+        cursor: pointer;
+    }
 
     #where{
         width : 47%;
@@ -48,6 +56,7 @@
 	    font-size: 16px;
 	    border: 1px solid #3e4753;
 	    border-radius: 6px;
+        padding-top: 2px;
         padding-left : 15px;
     }
 
@@ -144,10 +153,11 @@
 <form id="searchForm" action="@Url.Action("Searches","TourSearch")" method="post" enctype="multipart/form-data">
     @* @Html.DropDownList("Places", DropDown.Places(), "Любое направление")*@
     <input id="where" type="text" name="Places" placeholder="Куда" />
-    <input id="when" type="date"  name="DateFirst" placeholder="Когда" />
+@*    <input id="when" type="date" name="DateFirst" placeholder="Когда" />*@
+    <input id="when" type="text" onfocus="(this.type='date')" name="DateFirst" placeholder="Когда" />
 
     <div id="slider-range"></div>
-    <input type="text" id="showPrice" value="1000 - 3000" />
+    <input type="text" id="showPrice" value="1000 - 3000" readonly="readonly"/>
     <input id="minPrice" type="text" name="MinValue" value="1000" />
     <input id="maxPrice" type="text" name="MaxValue" value="3000" />
     <input type="hidden" name="HomeCounter" value="1" />
