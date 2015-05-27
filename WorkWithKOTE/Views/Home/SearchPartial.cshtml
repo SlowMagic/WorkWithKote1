@@ -28,7 +28,7 @@
     }
 
     #where{
-        max-width : 222px;
+        width : 47%;
         height : 40px;
 	    background: #656d78;
 	    color: #e6e9ed;
@@ -40,7 +40,7 @@
     }
 
     #when{
-        width : 164px;
+        width : 47.3%;
         height : 40px;
 	    background: #656d78;
 	    color: #e6e9ed;
@@ -64,7 +64,7 @@
     }
 
     #slider-range{
-      width : 145px;
+      width : 59.5%;
       display : inline-block;
       margin-left : 9px;
       margin-top : 30px;
@@ -147,10 +147,10 @@
     <input id="when" type="date"  name="DateFirst" placeholder="Когда" />
 
     <div id="slider-range"></div>
-    <input type="text" id="showPrice" value="$1000 - $3000" />
-    <input id="minPrice" type="text" name="MinValue" />
-    <input id="maxPrice" type="text" name="MaxValue" />
-     <input type="hidden" name="HomeCounter" value="1" />
+    <input type="text" id="showPrice" value="1000 - 3000" />
+    <input id="minPrice" type="text" name="MinValue" value="1000" />
+    <input id="maxPrice" type="text" name="MaxValue" value="3000" />
+    <input type="hidden" name="HomeCounter" value="1" />
     <input id="searchBtn" type="submit" value="Искать" />
 </form>
 
@@ -160,10 +160,10 @@
             range: true,
             step: 10,
             min: 0,
-            max: 5000,
+            max: 30000,
             values: [ 1000, 3000 ],
             slide: function( event, ui ) {
-                     $("#showPrice").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                     $("#showPrice").val(ui.values[0] + " - " + ui.values[1]);
                      $('#minPrice').val(ui.values[0]);
                      $('#maxPrice').val(ui.values[1]);
                    }
