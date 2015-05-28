@@ -157,7 +157,11 @@
      @Html.DropDownList("Places", DropDown.Places(), "Куда", new { @id = "where", @class = "selecti1" })
 @*    <input id="where" type="text" name="Places" placeholder="Куда" />*@
 @*    <input id="when" type="date" name="DateFirst" placeholder="Когда" />*@
-    <input id="when" class="newDate" type="text" name="DateFirst" placeholder="Когда" />
+
+<!--    <input id="when" class="newDate" type="text" name="DateFirst" placeholder="Когда" />-->
+    @Html.DropDownList("DateFirst", new List<SelectListItem> { new SelectListItem{Value="1", Text="Январь"},  new SelectListItem{Value="2",Text="Февраль"}, new SelectListItem{Value="3",Text="Март"},
+                 new SelectListItem{Value="4",Text="Апрель"}, new SelectListItem{Value="5",Text="Май"}, new SelectListItem{Value = "6",Text="Июнь"}, new SelectListItem{Value="7",Text="Июль"},
+                 new SelectListItem{Value="8",Text="Август"}, new SelectListItem{Value="9",Text="Сентябрь"}, new SelectListItem{Value="10",Text="Октябрь"}, new SelectListItem{Value="11",Text="Ноябрь"}, new SelectListItem{Value="12",Text="Декабрь"}}, "Все даты", new { id = "when" })
 
     <div id="slider-range"></div>
     <input type="text" id="showPrice" value="1000 - 3000" readonly="readonly"/>

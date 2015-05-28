@@ -68,7 +68,7 @@ namespace WorkWithKOTE.Controllers
             return View(db.Tour.Include(m => m.DateTour).Include(m => m.Tag).ToList());
         }
         [HttpPost]
-        public ActionResult Searches(string PlaceDepartmen, string Places, DateTime? DateFirst, DateTime? DateSecond, decimal? MinValue, decimal? MaxValue, bool IsCar = false, bool IsShip = false, bool IsTrain = false, bool IsPlane = false, int PageID = 0,
+        public ActionResult Searches(string PlaceDepartmen, string Places, string DateFirst,DateTime? DateFirstt, DateTime? DateSecond, decimal? MinValue, decimal? MaxValue, bool IsCar = false, bool IsShip = false, bool IsTrain = false, bool IsPlane = false, int PageID = 0,
             int PageCount =5,int HomeCounter = 0, string[] Tags = null)
         {
             ViewBag.Counter = 1;
@@ -89,11 +89,17 @@ namespace WorkWithKOTE.Controllers
             {
                 data = data.Where(m => m.PlaceOfDeparture.Contains(PlaceDepartmen));
             }
-            if (DateFirst != null)
+            if (!String.IsNullOrEmpty(DateFirst))
             {
-                ViewBag.DateFirst = DateFirst.Value.ToString("yyyy-MM-dd");
-                DateTime dateMin = DateFirst.Value.AddDays(-5);
-                DateTime dateMax = DateFirst.Value.AddDays(5);
+                int month = int.Parse(DateFirst);
+                data = data.Where(m => m.DateTour.Any(dt => dt.FirstDate.Month == month));
+            }
+
+            if (DateFirstt != null)
+            {
+                ViewBag.DateFirst = DateFirstt.Value.ToString("yyyy-MM-dd");
+                DateTime dateMin = DateFirstt.Value.AddDays(-5);
+                DateTime dateMax = DateFirstt.Value.AddDays(5);
                 data = data.Where(m => m.DateTour.Any(dt => dt.FirstDate >= dateMin && dt.FirstDate <= dateMax));
             }
             if (DateSecond != null)

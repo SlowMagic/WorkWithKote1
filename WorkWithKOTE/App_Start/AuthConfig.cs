@@ -24,15 +24,15 @@ namespace WorkWithKOTE
             //    consumerSecret: "");
 
             OAuthWebSecurity.RegisterFacebookClient(
-                appId: "878101295595387",
+               appId: "878101295595387",
                appSecret: "b5bd7b6a3ddf2c14efdaea289f0f271a");
-           
+
             OAuthWebSecurity.RegisterClient(
             client: new VKontakteAuthenticationClient(
-              "4913176", "fdUz0732af1ifEkZC3l7"),
-            displayName: "ВКонтакте", 
+                 "4913176", "fdUz0732af1ifEkZC3l7"),
+            displayName: "ВКонтакте",
             extraData: null);
-         //   OAuthWebSecurity.RegisterGoogleClient();
+            //   OAuthWebSecurity.RegisterGoogleClient();
         }
     }
 }

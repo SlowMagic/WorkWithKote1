@@ -141,10 +141,13 @@ namespace WorkWithKOTE.Controllers
             }
             if (TourRepostID == 1)
             {
-                user.Bonus += bonus.BonusesForReposted;
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Payment", "Buy", new  { id = id });
+                if (Request.IsAuthenticated)
+                {
+                    user.Bonus += bonus.BonusesForReposted;
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Payment", "Buy", new { id = id, counterBuy = 1});
+                }
             }
             return RedirectToAction("Profile", "Profile");
         }
