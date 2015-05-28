@@ -316,6 +316,16 @@
 
 <script>
     $(function () {
+
+        var user_mail = $('#user-mail');
+
+        if ( user_mail.text().length > 20 ) {
+            var longEmail = user_mail.text();
+            var shortOne  = longEmail.substr(0, 17) + '...';
+            user_mail.text(shortOne);
+            user_mail.attr('title', longEmail);
+        }
+
         if (!$('#Id option').length) {
             $('.adminBtn').prop('disabled', true).css({ 'cursor': 'default' });
         }
