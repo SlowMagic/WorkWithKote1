@@ -110,11 +110,14 @@
 
     <div id="fb-root">
     </div>
-    <div id="shareBlock" style="display:none;">
+    @if (Request.IsAuthenticated && ViewBag.CounterBuy != 1)
+    {
+      <div id="shareBlock" style="display:none;">
         <span>Расскажите о нас и получите бонусные баллы на свой счёт!</span>
         <input type="button" id="share_button" class="facebookDialog" value="Поделиться" />
         <input type="button" class="VkontakteDialog" value="Поделиться" onclick="postapi()" id="share_VK" />
-    </div>
+    </div>   
+    }
     <input class="payBtn" type="button" value="Изменить информацию" onclick="location.href='@Url.Action("TripEdit", "Buy", new { IdTrip = Model.TripID })'" />
     <input class="payBtn" type="button" value="Вернуться в Профиль" onclick="location.href='@Url.Action("Profile","Profile",null)'" />
 </div>

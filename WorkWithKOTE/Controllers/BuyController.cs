@@ -183,8 +183,12 @@ namespace WorkWithKOTE.Controllers
 
             return View(data);
         }
-        public ActionResult Payment(int id)
+        public ActionResult Payment(int id, int? counterBuy)
         {
+            if (counterBuy == 1)
+            {
+                ViewBag.CounterBuy = 1;
+            }
             var data = db.Trip.Find(id);
             var dataTour = db.Tour.Find(data.TourId);
             var dataObj = new

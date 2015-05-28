@@ -352,8 +352,14 @@
                         }
                     }
 
-                    <input class="tourdate" type="date" name="DateFirst" value="@ViewBag.DateFirst" />
-                    <input class="tourdate" type="date" name="DateSecond" value="@ViewBag.DateSecond" />
+                    <p>Даты</p>
+
+                   @Html.DropDownList("DateFirst", new List<SelectListItem> { new SelectListItem{Value="1", Text="Январь"},  new SelectListItem{Value="2",Text="Февраль"}, new SelectListItem{Value="3",Text="Март"},
+                 new SelectListItem{Value="4",Text="Апрель"}, new SelectListItem{Value="5",Text="Май"}, new SelectListItem{Value = "6",Text="Июнь"}, new SelectListItem{Value="7",Text="Июль"},
+                 new SelectListItem{Value="8",Text="Август"}, new SelectListItem{Value="9",Text="Сентябрь"}, new SelectListItem{Value="10",Text="Октябрь"}, new SelectListItem{Value="11",Text="Ноябрь"}, new SelectListItem{Value="12",Text="Декабрь"}}, "Все даты")
+                    @Html.DropDownList("DateSecond", new List<SelectListItem> { new SelectListItem{Value="1", Text="Январь"},  new SelectListItem{Value="2",Text="Февраль"}, new SelectListItem{Value="3",Text="Март"},
+                 new SelectListItem{Value="4",Text="Апрель"}, new SelectListItem{Value="5",Text="Май"}, new SelectListItem{Value = "6",Text="Июнь"}, new SelectListItem{Value="7",Text="Июль"},
+                 new SelectListItem{Value="8",Text="Август"}, new SelectListItem{Value="9",Text="Сентябрь"}, new SelectListItem{Value="10",Text="Октябрь"}, new SelectListItem{Value="11",Text="Ноябрь"}, new SelectListItem{Value="12",Text="Декабрь"}}, "Все даты")
 
                     <input style="display:none;" id="minPrice" type="text" name="MinValue" value="@ViewBag.MinValue" />
                     <input style="display:none;" id="maxPrice" type="text" name="MaxValue" value="@ViewBag.MaxValue" />
