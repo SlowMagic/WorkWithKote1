@@ -1,9 +1,11 @@
 ﻿@{
-    ViewBag.Title = "Редактировать профиль";
+    ViewBag.Title = "kote.travel - Редактировать профиль";
 }
 @model WorkWithKOTE.Models.UserProfile
 @Styles.Render("~/Content/form")
 @Styles.Render("~/Content/order")
+
+<script src="~/Content/js/plugins/mask/jquery.maskedinput.min.js" type="text/javascript"></script>
 
 <style>
      #avatar,#Name,#secname,#thirdname,#e_name,#e_secname,#e_thirdname,#birthDate,#Nationality,
@@ -149,6 +151,11 @@
 <script>
     $(function ()
     {
+
+        jQuery(function ($) {
+            $("#Mobile").mask("+38(999) 999 - 99 - 99", { placeholder: " " });
+        });
+
         if ($('#bar').width() <= 800) {
             $('.not_import').hide();
             $('.editing').text('Редактор');

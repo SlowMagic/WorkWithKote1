@@ -1,10 +1,11 @@
 ﻿@{
-    ViewBag.Title = "Бронь и оплата";
+    ViewBag.Title = "kote.travel - Бронь и оплата";
 }
 @Styles.Render("~/Content/order")
 
 @model WorkWithKOTE.Models.Trip
 @{ Html.RenderPartial("HeaderPartial_main");}
+<script src="~/Content/js/plugins/mask/jquery.maskedinput.min.js" type="text/javascript"></script>
 
 <style>
     #toPay {
@@ -320,6 +321,11 @@
 
         $(function ()
         {
+
+            jQuery(function ($) {
+                $("input[name='mobile']").mask("+38(999) 999 - 99 - 99", { placeholder: " " });
+            });
+
             var price      = parseFloat($('#Prices').val());
             var finalPrice = parseFloat($('#finalPrice').val());
 

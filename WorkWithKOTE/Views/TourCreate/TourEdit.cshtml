@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Редактирование тура";
+    ViewBag.Title = "kote.travel - Редактирование тура (" + @Model.NameTour + ")";
 }
 @model WorkWithKOTE.Models.Tour
 @Styles.Render("~/Content/order")
@@ -12,6 +12,14 @@
     #form_tour {
         margin-left: 18.7%;
     }
+
+      .ui-datepicker-calendar th{
+        background-color:#ccc;
+    }
+
+        .ui-datepicker-calendar tr td:first-child{
+           width : auto;
+       }
 </style>
 
 @{ Html.RenderPartial("HeaderPartial_main");}
@@ -103,12 +111,12 @@
                 <div id="dateTour_@i">
                     <span class="textbox">
                         Введите дату отправки:
-                        <input type='date' id="myDateFirst+@i" name="DateTour[@i].FirstDate" required />
+                        <input class="newDate" type='text' id="myDateFirst+@i" name="DateTour[@i].FirstDate" required />
                     </span><br /><br />
 
                     <span class="textbox">
                         Введите дату приезда:
-                        <input style="margin-left:9px;margin-bottom:10px;" type='date' id="myDateSecond+@i" name="DateTour[@i].SecondDate" required />
+                        <input style="margin-left:9px;margin-bottom:10px;" class="newDate" type='text' id="myDateSecond+@i" name="DateTour[@i].SecondDate" required />
                     </span><br />
 
                     <input type="hidden" name="DateTour[@i].DateTourId" value="@item.DateTourId" />
@@ -355,13 +363,14 @@
         function AddLink() {
             var html2Add = "<div style='margin-left:35px;' id='dateTours_" + i + "'><br/>" +
                                  " Введите дату отправки: " +
-                                 "<input type='date' name='DT[" + i + "].FirstDate' required /><br/><br/>" +
+                                 "<input class='newDate' type='text' name='DT[" + i + "].FirstDate' required /><br/><br/>" +
                                  " Введите дату приезда : " +
-                                 "<input style='margin-left:2px;' type='date' name='DT[" + i + "].SecondDate' required />" +
+                                 "<input style='margin-left:2px;' class='newDate' type='text' name='DT[" + i + "].SecondDate' required />" +
                                  "<input type='hidden' name='DT[" + i + "].TourId' value='@Model.TourId' />" +
                              "</div>";
             $('#datetour-pannel').append(html2Add);
             i++;
+            $('.newDate').datepicker();
         }
 
         function DeleteLinkDate() {

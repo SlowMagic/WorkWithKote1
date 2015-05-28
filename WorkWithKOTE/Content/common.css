@@ -2,6 +2,10 @@ nav, footer, header, section, article, iframe, img {
     display: block;
 }
 
+.ui-datepicker-calendar{
+    background-color : #ccc;
+}
+
 @font-face {
      font-family: HelveticaNeueCyr;
      src: url(fonts/helveticaneuecyr-light.otf);

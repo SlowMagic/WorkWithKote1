@@ -11,7 +11,7 @@
         box-shadow: 1px 1px 3px 0px #ccc;
         position: absolute;
         width: 150px;
-        height: 0px;
+        height: 150px;
     }
 
     .menuLink,.menuLink_first {
@@ -112,13 +112,13 @@
             <p class="menuLink">       @Html.ActionLink("Новости", "AllNewsBlock", "News",null,null)     </p>
             <p class="menuLink">       @Html.ActionLink("О нас", "Contact", "Home", null, null)          </p>
 
-            <p class="menuLink">
+           <!-- <p class="menuLink">
                 <a href="@Url.Action("Search", "TourSearch")">Поиск</a>
             </p>
-
+               -->
         </div>
     
-        <a href="@Url.Action("Search", "TourSearch")"><img id="Searching" src="~/Content/img/Searching.png" /></a>
+        <a style="display:none;" href="@Url.Action("Search", "TourSearch")"><img id="Searching" src="~/Content/img/Searching.png" /></a>
     </div>
     <img id="top-shadow" src="~/Content/img/top-shadow.png"/>
     <div id="second-navigation">
@@ -195,7 +195,7 @@
         $('#forMenu').click(function () {
             $('#tiny_menu').offset({ 'left': $('#forMenu').offset().left - 130 });
             if (!$('#tiny_menu').hasClass('opened')) {
-                 $('#tiny_menu').css('display', 'block').animate({ 'height': '280px' }, 400);
+                 $('#tiny_menu').css('display', 'block').animate({ 'height': '240px' }, 400);
                  $('#tiny_menu').addClass('opened');
             }
             else {

@@ -96,7 +96,7 @@
         margin-bottom : 20px;
     }
 
-    .ui-widget-content{
+    .ui-widget-content.ui-slider-horizontal{
         background : #656d78 !important;
         height : 8px;
         border : 1px solid #656d78;
@@ -157,7 +157,7 @@
      @Html.DropDownList("Places", DropDown.Places(), "Куда", new { @id = "where", @class = "selecti1" })
 @*    <input id="where" type="text" name="Places" placeholder="Куда" />*@
 @*    <input id="when" type="date" name="DateFirst" placeholder="Когда" />*@
-    <input id="when" type="text" onfocus="(this.type='date')" name="DateFirst" placeholder="Когда" />
+    <input id="when" class="newDate" type="text" name="DateFirst" placeholder="Когда" />
 
     <div id="slider-range"></div>
     <input type="text" id="showPrice" value="1000 - 3000" readonly="readonly"/>

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Создание тура";
+    ViewBag.Title = "kote.travel - Создание тура";
 }
 @model WorkWithKOTE.Models.Tour
     @Styles.Render("~/Content/order")
@@ -19,6 +19,15 @@
     input[name="Places[0].PlaceName"]{
         margin-left : 3px;
     }
+
+      .ui-datepicker-calendar th{
+        background-color:#ccc;
+    }
+
+       .ui-datepicker-calendar tr td:first-child{
+           width : auto;
+       }
+
 </style>
 
 @{ Html.RenderPartial("HeaderPartial_main");}

@@ -1,6 +1,11 @@
 /**
  * Created by DencoDance on 01.03.2015.
  */
+
+$(function () {
+    $('.newDate').datepicker();
+});
+
 $(function ()
 {
     switchLogo(0);
