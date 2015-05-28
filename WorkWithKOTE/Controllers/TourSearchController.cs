@@ -68,7 +68,7 @@ namespace WorkWithKOTE.Controllers
             return View(db.Tour.Include(m => m.DateTour).Include(m => m.Tag).ToList());
         }
         [HttpPost]
-        public ActionResult Searches(string PlaceDepartmen, string Places, string DateFirst, string DateSecond, decimal? MinValue, decimal? MaxValue, bool IsCar = false, bool IsShip = false, bool IsTrain = false, bool IsPlane = false, int PageID = 0,
+        public ActionResult Searches(string PlaceDepartmen, string Places, string DateFirst,DateTime? DateFirstt, DateTime? DateSecond, decimal? MinValue, decimal? MaxValue, bool IsCar = false, bool IsShip = false, bool IsTrain = false, bool IsPlane = false, int PageID = 0,
             int PageCount =5,int HomeCounter = 0, string[] Tags = null)
         {
             ViewBag.Counter = 1;
@@ -94,10 +94,20 @@ namespace WorkWithKOTE.Controllers
                 int month = int.Parse(DateFirst);
                 data = data.Where(m => m.DateTour.Any(dt => dt.FirstDate.Month == month));
             }
-            if (!String.IsNullOrEmpty(DateSecond))
+
+            if (DateFirstt != null)
             {
-                int monthSecond = int.Parse(DateSecond);
-                data = data.Where(m => m.DateTour.Any(dt => dt.SecondDate.Month == monthSecond));
+                ViewBag.DateFirst = DateFirstt.Value.ToString("yyyy-MM-dd");
+                DateTime dateMin = DateFirstt.Value.AddDays(-5);
+                DateTime dateMax = DateFirstt.Value.AddDays(5);
+                data = data.Where(m => m.DateTour.Any(dt => dt.FirstDate >= dateMin && dt.FirstDate <= dateMax));
+            }
+            if (DateSecond != null)
+            {
+                ViewBag.DateSecond = DateSecond.Value.ToString("yyyy-MM-dd");
+                DateTime dateMin = DateSecond.Value.AddDays(-5);
+                DateTime dateMax = DateSecond.Value.AddDays(5);
+                data = data.Where(m => m.DateTour.Any(dt => dt.SecondDate >= dateMin && dt.SecondDate <= dateMax));
             }
             if (MinValue != null)
             {
