@@ -1,24 +1,38 @@
 ﻿@using WorkWithKOTE.Code
- <script src="//code.jquery.com/jquery-1.10.2.js"></script>
- <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
+@* <script src="//code.jquery.com/jquery-1.10.2.js"></script>*@
+@*<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
 <script type="text/javascript" src="/Content/js/selectize/js/standalone/selectize.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/Content/js/selectize/css/selectize.css" />
 <style>
-    #searchForm{
+    #searchForm {
         width: 71.5%;
-        min-height : 100px;
-        margin-left : 16%;
-        background : #434a54;
-        position : absolute;
-        bottom : 100px;
-        text-align : left;
+        min-height: 100px;
+        margin-left: 16%;
+        background: #434a54;
+        position: absolute;
+        bottom: 100px;
+        text-align: left;
+        padding-top: 30px;
     }
 
-    #searchForm input{
-        display : inline-block;
-        margin-top : 30px;
-        margin-left : 17px;
+    .selectize {
+        width: 47%;
+        height: 40px;
+        background: #656d78;
+        color: #e6e9ed;
+        line-height: 17px;
+        font-size: 16px;
+        border: 1px solid #3e4753;
+        border-radius: 6px;
+        padding-left: 15px;
+        /*margin-top: 20px;*/
+    }
+
+    #searchForm input {
+        display: inline-block;
+        /*margin-top: 30px;*/
+        margin-left: 17px;
     }
 
     /*input[type="date"]:before {
@@ -26,147 +40,249 @@
     }
     */
 
-    #minPrice,#maxPrice{
-        display : none !important;
+    #minPrice, #maxPrice {
+        display: none !important;
     }
-    
+
     input[type=date]::-webkit-inner-spin-button {
         display: none;
     }
+
     input[type=date]::-webkit-calendar-picker-indicator:hover {
         background: none;
         cursor: pointer;
     }
 
-    #where{
-        width : 47%;
+    #where {
+        /*width : 47%;
         height : 40px;
-	    background: #656d78;
-	    color: #e6e9ed;
+        background: #656d78;
+        color: #e6e9ed;
         line-height : 17px;
-	    font-size: 16px;
-	    border: 1px solid #3e4753;
-	    border-radius: 6px;
-        padding-left : 15px;
-        margin-top : 20px;
-    }
-
-    #when{
-        width : 47.3%;
-        height : 40px;
-	    background: #656d78;
-	    color: #e6e9ed;
-        line-height : 14px;
-	    font-size: 16px;
-	    border: 1px solid #3e4753;
-	    border-radius: 6px;
-        padding-top: 2px;
-        padding-left : 15px;
-        margin-top : 28px;
-    }
-
-    #showPrice{
-        width : 153px;
-        height : 40px;
-	    background: #656d78;
-	    color: #e6e9ed;
-        line-height : 14px;
-	    font-size: 16px;
-	    border: 1px solid #3e4753;
-	    border-radius: 6px;
-        padding-left : 15px;
-    }
-
-    #slider-range{
-      width : 59.5%;
-      display : inline-block;
-      margin-left : 9px;
-      margin-top : 30px;
-    }
-
-    #searchBtn{
-        width : 160px;
-        height : 38px;
-        font-family : Helvetica-Medium;
-        font-size : 16px;
-        border : none;
-        line-height : 14px;
-	    background : #ff6f40;
-	    box-shadow : 0px 2px 0px #d45227; 
+        font-size: 16px;
+        border: 1px solid #3e4753;
         border-radius: 6px;
-        color : #e6e9ed;
-        margin-bottom : 20px;
+        padding-left : 15px;
+        margin-top : 20px;*/
     }
 
-    .ui-widget-content.ui-slider-horizontal{
-        background : #656d78 !important;
-        height : 8px;
-        border : 1px solid #656d78;
+    #when {
+        width: 47.3%;
+        height: 40px;
+        background: #656d78;
+        color: #e6e9ed;
+        line-height: 14px;
+        font-size: 16px;
+        border: 1px solid #3e4753;
+        border-radius: 6px;
+        padding-top: 2px;
+        padding-left: 15px;
+        /*margin-top: 28px;*/
     }
 
-    .ui-slider-range.ui-widget-header.ui-corner-all{
-        background : #ff6f40 !important;
+
+    .selectize {
+        display: inline-block;
+        width: 47%;
+        height: 40px;
+        background: #656d78;
+        color: #e6e9ed;
+        line-height: 17px;
+        font-size: 16px;
+        border: 1px solid #3e4753;
+        /*border-radius: 6px;
+        padding-left : 15px;*/
+        /*margin-top: 20px;*/
+        margin-left: 17px;
     }
 
-    .ui-slider-handle.ui-state-default.ui-corner-all{
-      background : #ff6f40 !important;
-      height: 21px;
-      cursor : pointer;
-      border : 4px solid #e85f31;
-      margin-top: -6px;
-      border-radius: 50%;
-      box-shadow : 0px 0px 5px rgba(0,0,0,0.35);
+    .selectize-input {
+        margin: 5px 0px -14px 0px;
+        background: none;
+        border: none;
+        padding: 0px;
+        width: 90%;
+    }
+    .selectize-input.focus {
+        background: none;
+        border: none;
+        color: #e6e9ed;
+        box-shadow: none;
+    }
+    .selectize-input.full {
+        background: none;
+        border: none;
+        color: #e6e9ed;
+    }
+    .selectize-input input {
+        color: #e6e9ed;
+        line-height: 14px;
+        font-size: 16px;
+        background: none !important;
+        box-shadow: none !important;
     }
 
-    .ui-slider-handle.ui-state-default.ui-corner-all:focus,
-    #searchForm input 
-    {
-        outline : none;
+    .selectize-input input ::-webkit-input-placeholder {
+        color: #e6e9ed;
+        line-height: 14px;
+        font-size: 16px;
     }
 
-    #search_label{
-        width : 190px;
-        height : 40px;
-        border-radius : 6px;
-	    background: #434a54;
-        font-size : 16px;
-        line-height : 14px;
-        font-family : Helvetica-Roman;
+    .selectize-input input ::-moz-placeholder {
+        color: #e6e9ed;
+        line-height: 14px;
+        font-size: 16px;
+    }
+    /* Firefox 19+ */
+    .selectize-input input :-moz-placeholder {
+        color: #e6e9ed;
+        line-height: 14px;
+        font-size: 16px;
+    }
+    /* Firefox 18- */
+    .selectize-input input :-ms-input-placeholder {
+        color: #e6e9ed;
+        line-height: 14px;
+        font-size: 16px;
+    }
+
+    .selectize-input input .selectize-input.focus {
+        box-shadow: none;
+    }
+
+    .selectize-input,
+    .selectize-control.single .selectize-input.input-active {
+        background: none;
+        border: none;
+        width: 100%;
+    }
+    .selectize-dropdown {
+        font-size: 16px !important;
+        position: absolute;
+        z-index: 10;
+        /*border: 1px solid #eaeaea;*/
+        background: #656d78;
+        margin: -1px 0 0 0;
+        border-top: 0 none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        -webkit-border-radius: 0 0 2px 2px;
+        -moz-border-radius: 0 0 2px 2px;
+        border-radius: 0 0 2px 2px;
+        width:100% !important;
+        height: 200px;
+        margin-left: 0px !important;
+        top: 39px !important;
+        left: 0px !important;
+
+    }
+    .selectize-dropdown .active {
+        background: #3e4753;
+        color: #e6e9ed;
+    }
+    #showPrice {
+        width: 153px;
+        height: 40px;
+        background: #656d78;
+        color: #e6e9ed;
+        line-height: 14px;
+        font-size: 16px;
+        border: 1px solid #3e4753;
+        border-radius: 6px;
+        padding-left: 15px;
+    }
+
+    #slider-range {
+        width: 59.5%;
+        display: inline-block;
+        margin-left: 9px;
+        margin-top: 30px;
+    }
+
+    #searchBtn {
+        width: 160px;
+        height: 38px;
+        font-family: Helvetica-Medium;
+        font-size: 16px;
+        border: none;
+        line-height: 14px;
+        background: #ff6f40;
+        box-shadow: 0px 2px 0px #d45227;
+        border-radius: 6px;
+        color: #e6e9ed;
+        margin-bottom: 20px;
+    }
+
+    .ui-widget-content.ui-slider-horizontal {
+        background: #656d78 !important;
+        height: 8px;
+        border: 1px solid #656d78;
+    }
+
+    .ui-slider-range.ui-widget-header.ui-corner-all {
+        background: #ff6f40 !important;
+    }
+
+    .ui-slider-handle.ui-state-default.ui-corner-all {
+        background: #ff6f40 !important;
+        height: 21px;
+        cursor: pointer;
+        border: 4px solid #e85f31;
+        margin-top: -6px;
+        border-radius: 50%;
+        box-shadow: 0px 0px 5px rgba(0,0,0,0.35);
+    }
+
+        .ui-slider-handle.ui-state-default.ui-corner-all:focus,
+        #searchForm input {
+            outline: none;
+        }
+
+    #search_label {
+        width: 190px;
+        height: 40px;
+        border-radius: 6px;
+        background: #434a54;
+        font-size: 16px;
+        line-height: 14px;
+        font-family: Helvetica-Roman;
         color: #e6e9ed;
         position: absolute;
-        bottom: 196px;
+        bottom: 175px;
         padding-top: 10px;
-        padding-right : 20px;
+        padding-right: 20px;
         margin-left: 16%;
     }
 
-    #label_img{
-      width: 20px;
-      height: 20px;
-      float: left;
-      margin-left: 20px;
-      margin-top: -2px;
+    #label_img {
+        width: 20px;
+        height: 20px;
+        float: left;
+        margin-left: 20px;
+        margin-top: -2px;
     }
-
 </style>
 
 <div id="search_label">
-    <img id="label_img" src="/Content/img/Searching.png"  alt="search"/>
+    <img id="label_img" src="/Content/img/Searching.png" alt="search" />
     Быстрый поиск
 </div>
 
 <form id="searchForm" action="@Url.Action("Searches","TourSearch")" method="post" enctype="multipart/form-data">
-     @Html.DropDownList("Places", DropDown.Places(), "Куда", new { @id = "where", @class = "selecti1" })
-@*    <input id="where" type="text" name="Places" placeholder="Куда" />*@
-@*    <input id="when" type="date" name="DateFirst" placeholder="Когда" />*@
+    @Html.DropDownList("Places", DropDown.Places(), "Куда", new { @id = "where", @class = "selectize" })
+    @*    <input id="where" type="text" name="Places" placeholder="Куда" />*@
+    @*    <input id="when" type="date" name="DateFirst" placeholder="Когда" />*@
 
-<!--    <input id="when" class="newDate" type="text" name="DateFirst" placeholder="Когда" />-->
+    <!--    <input id="when" class="newDate" type="text" name="DateFirst" placeholder="Когда" />-->
     @Html.DropDownList("DateFirst", new List<SelectListItem> { new SelectListItem{Value="1", Text="Январь"},  new SelectListItem{Value="2",Text="Февраль"}, new SelectListItem{Value="3",Text="Март"},
                  new SelectListItem{Value="4",Text="Апрель"}, new SelectListItem{Value="5",Text="Май"}, new SelectListItem{Value = "6",Text="Июнь"}, new SelectListItem{Value="7",Text="Июль"},
                  new SelectListItem{Value="8",Text="Август"}, new SelectListItem{Value="9",Text="Сентябрь"}, new SelectListItem{Value="10",Text="Октябрь"}, new SelectListItem{Value="11",Text="Ноябрь"}, new SelectListItem{Value="12",Text="Декабрь"}}, "Все даты", new { id = "when" })
 
     <div id="slider-range"></div>
-    <input type="text" id="showPrice" value="1000 - 3000" readonly="readonly"/>
+    <input type="text" id="showPrice" value="₴1000 - ₴3000" readonly="readonly" />
     <input id="minPrice" type="text" name="MinValue" value="1000" />
     <input id="maxPrice" type="text" name="MaxValue" value="3000" />
     <input type="hidden" name="HomeCounter" value="1" />
@@ -175,18 +291,21 @@
 
 <script>
     $(function () {
-        $('select.selectize1').selectize();
-        $( "#slider-range" ).slider({
+        $('select.selectize').selectize({
+            openOnFocus: false
+        });
+        $("#slider-range").slider({
             range: true,
             step: 10,
             min: 0,
             max: 30000,
-            values: [ 1000, 3000 ],
-            slide: function( event, ui ) {
-                     $("#showPrice").val(ui.values[0] + " - " + ui.values[1]);
-                     $('#minPrice').val(ui.values[0]);
-                     $('#maxPrice').val(ui.values[1]);
-                   }
+            values: [1000, 3000],
+            slide: function (event, ui) {
+                $("#showPrice").val("₴" + ui.values[0] + " - ₴" + ui.values[1]);
+                $('#minPrice').val(ui.values[0]);
+                $('#maxPrice').val(ui.values[1]);
+            }
         });
+
     });
 </script>

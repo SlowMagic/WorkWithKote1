@@ -1,7 +1,6 @@
 /**
  * Created by DencoDance on 01.03.2015.
  */
-
 $(function () {
     $('.newDate').datepicker({ dateFormat: 'dd.mm.yy' });
 });
