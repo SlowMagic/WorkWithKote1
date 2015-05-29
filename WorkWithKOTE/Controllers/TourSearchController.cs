@@ -68,7 +68,7 @@ namespace WorkWithKOTE.Controllers
             return View(db.Tour.Include(m => m.DateTour).Include(m => m.Tag).ToList());
         }
         [HttpPost]
-        public ActionResult Searches(string PlaceDepartmen, string Places, string DateFirst,DateTime? DateFirstt, DateTime? DateSecond, decimal? MinValue, decimal? MaxValue, bool IsCar = false, bool IsShip = false, bool IsTrain = false, bool IsPlane = false, int PageID = 0,
+        public ActionResult Searches(string PlaceDepartmen, string Places, string DateFirst,string DateFirstt, string DateSecond, decimal? MinValue, decimal? MaxValue, bool IsCar = false, bool IsShip = false, bool IsTrain = false, bool IsPlane = false, int PageID = 0,
             int PageCount =5,int HomeCounter = 0, string[] Tags = null)
         {
             ViewBag.Counter = 1;
@@ -95,18 +95,18 @@ namespace WorkWithKOTE.Controllers
                 data = data.Where(m => m.DateTour.Any(dt => dt.FirstDate.Month == month));
             }
 
-            if (DateFirstt != null)
+            if (!String.IsNullOrEmpty(DateFirstt))
             {
-                ViewBag.DateFirst = DateFirstt.Value.ToString("yyyy-MM-dd");
-                DateTime dateMin = DateFirstt.Value.AddDays(-5);
-                DateTime dateMax = DateFirstt.Value.AddDays(5);
+                ViewBag.DateFirst = DateFirstt;
+                DateTime dateMin = DateTime.ParseExact(DateFirstt, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture).AddDays(-5);
+                DateTime dateMax =DateTime.ParseExact(DateFirstt, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture).AddDays(5);
                 data = data.Where(m => m.DateTour.Any(dt => dt.FirstDate >= dateMin && dt.FirstDate <= dateMax));
             }
-            if (DateSecond != null)
+            if (!String.IsNullOrEmpty(DateSecond))
             {
-                ViewBag.DateSecond = DateSecond.Value.ToString("yyyy-MM-dd");
-                DateTime dateMin = DateSecond.Value.AddDays(-5);
-                DateTime dateMax = DateSecond.Value.AddDays(5);
+                ViewBag.DateSecond = DateSecond;
+                DateTime dateMin = DateTime.ParseExact(DateSecond, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture).AddDays(-5);
+                DateTime dateMax =DateTime.ParseExact(DateSecond, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture).AddDays(5);
                 data = data.Where(m => m.DateTour.Any(dt => dt.SecondDate >= dateMin && dt.SecondDate <= dateMax));
             }
             if (MinValue != null)

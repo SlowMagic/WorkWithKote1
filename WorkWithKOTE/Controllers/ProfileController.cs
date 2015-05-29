@@ -47,13 +47,13 @@ namespace WorkWithKOTE.Controllers
             }
             else
             {
-                    int i = WebSecurity.GetUserId(User.Identity.Name);
-                    UserProfile user = db.UserProfiles.Include(m => m.VisitedTours).First(m => m.UserId == i);
-                    ViewBag.UserRole = Roles.GetRolesForUser(User.Identity.Name);
-                    ViewBag.Id = new SelectList(db.Trip.Where(m => m.UserId == i && m.Status == "Не оплачена"), "TripID", "TripID");  
-                    return View(user);
+                int i = WebSecurity.GetUserId(User.Identity.Name);
+                UserProfile user = db.UserProfiles.Include(m => m.VisitedTours).First(m => m.UserId == i);
+                ViewBag.UserRole = Roles.GetRolesForUser(User.Identity.Name);
+                ViewBag.Id = new SelectList(db.Trip.Where(m => m.UserId == i && m.Status == "Не оплачена"), "TripID", "TripID");
+                return View(user);
             }
-           
+
         }
         [Authorize]
         public ActionResult EditProfile()
@@ -70,18 +70,22 @@ namespace WorkWithKOTE.Controllers
         }
         [Authorize]
         [HttpPost]
-        public ActionResult EditProfile(UserProfile model, HttpPostedFileBase file)
+        public ActionResult EditProfile(UserProfile model, string Birthdays, string DatePasports, string DateZagrans, HttpPostedFileBase file)
         {
             int i = WebSecurity.GetUserId(User.Identity.Name);
             var newUserModel = db.UserProfiles.Find(i);
-            var check = UploadImages.UploadImg(file, "/UpLoad/Avatar/"); 
-            if (check != null){
+            var check = UploadImages.UploadImg(file, "/UpLoad/Avatar/");
+            if (check != null)
+            {
                 model.Avatar = check;
                 newUserModel.Avatar = model.Avatar;
             }
-            newUserModel.Birthday = model.Birthday;
-            newUserModel.DatePasport = model.DatePasport;
-            newUserModel.DateZagran = model.DateZagran;
+            if (!string.IsNullOrEmpty(Birthdays))
+                newUserModel.Birthday = DateTime.ParseExact(Birthdays, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            if (!string.IsNullOrEmpty(DatePasports))
+                newUserModel.DatePasport = DateTime.ParseExact(DatePasports, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            if (!string.IsNullOrEmpty(DateZagrans))
+                newUserModel.DateZagran = DateTime.ParseExact(DateZagrans, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
             newUserModel.EngFirstName = model.EngFirstName;
             newUserModel.EngSecondName = model.EngSecondName;
             newUserModel.EngThirdName = model.EngThirdName;
@@ -116,7 +120,7 @@ namespace WorkWithKOTE.Controllers
                 var token = WebSecurity.GeneratePasswordResetToken(Email);
                 var resetLink = "<a href=\"" + Url.Action("ResetPassword", "Profile", new { un = i, rt = token }, "http") + "\">ReserPasswor</a>";
                 string subject = "Если вы хотите сбросить пароль то перейдите по данной ссылке";
-                string body = "<b>Если вы хотите сбросить пароль то перейдите по данной ссылке</b><br/>" + resetLink +" Операция необратимая. Пароль будет выслан на ваш ящик через 1 секунду";
+                string body = "<b>Если вы хотите сбросить пароль то перейдите по данной ссылке</b><br/>" + resetLink + " Операция необратимая. Пароль будет выслан на ваш ящик через 1 секунду";
                 try
                 {
                     SendMail(Email, subject, body);
@@ -203,7 +207,7 @@ namespace WorkWithKOTE.Controllers
         [ChildActionOnly]
         public ActionResult UsersTour(int id = 0)
         {
-            var data = db.Trip.Include(m => m.DateTour).Include(m => m.Tour).Include(m=>m.User).Where(m => m.UserId == id);
+            var data = db.Trip.Include(m => m.DateTour).Include(m => m.Tour).Include(m => m.User).Where(m => m.UserId == id);
             return PartialView(data);
         }
     }
