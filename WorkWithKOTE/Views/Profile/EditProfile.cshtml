@@ -105,7 +105,7 @@
 
             <div class="loginEl" id="birthDate">
                 <span class="labels"><span id="Dbirth">Дата рождения</span>:</span>
-                <input type="text" class="newDate" name="Birthdays" value="@Model.Birthday.Value.ToString("dd.MM.yyyy")" />
+                <input type="text" class="newDate" name="Birthdays" value="@String.Format("{0:dd.MM.yyyy}",Model.Birthday)" />
             </div>
 
             <div class="loginEl not_import" id="Nationality">
