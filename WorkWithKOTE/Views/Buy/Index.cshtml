@@ -6,6 +6,7 @@
 @model WorkWithKOTE.Models.Trip
 @{ Html.RenderPartial("HeaderPartial_main");}
 
+<script src="~/Content/js/plugins/mask/jquery.maskedinput.min.js" type="text/javascript"></script>
 <style>
     #toPay {
         margin-top: 20px;
@@ -166,9 +167,10 @@
                 <label>Дата рождения</label>
                 @if (Model.BirthDay.HasValue)
                 {
-                     <input name="BirthDay"  value="@Model.BirthDay.Value.ToString("dd.MM.yyyy")" id="date-of-birth" placeholder="__ . __ . ____" maxlength="10">
+                    <input name="BirthDay" type="text" class="newDate" value="@Model.BirthDay.Value.ToString("dd.MM.yyyy")" id="date-of-birth" placeholder="__ . __ . ____" maxlength="10">
                 }
-                else{
+                else
+                {
                 <input name="BirthDay" type="text" class="newDate" id="date-of-birth" placeholder="__ . __ . ____" maxlength="10">
                 }
             </div>
@@ -321,9 +323,10 @@
         $(function ()
         {
 
-            $('.newDate').mask("99.99.9999");
+            
             jQuery(function ($) {
                 $("input[name='mobile']").mask("+38(999) 999 - 99 - 99", { placeholder: " " });
+                $('.newDate').mask("99.99.9999");
             });
 
             var price      = parseFloat($('#Prices').val());
