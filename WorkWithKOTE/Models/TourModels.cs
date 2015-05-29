@@ -316,4 +316,11 @@ namespace WorkWithKOTE.Models
         public IQueryable<Tour> tours { get; set; }
         public List<string> tags { get; set; }
     }
+    public class DateForTours
+    {
+        public int DateTourId { get; set; }
+        public int TourId { get; set; }
+        public string FirstDate { get; set; }
+        public string SecondDate { get; set; }
+    }
 }
