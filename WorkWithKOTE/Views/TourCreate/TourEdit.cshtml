@@ -112,29 +112,20 @@
                 <div id="dateTour_@i">
                     <span class="textbox">
                         Введите дату отправки:
-                        <input class="newDate" type='text' id="myDateFirst+@i" name="DateTour[@i].FirstDate" required />
+                        <input class="newDate" type='text' id="myDateFirst+@i" name="DateForTours[@i].FirstDate" required value="@String.Format("{0:dd.MM.yyyy}",item.FirstDate)" />
                     </span><br /><br />
 
                     <span class="textbox">
                         Введите дату приезда:
-                        <input style="margin-left:9px;margin-bottom:10px;" class="newDate" type='text' id="myDateSecond+@i" name="DateTour[@i].SecondDate" required />
+                        <input style="margin-left:9px;margin-bottom:10px;" class="newDate" type='text' id="myDateSecond+@i" name="DateForTours[@i].SecondDate" value="@String.Format("{0:dd.MM.yyyy}",item.SecondDate)" required />
                     </span><br />
 
-                    <input type="hidden" name="DateTour[@i].DateTourId" value="@item.DateTourId" />
-                    <input type="hidden" name="DateTour[@i].TourId" value="@Model.TourId" />
+                    <input type="hidden" name="DateForTours[@i].DateTourId" value="@item.DateTourId" />
+                    <input type="hidden" name="DateForTours[@i].TourId" value="@Model.TourId" />
                 </div>
-
-                <script type="text/javascript">
-                    function myFunction() {
-                        document.getElementById("myDateFirst+@i").value = "@item.FirstDate.ToString("yyyy-MM-dd")";
-                        document.getElementById("myDateSecond+@i").value = "@item.SecondDate.ToString("yyyy-MM-dd")";
-                    }
-                    myFunction();
-                </script>
                 i++;
             }
-        </div><br />
-
+        </div>
         <span class="textbox">
             <input style="display:inline !important" type="button" id="addLink" onclick="AddLink()" value="Добавить дату" />
             <input style="display:inline !important" type="button" onclick="DeleteLinkDate()" class="deleteLink" value="Удалить дату" />

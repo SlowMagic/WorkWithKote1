@@ -30,8 +30,15 @@ namespace WorkWithKOTE.Controllers
         }
         [HttpPost]
 
-        public ActionResult TourCreate(List<int>SameTours,Tour model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp)
+        public ActionResult TourCreate(List<int> SameTours, Tour model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp, DateForTours[] DateForTours)
         {
+            model.DateTour = new List<DateTour>();
+            if(DateForTours != null)
+            foreach (var item in DateForTours)
+            {
+
+                model.DateTour.Add(new DateTour { FirstDate = DateTime.ParseExact(item.FirstDate,"dd.MM.yyyy",System.Globalization.CultureInfo.InvariantCulture),SecondDate =DateTime.ParseExact(item.SecondDate,"dd.MM.yyyy",System.Globalization.CultureInfo.InvariantCulture) });
+            }
             if (SameTours != null)
             {
                 model.SameTour = new List<SameTour>();
@@ -76,7 +83,7 @@ namespace WorkWithKOTE.Controllers
             return View(data);
         }
         [HttpPost]
-        public ActionResult TourEdit(List<int> SameTours, Tour model, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp, Place[] PLs, DateTour[] DT, DopUslug[] DP,Tag[] Ts,RoutePoint[] Point)
+        public ActionResult TourEdit(List<int> SameTours, Tour model, DateForTours[] DateForTours, HttpPostedFileBase TourImg, HttpPostedFileBase Document, HttpPostedFileBase AvatarSupp, Place[] PLs, DateForTours[] DT, DopUslug[] DP, Tag[] Ts, RoutePoint[] Point)
         {
             if (SameTours != null)
             {
@@ -108,16 +115,28 @@ namespace WorkWithKOTE.Controllers
                 }
             if(DT !=null)
             foreach (var item in DT)
-            { db.Entry(item).State = EntityState.Added; }
+            {
+                DateTour dt = new DateTour();
+                dt.FirstDate = DateTime.ParseExact(item.FirstDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                dt.SecondDate = DateTime.ParseExact(item.SecondDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                dt.DateTourId = item.DateTourId;
+                dt.TourId = item.TourId;
+                db.Entry(dt).State = EntityState.Added; 
+            }
             if(DP!=null)
             foreach (var item in DP)
             { db.Entry(item).State = EntityState.Added; }
             if(Ts != null)
             foreach (var item in Ts)
             { db.Entry(item).State = EntityState.Added; }
-            foreach(var item in model.DateTour)
+            foreach (var item in DateForTours)
             {
-                db.Entry(item).State = EntityState.Modified;
+                DateTour dt = new DateTour();
+                dt.FirstDate = DateTime.ParseExact(item.FirstDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                dt.SecondDate = DateTime.ParseExact(item.SecondDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                dt.DateTourId = item.DateTourId;
+                dt.TourId = item.TourId;
+                db.Entry(dt).State = EntityState.Modified;
             }
             foreach (var item in model.DopUslug)
             {
