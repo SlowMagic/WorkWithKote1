@@ -487,7 +487,9 @@
     $(function () {
                 $('select.selectize').selectize({
                     openOnFocus: false
-            });
+                });
+
+            $('.newDate').mask("99.99.9999");
             $("#slider-range").slider({
                 range: true,
                 step: 10,
