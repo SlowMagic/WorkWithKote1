@@ -24,7 +24,7 @@
                            "</div>";
             $('#datetour-pannel').append(html2Add);
             i++;
-            $('.newDate').datepicker();
+            $('.newDate').datepicker({ dateFormat: 'dd.mm.yy' });
             $('.newDate').mask("99.99.9999");
         });
     });
