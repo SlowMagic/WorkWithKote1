@@ -3,7 +3,7 @@
  */
 
 $(function () {
-    $('.newDate').datepicker();
+    $('.newDate').datepicker({ dateFormat: 'dd.mm.yy' });
 });
 
 $(function ()
