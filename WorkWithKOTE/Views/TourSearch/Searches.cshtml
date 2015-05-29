@@ -248,11 +248,25 @@
                         margin-top: 20px !important;
                          width:90% !important;
                     }
+                    #searchBtn {
+                        width: 160px;
+                        height: 38px;
+                        font-family: Helvetica-Medium;
+                        font-size: 16px;
+                        border: none;
+                        line-height: 14px;
+                        background: #ff6f40;
+                        box-shadow: 0px 2px 0px #d45227;
+                        border-radius: 6px;
+                        color: #e6e9ed;
+                        margin: auto;
+                    }
                 </style>
 
                 <div class="searchForm">
 
-                    <input type="text" name="Places" placeholder="Куда" value="@ViewBag.Place" />
+@*                    <input type="text" name="Places" placeholder="Куда" value="@ViewBag.Place"/>*@
+                    @Html.DropDownList("Places", DropDown.Places(), "Куда", new { @class = "selectize" })
                     @Html.DropDownList("PlaceDepartmen", DropDown.PlaceDeparture(), "Город выезда", new { @class = "selectize" })
 
                     @if (ViewBag.Counter == 0)
@@ -371,7 +385,7 @@
                     <div id="slider-range"></div>
                     <input type="text" id="showPrice" value="&#8372;@ViewBag.MinValue - &#8372;@ViewBag.MaxValue" readonly="readonly" />
 
-                    <input type="submit" value="Искать" />
+                    <input id="searchBtn" type="submit" value="Искать" />
                 </div>
 
                 @* @Html.DropDownList("Places", DropDown.Places(), "Любое направление")*@
@@ -472,7 +486,9 @@
     }
 
     $(function () {
-            $('select.selectize').selectize();
+                $('select.selectize').selectize({
+                    openOnFocus: false
+            });
             $("#slider-range").slider({
                 range: true,
                 step: 10,
