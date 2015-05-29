@@ -105,7 +105,7 @@
 
             <div class="loginEl" id="birthDate">
                 <span class="labels"><span id="Dbirth">Дата рождения</span>:</span>
-                <input type="date" name="Birthday" value="@String.Format("{0:yyyy-MM-dd}", Model.Birthday)" />
+                <input type="text" class="newDate" name="Birthday" value="@String.Format("{0:yyyy-MM-dd}", Model.Birthday)" />
             </div>
 
             <div class="loginEl not_import" id="Nationality">
@@ -120,12 +120,12 @@
 
             <div class="loginEl not_import" id="pasportDate">
                 <span class="labels">Дата выдачи паспорта:</span>
-                <input type="date" name="DatePasport" value="@String.Format("{0:yyyy-MM-dd}", Model.DatePasport)">
+                <input type="text" class="newDate" name="DatePasport" value="@String.Format("{0:yyyy-MM-dd}", Model.DatePasport)">
             </div>
 
             <div class="loginEl not_import" id="pasportDateExp">
                 <span class="labels">Действителен до:</span>
-                <input type="date" name="DateZagran" value="@String.Format("{0:yyyy-MM-dd}", Model.DateZagran)" />
+                <input type="text" class="newDate" name="DateZagran" value="@String.Format("{0:yyyy-MM-dd}", Model.DateZagran)" />
             </div>
             <div class="loginEl not_import" id="mobilePhone">
                 <span class="labels">Мобильный:</span>
