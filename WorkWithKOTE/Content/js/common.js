@@ -27,7 +27,7 @@ $(function () {
 
 function switchLogo(pos)
 {
-    if ($('#big-logo').length == 0)
+    if ($('#big-logo').length == 0 && !$('#wishletter').length)
     {
         $('#small-logo').css('opacity','1');
         $('#top-shadow').hide();
