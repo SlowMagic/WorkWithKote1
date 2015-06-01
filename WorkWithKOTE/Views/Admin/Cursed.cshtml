@@ -5,20 +5,40 @@
         width : 70px;
         display : inline;
         margin-top : 5px;
+        font-size : 15px;
+        margin-left : 10px;
     }
 
     #Evro{
-        margin-left : 33px;
+        margin-left : 37px !important;
     }
 
     .ttExt{
-        font-size : 17px;
+        font-size : 15px;
+    }
+
+    .dialBtn{
+        border-radius : 4px !important;
+        border : none !important;
+        background : #ff6f40 !important;
+        color : white !important;
+        display : inline !important;
+        height : 30px;
     }
 </style>
 
 <form id="valutCurs" method="post" action="@Url.Action("Cursed","Admin")">
-    <span class="ttExt">Курс Доллара</span> : @Html.TextBoxFor(m => m.USD) грн <br />
-    <span class="ttExt">Курс Евро</span> :  @Html.TextBoxFor(m => m.Evro) грн
+    <span class="ttExt">Курс доллара :</span>@Html.TextBoxFor(m => m.USD) <span class="ttExt">грн</span> <br />
+    <span class="ttExt">Курс евро :</span>@Html.TextBoxFor(m => m.Evro) <span class="ttExt">грн</span>
         @Html.HiddenFor(m => m.CursedID)
-        <input style="margin-top:10px;" type="submit" value="Подтвердить" />
+        <input style="margin-top:15px;" type="submit" class="dialBtn" value="Подтвердить" />
+    <input style="margin-top:15px;margin-left:8px;" type="button" class="dialBtn abortBtn" value="Отмена" />
 </form>
+
+<script>
+    $(function () {
+        $('.abortBtn').click(function () {
+            $('.ui-dialog-title + button').trigger('click');
+        });
+    });
+</script>
