@@ -1,7 +1,122 @@
-﻿<style>
+﻿@using WorkWithKOTE.Code
+<style>
 
     #forMenu{
         cursor : pointer;
+    }
+
+    .selectize.whereCopy  {
+        display: inline-block;
+        width: 47%;
+        height: 40px;
+        background: #656d78;
+        color: #e6e9ed;
+        line-height: 17px;
+        font-size: 16px;
+        border: 1px solid #3e4753;
+        margin-left: 17px;
+    }
+
+       .selectize-control.selectize.whereCopy > .selectize-input {
+        margin: 5px 0px -14px 0px;
+        background: none;
+        border: none;
+        padding: 0px;
+        width: 90%;
+    }
+
+    .selectize-control.selectize.whereCopy > .selectize-input.focus {
+        background: none;
+        border: none;
+        color: #e6e9ed;
+        box-shadow: none;
+    }
+   .selectize-control.selectize.whereCopy > .selectize-input.full {
+        background: none;
+        border: none;
+        color: #e6e9ed;
+    }
+    .selectize-control.selectize.whereCopy > .selectize-input input {
+        color: #e6e9ed;
+        line-height: 14px;
+        font-size: 16px;
+        background: none !important;
+        box-shadow: none !important;
+    }
+
+    .selectize-control.selectize.whereCopy > .selectize-input input ::-webkit-input-placeholder {
+        color: #e6e9ed;
+        line-height: 14px;
+        font-size: 16px;
+    }
+
+    .selectize-control.selectize.whereCopy > .selectize-input input ::-moz-placeholder {
+        color: #e6e9ed;
+        line-height: 14px;
+        font-size: 16px;
+    }
+    /* Firefox 19+ */
+   .selectize-control.selectize.whereCopy > .selectize-input input :-moz-placeholder {
+        color: #e6e9ed;
+        line-height: 14px;
+        font-size: 16px;
+    }
+    /* Firefox 18- */
+   .selectize-control.selectize.whereCopy > .selectize-input input :-ms-input-placeholder {
+        color: #e6e9ed;
+        line-height: 14px;
+        font-size: 16px;
+    }
+
+   .selectize-control.selectize.whereCopy > .selectize-input input .selectize-input.focus {
+        box-shadow: none;
+    }
+
+    .selectize-control.selectize.whereCopy > .selectize-input,
+    .selectize-control.single.whereCopy .selectize-input.input-active {
+        background: none;
+        border: none;
+        width: 100%;
+    }
+
+   .selectize-dropdown.whereCopy {
+        font-size: 16px !important;
+        position: absolute;
+        z-index: 10;
+        /*border: 1px solid #eaeaea;*/
+        background: #656d78;
+        margin: -1px 0 0 0;
+        border-top: 0 none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        -webkit-border-radius: 0 0 2px 2px;
+        -moz-border-radius: 0 0 2px 2px;
+        border-radius: 0 0 2px 2px;
+        width:100% !important;
+        height: auto;
+        margin-left: 0px !important;
+     /*   top: 39px !important;
+        left: 0px !important;*/
+    }
+
+       .selectize-dropdown.whereCopy .active {
+        background: #3e4753;
+        color: #e6e9ed;
+    }
+
+     .whereCopy{
+        position: absolute !important;
+        color: white !important;
+        background-color: white !important;
+        width: 216px !important;
+        margin-top: -42px !important;
+        margin-left: 32px !important;
+        text-align: left !important;
+        padding-left: 7px !important;
+        line-height: 21px !important;
     }
     
     #tiny_menu{
@@ -55,6 +170,37 @@
        border : 1px solid #6383a8;    
     }
 
+    #searchIcon{
+        cursor : pointer;
+    }
+
+    .whereCopy > input[type=text]{
+        width : auto !important;
+    }
+
+    .selectize-dropdown.whereCopy{
+       width: 214px !important;
+       top: 85px !important;
+       left: 0px !important;
+    }
+
+    .selectize-control.selectize.whereCopy{
+        opacity : 0;
+        transition :0.4s;
+        border-radius : 7px;
+    }
+
+    .selectize-dropdown.whereCopy > .selectize-dropdown-content{
+        margin-left : -7px !important;
+        background-color : #656d78;
+    }
+
+    .selectize-control.selectize.whereCopy > .selectize-input.items.not-full.has-options{
+      margin-left: -5px !important;
+      padding-left: 8px !important;
+      height: 33px !important;
+    }
+   
 </style>
 
 <header>
@@ -118,8 +264,11 @@
                -->
         </div>
     
-        <a style="display:none;" href="@Url.Action("Search", "TourSearch")"><img id="Searching" src="~/Content/img/Searching.png" /></a>
-    </div>
+        <a id="searchIcon"><img id="Searching" src="~/Content/img/Searching.png" /></a>
+        <form id="searchFormCopy" action="@Url.Action("Searches","TourSearch")" method="post" enctype="multipart/form-data">
+            @Html.DropDownList("Places", DropDown.Places(), "Куда", new { @id = "where", @class = "selectize whereCopy" })
+        </form>
+</div>
     <img id="top-shadow" src="~/Content/img/top-shadow.png"/>
     <div id="second-navigation">
     <div class="groupLinks" id="sec_nave">
@@ -181,6 +330,7 @@
 
     $(function ()
     {
+       
         $('body').click(function (event) {
             if ($(event.target).attr('id') != 'tiny_menu' && !$(event.target).hasClass('user')) {
                 $('#tiny_menu').removeClass('opened');
@@ -205,5 +355,25 @@
             return false;
         });
 
+    });
+
+    $(function () {
+        $('#searchIcon').click(function () {
+            if (!$('.selectize-control.selectize.whereCopy').hasClass('visibl')) {
+                $('.selectize-control.selectize.whereCopy').css({'opacity':'1'}).addClass('visibl');
+            }
+            else {
+                $('.selectize-control.selectize.whereCopy').css('opacity', '0').removeClass('visibl');
+            }
+        });
+        $('select.selectize').selectize({
+            openOnFocus: false
+        });
+
+        $('body').keypress(function (event) {
+            if (event.keyCode == '13' && $('.selectize.whereCopy.selectized').val()) {
+                $('#searchFormCopy').submit();
+            }
+        });
     });
 </script>
