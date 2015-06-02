@@ -167,6 +167,7 @@
 
 <div class="container">
     <div class="layout">
+
         <div class="layout-left-column">
                 <p class="rotate" id="filter">Ф и л ь т р</p>
                 <div id="search_label">
@@ -272,6 +273,12 @@
                             border-radius: 6px;
                             color: #e6e9ed;
                             margin: auto;
+                        }
+
+                        .aaa{
+                            overflow-y: auto; 
+                            height: 80%;
+                            position:absolute;
                         }
 
                         #overlay {
@@ -489,7 +496,7 @@
     function TourSearch() {
         if ($('#bar').width() < 1100) {
             $('#filter').show();
-            $('.layout-left-column').css({ 'float': 'auto', 'min-width': '215px', 'max-width': '215px', 'width': '70%', 'top': '104px', 'position': 'fixed', 'z-index': '4' }).addClass('left');
+            $('.layout-left-column').css({ 'float': 'auto', 'min-width': '215px', 'max-width': '215px', 'width': '70%', 'top': '104px', 'position': 'fixed', 'z-index': '4','height':'65%' }).addClass('left');
             $('.layout-main-right').css({ 'margin-left': '3%', 'width': '100%', 'margin-top': '20px' });
             $('.tourImg').css({ 'max-width': '100%', 'max-height': '100%' });
             $('.found-tour').css({ 'width': 'auto', 'margin-top': '20px' });
@@ -499,11 +506,12 @@
             $('.forHide').hide();
             $('#Prices').css({ 'margin-bottom': '17px' });
             $('#search_label').css({ 'width': '215px' });
+            $('.searchForm').addClass('aaa');
         }
         else {
             $('#filter').hide();
             $('.forHide').show();
-            $('div.layout-left-column').css({ 'float': 'left','min-width':'auto','max-width':'auto','width': '30%', 'margin-left': '0% !important', 'position': 'inherit'}).removeClass('left');
+            $('div.layout-left-column').css({ 'float': 'left','min-width':'auto','max-width':'auto','width': '30%', 'margin-left': '0% !important', 'position': 'inherit','height':'524px;'}).removeClass('left');
             $('.layout-main-right').css({ 'margin-left': '33%', 'width': '67%', 'margin-top': '0px' });
             $('.tourImg').css({ 'max-width': '250px', 'max-height': '150px' });
             $('.found-tour').css({ 'width': '250px', 'margin-top': '-38px' });
@@ -511,6 +519,7 @@
             $('.date-select.mini select').css({ 'font-size': '1em', 'text-decoration': 'none' });
             $('#selectDate').css('font-size', '1em');
             $('#Prices').css({ 'margin-bottom': '0px' });
+            $('.searchForm').removeClass('aaa');
         }
     }
 
