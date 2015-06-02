@@ -190,6 +190,10 @@
         border-radius : 7px;
     }
 
+    .selectize.whereCopy{
+        visibility:hidden;
+    }
+
     .selectize-dropdown.whereCopy > .selectize-dropdown-content{
         margin-left : -7px !important;
         background-color : #656d78;
@@ -199,6 +203,10 @@
       margin-left: -5px !important;
       padding-left: 8px !important;
       height: 33px !important;
+    }
+
+    div[data-value]{
+        color : darkgrey;
     }
    
 </style>
@@ -360,7 +368,8 @@
     $(function () {
         $('#searchIcon').click(function () {
             if (!$('.selectize-control.selectize.whereCopy').hasClass('visibl')) {
-                $('.selectize-control.selectize.whereCopy').css({'opacity':'1'}).addClass('visibl');
+                $('.selectize-control.selectize.whereCopy').css({ 'opacity': '1' }).addClass('visibl');
+                $('.selectize.whereCopy').css('visibility', 'visible');
             }
             else {
                 $('.selectize-control.selectize.whereCopy').css('opacity', '0').removeClass('visibl');
