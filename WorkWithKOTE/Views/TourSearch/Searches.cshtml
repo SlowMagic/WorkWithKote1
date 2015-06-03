@@ -458,9 +458,9 @@
                         <div class="hoveR">
                         <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m => c.Valuta)</h3><br />
                         <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
-                        <a class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
+                        <a style="margin-left:10px;" class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
                         <div class="date-select mini">
-                            <label style="margin-left: -23px;">
+                            <label style="margin-left: -13px;">
                                 <select id="selectDate">
                                     @foreach (var item in c.DateTour)
                                     {
