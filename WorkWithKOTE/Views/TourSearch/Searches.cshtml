@@ -16,6 +16,18 @@
 @{ Html.RenderPartial("HeaderPartial_main");}
 
 <style>
+    .hoveR{
+        background-color:#ecf0f0;
+        transition: 0.1s;
+        padding-top: 1px;
+        margin-top: 1px;
+    }
+
+    .hoveR:hover{
+        box-shadow: #ccc 1px 0px 8px 2px;
+        width: 250px;
+    
+    }
 
     .left{
         margin-left: -100%;
@@ -44,10 +56,10 @@
         cursor: pointer;
     }
 
-    .tourImg:hover {
+  /*  .tourImg:hover {
         transition: 0.1s;
         box-shadow: #ccc 1px 0px 8px 2px;
-    }
+    }*/
 
     .tourImg {
         transition: 0.3s;
@@ -443,6 +455,7 @@
                         @:</div>
                     @:<div class="found-tour">
                         }
+                        <div class="hoveR">
                         <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m => c.Valuta)</h3><br />
                         <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
                         <a class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
@@ -457,7 +470,7 @@
                                     }
                                 </select>
                             </label>
-                        </div><br /><br/>
+                        </div></div><br /><br/>
                                     index++;
                 }
             </div>
