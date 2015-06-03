@@ -1,8 +1,15 @@
 ﻿@model IEnumerable<WorkWithKOTE.Models.DateTour>
 
-@foreach (var item in Model)
-{
-    <p style="font-size:14px;word-break:break-word;">
-        @Html.DisplayFor(m => item.FirstDate)&nbsp;-&nbsp;@Html.DisplayFor(m => item.SecondDate)
-    </p>
-} 
+<div class="date-select mini">
+    <label style="margin-left: -23px;">
+        <select id="selectDate">
+            @foreach (var item in Model)
+            {
+                <option>
+                    @Html.DisplayFor(m => item.FirstDate) - @Html.DisplayFor(m => item.SecondDate)
+                </option>
+            }
+            </select>
+        </label>
+</div>
+           
