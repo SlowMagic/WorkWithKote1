@@ -1,6 +1,6 @@
 ﻿<div id="places">
     <div class="place">
-       Следующий пункт прибытия <input type="text" name="Places[0].PlaceName" /><br />
+       Следующий пункт прибытия <input type="text" name="Places[0].PlaceName" required /><br />
     </div>
 </div><br />
 <input type="button" class="addPlace usluga" value="Добавить Пункт" />
@@ -14,7 +14,7 @@
         $('.addPlace').click(function () {
             var html2Adds = "<div id='places" + p + "'>" +
                                "Следующий пункт прибытия " +
-                               "<input style='margin-left:3px;' type='text'  name='Places[" + p + "].PlaceName' /><br/>" +
+                               "<input style='margin-left:3px;' type='text'  name='Places[" + p + "].PlaceName' required /><br/>" +
                             "</div>";
             $('#places').append(html2Adds);
             p++;

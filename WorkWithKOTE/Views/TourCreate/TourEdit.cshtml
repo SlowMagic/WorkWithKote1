@@ -70,7 +70,7 @@
             @foreach (var item in Model.Places)
             {
                 <div id="places_@p">Следующий пункт прибытия
-                    <input style="margin-left:3px;" type="text" name="Places[@p].PlaceName" value="@item.PlaceName" />
+                    <input style="margin-left:3px;" type="text" name="Places[@p].PlaceName" value="@item.PlaceName" required />
                     <input type="hidden" name="Places[@p].PlaceID" value="@item.PlaceID" /> <br />
                     <input type="hidden" name="Places[@p].TourId" value="@item.TourId" />
                 </div>
@@ -338,7 +338,7 @@
             $('.addPlace').click(function () {
                 var html2Adds = "<div id='placess" + p + "'>" +
                                    "Следующий пункт прибытия " +
-                                   "<input style='margin-left:3px;' type='text'  name='PLs[" + p + "].PlaceName' /><br/>" +
+                                   "<input style='margin-left:3px;' type='text'  name='PLs[" + p + "].PlaceName' required /><br/>" +
                                    "<input type='hidden' name='PLs[" + p + "].TourId' value='@Model.TourId' />"+
                                 "</div>";
                 $('#places-pannel').append(html2Adds);
