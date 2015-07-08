@@ -577,21 +577,5 @@
     });
 </script>
 <script>
-    $(function() {
-        $('#results a').click(function() {
-            // get the url of the page link
-            var url = this.href;
 
-            var page = ... extract the page parameter from the page link
-
-            // update a hidden field inside the search form with this value
-            $('#page').val(page);
-
-            // trigger the search
-            $('#searchForm').submit();
-
-            // stop the link from navigating to the url it is pointing to
-            return false;
-        });
-    });
 </script>

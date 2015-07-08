@@ -72,14 +72,14 @@ namespace WorkWithKOTE.Controllers
                 int pageNumber = 1;
                 if (page != 0)
                     pageNumber = page;
-                int pageSize = 1;
+                int pageSize = 6;
                 var data = db.Tour.Include(m => m.DateTour).Include(m => m.Tag).ToList();
                 return View(data.ToPagedList(pageNumber, pageSize));
             }
             else
             {
                int  pageNumber  = page;
-                int PageSize = 1 ;
+                int PageSize = 6 ;
                 return Searches(page = pageNumber  );
             }
            
@@ -171,7 +171,7 @@ namespace WorkWithKOTE.Controllers
             int pageNumber = 1;
             if (page != 0)
                 pageNumber = page;
-            int pageSize = 1;
+            int pageSize = 6;
             data = data.ToList();
             return View(data.ToPagedList(pageNumber, pageSize));
         }
