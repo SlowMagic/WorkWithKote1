@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using WorkWithKOTE.Models;
 using System.Data.Entity;
+using PagedList;
+using PagedList.Mvc;
 namespace WorkWithKOTE.Controllers
 {
     public class TourSearchController : Controller
@@ -60,20 +62,34 @@ namespace WorkWithKOTE.Controllers
             }
             return View(data.Include(m => m.DateTour));
         }
-        public ActionResult Searches()
+        public ActionResult Searches(int page = 0, int ourCounter = 0 )
         {
-            ViewBag.Counter = 0;
-            ViewBag.MinValue = 1000;
-            ViewBag.MaxValue = 3000;
-            return View(db.Tour.Include(m => m.DateTour).Include(m => m.Tag).ToList());
+            if (ourCounter == 0)
+            {
+                ViewBag.Counter = 0;
+                ViewBag.MinValue = 1000;
+                ViewBag.MaxValue = 3000;
+                int pageNumber = 1;
+                if (page != 0)
+                    pageNumber = page;
+                int pageSize = 1;
+                var data = db.Tour.Include(m => m.DateTour).Include(m => m.Tag).ToList();
+                return View(data.ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {
+               int  pageNumber  = page;
+                int PageSize = 1 ;
+                return Searches(page = pageNumber  );
+            }
+           
         }
         [HttpPost]
-        public ActionResult Searches(string PlaceDepartmen, string Places, string DateFirst,string DateFirstt, string DateSecond, decimal? MinValue, decimal? MaxValue, bool IsCar = false, bool IsShip = false, bool IsTrain = false, bool IsPlane = false, int PageID = 0,
-            int PageCount =5,int HomeCounter = 0, string[] Tags = null)
+        public ActionResult Searches(string PlaceDepartmen, string Places, string DateFirst, string DateFirstt, string DateSecond, decimal? MinValue, decimal? MaxValue, bool IsCar = false, bool IsShip = false, bool IsTrain = false, bool IsPlane = false, int page = 0, string[] Tags = null)
         {
             ViewBag.Counter = 1;
-           // IQueryable<Tour> data = db.Tour;
-            IEnumerable<Tour> data = db.Tour.Include(m => m.DateTour).Include(m=>m.Tag).Include(m=>m.Places).AsEnumerable();
+            // IQueryable<Tour> data = db.Tour;
+            IEnumerable<Tour> data = db.Tour.Include(m => m.DateTour).Include(m => m.Tag).Include(m => m.Places).AsEnumerable();
             var actualRates = db.Curseds.First();
             Dictionary<string, decimal> rates = new Dictionary<string, decimal>();
             rates.Add("UAH", 1);
@@ -83,7 +99,6 @@ namespace WorkWithKOTE.Controllers
             {
                 ViewBag.Place = Places;
                 data = data.Where(m => m.PlaceOfArrival.Contains(Places) || m.Places.Any(k => k.PlaceName.Contains(Places)));
-               // data = data.Where(m => m.Places.Any(k => k.PlaceName.Contains(Places)));
             }
             if (!String.IsNullOrEmpty(PlaceDepartmen))
             {
@@ -99,14 +114,14 @@ namespace WorkWithKOTE.Controllers
             {
                 ViewBag.DateFirst = DateFirstt;
                 DateTime dateMin = DateTime.ParseExact(DateFirstt, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture).AddDays(-5);
-                DateTime dateMax =DateTime.ParseExact(DateFirstt, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture).AddDays(5);
+                DateTime dateMax = DateTime.ParseExact(DateFirstt, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture).AddDays(5);
                 data = data.Where(m => m.DateTour.Any(dt => dt.FirstDate >= dateMin && dt.FirstDate <= dateMax));
             }
             if (!String.IsNullOrEmpty(DateSecond))
             {
                 ViewBag.DateSecond = DateSecond;
                 DateTime dateMin = DateTime.ParseExact(DateSecond, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture).AddDays(-5);
-                DateTime dateMax =DateTime.ParseExact(DateSecond, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture).AddDays(5);
+                DateTime dateMax = DateTime.ParseExact(DateSecond, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture).AddDays(5);
                 data = data.Where(m => m.DateTour.Any(dt => dt.SecondDate >= dateMin && dt.SecondDate <= dateMax));
             }
             if (MinValue != null)
@@ -145,15 +160,20 @@ namespace WorkWithKOTE.Controllers
                 }
             }
             ViewBag.PlaceDeparture = list;
-            if (PageCount != 0 && PageID != 0)
-            {
-                return View(data.Skip(PageCount * PageID).Take(PageCount));
-            }
-            if (HomeCounter == 1)
-            {
-                return View(data);
-            }
-            return View(data);
+            /*  if (PageCount != 0 && PageID != 0)
+              {
+                  return View(data.Skip(PageCount * PageID).Take(PageCount));
+              }
+              if (HomeCounter == 1)
+              {
+                  return View(data);
+              }*/
+            int pageNumber = 1;
+            if (page != 0)
+                pageNumber = page;
+            int pageSize = 1;
+            data = data.ToList();
+            return View(data.ToPagedList(pageNumber, pageSize));
         }
     }
 }
