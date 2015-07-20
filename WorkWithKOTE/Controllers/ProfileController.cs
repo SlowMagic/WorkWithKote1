@@ -111,26 +111,36 @@ namespace WorkWithKOTE.Controllers
         {
             var user = Membership.GetUser(Email);
             int i = WebSecurity.GetUserId(Email);
-            if (user == null)
+            var ourUser = OAuthWebSecurity.GetAccountsFromUserName(Email);
+            if (ourUser.Count == 0)
             {
-                TempData["Message"] = "Данный E-mail не зарегестрирован";
-            }
-            else
-            {
-                var token = WebSecurity.GeneratePasswordResetToken(Email);
-                var resetLink = "<a href=\"" + Url.Action("ResetPassword", "Profile", new { un = i, rt = token }, "http") + "\">ReserPasswor</a>";
-                string subject = "Если вы хотите сбросить пароль то перейдите по данной ссылке";
-                string body = "<b>Если вы хотите сбросить пароль то перейдите по данной ссылке</b><br/>" + resetLink + " Операция необратимая. Пароль будет выслан на ваш ящик через 1 секунду";
-                try
-                {
-                    SendMail(Email, subject, body);
-                    TempData["Message"] = "На ваш почтовый ящик было отправленно письмо";
-                }
 
-                catch (Exception ex)
+                if (user == null)
                 {
-                    TempData["Message"] = "Возникла ошибка :" + ex;
+                    TempData["Message"] = "Данный E-mail не зарегестрирован";
                 }
+                else
+                {
+                    var token = WebSecurity.GeneratePasswordResetToken(Email);
+                    var resetLink = "<a href=\"" + Url.Action("ResetPassword", "Profile", new { un = i, rt = token }, "http") + "\">ReserPasswor</a>";
+                    string subject = "Если вы хотите сбросить пароль то перейдите по данной ссылке";
+                    string body = "<b>Если вы хотите сбросить пароль то перейдите по данной ссылке</b><br/>" + resetLink + " Операция необратимая. Пароль будет выслан на ваш ящик через 1 секунду";
+                    try
+                    {
+                        SendMail(Email, subject, body);
+                        ViewBag.Message = "На ваш почтовый ящик было отправленно письмо";
+                    }
+
+                    catch (Exception ex)
+                    {
+                        ViewBag.Message = "Возникла ошибка :" + ex;
+                    }
+                }
+                return View();
+            }
+            foreach (var item in ourUser)
+            {
+                ViewBag.altEnter = "Вы входили через социальную сеть "+item.Provider+", у вас нету локального аккаунта. Или войдите через социальную сеть "+item.Provider+", или зарегестрируйте новый аккаунт.";
             }
             return View();
         }

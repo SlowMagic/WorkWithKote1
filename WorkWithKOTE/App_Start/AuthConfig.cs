@@ -24,8 +24,8 @@ namespace WorkWithKOTE
             //    consumerSecret: "");
 
             OAuthWebSecurity.RegisterFacebookClient(
-               appId: "878101295595387",
-               appSecret: "b5bd7b6a3ddf2c14efdaea289f0f271a");
+               appId:"878101295595387",
+               appSecret:"b5bd7b6a3ddf2c14efdaea289f0f271a");
 
             OAuthWebSecurity.RegisterClient(
             client: new VKontakteAuthenticationClient(

@@ -80,5 +80,35 @@ namespace WorkWithKOTE.Code
              }
              return list;
          }
+         public static List<System.Web.Mvc.SelectListItem> DataFirst()
+         {
+           List<SelectListItem>list =   new List<SelectListItem> { new SelectListItem{Value="1", Text="Январь"},  new SelectListItem{Value="2",Text="Февраль"}, new SelectListItem{Value="3",Text="Март"},
+                 new SelectListItem{Value="4",Text="Апрель"}, new SelectListItem{Value="5",Text="Май"}, new SelectListItem{Value = "6",Text="Июнь"}, new SelectListItem{Value="7",Text="Июль"},
+                 new SelectListItem{Value="8",Text="Август"}, new SelectListItem{Value="9",Text="Сентябрь"}, new SelectListItem{Value="10",Text="Октябрь"}, new SelectListItem{Value="11",Text="Ноябрь"}, new SelectListItem{Value="12",Text="Декабрь"}};
+           int month = DateTime.Now.Month;
+           List<SelectListItem> list1 = new List<SelectListItem>();
+           List<SelectListItem> list2 = new List<SelectListItem>();
+             foreach(var item in list)
+            {
+                if (int.Parse(item.Value) >= month)
+                {
+                    list1.Add(item);
+                }
+                if (int.Parse(item.Value) < month)
+                {
+                    list2.Add(item);
+                }
+            }
+             list = new List<SelectListItem>();
+             foreach (var item in list1)
+             {
+                 list.Add(item);
+             }
+             foreach (var item in list2)
+             {
+                 list.Add(item);
+             }
+             return list;
+         }
     }
 }
