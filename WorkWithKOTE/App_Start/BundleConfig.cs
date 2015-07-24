@@ -35,6 +35,7 @@ namespace WorkWithKOTE
             bundles.Add(new StyleBundle("~/Content/description").Include("~/Content/tour_description.css"));
             bundles.Add(new StyleBundle("~/Content/page").Include("~/Content/page.css"));
             bundles.Add(new StyleBundle("~/Content/form").Include("~/Content/form.css"));
+            bundles.Add(new StyleBundle("~/Content/aboutus").Include("~/Content/aboutus.css"));
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
                         "~/Content/themes/base/jquery.ui.resizable.css",

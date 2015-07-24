@@ -1,0 +1,499 @@
+﻿
+   #dialog{
+       display: none;
+   }
+
+   .socImg{
+       margin-left: 38px;
+       margin-top: 9px;
+       cursor: pointer;
+   }
+
+   .socImg.first{
+       margin-left: 0px;
+   }
+
+   .social{
+       position: absolute;
+       background: #a1bc80;
+       height: 45px;
+       margin-top: -53px;
+       width: 245px;
+       opacity: 0.8;
+   }
+
+   .imgDocBlock{
+        padding-top: 60px;
+        padding-bottom: 115px;
+   }
+
+   .downDoc{
+       font-family : helveticaNeueMedium;
+       color: #99b973;
+       font-size: 16px;
+       cursor : pointer;
+       text-decoration: none;
+   }
+
+   .docBlock{
+       display: inline-block;
+       margin-left: 120px;
+   }
+
+   .docBlock.first{
+       margin-left: 0px;
+   }
+
+   .docImg{
+       width: 160px;
+       height: 160px;
+       cursor: pointer;
+       border : 4px solid #ccdcb9;
+   }
+
+   .contactsText{
+       clear: both;
+       padding-top: 222px;
+       text-align: center;
+       width : 107%;
+       max-width : 850px;
+       margin-left: -25px;
+   }
+
+   .documents{
+       padding-top: 60px;
+   }
+
+   .partnerJob{
+       font-family: helveticaNeueCyrLight;
+       font-size: 14px;
+       color : #588da8;
+   }
+
+   .ourWorkers{
+       padding-top: 125px;
+   }
+
+   .partnerName{
+       font-family: helveticaNeueCyr;
+       font-size: 20px;
+       color : #588da8;
+   }
+
+   .partnerName.green{
+       color : #99b973;
+   }
+
+   .partnerDescription{
+       font-family: helveticaNeueCyrItalic;
+       font-size: 14px;
+       color : #357291;
+   }
+
+   .partnerJob.green{
+       color : #c8dbb2;
+   }
+
+   .textSec{
+      margin-left: 40px;
+   }
+
+   .round{
+       width: 155px;
+   }
+
+   .imgBlock{
+       float : left;
+       clear: inherit;
+       display: inline-block;
+       text-align: center;
+       margin-left: 32px;
+   }
+
+   .number{
+       font-family: bebasNeueBold;
+       font-size: 44px;
+       color: #588da8;
+   }
+
+   .underNumber{
+       font-family: bebasNeueRegular;
+       font-size: 44px;
+       color: #588da8;
+   }
+
+   .forImgUnderTitle{
+       font-family: helveticaNeueCyr;
+       font-size: 14px;
+       color : #77aac3
+   }
+
+   .partnerBox{
+       display: inline-block;
+   }
+
+   .partnersBlock{
+       width: 100%;
+       max-width: 960px;
+       margin-top: -220px;
+   }
+
+   .partnersBlock.green{
+       width: 100%;
+       max-width: 960px;
+       margin-top: 0px;
+       padding-top: 100px;
+   }
+
+   .partnersBlock.green.last{
+       width: 100%;
+       max-width: 960px;
+       margin-top: 0px;
+       padding-top: 60px;
+       background: url('img/green.png');
+       height: 530px;
+       background: url('img/green.png') 0% 325% no-repeat;
+   }
+
+   .partnerBox.first{
+       float: left;
+   }
+
+   .partnerBox.last{
+       float: none;
+   }
+
+   .partnerImg{
+       width: 245px;
+       height: 310px;
+       border : 4px solid #abc6d3;
+   }
+
+   .partnerImg.green{
+       border : 4px solid #ccdcb9;
+   }
+
+   .contactsText div{
+       display: inline-block;
+   }
+
+   .partners{
+       padding-top: 250px;
+   }
+
+   .textFirst{
+       float: left;
+   }
+
+   .textThird{
+       float: none;
+   }
+
+   .arrow{
+       margin-left: -30px;
+       position: absolute;
+       width: 85px;
+   }
+
+   .down{
+       margin-top: 134px;
+   }
+
+  .up{
+      -webkit-transform: rotateX(180deg);
+      transform: rotateX(180deg);
+  }
+
+  @font-face {
+      font-family: helveticaNeueCyr;
+      src : url(fonts/HelveticaNeueCyr-Bold.ttf);
+  }
+
+  @font-face {
+     font-family: helveticaNeueCyrItalic;
+     src : url(fonts/HelveticaNeueCyr-Italic.ttf);
+  }
+
+  @font-face {
+      font-family: helveticaNeueCyrLight;
+      src : url(fonts/HelveticaNeueCyr-Light.ttf);
+  }
+
+  @font-face {
+      font-family: bebasNeueBold;
+      src : url(fonts/bebas_neue_bold.TTF);
+  }
+
+  @font-face {
+      font-family: bebasNeueRegular;
+      src : url(fonts/bebas_neue_regular.otf);
+  }
+
+  @font-face {
+      font-family: helveticaNeueMedium;
+      src : url(fonts/HelveticaNeueCyr-Medium.ttf);
+  }
+
+  .forImgTitle{
+      font-family: bebasNeueBold;
+      font-size: 24px;
+      color: #588da8;
+      line-height: 50px;
+  }
+
+  .c_FirstBlock{
+      background: url('img/contactsBcgrnd.png') 50%;
+      width: 100%;
+      max-width: 800px;
+      height: 1250px;
+      padding-top: 60px;
+      margin: 0 auto;
+  }
+
+  .contactsTitle{
+      font-family: bebasNeueBold;
+      font-size: 54px;
+      color: #588da8;
+  }
+
+  .contactsTitle.green{
+      color:#99b973;
+  }
+
+  .contactsSubTitle{
+      font-family: bebasNeueRegular;
+      font-size: 26px;
+      color : #ff6f40;
+      line-height: 55px;
+  }
+
+  body{
+      margin: 0;
+  }
+
+  .dialogView{
+      width: 93%;
+  }
+
+ .contactsBlock{
+     padding-top: 65px;
+     width: 71%;
+     max-width: 960px;
+     margin: 0 auto;
+     background: #ffffff;
+     text-align: center;
+ }
+
+   .ui-dialog.ui-widget.ui-widget-content{
+       width: 60% !important;
+       height: 600px !important;
+       padding: 0 !important;
+       position: fixed;
+       box-shadow: 1px 1px 5px #ccc;
+   }
+
+   .ui-dialog-content.ui-widget-content{
+       height: 540px !important;
+   }
+
+   .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+       border: none !important;
+       outline: none;
+       margin-right: 11px !important;
+   }
+
+   .ui-widget-overlay{
+       background: #000000 !important;
+       opacity: 0.8;
+   }
+
+   @media screen and (max-width: 1110px) {
+        .round{
+            width: 120px;
+            height: 120px;
+        }
+
+       .imgBlock{
+           margin-left: 45px;
+       }
+
+       .arrow{
+           display: none;
+       }
+   }
+
+   @media screen and (max-width: 1100px) {
+       .partnerImg {
+           width: 220px;
+           height: 290px
+       }
+
+       .social{
+           width: 220px;
+       }
+
+       .docBlock{
+          margin-left: 30px;
+       }
+
+       .docBlock.first{
+           margin-left: 0px;
+       }
+
+   }
+
+   @media screen and (max-width: 1050px) {
+        .imgBlock{
+            width: 16%;
+        }
+   }
+
+   @media screen and (max-width: 1000px) {
+       .partnerImg {
+           width: 180px;
+           height: 240px
+       }
+
+       .social{
+           width: 180px;
+       }
+
+       .docBlock{
+           margin-left: 20px;
+       }
+
+       .docBlock.first{
+           margin-left: 0px;
+       }
+
+       .partnerName{
+           font-size: 14px;
+       }
+
+       .partnerJob{
+           font-size: 12px;
+       }
+   }
+
+   @media screen and (max-width: 950px) {
+       .imgBlock {
+           width: 30%;
+           margin-left: 14%;
+           margin-top: 20px;
+       }
+
+       .number,.underNumber{
+           font-size: 30px;
+       }
+
+       .partners{
+           padding-top: 100px;
+       }
+
+   }
+
+   @media screen and (max-width: 850px) {
+        .partnerBox{
+            width: 100%;
+            margin-top: 20px;
+        }
+
+       .partnerBox.first{
+           margin-top: 0px;
+       }
+
+       .documents{
+           padding-top: 500px;
+       }
+
+       .ourWorkers{
+           padding-top: 450px;
+       }
+       .partnersBlock.green{
+           padding-top: 70px;
+       }
+
+       .partnersBlock.green.last{
+           margin-top: 300px;
+       }
+
+   }
+
+   @media screen and (max-width: 800px) {
+       .docBlock{
+           width: 100%;
+           margin-left: 0px;
+           margin-top: 20px;
+       }
+
+       .ui-dialog.ui-widget.ui-widget-content{
+           width: 98% !important;
+           height: 400px !important;
+           padding: 0 !important;
+           position: fixed;
+           box-shadow: 1px 1px 5px #ccc;
+       }
+
+       .ui-dialog-content.ui-widget-content{
+           height: 300px !important;
+       }
+   }
+
+   @media screen and (max-width: 700px) {
+       .partnersBlock{
+           margin-top: -140px;
+       }
+   }
+
+   @media screen and (max-width: 600px) {
+       .number,.underNumber{
+           font-size: 40px;
+       }
+
+       .contactsText{
+           margin-left: 0px;
+           padding-top: 60px;
+       }
+
+       .textFirst,.textSec,.textThird{
+           width : 100%;
+           margin-top: 20px;
+           margin-left: 0px;
+       }
+
+       .contactsText{
+           width: 100%;
+       }
+
+       .partnersBlock{
+           margin-top: 300px;
+       }
+
+       .partners{
+           padding-top: 150px;
+       }
+   }
+
+   @media screen and (max-width: 550px) {
+       .imgBlock {
+           width: 80%;
+           margin-top: 20px;
+           margin-left: 45px;
+       }
+   }
+
+   @media screen and (max-width: 450px) {
+       .imgBlock {
+           margin-left: 35px;
+       }
+
+       .partnersBlock{
+           margin-top: 360px;
+       }
+   }
+
+   @media screen and (max-width: 360px) {
+       .imgBlock {
+           margin-left: 27px;
+       }
+   }

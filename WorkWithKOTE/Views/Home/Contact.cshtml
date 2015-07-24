@@ -2,94 +2,7 @@
     ViewBag.Title = "kote.travel - Контакты";
 }
 @Styles.Render("~/Content/order")
-
-<style>
-
-    #blockPhones,#blockSocial,.main{
-        margin-left : 35px;
-        margin-top  : 10px;
-        margin-bottom : 10px;
-    }
-
-    #introBlock{
-        margin-top : 20px;
-        text-align : center;
-    }
-
-    #mainBlock{
-        margin-top : 20px;
-        text-align : left;
-    }
-
-    .phones,.social{
-        display : block;
-        margin : 5px;
-    }
-
-    .social{
-        font-size : 20px;
-    }
-
-    .kote{
-        color : #ff6f40;
-    }
-
-    #preKote{
-         font-size : 19px;
-    }
-
-    #yearsOld,#suggest{
-        text-decoration : underline;
-        font-weight : 500;
-    }
-
-    #intro{
-        font-size : 17px;
-    }
-
-    #suggest{
-        font-size : 19px;
-    }
-
-    .subMain{
-        margin-left : 13px;
-    }
-
-    .photoDoc{
-        width : 300px;
-        height : 400px;
-    }
-
-    .dogovor{
-        font-size : 18px;
-        display : block;
-    }
-
-    #downloads,#photoDoc,#ourContacts{
-        margin-left : 48px;
-    }
-
-    .photoDoc{
-        display : inline;
-    }
-
-    #contacted{
-        text-decoration:underline;
-        margin-left : 10px;
-        margin-top : 30px;
-        padding-top : 20px;
-    }
-
-    #ourContacts{
-        width : 80%;
-        box-shadow: 1px 1px 2px 1px #ccc;
-    }
-
-    #call,#office{
-        margin-left : 35px;
-    }
-
-</style>
+@Styles.Render("~/Content/aboutus")
 
 @{ Html.RenderPartial("HeaderPartial_main");}
 
@@ -101,84 +14,241 @@
 </div>
 
 
- <div id="introBlock">
-   <span id="intro">
-     <span class="kote"> Туроператор «КОТЕ» </span> - украинский оператор ведет свою деятельность <span id="yearsOld">4й год</span>!
-        Мы предлагаем наши авторские туры и качественные услуги в сфере туризма.
-         <br /><span id="preKote"><span class="kote">kote.travel</span> - это уникальный в своем роде сервис покупки путешествий!</span>
-   </span><br/><br/>
+ <div class="contactsBlock">
+    <span class="contactsTitle">ПРИНЦИП РАБОТЫ</span><br />
+    <span class="contactsSubTitle">КАК ПУТЕШЕСТОВАТЬ ДЕШЕВЛЕ</span>
 
-     <div>
-         У нас вы точно найдете только лучшие туры, походы, фестивали, экспедиции по Украине и всему миру!<br/>
-          Ведь над работой сервиса трудятся профессионалы сферы туризма <br/>
-           (ученые, путешественники, турменеджеры, гиды, ИТ специалисты)<br/><br/>
-            <span id="suggest"> Мы предлагаем только самое интересное и уникальное : </span>
-     </div>
- </div>
+    <div class="c_FirstBlock">
 
-<div id="mainBlock">
-    <div class="main">
-      <h4>Личный кабинет туриста - это особенность нашего сервиса</h4>
-        <div class="subMain">
-          <ul>
-             <li>При желании вы можете сэкономить при оплате вашего отдыха, 
-                 мы разработали систему бонусных накоплений и поощрений для наших постоянных туристов!</li>
+        <div class="contactsImgBlock">
+            <div class="imgBlock first">
+                <img class="first round" src="~/Content/img/register.png" alt="way" />
+                <img class="up arrow" src="~/Content/img/wayArrow.png" alt="arrow" /><br />
+                <span class="forImgTitle">РЕГИСТРАЦИЯ</span><br />
+                <span class="forImgUnderTitle">Получи бонус за</span><br />
+                <span class="forImgUnderTitle">регистрацию</span>
+            </div>
 
-             <li>Путешествуешь больше - платишь меньше, закон по которому <span class="kote">КОТЭшествуют</span></li>
+            <div class="imgBlock second">
+                <img class="second round" src="~/Content/img/bonus.png" alt="way" />
+                <img class="arrow down" src="~/Content/img/wayArrow.png" alt="arrow" /><br />
+                <span class="forImgTitle">БОНУС</span><br />
+                <span class="forImgUnderTitle">Расскажи друзьям,</span><br />
+                <span class="forImgUnderTitle">что ты</span><br />
+                <span class="forImgUnderTitle">котешественник и</span><br />
+                <span class="forImgUnderTitle">получи бонус</span>
+            </div>
 
-             <li>Пользование личным кабинетом откроет перед вами много новых способов начать путешествовать, 
-                 пускай даже с минимальным бюджетом!
-             </li>
-           </ul>  
-         </div>
+            <div class="imgBlock third">
+                <img class="third round" src="~/Content/img/Traveling.png" alt="way" />
+                <img class="up arrow" src="~/Content/img/wayArrow.png" alt="arrow" /><br />
+                <span class="forImgTitle">ПОЕЗДКА</span><br />
+                <span class="forImgUnderTitle">Оплати тур и получи</span><br />
+                <span class="forImgUnderTitle">бонус на следующий</span><br />
+                <span class="forImgUnderTitle">тур</span>
+            </div>
+
+            <div class="imgBlock fourth">
+                <img class="fourth round" src="~/Content/img/bonus.png" alt="way" /><br />
+                <span class="forImgTitle">БОНУС</span><br />
+                <span class="forImgUnderTitle">Репостни тур в соц.</span><br />
+                <span class="forImgUnderTitle">сети и получи бонус</span>
+            </div>
+
+        </div>
+
+        <div class="contactsText">
+            <div class="textFirst">
+                <span class="number">5000</span><br />
+                <span class="underNumber">ТУРИСТОВ</span>
+            </div>
+
+            <div class="textSec">
+                <span class="number">250</span><br />
+                <span class="underNumber">ТУРОВ</span>
+            </div>
+
+            <div class="textThird">
+                <span class="number">500</span><br />
+                <span class="underNumber">НАПРАВЛЕНИЙ</span>
+            </div>
+        </div>
+
+        <div class="partners">
+            <span class="contactsTitle">ОТЗЫВЫ НАШИХ ПАРТНЕРОВ</span><br />
+        </div>
+
+
+    </div>
+    <div class="partnersBlock">
+        <div class="partnerBox first">
+            <img class="partnerImg" src="~/Content/img/guy.png" alt="partner" /><br /><br />
+            <span class="partnerName">Василий Антонович</span><br />
+            <span class="partnerJob">директор завода "Пеппа"</span><br /><br />
+            <span class="partnerDescription">Крем порадовал очень</span><br />
+            <span class="partnerDescription">я думал хуже</span><br />
+            <span class="partnerDescription">будет</span>
+        </div>
+
+        <div class="partnerBox">
+            <img class="partnerImg" src="~/Content/img/guy.png" alt="partner" /><br /><br />
+            <span class="partnerName">Василий Антонович</span><br />
+            <span class="partnerJob">директор завода "Пеппа"</span><br /><br />
+            <span class="partnerDescription">Крем порадовал очень</span><br />
+            <span class="partnerDescription">я думал хуже</span><br />
+            <span class="partnerDescription">будет</span>
+        </div>
+
+        <div class="partnerBox last">
+            <img class="partnerImg" src="~/Content/img/guy.png" alt="partner" /><br /><br />
+            <span class="partnerName">Василий Антонович</span><br />
+            <span class="partnerJob">директор завода "Пеппа"</span><br /><br />
+            <span class="partnerDescription">Крем порадовал очень</span><br />
+            <span class="partnerDescription">я думал хуже</span><br />
+            <span class="partnerDescription">будет</span>
+        </div>
     </div>
 
-    <div class="main">
-      <h4>Мир настолько многообразен, интересен и так быстро меняется!</h4>
-        <div class="subMain">
-          <ul>
-            <li>Познавательные статьи и новости в сфере туризма помогут вам быть в курсе событий и тенденций в мире тревел!</li>
-            <li>Выбор и приобретение туров теперь станет куда проще!</li>
-            <li>Решится на путешествие теперь можно не выходя из дому, оплатив <span class="kote">любой банковской картой</span> любой тур или услугу на нашем сервисе!</li>
-            <li>Причем некоторые туры можно будет оплачивать по частям, это поможет рассчитать свой бюджет и заранее отважится на путешествие!</li>
-          </ul>
+    <div class="ourWorkers">
+        <span class="contactsTitle green">НАШИ СОТРУДНИКИ</span><br />
+        <div class="partnersBlock green">
+            <div class="partnerBox first">
+                <img class="partnerImg green" src="~/Content/img/guy.png" alt="partner" />
+                <div class="social">
+                    <a><img class="socImg first" src="~/Content/img/vk_contact.png" /></a>
+                    <a><img class="socImg" src="~/Content/img/fb_contact.png" /></a>
+                    <a><img class="socImg" src="~/Content/img/tw_contact.png" /></a>
+                </div>
+                <br /><br />
+                <span class="partnerName green">Василий Антонович</span><br />
+                <span class="partnerJob green">Мазаться кремом. Каждую секунду</span>
+            </div>
+
+            <div class="partnerBox">
+                <img class="partnerImg green" src="~/Content/img/guy.png" alt="partner" /><div class="social"></div>
+                <div class="social">
+                    <a><img class="socImg first" src="~/Content/img/vk_contact.png" /></a>
+                    <a><img class="socImg" src="~/Content/img/fb_contact.png" /></a>
+                    <a><img class="socImg" src="~/Content/img/tw_contact.png" /></a>
+                </div>
+                <br /><br />
+                <span class="partnerName green">Василий Антонович</span><br />
+                <span class="partnerJob green">Мазаться кремом. Каждую секунду</span>
+            </div>
+
+            <div class="partnerBox last">
+                <img class="partnerImg green" src="~/Content/img/guy.png" alt="partner" /><div class="social"></div>
+                <div class="social">
+                    <a><img class="socImg first" src="~/Content/img/vk_contact.png" /></a>
+                    <a><img class="socImg" src="~/Content/img/fb_contact.png" /></a>
+                    <a><img class="socImg" src="~/Content/img/tw_contact.png" /></a>
+                </div>
+                <br /><br />
+                <span class="partnerName green">Василий Антонович</span><br />
+                <span class="partnerJob green">Мазаться кремом. Каждую секунду</span>
+            </div>
+        </div>
+
+        <div class="partnersBlock green last">
+            <div class="partnerBox first">
+                <img class="partnerImg green" src="~/Content/img/guy.png" alt="partner" /><div class="social"></div>
+                <div class="social">
+                    <a><img class="socImg first" src="~/Content/img/vk_contact.png" /></a>
+                    <a><img class="socImg" src="~/Content/img/fb_contact.png" /></a>
+                    <a><img class="socImg" src="~/Content/img/tw_contact.png" /></a>
+                </div>
+                <br /><br />
+                <span class="partnerName green">Василий Антонович</span><br />
+                <span class="partnerJob green">Мазаться кремом. Каждую секунду</span>
+            </div>
+
+            <div class="partnerBox">
+                <img class="partnerImg green" src="~/Content/img/guy.png" alt="partner" /><div class="social"></div>
+                <div class="social">
+                    <a><img class="socImg first" src="~/Content/img/vk_contact.png" /></a>
+                    <a><img class="socImg" src="~/Content/img/fb_contact.png" /></a>
+                    <a><img class="socImg" src="~/Content/img/tw_contact.png" /></a>
+                </div>
+                <br /><br />
+                <span class="partnerName green">Василий Антонович</span><br />
+                <span class="partnerJob green">Мазаться кремом. Каждую секунду</span>
+            </div>
+
+            <div class="partnerBox last">
+                <img class="partnerImg green" src="~/Content/img/guy.png" alt="partner" /><div class="social"></div>
+                <div class="social">
+                    <a><img class="socImg first" src="~/Content/img/vk_contact.png" /></a>
+                    <a><img class="socImg" src="~/Content/img/fb_contact.png" /></a>
+                    <a><img class="socImg" src="~/Content/img/tw_contact.png" /></a>
+                </div>
+                <br /><br />
+                <span class="partnerName green">Василий Антонович</span><br />
+                <span class="partnerJob green">Мазаться кремом. Каждую секунду</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="documents">
+        <span class="contactsTitle green">ДОКУМЕНТЫ</span><br />
+        <div class="imgDocBlock">
+            <div class="docBlock first">
+                <img class="docImg" src="~/Content/img/doc.png" alt="document" /><br /><br />
+                <a download="Регистрация" href="doc.png" class="downDoc">Регистрация</a>
+            </div>
+            <div class="docBlock">
+                <img class="docImg" src="~/Content/img/doc.png" alt="document" /><br /><br />
+                <a download="Регистрация" href="doc.png" class="downDoc">Регистрация</a>
+            </div>
+            <div class="docBlock">
+                <img class="docImg" src="~/Content/img/doc.png" alt="document" /><br /><br />
+                <a download="Регистрация" href="doc.png" class="downDoc">Регистрация</a>
+            </div>
         </div>
     </div>
 </div>
 
-<div id="downloads">
-    <ul>
-        <li>
-   <span class="dogovor"> Cкачать <a href="~/UpLoad/Documents/nadannya_poslug.doc"> Договор с туристом </a></span></li>
-   <li><span class="dogovor"> Cкачать <a href="~/UpLoad/Documents/agentsky_KOTE.doc"> Агентский договор </a></span></li>
-        </ul>
+<div id="dialog">
+    <img class="dialogView" src="" alt="doc" />
 </div>
 
-<div id="photoDoc">
-    <img class="photoDoc" src="~/UpLoad/Documents/1.jpg" />
-    <img class="photoDoc" src="~/UpLoad/Documents/2.jpg" />
-    <img class="photoDoc" src="~/UpLoad/Documents/3.jpg" />
-    <img class="photoDoc" src="~/UpLoad/Documents/4.jpg" />
-</div><br/><br/>
+<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    -->
+<script>
+        $(function(){
+            //safari fix
+            $('.partnerBox.last,.textThird').css('float','right');
 
-<div id="ourContacts">
-  <h3 id="contacted"> Наши контакты </h3>
-  <div>
-      <span id="office">Центральный офис: Украина, г. Днепропетровск, ул. Глинки 15/26</span>
-  </div>
+            $('.social').each(function(){
+               $(this).css({'left':$(this).prev().offset().left,'width':$(this).prev().width()+4});
+            });
 
-  <div id="blockPhones">
-      <span class="phones">+38 097-815-68-38</span>
-      <span class="phones">+38 050-774-99-18</span>
-      <span class="phones">+38 063-796-25-00</span>
-  </div>
+            $(window).resize(function(){
+                $('.social').each(function(){
+                    $(this).css({'left':$(this).prev().offset().left,'width':$(this).prev().width()+4});
+                });
+            });
 
-  <div id="blockSocial">
-      <span class="social">kote.travel@gmail.com</span>
-      <span class="social">Skype:kote.travel</span>
-  </div>
-    <h4 id="call">Мы всегда на связи с Вами! Удобный онлайн-чат и телефон свяжут вас напрямую с нашей командой менеджеров!</h4>
-</div>
+           $('.docImg').click(function(){
+              var _this = $(this);
+               $('#dialog').dialog({
+                   'modal':true,
+                   'title': _this.parent().find('.downDoc').attr('download'),
+                   'resizable': false,
+                   'draggable': false,
+                   show: {
+                       effect: 'fade',
+                       duration : 270
+                   },
+                   hide: {
+                       effect: 'fade',
+                       duration : 270
+                   }
+               });
+               $('.dialogView').attr('src',_this.parent().find('.downDoc').attr('href'));
+               $('#dialog').dialog({close:function(){$('.dialogView').attr('src','')}});
+           });
+        });
 
-
-<br /><br />
+</script>
