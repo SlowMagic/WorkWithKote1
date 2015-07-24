@@ -2,10 +2,8 @@
     ViewBag.Title = "kote.travel - Контакты";
 }
 @Styles.Render("~/Content/order")
-@Styles.Render("~/Content/aboutus")
 
 @{ Html.RenderPartial("HeaderPartial_main");}
-
 <div id="small-preview-img" class="clearfix">
     <hgroup>
         <h1>О нас</h1>
@@ -13,7 +11,7 @@
     </hgroup>
 </div>
 
-
+@Styles.Render("~/Content/aboutus")
  <div class="contactsBlock">
     <span class="contactsTitle">ПРИНЦИП РАБОТЫ</span><br />
     <span class="contactsSubTitle">КАК ПУТЕШЕСТОВАТЬ ДЕШЕВЛЕ</span>

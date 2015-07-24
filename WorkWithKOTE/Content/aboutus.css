@@ -1,4 +1,8 @@
 ﻿
+   .contactsBlock img{
+        display:inline-block!important;
+        vertical-align: baseline;
+    }
    #dialog{
        display: none;
    }
@@ -75,7 +79,7 @@
    }
 
    .partnerName{
-       font-family: helveticaNeueCyr;
+       font-family: helveticaNeueCyrBold;
        font-size: 20px;
        color : #588da8;
    }
@@ -123,7 +127,7 @@
    }
 
    .forImgUnderTitle{
-       font-family: helveticaNeueCyr;
+       font-family: helveticaNeueCyrBold;
        font-size: 14px;
        color : #77aac3
    }
@@ -205,7 +209,7 @@
   }
 
   @font-face {
-      font-family: helveticaNeueCyr;
+      font-family: helveticaNeueCyrBold;
       src : url(fonts/HelveticaNeueCyr-Bold.ttf);
   }
 
