@@ -45,11 +45,11 @@
           @Html.ValidationSummary()
 
             <span class="textbox">
-              Название :  <input type="text" name="NameTour" id="NameTour" required />
+              Название :  <input type="text" name="NameTour" id="NameTour" maxlength="50" required />
             </span><br/>
               
             <span class="textbox">
-               Заголовок : <input type="text" name="TitleTour" id="TitleTour" required />
+               Заголовок : <input type="text" name="TitleTour" id="TitleTour" maxlength="200" required />
             </span><br/>
               
             <span class="textbox">
@@ -106,7 +106,7 @@
           </span><br/><br/>
 
           <span class="textbox">
-              Подпись к цене : @Html.TextBoxFor(m => m.PodpicePrice)
+              Подпись к цене : @Html.TextBoxFor(m => m.PodpicePrice, new { maxlength = "20" })
           </span><br/>
           <span class="textbox">
               Аукционная цена : @Html.TextBoxFor(m => m.AukcionPrice)
@@ -132,7 +132,7 @@
           </span><br/><br/>
 
           <span class="textbox">
-              Описание сопровождающего : @Html.TextAreaFor(m => m.SuppDiscription)
+              Описание сопровождающего : @Html.TextAreaFor(m => m.SuppDiscription, new { maxlength = "100" })
           </span><br />
    
           <span class="textbox">

@@ -26,11 +26,11 @@
     <form id="form_tour" action="@Url.Action("CreateNews","News")" method="post" enctype="multipart/form-data">
 
         <span class="textbox">
-            Заголовок новости: @Html.TextBoxFor(m => m.NewsTitle)
+            Заголовок новости: @Html.TextBoxFor(m => m.NewsTitle, new { maxlength = "50" })
         </span><br />
 
         <span class="textbox">
-            Краткое описание: @Html.TextAreaFor(m => m.NewsContent)
+            Краткое описание: @Html.TextAreaFor(m => m.NewsContent, new { maxlength = "200" })
         </span><br />
 
         <span class="textbox">

@@ -304,9 +304,9 @@
         <span class="subscribe-title">Подпишитесь на нашу рассылку<br /></span><br />
         будьте в курсе интересных предложений и горящих туров
     </p>
-    <form class="mailform">
+    <form class="mailform" method="post" action="@Url.Action("MailForPosts","Home")"enctype="multipart/form-data">
         <div class="mailsender">
-            <input class="mail-input" type="text" name="mail-input" placeholder="Почта" />
+            <input class="mail-input" type="text" name="mail" placeholder="Почта" />
             <input class="mail-submit" type="submit" value="" />
         </div>
     </form>

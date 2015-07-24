@@ -11,6 +11,7 @@ using WorkWithKOTE.Filters;
 using WorkWithKOTE.Models;
 using System.Data.Entity;
 using System.Data;
+using System.Net.Mail;
 namespace WorkWithKOTE.Controllers
 {
     public class HomeController : Controller
@@ -150,6 +151,32 @@ namespace WorkWithKOTE.Controllers
                 }
             }
             return RedirectToAction("Profile", "Profile");
+        }
+        [HttpPost]
+        public ActionResult MailForPosts(string mail)
+        {
+            string subject = "Новый человек подписался на рассылки";
+            string body = "Новый человек подписался на рассылку: " + mail;
+            SmtpClient client = new SmtpClient();
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.EnableSsl = true;
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+
+            System.Net.NetworkCredential credentials =
+              new System.Net.NetworkCredential("LevitskiyOrange@gmail.com", "orange123654789");
+            client.UseDefaultCredentials = false;
+            client.Credentials = credentials;
+
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress("LevitskiyOrange@gmail.com");
+            msg.To.Add(new MailAddress("kote.travel@gmail.com"));
+
+            msg.Subject = subject;
+            msg.IsBodyHtml = true;
+            msg.Body = body;
+            client.Send(msg);
+            return RedirectToAction("Index");
         }
     }
 }
