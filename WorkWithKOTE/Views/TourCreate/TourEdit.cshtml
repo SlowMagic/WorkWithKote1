@@ -37,7 +37,7 @@
         @Html.HiddenFor(m => m.TourId)
 
         <span class="textbox">
-            Название :  <input type="text" value="@Model.NameTour" name="NameTour" id="NameTour" required />
+            Название :  <input type="text" value="@Model.NameTour" name="NameTour" id="NameTour" maxlength="50" required />
         </span><br />
 
         @Html.HiddenFor(m => m.SuppFoto)
@@ -45,7 +45,7 @@
         @Html.HiddenFor(m => m.Document)
 
         <span class="textbox">
-            Заголовок : <input type="text" value="@Model.TitleTour" name="TitleTour" id="TitleTour" required />
+            Заголовок : <input type="text" value="@Model.TitleTour" name="TitleTour" maxlength="200" id="TitleTour" required />
         </span><br />
 
         <span class="textbox">
@@ -143,7 +143,7 @@
         </span><br /><br />
 
         <span class="textbox">
-            Подпись к цене : @Html.TextBoxFor(m => m.PodpicePrice)
+            Подпись к цене : @Html.TextBoxFor(m => m.PodpicePrice, new { maxlength = "20" })
         </span><br />
 
         <span class="textbox">
@@ -194,7 +194,7 @@
         </span><br /><br />
 
         <span class="textbox">
-            Описание сопровождающего : @Html.TextAreaFor(m => m.SuppDiscription)
+            Описание сопровождающего : @Html.TextAreaFor(m => m.SuppDiscription, new { maxlength = "100" })
         </span><br />
 
         <span class="textbox">
@@ -243,7 +243,7 @@
                     <div class="tag_@j">
                         <span class="textbox">
                             Тег тура :
-                            <input style="margin-left: 57px;" type='text' name="Tag[@j].TagName" value="@Html.DisplayFor(m=>item.TagName)" />
+                            <input style="margin-left: 57px;" type='text' name="Tag[@j].TagName" maxlength="50" value="@Html.DisplayFor(m=>item.TagName)" />
                         </span>
                         <input type="hidden" name="Tag[@j].TagId" value="@item.TagId" />
                         <input type="hidden" name="Tag[@j].TourId" value="@Model.TourId" />
@@ -414,7 +414,7 @@
         function AddTag() {
             var html2Addss = "<div style='margin-left:35px;' class='tags_" + l + "'>" +
                                 "Тег тура : " +
-                                "<input style='margin-left:57px;' type='text' name='Ts[" + l + "].TagName' />" +
+                                "<input style='margin-left:57px;' type='text' name='Ts[" + l + "].TagName' maxlength='50' />" +
                                 "<input type='hidden' name='Ts[" + l + "].TourId' value='@Model.TourId' />" +
                              "</div>";
             $('#tag-pannel').append(html2Addss);

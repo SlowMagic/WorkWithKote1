@@ -5,7 +5,7 @@
     </div>
 </div><br/>
 
-    <input type="button" class="addTeg tags" value=" Добавить тег тура ">
+    <input type="button" class="addTeg tags" maxlength='50' value=" Добавить тег тура ">
     <input type="button" class="deleteLinkTag tags" value="Удалить тег тура" />
 
 <script>
@@ -17,7 +17,7 @@
         {
             var html2Addss = "<div style='margin-left:35px;' class='tag" + l + "'>" +
                                "Тег тура : " +
-                               "<input style='margin-left:57px;' type='text' name='Tag[" + l + "].TagName' /><br/>" +
+                               "<input style='margin-left:57px;' type='text' name='Tag[" + l + "].TagName' maxlength='50' /><br/>" +
                              "</div>";
             $('#tag-pannel').append(html2Addss);
             l++;
