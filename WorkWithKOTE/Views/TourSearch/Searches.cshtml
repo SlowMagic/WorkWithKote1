@@ -445,7 +445,7 @@
                         }
                         <div class="hoveR">
                             <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m => c.Valuta)</h3><br />
-                            <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="width: 100%;max-height:160px" src="@Html.DisplayFor(m => c.TourImg)"></a>
+                            <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="width: 100%;max-height:160px;height:160px;" src="@Html.DisplayFor(m => c.TourImg)"></a>
                             <div style="height:85px;max-height:85px;overflow-y:auto">
                                 <a style="margin-left:10px;" class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
                             </div>
@@ -484,7 +484,7 @@
         if ($('#bar').width() < 1100) {
             $('#filter').show();
             $('.layout-left-column').css({ 'float': 'auto', 'min-width': '215px', 'max-width': '215px', 'width': '70%', 'top': '104px', 'position': 'fixed', 'z-index': '4', 'height': '65%' }).addClass('left');
-            $('.layout-main-right').css({ 'margin-left': '3%', 'width': '100%', 'margin-top': '20px' });
+            $('.layout-main-right').css({ 'margin-left': '17%', 'width': '60%', 'margin-top': '20px' });
             $('.found-tour').css({ 'width': 'auto', 'margin-top': '20px' });
             $('.date-select label').addClass('hide');
             $('.date-select.mini select').css({ 'font-size': '14px !important', 'text-decoration': 'underline' });
@@ -507,6 +507,10 @@
             $('#Prices').css({ 'margin-bottom': '0px' });
             $('.searchForm').removeClass('aaa');
             $('#search_label').css({ 'width': '100%' });
+        }
+
+        if ($('#bar').width() < 800) {
+            $('.layout-main-right').css({ 'margin-left': '3%', 'width': '100%', 'margin-top': '20px' });
         }
     }
 
