@@ -289,6 +289,7 @@
  }
 
    .ui-dialog.ui-widget.ui-widget-content{
+       z-index : 220 !important;
        width: 60% !important;
        height: 500px !important;
        padding: 0 !important;
@@ -321,8 +322,8 @@
            margin-left: 45px;
        }
 
-       .arrow{
-           display: none;
+       .contactsBlock img.arrow{
+           display: none !important;
        }
    }
 
@@ -391,7 +392,7 @@
        }
 
        .partners{
-           padding-top: 100px;
+           padding-top: 40px;
        }
 
    }
@@ -449,6 +450,12 @@
        }
    }
 
+@media screen and (max-width: 630px) {
+    .partnersBlock{
+           margin-top: -100px;
+       }
+}
+
    @media screen and (max-width: 600px) {
        .number,.underNumber{
            font-size: 40px;
@@ -470,7 +477,7 @@
        }
 
        .partnersBlock{
-           margin-top: 300px;
+           margin-top: 50px;
        }
 
        .partners{
@@ -484,6 +491,10 @@
            margin-top: 20px;
            margin-left: 45px;
        }
+
+        .partnersBlock{
+           margin-top: 400px;
+       }
    }
 
    @media screen and (max-width: 450px) {
@@ -492,7 +503,7 @@
        }
 
        .partnersBlock{
-           margin-top: 360px;
+           margin-top: 450px;
        }
    }
 
