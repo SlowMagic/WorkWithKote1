@@ -233,6 +233,7 @@
     <Content Include="Content\img\fbBtn.png" />
     <Content Include="Content\img\fb_contact.png" />
     <Content Include="Content\img\footer-bg.jpg" />
+    <Content Include="Content\img\garantia.jpg" />
     <Content Include="Content\img\google.png" />
     <Content Include="Content\img\green.png" />
     <Content Include="Content\img\group-border.png" />
@@ -241,6 +242,7 @@
     <Content Include="Content\img\guys-count.png" />
     <Content Include="Content\img\img.png" />
     <Content Include="Content\img\instagram-ico.png" />
+    <Content Include="Content\img\licence.jpg" />
     <Content Include="Content\img\mailme-bg.jpg" />
     <Content Include="Content\img\main-preview-image.jpg" />
     <Content Include="Content\img\media-bg.jpg" />
@@ -255,6 +257,7 @@
     <Content Include="Content\img\plane.png" />
     <Content Include="Content\img\play-btn.jpg" />
     <Content Include="Content\img\play-btn.png" />
+    <Content Include="Content\img\reestr.jpg" />
     <Content Include="Content\img\register.png" />
     <Content Include="Content\img\scroll.png" />
     <Content Include="Content\img\Searching-black.png" />
@@ -289,6 +292,7 @@
     <Content Include="Content\img\zaglushka.jpg" />
     <Content Include="Content\js\common.js" />
     <Content Include="Content\form.css" />
+    <Content Include="Content\js\datepicker-ru.js" />
     <Content Include="Content\js\galleria-1.4.2.js" />
     <Content Include="Content\js\galleria-1.4.2.min.js" />
     <Content Include="Content\js\plugins\flickr\flickr-demo.html" />
