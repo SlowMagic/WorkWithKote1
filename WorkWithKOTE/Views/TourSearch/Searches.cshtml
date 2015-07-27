@@ -28,7 +28,7 @@
 
         .hoveR:hover {
             box-shadow: #ccc 1px 0px 8px 2px;
-            width: 250px;
+            width: 100%;
         }
 
     .left {
@@ -445,8 +445,10 @@
                         }
                         <div class="hoveR">
                             <h3>От @Html.DisplayFor(m => c.Cost)&nbsp;@Html.DisplayFor(m => c.Valuta)</h3><br />
-                            <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="max-height: 150px; max-width: 250px" src="@Html.DisplayFor(m => c.TourImg)"></a>
-                            <a style="margin-left:10px;" class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
+                            <a href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'><img class="tourImg" style="width: 100%;max-height:160px" src="@Html.DisplayFor(m => c.TourImg)"></a>
+                            <div style="height:85px;max-height:85px;overflow-y:auto">
+                                <a style="margin-left:10px;" class="titleTour" href='@Url.Action("Index", "TourDisplay", new {id = c.TourId})'> @Html.DisplayFor(m => c.NameTour)</a>
+                            </div>
                             <div class="date-select mini">
                                 <label style="margin-left: -13px;">
                                     <select id="selectDate">
@@ -483,7 +485,6 @@
             $('#filter').show();
             $('.layout-left-column').css({ 'float': 'auto', 'min-width': '215px', 'max-width': '215px', 'width': '70%', 'top': '104px', 'position': 'fixed', 'z-index': '4', 'height': '65%' }).addClass('left');
             $('.layout-main-right').css({ 'margin-left': '3%', 'width': '100%', 'margin-top': '20px' });
-            $('.tourImg').css({ 'max-width': '100%', 'max-height': '100%' });
             $('.found-tour').css({ 'width': 'auto', 'margin-top': '20px' });
             $('.date-select label').addClass('hide');
             $('.date-select.mini select').css({ 'font-size': '14px !important', 'text-decoration': 'underline' });
@@ -499,7 +500,6 @@
             $('.forHide').show();
             $('div.layout-left-column').css({ 'float': 'left', 'min-width': 'auto', 'max-width': 'auto', 'width': '30%', 'margin-left': '0% !important', 'position': 'inherit', 'height': '524px;' }).removeClass('left');
             $('.layout-main-right').css({ 'margin-left': '35%', 'width': '67%', 'margin-top': '0px' });
-            $('.tourImg').css({ 'max-width': '250px', 'max-height': '150px' });
             $('.found-tour').css({ 'width': '250px', 'margin-top': '-38px' });
             $('.date-select label').removeClass('hide');
             $('.date-select.mini select').css({ 'font-size': '1em', 'text-decoration': 'none' });
