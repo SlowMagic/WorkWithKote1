@@ -46,16 +46,16 @@ function switchLogo(pos)
         $('#Searching').attr('src', '/Content/img/Searching.png');
         $('.separator').attr('src', '/Content/img/separator.png');
         $('#small-logo').attr('src', '/Content/img/small-logo.png');
-        if ( pos >= $('#big-logo').height() || pos > 200 )
+        if ( pos <= $('#big-logo').height() || pos < 200 )
         {
             $('#small-logo').css('opacity','1');
             $('#big-logo').css('opacity', '0');
-            $('#bar').css('backgroundColor', 'rgba(0,0,0, 0.6)');
+            $('#bar').css('backgroundColor', 'rgba(0,0,0, 0.0)');
             $('#top-shadow').hide();
         }
 
         else {
-            $('#bar').css('backgroundColor', 'rgba(0,0,0, 0.2)');
+            $('#bar').css('backgroundColor', 'rgba(0,0,0, 0.6)');
                $('#small-logo').css('opacity', '0');
                $('#big-logo').css('opacity', '1');
                $('#top-shadow').show();
